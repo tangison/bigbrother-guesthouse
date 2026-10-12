@@ -8,6 +8,9 @@ import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
 import "./globals.css";
 import { BIZ } from "@/lib/site-data";
+import { Nav } from "@/components/site/nav";
+import { Footer } from "@/components/site/footer";
+import { B2Odometer } from "@/components/site/odometer";
 
 const title = "Big Brother Guesthouse, B&B & Restaurant | Usakos, Namibia";
 const description =
@@ -71,7 +74,13 @@ const jsonLd = [
     slogan: BIZ.restaurant.tagline,
     servesCuisine: ["Namibian", "Traditional", "Grills", "Pizza", "Seafood"],
     priceRange: "N$30 to N$400",
-    url: `${BIZ.site}/#menu`,
+    url: `${BIZ.site}/restaurant`,
+    hasMenu: {
+      "@type": "Menu",
+      name: "Big Brothers Restaurant Menu",
+      url: `${BIZ.site}/menu`,
+    },
+    acceptsReservations: `https://wa.me/${BIZ.restaurant.whatsapp}`,
     telephone: BIZ.restaurant.phoneDisplay,
     email: BIZ.restaurant.email,
     image: `${BIZ.site}/images/hero-braise.jpg`,
@@ -106,12 +115,23 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased">
+      <body className="flex min-h-screen flex-col antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
+        <a
+          href="#main"
+          className="sr-only z-[60] rounded-full bg-ink px-5 py-3 text-sm font-semibold text-paper focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to main content
+        </a>
+        <Nav />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <Footer />
+        <B2Odometer />
       </body>
     </html>
   );

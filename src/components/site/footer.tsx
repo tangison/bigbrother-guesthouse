@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { BIZ, wa } from "@/lib/site-data";
-import type { ViewKey } from "./nav";
-import { VIEWS } from "./nav";
+import { ROUTES, LEGAL_ROUTES } from "@/lib/routes";
 
-export function Footer({ go }: { go: (v: ViewKey) => void }) {
+export function Footer() {
   return (
     <footer className="mt-auto border-t border-ink/80 bg-ink text-paper">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-3 md:px-6">
@@ -68,14 +68,36 @@ export function Footer({ go }: { go: (v: ViewKey) => void }) {
 
       <div className="border-t border-paper/15">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-paper/60 md:flex-row md:px-6">
-          <p>© 2026 Big Brother Holdings, Usakos, Namibia. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Big Brother Holdings, Usakos, Namibia. All rights reserved.</p>
           <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1" aria-label="Footer navigation">
-            {VIEWS.map((v) => (
-              <button key={v.key} className="hover:text-paper" onClick={() => go(v.key)}>
-                {v.label}
-              </button>
+            {ROUTES.map((r) => (
+              <Link key={r.key} className="hover:text-paper" href={r.path}>
+                {r.label}
+              </Link>
+            ))}
+            {LEGAL_ROUTES.map((r) => (
+              <Link key={r.path} className="hover:text-paper" href={r.path}>
+                {r.label}
+              </Link>
             ))}
           </nav>
+        </div>
+        {/* Hardcoded studio credit. Mandatory on every Tangison deployment.
+            It cannot be styled out or negotiated away. */}
+        <div className="border-t border-paper/10">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-2 px-4 py-3 text-center text-[11px] tracking-wide text-paper/50 md:justify-between md:px-6">
+            <p>
+              Website made by{" "}
+              <a
+                className="font-semibold text-paper/80 underline decoration-leaf/50 underline-offset-4 hover:text-paper"
+                href="https://studio.tangison.com"
+                rel="noopener"
+              >
+                Tangison Studio
+              </a>
+            </p>
+            <p>Prices on this site come from our own printed menu, dated {new Date().getFullYear()}.</p>
+          </div>
         </div>
       </div>
     </footer>

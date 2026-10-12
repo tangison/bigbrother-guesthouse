@@ -1,17 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "./reveal";
 import { BIZ, wa } from "@/lib/site-data";
-import type { ViewKey } from "./nav";
 
-export function RestaurantView({ go }: { go: (v: ViewKey) => void }) {
+export function RestaurantView() {
   return (
     <>
       {/* Restaurant hero: scale device */}
       <section className="relative overflow-hidden bg-ember text-white" aria-label="Big Brothers Restaurant">
         <div className="hero-bg absolute inset-0 opacity-20" aria-hidden="true">
-          <Image src="/images/hero-braise.jpg" alt="" fill priority sizes="100vw" className="object-cover" />
+          <Image src="/images/hero-braise.jpg" alt="" fill priority quality={25} sizes="100vw" className="object-cover" />
         </div>
         <div className="relative mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
           <Reveal family="slide">
@@ -25,9 +25,9 @@ export function RestaurantView({ go }: { go: (v: ViewKey) => void }) {
             </p>
           </Reveal>
           <Reveal family="rise" index={2} className="mt-8 flex flex-wrap gap-3">
-            <button onClick={() => go("menu")} className="rounded-full bg-white px-6 py-3 font-semibold text-ink transition-transform hover:scale-[1.03]">
+            <Link href="/menu" className="rounded-full bg-white px-6 py-3 font-semibold text-ink transition-transform hover:scale-[1.03]">
               Open the full menu
-            </button>
+            </Link>
             <a
               href={wa(BIZ.restaurant.whatsapp, "Hello Big Brothers Restaurant, I would like to order.")}
               className="rounded-full border border-white/50 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
@@ -91,9 +91,9 @@ export function RestaurantView({ go }: { go: (v: ViewKey) => void }) {
                 {BIZ.distances.swakopmundKm} km from Swakopmund, {BIZ.distances.windhoekKm} km from Windhoek, right on
                 the B2.
               </p>
-              <button onClick={() => go("contact")} className="mt-5 rounded-full bg-leaf px-5 py-2.5 text-sm font-semibold text-ink">
+              <Link href="/contact" className="mt-5 inline-block rounded-full bg-leaf px-5 py-2.5 text-sm font-semibold text-ink">
                 Directions & map
-              </button>
+              </Link>
             </div>
           </Reveal>
         </div>
@@ -139,9 +139,9 @@ export function RestaurantView({ go }: { go: (v: ViewKey) => void }) {
               The full menu carries every price we charge, from a N$30 russian to the N$400 seafood platter. No
               surprises when the bill arrives.
             </p>
-            <button onClick={() => go("menu")} className="mt-7 rounded-full bg-ember px-8 py-4 font-semibold text-white transition-transform hover:scale-[1.03]">
+            <Link href="/menu" className="mt-7 inline-block rounded-full bg-ember px-8 py-4 font-semibold text-white transition-transform hover:scale-[1.03]">
               Open the full menu
-            </button>
+            </Link>
           </div>
         </Reveal>
       </section>

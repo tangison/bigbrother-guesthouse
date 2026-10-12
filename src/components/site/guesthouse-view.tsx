@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "./reveal";
 import { BIZ, wa } from "@/lib/site-data";
-import type { ViewKey } from "./nav";
 
-export function GuesthouseView({ go }: { go: (v: ViewKey) => void }) {
+export function GuesthouseView() {
   return (
     <>
       {/* Hero: rise device on cream ground (no photo hero here: we only publish photos we own) */}
@@ -97,9 +97,9 @@ export function GuesthouseView({ go }: { go: (v: ViewKey) => void }) {
               <a href={`tel:${BIZ.guesthouse.phone1}`} className="rounded-full border border-paper/30 px-6 py-3.5 text-center font-semibold">
                 Call {BIZ.guesthouse.phone1Display}
               </a>
-              <button onClick={() => go("facilities")} className="rounded-full px-6 py-3 text-sm text-paper/70 underline underline-offset-4 hover:text-paper">
+              <Link href="/facilities" className="rounded-full px-6 py-3 text-sm text-paper/70 underline underline-offset-4 hover:text-paper">
                 See facilities & functions
-              </button>
+              </Link>
             </div>
           </div>
         </Reveal>

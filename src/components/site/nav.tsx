@@ -1,21 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BIZ } from "@/lib/site-data";
+import { ROUTES } from "@/lib/routes";
 
-export type ViewKey = "home" | "restaurant" | "menu" | "guesthouse" | "facilities" | "gallery" | "contact";
-
-export const VIEWS: { key: ViewKey; label: string }[] = [
-  { key: "home", label: "Home" },
-  { key: "restaurant", label: "Restaurant" },
-  { key: "menu", label: "Menu" },
-  { key: "guesthouse", label: "Guesthouse" },
-  { key: "facilities", label: "Facilities" },
-  { key: "gallery", label: "Gallery" },
-  { key: "contact", label: "Contact" },
-];
-
-export function Nav({ view, go }: { view: ViewKey; go: (v: ViewKey) => void }) {
+export function Nav() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
 
@@ -33,23 +25,28 @@ export function Nav({ view, go }: { view: ViewKey; go: (v: ViewKey) => void }) {
     };
   }, [open]);
 
-  const pick = (v: ViewKey) => {
-    go(v);
-    setOpen(false);
-  };
+  const isActive = (path: string) =>
+    path === "/" ? pathname === "/" : pathname.startsWith(path);
 
   return (
     <header className="sticky top-0 z-50">
+      {/* The brand bar: 4px accent sampled from the two client logos
+          (leaf #8CC63F restaurant, ember #EE7203 guesthouse). Static height,
+          pinned, zero layout shift. */}
+      <div
+        aria-hidden="true"
+        className="h-1 w-full bg-[linear-gradient(90deg,var(--color-leaf)_0%,var(--color-leaf)_38%,var(--color-ember)_62%,var(--color-ember)_100%)]"
+      />
       <div
         className={`transition-all duration-300 ${
-          solid ? "border-b border-line bg-paper/95 shadow-sm backdrop-blur" : "bg-transparent"
+          solid ? "border-b border-line bg-paper/95 shadow-sm backdrop-blur" : "bg-paper/80 backdrop-blur"
         }`}
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
-          <button
-            onClick={() => pick("home")}
+          <Link
+            href="/"
             className="flex items-center gap-3 text-left"
-            aria-label="Big Brother Holdings, go to home"
+            aria-label="Big Brother Holdings, go to the home page"
           >
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-ink font-display text-sm font-bold text-ember">
               BB
@@ -60,23 +57,23 @@ export function Nav({ view, go }: { view: ViewKey; go: (v: ViewKey) => void }) {
                 Guesthouse · B&B · Restaurant
               </span>
             </span>
-          </button>
+          </Link>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
-            {VIEWS.map((v) => (
-              <button
-                key={v.key}
-                onClick={() => pick(v.key)}
-                aria-current={view === v.key ? "page" : undefined}
+            {ROUTES.map((r) => (
+              <Link
+                key={r.key}
+                href={r.path}
+                aria-current={isActive(r.path) ? "page" : undefined}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  view === v.key ? "bg-ink text-paper" : "text-ink hover:bg-sand/60"
+                  isActive(r.path) ? "bg-ink text-paper" : "text-ink hover:bg-sand/60"
                 }`}
               >
-                {v.label}
-              </button>
+                {r.label}
+              </Link>
             ))}
             <a
-              href={BIZ.socials ? `tel:${BIZ.guesthouse.phone1}` : "#"}
+              href={`tel:${BIZ.guesthouse.phone1}`}
               className="ml-2 rounded-full bg-ember px-4 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
             >
               Call {BIZ.guesthouse.phone1Display}
@@ -106,19 +103,20 @@ export function Nav({ view, go }: { view: ViewKey; go: (v: ViewKey) => void }) {
       </div>
 
       {open && (
-        <div className="fixed inset-0 top-[64px] z-40 overflow-y-auto bg-paper px-6 py-6 lg:hidden">
+        <div className="fixed inset-0 top-[68px] z-40 overflow-y-auto bg-paper px-6 py-6 lg:hidden">
           <nav className="grid gap-2" aria-label="Mobile navigation">
-            {VIEWS.map((v, i) => (
-              <button
-                key={v.key}
-                onClick={() => pick(v.key)}
+            {ROUTES.map((r, i) => (
+              <Link
+                key={r.key}
+                href={r.path}
+                onClick={() => setOpen(false)}
                 style={{ animationDelay: `${i * 40}ms` }}
                 className={`pop-in rounded-2xl border px-5 py-4 text-left font-display text-2xl font-semibold ${
-                  view === v.key ? "border-ink bg-ink text-paper" : "border-line bg-cream/60"
+                  isActive(r.path) ? "border-ink bg-ink text-paper" : "border-line bg-cream/60"
                 }`}
               >
-                {v.label}
-              </button>
+                {r.label}
+              </Link>
             ))}
           </nav>
           <div className="mt-6 grid gap-2 border-t border-line pt-6 text-sm text-mut">
@@ -128,7 +126,9 @@ export function Nav({ view, go }: { view: ViewKey; go: (v: ViewKey) => void }) {
             <a className="font-semibold text-ink" href={`tel:${BIZ.restaurant.phone}`}>
               Restaurant: {BIZ.restaurant.phoneDisplay}
             </a>
-            <span>{BIZ.address.street}, {BIZ.address.town}</span>
+            <span>
+              {BIZ.address.street}, {BIZ.address.town}
+            </span>
           </div>
         </div>
       )}

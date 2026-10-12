@@ -1,19 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "./reveal";
 import { BIZ, wa } from "@/lib/site-data";
-import type { ViewKey } from "./nav";
 
 const MARQUEE = "GOOD FOOD, GREAT VIBES · HOME AWAY FROM HOME · USAKOS · NAMIBIA · B2 ROAD · ";
 
-export function HomeView({ go }: { go: (v: ViewKey) => void }) {
+export function HomeView() {
   return (
     <>
       {/* HERO: three independent planes. Background texture, middle plate photo, foreground type. */}
       <section className="relative overflow-hidden bg-ink text-paper" aria-label="Welcome">
         <div className="hero-bg absolute inset-0 opacity-[0.16]" aria-hidden="true">
-          <Image src="/images/hero-platter.jpg" alt="" fill priority sizes="100vw" className="object-cover" />
+          <Image src="/images/hero-platter.jpg" alt="" fill priority quality={25} sizes="100vw" className="object-cover" />
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(140,198,63,0.14),transparent_55%),radial-gradient(ellipse_at_10%_90%,rgba(238,114,3,0.12),transparent_50%)]" aria-hidden="true" />
 
@@ -38,12 +38,12 @@ export function HomeView({ go }: { go: (v: ViewKey) => void }) {
               </p>
             </Reveal>
             <Reveal family="rise" index={3} className="mt-7 flex flex-wrap items-center gap-3">
-              <button
-                onClick={() => go("menu")}
+              <Link
+                href="/menu"
                 className="rounded-full bg-ember px-6 py-3 font-semibold text-white transition-transform hover:scale-[1.03]"
               >
                 See the menu
-              </button>
+              </Link>
               <a
                 href={wa(BIZ.guesthouse.phone1, "Hello Big Brother Guesthouse, do you have a room available?")}
                 className="rounded-full border border-paper/30 px-6 py-3 font-semibold text-paper transition-colors hover:bg-paper/10"
@@ -121,7 +121,7 @@ export function HomeView({ go }: { go: (v: ViewKey) => void }) {
               d: "Spacious rooms with mountain views, secure parking, a pool and garden, and a relaxed atmosphere for unwinding after a long trip.",
               img: "/images/dish-feast.jpg",
               alt: "Guesthouse garden feast on the braai platter",
-              go: "guesthouse" as ViewKey,
+              href: "/guesthouse",
               cta: "Explore the stay",
               color: "bg-ember",
             },
@@ -130,7 +130,7 @@ export function HomeView({ go }: { go: (v: ViewKey) => void }) {
               d: "Three luxury, spacious en suite rooms with free internet access. Cosy, personal, and made for couples and small families.",
               img: "/images/dish-breakfast.jpg",
               alt: "Breakfast tray with eggs, bacon and toast",
-              go: "guesthouse" as ViewKey,
+              href: "/guesthouse",
               cta: "See the B&B",
               color: "bg-leaf-deep",
             },
@@ -139,7 +139,7 @@ export function HomeView({ go }: { go: (v: ViewKey) => void }) {
               d: "Great food with even better views. Local flavours, hearty favourites, grills, seafood, pizza and a full bar, est. 2023.",
               img: "/images/dish-braise.jpg",
               alt: "Slow braised meat with peppers and pap",
-              go: "restaurant" as ViewKey,
+              href: "/restaurant",
               cta: "Visit the restaurant",
               color: "bg-ink",
             },
@@ -159,12 +159,12 @@ export function HomeView({ go }: { go: (v: ViewKey) => void }) {
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="font-display text-xl font-semibold">{p.t}</h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-mut">{p.d}</p>
-                  <button
-                    onClick={() => go(p.go)}
+                  <Link
+                    href={p.href}
                     className={`mt-5 inline-flex w-fit items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white ${p.color}`}
                   >
                     {p.cta} <span aria-hidden="true">→</span>
-                  </button>
+                  </Link>
                 </div>
               </article>
             </Reveal>
@@ -214,12 +214,12 @@ export function HomeView({ go }: { go: (v: ViewKey) => void }) {
           <p className="mx-auto mt-4 max-w-xl text-mut">
             Every price on our menu comes straight from our kitchen, nothing hidden. Have a look, then come hungry.
           </p>
-          <button
-            onClick={() => go("menu")}
-            className="mt-8 rounded-full bg-ink px-8 py-4 font-semibold text-paper transition-transform hover:scale-[1.03]"
+          <Link
+            href="/menu"
+            className="mt-8 inline-block rounded-full bg-ink px-8 py-4 font-semibold text-paper transition-transform hover:scale-[1.03]"
           >
             Open the full menu
-          </button>
+          </Link>
         </Reveal>
       </section>
     </>

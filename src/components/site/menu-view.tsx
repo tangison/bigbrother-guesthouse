@@ -34,7 +34,7 @@ export function MenuView() {
       {/* Peak section: full-bleed moment. Source of all prices: client A3 menu v3 PDF. */}
       <section className="relative overflow-hidden bg-ink text-paper" aria-label="Menu">
         <div className="hero-bg absolute inset-0 opacity-[0.18]" aria-hidden="true">
-          <Image src="/images/dish-feast.jpg" alt="" fill priority sizes="100vw" className="object-cover" />
+          <Image src="/images/dish-feast.jpg" alt="" fill priority quality={25} sizes="100vw" className="object-cover" />
         </div>
         <div className="relative mx-auto max-w-6xl px-4 py-16 text-center md:px-6 md:py-24">
           <Reveal family="scale">
@@ -53,7 +53,7 @@ export function MenuView() {
       <div className="menu-paper" id="menu-top">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-[220px_1fr] md:px-6 md:py-16">
           {/* Category rail */}
-          <aside className="md:sticky md:top-24 md:h-fit" aria-label="Menu categories">
+          <aside className="min-w-0 md:sticky md:top-24 md:h-fit" aria-label="Menu categories">
             <nav className="rail flex gap-2 overflow-x-auto pb-2 md:flex-col md:overflow-visible">
               {MENU.map((s) => (
                 <a
