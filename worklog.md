@@ -21,3 +21,29 @@ Stage Summary:
 - Repo: https://github.com/tangison/bigbrother-guesthouse @ 0e30245
 - Webmaster checklist: all hard gates pass except owner-input items (GA4 IDs, custom domain DNS, Search Console, SPF/DKIM on brand domain email)
 - Security: both plaintext tokens from chat should be rotated by the owner
+
+---
+Task ID: 3-d
+Agent: Super Z (main agent)
+Task: Redesign pass on the live Big Brother site after owner verdict "too ugly, too generic": correct logos, rebuilt navigation, sticky imagery, scroll animations, no AI slop. Skills mandated by owner: gpt-taste + hallmark.
+
+Work Log:
+- Ran owner-mandated skill boots: npx skills use leonxlnx/taste-skill (gpt-taste) -> /tmp/taste.txt read fully; npx skills use nutlope/hallmark -> /tmp/hallmark.txt (69KB) read fully including redesign verb, macrostructures, cookbook nav/footer tables, typography, colour, motion, anti-patterns, layout, copy, floating-nav laws
+- npx skills add timed out at 180s (reported); installed both skills by copying the use-command downloads; verified on disk: skills/gpt-taste/SKILL.md, skills/hallmark/SKILL.md + references/ (now gitignored as tooling)
+- Visual audit of live site with agent-browser: nav used generic BB monogram instead of real logos; hero muddy olive gradient; 3-equal-card grids; reveal-on-everything; orange slab restaurant hero
+- hallmark multi-page redesign flow: wrote design.md at project root (locked system: genre editorial, macro Photographic, theme custom OKLCH from the two real logos, N10 morph nav, Ft5 statement footer, Fraunces + Outfit), .hallmark/log.json entry, stamp in globals.css
+- Replaced Inter with Outfit (@fontsource, gpt-taste stack); OKLCH token system; named easings/durations; 4px scale
+- Nav rebuilt as N10 floating-on-scroll morph: one DOM, is-floating class past 80px, 520ms single curve, real guesthouse logo (white ground), underline-grow links, active ember underline, phone + WhatsApp CTA; brand bar pinned above
+- Footer rebuilt as Ft5 Statement ("The B2 is long. Stop where the road gets friendly.") with both real logos, legal row, hardcoded Tangison Studio credit
+- Home rebuilt: cinematic full-bleed hero (platter photo, ink wash, 2 CTAs, corner caption, parallax + one entrance), editorial lede, gapless bento (3x3 interlock, grid-flow-dense, 5 cells), sticky stop-over pane with photo stack, scroll-scrubbed price reveal, no marquee/eyebrows/stats-in-hero
+- Restaurant: braise photo fold with real badge (object-cover), spec-sheet hours/contact, dish rail kept, typographic CTAs. Guesthouse: real logo beside headline, asymmetric stay split, honest rates band. Facilities: stacking pinned cards (framer scale). Menu: fixed useMemo->useEffect scroll-spy bug, print-catalogue restyle, sticky rail with ember active marker, tabular ink prices. Gallery/contact/404/500/brand restyled to tokens; brand page documents Outfit + real-logo rule
+- New motion.tsx: ScrubText, ParallaxPhoto, StackCard, QuietFade; all gated by useReducedMotion
+- Bugs found+fixed: .photo-frame missing position:relative (fill images escaped to viewport on /guesthouse); sticky nav confined by wrapper (nav vanished on scroll); logos had wrong declared ratios (true sizes logo-guesthouse 547x323, logo-restaurant 720x847, badge was being squashed to square - fixed with true-ratio props + object-cover); images.qualities ladder added to next.config.ts (Next 16)
+- Deploy: prod build 19 routes, deploys 4l9y32f64 then afgengdre, alias bigbrother-guesthouse.vercel.app, public HTTP 200; fresh console: zero warnings/errors; home cold transfer 480KB / 59 reqs (under 500KB budget)
+- GitHub: 6b82f55 + a83fa9d pushed to tangison/bigbrother-guesthouse, remote verified at a83fa9d; tokens used via env only
+
+Stage Summary:
+- Live: https://bigbrother-guesthouse.vercel.app (production alias, owner Vercel targis47)
+- Repo: https://github.com/tangison/bigbrother-guesthouse @ a83fa9d
+- Design system locked in design.md; slop sweep clean (no em dashes, no Inter, no eyebrows, no 3-col grids, no invented metrics)
+- Owner should still rotate both tokens (GitHub PAT + Vercel vcp_) after review
