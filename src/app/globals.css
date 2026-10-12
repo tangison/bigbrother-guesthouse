@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Big Brother Holdings brand tokens.
+   Sources: restaurant logo lime #8CC63F, guesthouse logo orange #EE7203,
+   sampled from client files, Oct 2026. Warm charcoal instead of pure black. */
+@theme {
+  --color-ink: #1b1712;
+  --color-ink-soft: #2a231b;
+  --color-paper: #faf5ec;
+  --color-cream: #f3eada;
+  --color-sand: #e7dcc6;
+  --color-leaf: #8cc63f;
+  --color-leaf-deep: #5f8f23;
+  --color-ember: #ee7203;
+  --color-ember-deep: #c25a02;
+  --color-mut: #6b6154;
+  --color-line: #d9cdb8;
+
+  --font-display: "Fraunces Variable", Georgia, serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+/* Scroll reveal devices. Each section uses a different family so no two
+   neighbouring sections behave the same (scroll-craft rule). */
+.rv {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+.rv-wipe {
+  clip-path: inset(0 100% 0 0);
+  opacity: 1;
+  transform: none;
+  transition: clip-path 0.9s cubic-bezier(0.65, 0, 0.25, 1);
+}
+.rv-slide {
+  opacity: 0;
+  transform: translateX(-34px);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.rv-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.rv.in,
+.rv-wipe.in,
+.rv-slide.in,
+.rv-scale.in {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+/* Stagger children */
+.stagger > * {
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+/* Hero depth planes */
+.hero-bg {
+  animation: heroDrift 26s ease-in-out infinite alternate;
+}
+.hero-fg {
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes heroDrift {
+  from { transform: scale(1.06) translateX(-6px); }
+  to { transform: scale(1.12) translateX(8px); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.pop-in { animation: popIn 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* Menu paper texture: flat colour, no gradients */
+.menu-paper {
+  background-color: var(--color-cream);
+  background-image: radial-gradient(var(--color-sand) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Focus visibility for keyboard users */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--color-ember);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbar for the dish rail */
+.rail::-webkit-scrollbar { height: 8px; }
+.rail::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 8px; }
+
+/* Reduced motion: static composition keeps depth via layer offsets */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rv, .rv-wipe, .rv-slide, .rv-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+  .hero-bg, .marquee-track, .pop-in { animation: none !important; }
+  .rv-scale { transform: scale(0.97); }
+}
