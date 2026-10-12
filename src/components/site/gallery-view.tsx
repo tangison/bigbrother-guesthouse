@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Reveal } from "./reveal";
+import { QuietFade } from "./motion";
 
 // Gallery of real client photos (filebin upload, Oct 2026). All alt text written per image.
 const PHOTOS = [
@@ -61,16 +61,13 @@ export function GalleryView() {
   return (
     <>
       <section className="bg-cream" aria-label="Gallery">
-        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
-          <Reveal family="wipe">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ember-deep">Gallery</p>
-            <h1 className="mt-4 max-w-2xl font-display text-4xl font-semibold leading-tight md:text-5xl">
-              Real plates, real people, real Usakos.
-            </h1>
-            <p className="mt-4 max-w-xl text-mut">
-              Every photo here comes from our own kitchen and bar. Tap any photo to see it larger.
-            </p>
-          </Reveal>
+        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+          <h1 className="hero-rise max-w-[20ch] font-display text-[clamp(2.2rem,4.6vw,3.9rem)] font-semibold leading-[1.07] tracking-[-0.02em]">
+            Real plates, real people, real Usakos.
+          </h1>
+          <p className="hero-rise mt-4 max-w-xl text-lg text-mut" style={{ "--i": 1 } as React.CSSProperties}>
+            Every photo here comes from our own kitchen and bar. Tap any photo to see it larger.
+          </p>
         </div>
       </section>
 
@@ -78,10 +75,10 @@ export function GalleryView() {
         <ul className="columns-2 gap-4 md:columns-3 [&>*]:mb-4">
           {PHOTOS.map((p, i) => (
             <li key={p.src} className="break-inside-avoid">
-              <Reveal family="scale" index={i % 4}>
+              <QuietFade delay={(i % 3) * 0.05}>
                 <button
                   onClick={() => setOpen(i)}
-                  className="group block w-full overflow-hidden rounded-2xl border border-line bg-white"
+                  className="photo-frame group block w-full border border-line"
                   aria-label={`View photo: ${p.alt}`}
                 >
                   <Image
@@ -90,11 +87,12 @@ export function GalleryView() {
                     width={900}
                     height={p.tall ? 1200 : 675}
                     loading="lazy"
+                    quality={52}
                     sizes="(max-width: 768px) 50vw, 33vw"
-                    className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="h-auto w-full object-cover"
                   />
                 </button>
-              </Reveal>
+              </QuietFade>
             </li>
           ))}
         </ul>
@@ -102,21 +100,21 @@ export function GalleryView() {
 
       {open !== null && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/95 p-4"
+          className="fixed inset-0 z-[400] flex items-center justify-center bg-ink/95 p-4"
           role="dialog"
           aria-modal="true"
           aria-label={PHOTOS[open].alt}
           onClick={() => setOpen(null)}
         >
           <button
-            className="absolute right-4 top-4 rounded-full border border-paper/30 px-4 py-2 text-paper hover:bg-paper/10"
+            className="absolute right-4 top-4 rounded-full border border-paper/30 px-4 py-2 text-paper transition-colors hover:bg-paper/10"
             onClick={() => setOpen(null)}
             aria-label="Close photo"
           >
-            Close ✕
+            Close
           </button>
           <button
-            className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-paper/30 px-4 py-3 text-paper hover:bg-paper/10"
+            className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-paper/30 px-4 py-3 text-paper transition-colors hover:bg-paper/10"
             onClick={(e) => {
               e.stopPropagation();
               setOpen((o) => (o === null ? o : (o - 1 + PHOTOS.length) % PHOTOS.length));
@@ -131,13 +129,13 @@ export function GalleryView() {
               alt={PHOTOS[open].alt}
               width={900}
               height={1200}
-              className="max-h-[80vh] w-auto rounded-2xl object-contain"
+              className="max-h-[80vh] w-auto object-contain"
               priority
             />
-            <figcaption className="mt-3 text-center text-sm text-paper/80">{PHOTOS[open].alt}</figcaption>
+            <figcaption className="caption mt-3 text-center">{PHOTOS[open].alt}</figcaption>
           </figure>
           <button
-            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-paper/30 px-4 py-3 text-paper hover:bg-paper/10"
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-paper/30 px-4 py-3 text-paper transition-colors hover:bg-paper/10"
             onClick={(e) => {
               e.stopPropagation();
               setOpen((o) => (o === null ? o : (o + 1) % PHOTOS.length));

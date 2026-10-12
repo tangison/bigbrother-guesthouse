@@ -20,8 +20,8 @@ export default function NotFound() {
               <Link
                 key={r.key}
                 href={r.path}
-                className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-transform hover:scale-[1.03] ${
-                  r.key === "home" ? "bg-ember text-white" : "border border-paper/30 text-paper"
+                className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${
+                  r.key === "home" ? "bg-paper text-ink hover:bg-ember" : "border border-paper/30 text-paper hover:bg-paper/10"
                 }`}
               >
                 {r.label}

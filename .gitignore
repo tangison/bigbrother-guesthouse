@@ -56,3 +56,11 @@ server.log
 tool-results/
 scripts/tangison/repo/
 scripts/tangison/scroll-craft/
+
+# tooling: third-party skills, hallmark state, audit screenshots
+/skills/
+/.hallmark/
+/.agents/
+/agent/
+/tool-results/
+/scripts/*.png

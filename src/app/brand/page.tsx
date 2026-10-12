@@ -4,7 +4,7 @@ import { ROUTES } from "@/lib/routes";
 
 const title = "Brand Book | Big Brother Guesthouse, Usakos";
 const description =
-  "The Big Brother Holdings brand system: colours sampled from our own logos, the Fraunces and Inter type pairing, and how our marks may be used.";
+  "The Big Brother Holdings brand system: colours sampled from our own logos, the Fraunces and Outfit type pairing, and how our marks may be used.";
 
 export const metadata: Metadata = {
   title,
@@ -28,8 +28,7 @@ export default function BrandPage() {
     <>
       <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ember-deep">Brand book</p>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-semibold leading-tight md:text-6xl">
+          <h1 className="max-w-3xl font-display text-4xl font-semibold leading-tight md:text-6xl">
             How Big Brother looks, in plain terms.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-mut">
@@ -69,16 +68,16 @@ export default function BrandPage() {
               <p className="text-xs uppercase tracking-[0.18em] text-leaf">Display</p>
               <p className="mt-3 font-display text-4xl font-semibold">Fraunces</p>
               <p className="mt-3 text-sm leading-relaxed text-paper/75">
-                A warm serif used for headings and prices. Weights 400, 600 and 700. It echoes the hand-painted
-                character of the restaurant badge without copying it.
+                A warm serif used for headings and prices. Weights 600 and 700, roman only. It echoes the
+                hand-painted character of the restaurant badge without copying it.
               </p>
               <p className="mt-4 font-display text-2xl">Kapana with pap, N$120.</p>
             </div>
             <div className="rounded-3xl border border-paper/15 p-7">
               <p className="text-xs uppercase tracking-[0.18em] text-leaf">Body</p>
-              <p className="mt-3 text-4xl font-semibold tracking-tight">Inter</p>
+              <p className="mt-3 text-4xl font-semibold tracking-tight" style={{ fontFamily: "var(--font-body)" }}>Outfit</p>
               <p className="mt-3 text-sm leading-relaxed text-paper/75">
-                A neutral sans for paragraphs, menus, buttons and forms. Weights 400 to 700. Maximum two font
+                A geometric sans for paragraphs, menus, buttons and forms. Weights 400 to 600. Maximum two font
                 families are used across the whole site, both loaded with font-display swap.
               </p>
               <p className="mt-4">Find us on the B2 at Plot 7, Laaste Begin, Usakos South.</p>
@@ -91,15 +90,11 @@ export default function BrandPage() {
         <h2 className="font-display text-3xl font-semibold">Logo rules</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           <div className="rounded-3xl border border-line bg-white p-7">
-            <div className="flex items-center gap-4">
-              <span className="grid h-14 w-14 place-items-center rounded-2xl bg-ink font-display text-lg font-bold text-ember">
-                BB
-              </span>
-              <p className="font-display text-lg font-semibold">The BB monogram</p>
-            </div>
+            <p className="font-display text-lg font-semibold">The only marks we use</p>
             <p className="mt-4 text-sm leading-relaxed text-mut">
-              The website mark is a charcoal square with the BB initials in ember. It stands in for the logo in
-              small sizes such as the favicon and the header. The full logo artwork is always used at larger sizes.
+              The Big Brother Guesthouse logo carries the name and the tagline, so it stands in every header and
+              footer. There is no separate monogram: the real logo is always the mark, at every size the favicon
+              aside, which uses the simplified BB icon.
             </p>
           </div>
           <div className="rounded-3xl border border-line bg-white p-7">

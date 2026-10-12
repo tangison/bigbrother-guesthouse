@@ -1,127 +1,187 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Big Brother Holdings brand tokens.
-   Sources: restaurant logo lime #8CC63F, guesthouse logo orange #EE7203,
-   sampled from client files, Oct 2026. Warm charcoal instead of pure black. */
+/* Hallmark · genre: editorial · macrostructure: Photographic · theme: custom (Khan River warm,
+ * ember hue 47) · nav: N10 floating-on-scroll morph · footer: Ft5 Statement
+ * design-system: design.md · designed-as-app
+ * Brand anchors sampled from the client's two real logos:
+ * Big Brother Guesthouse logo orange + Big Brothers Restaurant badge lime, Oct 2026. */
 @theme {
-  --color-ink: #1b1712;
-  --color-ink-soft: #2a231b;
-  --color-paper: #faf5ec;
-  --color-cream: #f3eada;
-  --color-sand: #e7dcc6;
-  --color-leaf: #8cc63f;
-  --color-leaf-deep: #5f8f23;
-  --color-ember: #ee7203;
-  --color-ember-deep: #c25a02;
-  --color-mut: #6b6154;
-  --color-line: #d9cdb8;
+  --color-ink: oklch(18% 0.008 70);
+  --color-ink-soft: oklch(23% 0.012 70);
+  --color-paper: oklch(97% 0.013 90);
+  --color-cream: oklch(93.5% 0.02 90);
+  --color-sand: oklch(88% 0.025 90);
+  --color-leaf: oklch(76% 0.17 130);
+  --color-leaf-deep: oklch(57% 0.135 130);
+  --color-ember: oklch(70% 0.185 47);
+  --color-ember-deep: oklch(58% 0.165 45);
+  --color-mut: oklch(47% 0.018 80);
+  --color-line: oklch(84% 0.022 90);
 
   --font-display: "Fraunces Variable", Georgia, serif;
-  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-body: "Outfit", "Segoe UI", sans-serif;
+}
+
+:root {
+  /* Motion tokens, hallmark three-curve discipline */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+  --dur-nav: 520ms;
+
+  /* Named z scale, six levels */
+  --z-nav: 200;
+  --z-modal: 400;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
-
 body {
+  overflow-x: clip;
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
 }
 
-/* Scroll reveal devices. Each section uses a different family so no two
-   neighbouring sections behave the same (scroll-craft rule). */
-.rv {
-  opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
-  will-change: opacity, transform;
+/* ---- Photography treatment: photos sit edge to edge, captions are small ---- */
+.caption {
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  color: oklch(97% 0.013 90 / 0.85);
 }
-.rv-wipe {
-  clip-path: inset(0 100% 0 0);
-  opacity: 1;
-  transform: none;
-  transition: clip-path 0.9s cubic-bezier(0.65, 0, 0.25, 1);
+.photo-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius, 0.5rem);
+  background: var(--color-sand);
 }
-.rv-slide {
-  opacity: 0;
-  transform: translateX(-34px);
-  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+.photo-frame img {
+  transition: transform 700ms var(--ease-out);
 }
-.rv-scale {
-  opacity: 0;
-  transform: scale(0.92);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.rv.in,
-.rv-wipe.in,
-.rv-slide.in,
-.rv-scale.in {
-  opacity: 1;
-  transform: none;
-  clip-path: inset(0 0 0 0);
+.photo-frame:hover img {
+  transform: scale(1.04);
 }
 
-/* Stagger children */
-.stagger > * {
-  transition-delay: calc(var(--i, 0) * 90ms);
+/* ---- N10 floating nav: one DOM, two modes, one curve (520ms) ----
+ * The wrapper is the sticky element (brand bar stays pinned too);
+ * .nav-shell cross-fades bar -> transparent, .nav-pill gains the frosted
+ * floating pill with a single curve on every property. */
+.nav-shell {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--color-line);
+  backdrop-filter: saturate(1.4) blur(0px);
+  transition:
+    background-color var(--dur-nav) var(--ease-out),
+    border-color var(--dur-nav) var(--ease-out),
+    backdrop-filter var(--dur-nav) var(--ease-out),
+    box-shadow var(--dur-nav) var(--ease-out);
+}
+.nav-shell.is-floating {
+  background-color: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: blur(0px);
+  box-shadow: none;
+}
+.nav-pill {
+  transition:
+    max-width var(--dur-nav) var(--ease-out),
+    background-color var(--dur-nav) var(--ease-out),
+    border-radius var(--dur-nav) var(--ease-out),
+    box-shadow var(--dur-nav) var(--ease-out),
+    transform var(--dur-nav) var(--ease-out),
+    border-color var(--dur-nav) var(--ease-out),
+    backdrop-filter var(--dur-nav) var(--ease-out);
+}
+.nav-shell.is-floating .nav-pill {
+  transform: translateY(10px);
+  background-color: oklch(100% 0 0 / 0.92);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow:
+    0 10px 28px oklch(18% 0.008 70 / 0.14),
+    inset 0 0 0 1px oklch(84% 0.022 90 / 0.55);
 }
 
-/* Hero depth planes */
-.hero-bg {
-  animation: heroDrift 26s ease-in-out infinite alternate;
+/* Nav links: underline grows from the left, one signal only */
+.nav-link {
+  position: relative;
+  padding-block: 6px;
+  white-space: nowrap;
 }
-.hero-fg {
-  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--color-ember);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-short) var(--ease-out);
 }
-@keyframes heroDrift {
-  from { transform: scale(1.06) translateX(-6px); }
-  to { transform: scale(1.12) translateX(8px); }
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+.nav-link[aria-current="page"] {
+  color: var(--color-ink);
+  font-weight: 600;
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.marquee-track {
-  animation: marquee 30s linear infinite;
+/* Focus rings appear instantly, never animated */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-ember-deep);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-@keyframes popIn {
-  from { opacity: 0; transform: translateY(10px) scale(0.98); }
-  to { opacity: 1; transform: none; }
+/* ---- Scroll-scrubbed text is driven by framer-motion; this only sets type ---- */
+.scrub-line {
+  font-variant-numeric: tabular-nums;
 }
-.pop-in { animation: popIn 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 
-/* Menu paper texture: flat colour, no gradients */
+/* ---- Menu paper: flat cream with a printed dot grain ---- */
 .menu-paper {
   background-color: var(--color-cream);
   background-image: radial-gradient(var(--color-sand) 1px, transparent 1px);
   background-size: 22px 22px;
 }
 
-/* Focus visibility for keyboard users */
-a:focus-visible, button:focus-visible {
-  outline: 3px solid var(--color-ember);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Scrollbar for the dish rail */
+/* Rail scrollbar (menu categories, dish strip) */
 .rail::-webkit-scrollbar { height: 8px; }
 .rail::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 8px; }
 
-/* Reduced motion: static composition keeps depth via layer offsets */
+/* Hero entrance (one orchestrated load sequence, staggered by --i) */
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+.hero-rise {
+  opacity: 0;
+  animation: heroRise 640ms var(--ease-out) forwards;
+  animation-delay: calc(var(--i, 0) * 110ms);
+}
+
+/* Mobile menu panel */
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.pop-in { animation: popIn 0.45s var(--ease-out) both; }
+
+/* Reduced motion: single source of truth */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .rv, .rv-wipe, .rv-slide, .rv-scale {
-    opacity: 1 !important;
-    transform: none !important;
-    clip-path: none !important;
-    transition: none !important;
-  }
-  .hero-bg, .marquee-track, .pop-in { animation: none !important; }
-  .rv-scale { transform: scale(0.97); }
+  .hero-rise, .pop-in { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .photo-frame img { transition: none !important; }
+  .photo-frame:hover img { transform: none !important; }
+  .nav-shell, .nav-pill, .nav-link::after { transition-duration: 1ms !important; }
+  .nav-shell.is-floating .nav-pill { transform: none !important; }
 }

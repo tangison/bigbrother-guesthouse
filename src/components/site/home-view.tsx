@@ -2,226 +2,299 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Reveal } from "./reveal";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { Check } from "lucide-react";
+import { ScrubText } from "./motion";
 import { BIZ, wa } from "@/lib/site-data";
 
-const MARQUEE = "GOOD FOOD, GREAT VIBES · HOME AWAY FROM HOME · USAKOS · NAMIBIA · B2 ROAD · ";
+/* Home · Photographic macrostructure. Full-bleed photo folds carry the page;
+ * type stays small and quiet between folds. One orchestrated entrance on
+ * load (hero), one scroll device per section after that. */
 
 export function HomeView() {
+  const heroRef = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], reduced ? ["0%", "0%"] : ["0%", "18%"]);
+  const heroFade = useTransform(scrollYProgress, [0, 0.85], [1, 0.35]);
+
   return (
     <>
-      {/* HERO: three independent planes. Background texture, middle plate photo, foreground type. */}
-      <section className="relative overflow-hidden bg-ink text-paper" aria-label="Welcome">
-        <div className="hero-bg absolute inset-0 opacity-[0.16]" aria-hidden="true">
-          <Image src="/images/hero-platter.jpg" alt="" fill priority quality={25} sizes="100vw" className="object-cover" />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(140,198,63,0.14),transparent_55%),radial-gradient(ellipse_at_10%_90%,rgba(238,114,3,0.12),transparent_50%)]" aria-hidden="true" />
+      {/* ATTENTION: the fold is a photograph. Caption in the corner, two CTAs, no badges. */}
+      <section ref={heroRef} className="relative overflow-hidden bg-ink text-paper" aria-label="Welcome">
+        <motion.div style={{ y: heroY }} className="absolute inset-0" aria-hidden="true">
+          <Image
+            src="/images/hero-platter.jpg"
+            alt=""
+            fill
+            priority
+            quality={60}
+            sizes="100vw"
+            className="scale-105 object-cover"
+          />
+        </motion.div>
+        {/* Single-hue ink wash, bottom-weighted, for text legibility */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(180deg,oklch(18%_0.008_70/0.55)_0%,oklch(18%_0.008_70/0.35)_45%,oklch(18%_0.008_70/0.82)_100%)]"
+        />
 
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-16 pt-12 md:grid-cols-[1.15fr_0.85fr] md:items-center md:px-6 md:pb-24 md:pt-16">
-          <div>
-            <Reveal family="slide">
-              <p className="inline-flex items-center gap-2 rounded-full border border-leaf/40 bg-leaf/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-leaf">
-                Usakos · Erongo Region · Namibia
-              </p>
-            </Reveal>
-            <Reveal family="rise" index={1}>
-              <h1 className="mt-5 font-display text-[2.6rem] font-semibold leading-[1.04] tracking-tight md:text-6xl">
-                Home away from home,
-                <span className="block text-leaf">halfway to everywhere.</span>
-              </h1>
-            </Reveal>
-            <Reveal family="rise" index={2}>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-paper/80 md:text-lg">
-                Big Brother Holdings brings three experiences together in one welcoming town on the B2: a
-                guesthouse, a bed and breakfast, and a restaurant. {BIZ.distances.windhoekKm} km from Windhoek,{" "}
-                {BIZ.distances.swakopmundKm} km from Swakopmund, with views of Usakos&rsquo; rocky landscapes.
-              </p>
-            </Reveal>
-            <Reveal family="rise" index={3} className="mt-7 flex flex-wrap items-center gap-3">
+        <motion.div style={{ opacity: heroFade }} className="relative">
+          <div className="mx-auto flex min-h-[86svh] max-w-6xl flex-col items-center justify-center px-4 py-24 text-center md:px-6">
+            <h1 className="hero-rise mx-auto max-w-5xl font-display text-[clamp(2.6rem,6vw,5rem)] font-semibold leading-[1.05] tracking-[-0.02em]" style={{ "--i": 0 } as React.CSSProperties}>
+              Home away from home,{" "}
+              <span className="text-ember">halfway to everywhere.</span>
+            </h1>
+            <p className="hero-rise mt-6 max-w-2xl text-lg leading-relaxed text-paper/85" style={{ "--i": 1 } as React.CSSProperties}>
+              A guesthouse, a bed and breakfast, and Big Brothers Restaurant, together behind one
+              gate on the B2 in Usakos.
+            </p>
+            <div className="hero-rise mt-9 flex flex-wrap items-center justify-center gap-3" style={{ "--i": 2 } as React.CSSProperties}>
               <Link
                 href="/menu"
-                className="rounded-full bg-ember px-6 py-3 font-semibold text-white transition-transform hover:scale-[1.03]"
+                className="rounded-full bg-paper px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-ember hover:text-ink"
               >
                 See the menu
               </Link>
               <a
                 href={wa(BIZ.guesthouse.phone1, "Hello Big Brother Guesthouse, do you have a room available?")}
-                className="rounded-full border border-paper/30 px-6 py-3 font-semibold text-paper transition-colors hover:bg-paper/10"
+                className="rounded-full border border-paper/40 px-7 py-3.5 font-semibold text-paper transition-colors hover:bg-paper/10"
               >
-                Book a room on WhatsApp
+                Book on WhatsApp
               </a>
-            </Reveal>
-            <Reveal family="rise" index={4}>
-              <dl className="mt-9 grid max-w-md grid-cols-3 gap-4 border-t border-paper/15 pt-5 text-sm">
-                <div>
-                  <dt className="text-paper/60">From Windhoek</dt>
-                  <dd className="font-display text-xl font-semibold">{BIZ.distances.windhoekKm} km</dd>
-                </div>
-                <div>
-                  <dt className="text-paper/60">From Swakopmund</dt>
-                  <dd className="font-display text-xl font-semibold">{BIZ.distances.swakopmundKm} km</dd>
-                </div>
-                <div>
-                  <dt className="text-paper/60">Kitchen open</dt>
-                  <dd className="font-display text-xl font-semibold">from 07:00</dd>
-                </div>
-              </dl>
-            </Reveal>
-          </div>
-
-          {/* Middle plane: the plate. Foreground plane: the restaurant badge. */}
-          <div className="relative mx-auto w-full max-w-sm">
-            <Reveal family="scale">
-              <div className="hero-fg relative overflow-hidden rounded-[2rem] border border-paper/15 shadow-2xl">
-                <Image
-                  src="/images/hero-platter.jpg"
-                  alt="Big Brothers Restaurant feast platter with pap, chicken and salads"
-                  width={900}
-                  height={1200}
-                  priority
-                  className="h-auto w-full object-cover"
-                />
-                <p className="absolute bottom-3 left-3 rounded-full bg-ink/80 px-3 py-1 text-xs font-medium text-paper">
-                  The Big Brother platter, made for sharing
-                </p>
-              </div>
-            </Reveal>
-            <Reveal family="rise" index={2} className="absolute -left-6 -top-6 hidden md:block">
-              <Image
-                src="/images/logo-restaurant.jpg"
-                alt="Big Brothers Restaurant badge, established 2023"
-                width={150}
-                height={150}
-                className="hero-fg rounded-full border-2 border-leaf/50 shadow-xl"
-              />
-            </Reveal>
-          </div>
-        </div>
-
-        {/* Marquee strip: motion device 2 */}
-        <div className="relative border-t border-paper/10 py-3" aria-hidden="true">
-          <div className="marquee-track flex w-max whitespace-nowrap font-display text-sm font-medium uppercase tracking-[0.22em] text-paper/50">
-            <span className="pr-4">{MARQUEE.repeat(3)}</span>
-            <span className="pr-4">{MARQUEE.repeat(3)}</span>
-          </div>
-        </div>
-      </section>
-
-      {/* THREE PILLARS: wipe device */}
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24" aria-label="What we offer">
-        <Reveal family="wipe">
-          <h2 className="max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">
-            One gate, three reasons to stop.
-          </h2>
-        </Reveal>
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {[
-            {
-              t: "Big Brother Guesthouse",
-              d: "Spacious rooms with mountain views, secure parking, a pool and garden, and a relaxed atmosphere for unwinding after a long trip.",
-              img: "/images/dish-feast.jpg",
-              alt: "Guesthouse garden feast on the braai platter",
-              href: "/guesthouse",
-              cta: "Explore the stay",
-              color: "bg-ember",
-            },
-            {
-              t: "Big Brother Bed & Breakfast",
-              d: "Three luxury, spacious en suite rooms with free internet access. Cosy, personal, and made for couples and small families.",
-              img: "/images/dish-breakfast.jpg",
-              alt: "Breakfast tray with eggs, bacon and toast",
-              href: "/guesthouse",
-              cta: "See the B&B",
-              color: "bg-leaf-deep",
-            },
-            {
-              t: "Big Brothers Restaurant",
-              d: "Great food with even better views. Local flavours, hearty favourites, grills, seafood, pizza and a full bar, est. 2023.",
-              img: "/images/dish-braise.jpg",
-              alt: "Slow braised meat with peppers and pap",
-              href: "/restaurant",
-              cta: "Visit the restaurant",
-              color: "bg-ink",
-            },
-          ].map((p, i) => (
-            <Reveal key={p.t} family="wipe" index={i}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={p.img}
-                    alt={p.alt}
-                    width={900}
-                    height={675}
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-display text-xl font-semibold">{p.t}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-mut">{p.d}</p>
-                  <Link
-                    href={p.href}
-                    className={`mt-5 inline-flex w-fit items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white ${p.color}`}
-                  >
-                    {p.cta} <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* THE STOP-OVER BAND: slide device, dark ground shift */}
-      <section className="bg-ink-soft text-paper" aria-label="Why stop at Big Brother">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-16 md:grid-cols-2 md:items-center md:px-6 md:py-24">
-          <Reveal family="slide">
-            <h2 className="font-display text-3xl font-semibold leading-tight md:text-4xl">
-              Travelling the B2?
-              <span className="block text-ember">Stop where the road gets friendly.</span>
-            </h2>
-            <p className="mt-5 leading-relaxed text-paper/80">
-              We sit on the B2 at Plot 7, Laaste Begin, Usakos South, on the bench of the Khan River, 1 km off the
-              southern turn-off opposite the Shell station. Whether you are travelling for business, on holiday, or
-              just passing through the Erongo Region, you will find comfort, convenience, and friendly service.
-            </p>
-            <ul className="mt-6 grid gap-2 text-sm text-paper/85 sm:grid-cols-2">
-              {["Restaurant & bar on site", "Free Wi-Fi", "Secure gated parking", "Swimming pools & garden", "Daily housekeeping", "Functions & boardroom"].map((f) => (
-                <li key={f} className="flex items-center gap-2">
-                  <span className="text-leaf" aria-hidden="true">✔</span> {f}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal family="scale" index={1}>
-            <div className="grid grid-cols-2 gap-4">
-              <Image src="/images/dish-chips.jpg" alt="Welcome plate of seasoned chips with sauce writing" width={900} height={675} className="rounded-2xl object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
-              <Image src="/images/cocktail-blue.jpg" alt="Blue cocktail from the Big Brothers bar" width={900} height={675} className="mt-8 rounded-2xl object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
-              <Image src="/images/dish-wings.jpg" alt="Chicken wings platter with lemon and tomato" width={900} height={675} className="rounded-2xl object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
-              <Image src="/images/dish-steak.jpg" alt="T-bone steak with chips and vegetables" width={900} height={675} className="mt-8 rounded-2xl object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
             </div>
-          </Reveal>
+          </div>
+          {/* Photographic caption, corner-anchored */}
+          <p className="caption absolute bottom-5 right-5 hidden text-right md:block">
+            The Big Brother platter, made for sharing
+          </p>
+        </motion.div>
+      </section>
+
+      {/* INTEREST, opener: an editorial text fold with the honest distances */}
+      <section className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28" aria-label="Where we are">
+        <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
+          <h2 className="max-w-[16ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
+            Halfway between Windhoek and the sea.
+          </h2>
+          <div className="max-w-[62ch] text-lg leading-relaxed text-mut">
+            <p>
+              Usakos sits on the B2, {BIZ.distances.windhoekKm} km from Windhoek and{" "}
+              {BIZ.distances.swakopmundKm} km from Swakopmund, with the rocky shapes of the Erongo
+              Region all around. We sit right in that stretch: Plot 7, Laaste Begin, Usakos South,
+              on the bench of the Khan River, opposite the Shell station.
+            </p>
+            <p className="mt-4">
+              Stop for a room, stop for a plate, or stop for both. The kitchen opens from 07:00,
+              the bar stays cold, and the gate is marked Big Brother.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* PEAK TEASER: rise device */}
-      <section className="mx-auto max-w-6xl px-4 py-16 text-center md:px-6 md:py-24" aria-label="Menu invitation">
-        <Reveal family="rise">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ember">From the kitchen</p>
-          <h2 className="mx-auto mt-4 max-w-3xl font-display text-3xl font-semibold leading-tight md:text-5xl">
-            Kapana with pap at N$120. T-bone at N$230. Seafood platter at N$400.
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-mut">
-            Every price on our menu comes straight from our kitchen, nothing hidden. Have a look, then come hungry.
-          </p>
+      {/* INTEREST: the bento. Three columns by three rows, spans 2x2 + 1 + 1 + 2 + 1,
+          grid-flow-dense, zero empty cells. */}
+      <section className="mx-auto max-w-6xl px-4 pb-20 md:px-6 md:pb-28" aria-label="What we offer">
+        <div className="grid auto-rows-[13rem] grid-flow-dense gap-4 md:auto-rows-[15rem] md:grid-cols-3">
+          {/* A: guesthouse, 2x2 */}
+          <BentoCell
+            href="/guesthouse"
+            img="/images/dish-feast.jpg"
+            alt="Braai feast served in the guesthouse garden"
+            title="Big Brother Guesthouse"
+            line="Spacious rooms, mountain views, pools and a garden."
+            cta="Plan your stay"
+            className="row-span-2 md:col-span-2 md:row-span-2"
+            sizes="(max-width: 768px) 100vw, 66vw"
+          />
+          {/* B: B&B */}
+          <BentoCell
+            href="/guesthouse"
+            img="/images/dish-breakfast.jpg"
+            alt="Breakfast tray with eggs, bacon and toast"
+            title="Bed & Breakfast"
+            line="Three luxury en suite rooms, breakfast included."
+            cta="See the B&B"
+            className="md:col-span-1"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+          {/* C: restaurant */}
+          <BentoCell
+            href="/restaurant"
+            img="/images/dish-braise.jpg"
+            alt="Slow braised meat with peppers and pap"
+            title="Big Brothers Restaurant"
+            line="Grills, seafood, pizza and a full bar, est. 2023."
+            cta="Visit the restaurant"
+            className="md:col-span-1"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+          {/* D: bar, wide */}
+          <BentoCell
+            href="/restaurant"
+            img="/images/cocktail-blue.jpg"
+            alt="Blue cocktail from the Big Brothers bar"
+            title="The bar"
+            line="Cold drinks while the grill does its work."
+            cta="See the drinks"
+            className="md:col-span-2"
+            sizes="(max-width: 768px) 100vw, 66vw"
+          />
+          {/* E: day visits */}
+          <BentoCell
+            href="/facilities"
+            img="/images/dish-chips.jpg"
+            alt="Welcome plate of seasoned chips with sauce writing"
+            title="Day visits"
+            line="Come enjoy the day with family and friends."
+            cta="Facilities & functions"
+            className="md:col-span-1"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        </div>
+      </section>
+
+      {/* DESIRE: sticky stop-over. Left pane pins, right photos scroll past. */}
+      <section className="bg-cream" aria-label="Why stop at Big Brother">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 md:grid-cols-2 md:px-6 md:py-28">
+          <div className="md:sticky md:top-28 md:h-fit">
+            <h2 className="max-w-[18ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
+              Travelling the B2? Stop where the road gets friendly.
+            </h2>
+            <p className="mt-5 max-w-[58ch] leading-relaxed text-mut">
+              Whether you travel for business, on holiday, or you are just passing through the
+              Erongo Region, you will find comfort, convenience, and friendly service behind one
+              gate. Rooms for the night, a table for dinner, and space for the function in
+              between.
+            </p>
+            <ul className="mt-7 grid gap-2.5 text-[15px] text-ink sm:grid-cols-2">
+              {["Restaurant & bar on site", "Free Wi-Fi", "Secure gated parking", "Swimming pools & garden", "Daily housekeeping", "Functions & boardroom"].map(
+                (f) => (
+                  <li key={f} className="flex items-center gap-2.5">
+                    <Check size={16} strokeWidth={3} className="shrink-0 text-leaf-deep" aria-hidden="true" />
+                    {f}
+                  </li>
+                )
+              )}
+            </ul>
+            <Link
+              href="/contact"
+              className="mt-8 inline-block rounded-full bg-ink px-7 py-3.5 font-semibold text-paper transition-colors hover:bg-ember-deep"
+            >
+              Find us on the B2
+            </Link>
+          </div>
+
+          <div className="grid gap-5">
+            <div className="photo-frame relative aspect-[4/3]">
+              <Image
+                src="/images/dish-chips.jpg"
+                alt="Welcome plate of seasoned chips with sauce writing"
+                fill
+                loading="lazy"
+                quality={55}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="photo-frame relative aspect-[4/3] md:ml-10">
+              <Image
+                src="/images/cocktail-blue.jpg"
+                alt="Blue cocktail from the Big Brothers bar"
+                fill
+                loading="lazy"
+                quality={55}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="photo-frame relative aspect-[4/3]">
+              <Image
+                src="/images/dish-wings.jpg"
+                alt="Chicken wings platter with lemon and tomato"
+                fill
+                loading="lazy"
+                quality={55}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DESIRE, closer: scrub-revealed prices, then one typographic action */}
+      <section className="bg-ink py-24 text-paper md:py-32" aria-label="From the kitchen">
+        <div className="mx-auto max-w-4xl px-4 md:px-6">
+          <ScrubText
+            className="scrub-line font-display text-[clamp(1.6rem,3.4vw,2.6rem)] font-semibold leading-[1.25] tracking-[-0.01em]"
+            text="Kapana with pap at N$120. T-bone at N$230. Seafood platter at N$400. Every price comes straight from our own printed menu, nothing hidden."
+          />
           <Link
             href="/menu"
-            className="mt-8 inline-block rounded-full bg-ink px-8 py-4 font-semibold text-paper transition-transform hover:scale-[1.03]"
+            className="mt-9 inline-block font-semibold text-paper underline decoration-ember decoration-2 underline-offset-8 transition-colors hover:text-ember"
           >
             Open the full menu
           </Link>
-        </Reveal>
+        </div>
       </section>
     </>
+  );
+}
+
+/* Bento cell: photograph fills the tile, caption bar anchors the bottom.
+ * Hover physics: one signal, slow image scale inside the clipped frame. */
+function BentoCell({
+  href,
+  img,
+  alt,
+  title,
+  line,
+  cta,
+  className = "",
+  sizes,
+}: {
+  href: string;
+  img: string;
+  alt: string;
+  title: string;
+  line: string;
+  cta: string;
+  className?: string;
+  sizes: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`group photo-frame relative block ${className}`}
+      aria-label={`${title}: ${line}`}
+    >
+      <Image
+        src={img}
+        alt={alt}
+        fill
+        loading="lazy"
+        quality={55}
+        sizes={sizes}
+        className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+      />
+      <span
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-2/5 bg-[linear-gradient(180deg,transparent_0%,oklch(18%_0.008_70/0.85)_100%)]"
+      />
+      <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5">
+        <span className="block">
+          <span className="block font-display text-xl font-semibold text-paper md:text-2xl">{title}</span>
+          <span className="mt-1 block text-sm text-paper/85">{line}</span>
+        </span>
+        <span className="hidden shrink-0 text-sm font-semibold text-paper underline decoration-ember decoration-2 underline-offset-4 md:block">
+          {cta}
+        </span>
+      </span>
+    </Link>
   );
 }
