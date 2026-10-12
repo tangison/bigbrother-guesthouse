@@ -33,7 +33,7 @@ export function ScrubText({
   const words = text.split(" ");
 
   return (
-    <p ref={ref} className={className}>
+    <p ref={ref} className={`relative ${className}`}>
       {words.map((w, i) => (
         <ScrubWord
           key={`${w}-${i}`}

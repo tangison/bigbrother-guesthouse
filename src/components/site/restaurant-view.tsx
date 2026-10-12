@@ -55,9 +55,9 @@ export function RestaurantView() {
             <Image
               src="/images/logo-restaurant.jpg"
               alt="Big Brothers Restaurant badge, established 2023 in Usakos"
-              width={120}
-              height={120}
-              className="h-24 w-24 rounded-full border-2 border-leaf/50 shadow-xl md:h-28 md:w-28"
+              width={720}
+              height={847}
+              className="h-24 w-24 rounded-full border-2 border-leaf/50 object-cover shadow-xl md:h-28 md:w-28"
             />
             <p className="caption text-right">
               From our grill · the braise that made the town talk

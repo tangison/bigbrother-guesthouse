@@ -23,17 +23,17 @@ export function Footer() {
                 <Image
                   src="/images/logo-guesthouse.jpg"
                   alt="Big Brother Guesthouse logo"
-                  width={148}
-                  height={50}
+                  width={547}
+                  height={323}
                   className="h-12 w-auto"
                 />
               </span>
               <Image
                 src="/images/logo-restaurant.jpg"
                 alt="Big Brothers Restaurant badge, established 2023"
-                width={64}
-                height={64}
-                className="h-16 w-16 rounded-full border-2 border-leaf/40"
+                width={720}
+                height={847}
+                className="h-16 w-16 rounded-full border-2 border-leaf/40 object-cover"
               />
             </div>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-paper/70">

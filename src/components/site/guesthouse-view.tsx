@@ -19,8 +19,8 @@ export function GuesthouseView() {
             <Image
               src="/images/logo-guesthouse.jpg"
               alt="Big Brother Guesthouse logo: home away from home"
-              width={340}
-              height={114}
+              width={547}
+              height={323}
               priority
               className="h-auto w-full max-w-[300px]"
             />

@@ -74,8 +74,8 @@ export function Nav() {
               <Image
                 src="/images/logo-guesthouse.jpg"
                 alt="Big Brother Guesthouse logo: home away from home"
-                width={132}
-                height={44}
+                width={547}
+                height={323}
                 priority
                 className="h-10 w-auto md:h-11"
               />
@@ -163,15 +163,15 @@ export function Nav() {
               <Image
                 src="/images/logo-restaurant.jpg"
                 alt="Big Brothers Restaurant badge, established 2023"
-                width={56}
-                height={56}
-                className="h-14 w-14 rounded-full border border-line"
+                width={720}
+                height={847}
+                className="h-14 w-14 rounded-full border border-line object-cover"
               />
               <Image
                 src="/images/logo-guesthouse.jpg"
                 alt="Big Brother Guesthouse logo"
-                width={132}
-                height={44}
+                width={547}
+                height={323}
                 className="h-14 w-auto rounded-md border border-line bg-white p-1"
               />
             </div>
