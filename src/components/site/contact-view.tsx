@@ -1,9 +1,34 @@
 "use client";
 
 import { BIZ, wa } from "@/lib/site-data";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 /* Contact · dark opening fold with a hairline contact sheet, then the map
- * beside printed directions. One action per line, verb first. */
+ * beside printed directions, then a plain-language FAQ. One action per line,
+ * verb first. Every answer is a fact from the client's own pages. */
+
+const FAQ = [
+  {
+    q: "How do I book a room?",
+    a: "Send a WhatsApp or call +264 81 264 7606 with your dates and group size. You get today's real rate straight away, and the booking is confirmed by the same chat.",
+  },
+  {
+    q: "Where exactly are we?",
+    a: "Plot 7, Laaste Begin, Usakos South, on the B2 on the bench of the Khan River, 1 km down the southern turn-off, opposite the Shell station. The gate is marked Big Brother.",
+  },
+  {
+    q: "What are the kitchen hours?",
+    a: "Monday to Friday 07:00 to 22:00. Saturday and Sunday 08:00 to 21:00. Hours can shift on public holidays; a quick WhatsApp confirms it.",
+  },
+  {
+    q: "Can we visit for the day without sleeping over?",
+    a: "Yes. Day visitors are welcome to use the pools, the garden and the lapa, and order from the restaurant. Come with the family, order from the kitchen, stay for the afternoon.",
+  },
+  {
+    q: "Do you host functions and meetings?",
+    a: "Yes. The boardroom takes meetings, training and workshops, and the venue handles celebrations and family gatherings, with catering from our own kitchen. Enquire on WhatsApp with your date and group size.",
+  },
+];
 
 export function ContactView() {
   const mapQ = encodeURIComponent("Big Brother Guesthouse, Usakos, Namibia");
@@ -120,6 +145,27 @@ export function ContactView() {
               Open directions in Google Maps
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ: plain-language answers, real facts, one tap to open */}
+      <section className="bg-cream" aria-label="Frequently asked questions">
+        <div className="mx-auto max-w-3xl px-4 py-16 md:px-6 md:py-20">
+          <h2 className="font-display text-3xl font-semibold tracking-[-0.01em] md:text-4xl">
+            Quick answers.
+          </h2>
+          <Accordion type="single" collapsible className="mt-6">
+            {FAQ.map((f) => (
+              <AccordionItem key={f.q} value={f.q} className="border-line">
+                <AccordionTrigger className="text-left font-display text-lg font-semibold hover:no-underline hover:text-ember-deep">
+                  {f.q}
+                </AccordionTrigger>
+                <AccordionContent className="max-w-[62ch] leading-relaxed text-mut">
+                  {f.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

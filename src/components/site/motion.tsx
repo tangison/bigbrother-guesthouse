@@ -94,7 +94,6 @@ export function ParallaxPhoto({
   return (
     <div ref={ref} className={`photo-frame relative ${className}`}>
       <motion.div style={{ y }} className="absolute -inset-y-[8%] inset-x-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <motion.img
           src={src}
           alt={alt}

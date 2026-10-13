@@ -36,6 +36,15 @@ const PHOTOS = [
   { src: "gallery-28", alt: "Chicken wings and chips with tomato relish" },
   { src: "gallery-29", alt: "Family pizza in an open box", tall: true },
   { src: "gallery-30", alt: "Crumbed fish with yellow rice and sauce" },
+  // Property photographs, from the business's own Google Maps listing (Oct 2026)
+  { src: "property-front", alt: "The Big Brother Guesthouse front: white buildings, carport and hills behind" },
+  { src: "property-rooms", alt: "The rooms block with gravel driveway and palm tree", tall: false },
+  { src: "property-lapa", alt: "Shaded lapa with tables on the lawn, palm trees around", tall: false },
+  { src: "property-pool", alt: "The stone-edged garden pond beside the braai area", tall: true },
+  { src: "property-pool-wide", alt: "Wide view over the pool, lapa and garden corner", tall: false },
+  // Region context, licensed from Pexels and labelled as the region, not the property
+  { src: "region-road", alt: "A long desert road running towards mountains in the Erongo Region" },
+  { src: "region-spitzkoppe", alt: "Granite boulders and peaks near Usakos at dusk, in the Erongo Region", tall: true },
 ];
 
 export function GalleryView() {

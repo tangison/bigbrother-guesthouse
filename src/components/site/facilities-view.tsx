@@ -3,12 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Check } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { StackCard } from "./motion";
 import { BIZ, wa } from "@/lib/site-data";
 
-/* Facilities · Feature Stack. The boardroom reads as a spec sheet; the
- * guest facilities stack as pinned cards while you scroll (one scroll
- * device for the whole section). */
+/* Facilities · Tabs for planning, stack cards for amenities. The three ways to
+ * use the property sit in one tabbed widget with real photographs from the
+ * Google Maps listing; the guest facilities stack as pinned cards while you
+ * scroll. Real content only: the boardroom list is the client's own. */
 
 const BOARDROOM = ["Business meetings", "Staff training", "Workshops", "Small presentations", "Community or group discussions"];
 const BOARD_FEATURES = ["Comfortable conference seating", "Air-conditioning", "Whiteboard or flip chart, based on availability", "Refreshments available on request", "Optional catering from our kitchen"];
@@ -30,53 +32,113 @@ export function FacilitiesView() {
         </div>
       </section>
 
-      {/* Boardroom: spec sheet, asymmetric pair */}
-      <section className="mx-auto max-w-6xl px-4 pb-16 md:px-6 md:pb-24" aria-label="Boardroom and meeting space">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="border border-line bg-paper p-8">
-            <h2 className="font-display text-2xl font-semibold md:text-3xl">
-              Planning a meeting, workshop, or small event?
-            </h2>
-            <ul className="mt-6 divide-y divide-line border-y border-line text-[15px]">
-              {BOARDROOM.map((b) => (
-                <li key={b} className="py-3">{b}</li>
-              ))}
-            </ul>
-            <h3 className="mt-8 font-display text-lg font-semibold">What is included</h3>
-            <ul className="mt-3 grid gap-2 text-[15px] text-mut">
-              {BOARD_FEATURES.map((b) => (
-                <li key={b} className="flex items-start gap-2.5">
-                  <Check size={16} strokeWidth={3} className="mt-0.5 shrink-0 text-leaf-deep" aria-hidden="true" />
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* Plan your time: one tabbed widget, three real uses, real photographs */}
+      <section className="mx-auto max-w-6xl px-4 pb-16 md:px-6 md:pb-24" aria-label="Plan your time here">
+        <Tabs defaultValue="day" className="w-full">
+          <TabsList className="h-auto w-full justify-start gap-1 rounded-none border-b border-line bg-transparent p-0">
+            <TabsTrigger
+              value="day"
+              className="rounded-none border-b-2 border-transparent px-4 py-3 text-sm font-medium shadow-none transition-colors data-[state=active]:border-ember data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+            >
+              Day visits
+            </TabsTrigger>
+            <TabsTrigger
+              value="meet"
+              className="rounded-none border-b-2 border-transparent px-4 py-3 text-sm font-medium shadow-none transition-colors data-[state=active]:border-ember data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+            >
+              Meetings & training
+            </TabsTrigger>
+            <TabsTrigger
+              value="celebrate"
+              className="rounded-none border-b-2 border-transparent px-4 py-3 text-sm font-medium shadow-none transition-colors data-[state=active]:border-ember data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+            >
+              Celebrations
+            </TabsTrigger>
+          </TabsList>
 
-          <div className="flex h-fit flex-col justify-between bg-ink p-8 text-paper lg:sticky lg:top-28">
-            <div>
-              <h2 className="font-display text-2xl font-semibold md:text-3xl">
-                Book by the hour, or for the full day.
-              </h2>
-              <p className="mt-4 leading-relaxed text-paper/80">
-                We are happy to tailor packages to your needs, including catering from our own
-                kitchen. Tell us the date, the group size, and how long you need the space.
-              </p>
+          <TabsContent value="day" className="mt-8">
+            <TabPanel
+              img="/images/property-pool-wide.jpg"
+              alt="The swimming pool and lapa, from our Google Maps listing"
+              caption="The pool and lapa, from our Google Maps listing"
+              title="Come and spend the day with us."
+              lines={[
+                "Day visitors are welcome. Bring the family or a car full of friends, order from the kitchen, and let the afternoon run long under the lapa.",
+                "The pools, the garden, and the shaded seating are all part of it. The bar stays cold and the grill does the work.",
+              ]}
+            />
+          </TabsContent>
+
+          <TabsContent value="meet" className="mt-8">
+            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+              <div>
+                <h2 className="font-display text-2xl font-semibold md:text-3xl">Planning a meeting, workshop, or small event?</h2>
+                <ul className="mt-6 divide-y divide-line border-y border-line text-[15px]">
+                  {BOARDROOM.map((b) => (
+                    <li key={b} className="py-3">{b}</li>
+                  ))}
+                </ul>
+                <h3 className="mt-8 font-display text-lg font-semibold">What is included</h3>
+                <ul className="mt-3 grid gap-2 text-[15px] text-mut">
+                  {BOARD_FEATURES.map((b) => (
+                    <li key={b} className="flex items-start gap-2.5">
+                      <Check size={16} strokeWidth={3} className="mt-0.5 shrink-0 text-leaf-deep" aria-hidden="true" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <figure>
+                <div className="photo-frame aspect-[4/3]">
+                  <Image
+                    src="/images/property-front.jpg"
+                    alt="The main building at Big Brother Guesthouse, home of the boardroom"
+                    width={1200}
+                    height={900}
+                    loading="lazy"
+                    quality={55}
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <figcaption className="caption mt-2 text-mut">The main building, from our Google Maps listing</figcaption>
+              </figure>
             </div>
-            <div className="mt-8 grid gap-3">
-              <a
-                href={wa(BIZ.guesthouse.phone1, "Hello Big Brother Guesthouse, I would like to enquire about the boardroom for an event.")}
-                className="rounded-full bg-paper px-6 py-3.5 text-center font-semibold text-ink transition-colors hover:bg-leaf"
-              >
-                Enquire on WhatsApp
-              </a>
-              <a
-                href={`tel:${BIZ.guesthouse.phone1}`}
-                className="rounded-full border border-paper/30 px-6 py-3.5 text-center font-semibold transition-colors hover:bg-paper/10"
-              >
-                Call {BIZ.guesthouse.phone1Display}
-              </a>
-            </div>
+          </TabsContent>
+
+          <TabsContent value="celebrate" className="mt-8">
+            <TabPanel
+              img="/images/property-lapa.jpg"
+              alt="Shaded lapa with tables on the lawn, from our Google Maps listing"
+              caption="The lapa and lawn, from our Google Maps listing"
+              title="Birthdays, braais, and family gatherings."
+              lines={[
+                "The venue, the shade, and the space are yours for the day. We tailor the setup to your group and cater from our own kitchen, so the food arrives straight off the grill.",
+                "Tell us the date, the group size, and how long you need the space. A quick WhatsApp is enough to start planning.",
+              ]}
+            />
+          </TabsContent>
+        </Tabs>
+
+        {/* One booking card serves all three tabs */}
+        <div className="mt-10 grid gap-4 rounded-lg bg-ink p-8 text-paper md:grid-cols-[1.2fr_0.8fr] md:items-center">
+          <p className="max-w-[52ch] leading-relaxed text-paper/85">
+            Book by the hour, or for the full day. We are happy to tailor packages to your needs,
+            including catering from our own kitchen.
+          </p>
+          <div className="grid gap-3">
+            <a
+              href={wa(BIZ.guesthouse.phone1, "Hello Big Brother Guesthouse, I would like to enquire about the venue for an event.")}
+              className="rounded-full bg-paper px-6 py-3.5 text-center font-semibold text-ink transition-colors hover:bg-leaf"
+            >
+              Enquire on WhatsApp
+            </a>
+            <a
+              href={`tel:${BIZ.guesthouse.phone1}`}
+              className="rounded-full border border-paper/30 px-6 py-3.5 text-center font-semibold transition-colors hover:bg-paper/10"
+            >
+              Call {BIZ.guesthouse.phone1Display}
+            </a>
           </div>
         </div>
       </section>
@@ -98,10 +160,10 @@ export function FacilitiesView() {
           </StackCard>
           <StackCard index={1} total={6}>
             <FacilityCard
-              img="/images/dish-chips.jpg"
-              alt="Welcome plate of seasoned chips with sauce writing"
-              title="Day visits"
-              text="Come enjoy the day with family and friends in a friendly environment. Bring the crew, order from the kitchen, and let the afternoon run long."
+              img="/images/property-pool.jpg"
+              alt="The stone-edged garden pond beside the braai area, from our Google Maps listing"
+              title="Swimming pools & garden"
+              text="Two pools to cool off in, lawn to lie on, and shade under the lapa. Day visitors welcome, residents first in the water."
             />
           </StackCard>
           <StackCard index={2} total={6}>
@@ -134,6 +196,39 @@ export function FacilitiesView() {
         </div>
       </section>
     </>
+  );
+}
+
+function TabPanel({
+  img,
+  alt,
+  caption,
+  title,
+  lines,
+}: {
+  img: string;
+  alt: string;
+  caption: string;
+  title: string;
+  lines: string[];
+}) {
+  return (
+    <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <h2 className="font-display text-2xl font-semibold md:text-3xl">{title}</h2>
+        {lines.map((l) => (
+          <p key={l.slice(0, 24)} className="mt-4 max-w-[60ch] leading-relaxed text-mut">
+            {l}
+          </p>
+        ))}
+      </div>
+      <figure>
+        <div className="photo-frame aspect-[4/3]">
+          <Image src={img} alt={alt} width={1400} height={1050} loading="lazy" quality={58} sizes="(max-width: 1024px) 100vw, 40vw" className="h-full w-full object-cover" />
+        </div>
+        <figcaption className="caption mt-2 text-mut">{caption}</figcaption>
+      </figure>
+    </div>
   );
 }
 

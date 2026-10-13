@@ -1,3 +1,8 @@
+/* scroll-craft engine, layered so Tailwind utilities outrank it (the engine's
+ * :where(a){color:inherit} would otherwise beat every layered utility and strip
+ * anchor colours). Declared first: later layers win ties, so the order is
+ * engine < theme < base < utilities. */
+@import "./scrollcraft.css" layer(engine);
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -36,6 +41,19 @@
   /* Named z scale, six levels */
   --z-nav: 200;
   --z-modal: 400;
+
+  /* scroll-craft engine tokens, re-pointed to the brand (design.md).
+   * --sc-canvas doubles as the scrim/drift ground: the site's photographic
+   * folds always carry light type over dark washes, so canvas is the ink hue. */
+  --sc-canvas: oklch(18% 0.008 70);
+  --sc-surface: oklch(23% 0.012 70);
+  --sc-ink: oklch(97% 0.013 90);
+  --sc-ink-soft: oklch(97% 0.013 90 / 0.78);
+  --sc-accent: oklch(70% 0.185 47);
+  --sc-accent-ink: oklch(18% 0.008 70);
+  --sc-font-display: var(--font-display);
+  --sc-font-text: var(--font-body);
+  --sc-shadow-color: 70 18% 6%;
 }
 
 html {
@@ -66,6 +84,19 @@ body {
 }
 .photo-frame:hover img {
   transform: scale(1.04);
+}
+
+/* Hero slider ground plane: a slow Ken Burns drift on the active slide.
+ * Transform only; disabled entirely under reduced motion. */
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.07); }
+}
+.kenburns {
+  animation: kenburns 7.5s var(--ease-out) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .kenburns { animation: none; }
 }
 
 /* ---- N10 floating nav: one DOM, two modes, one curve (520ms) ----

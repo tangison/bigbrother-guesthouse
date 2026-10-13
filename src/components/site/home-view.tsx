@@ -4,13 +4,45 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { Check } from "lucide-react";
-import { ScrubText } from "./motion";
+import { HeroSlider } from "./hero-slider";
+import { DishCarousel } from "./dish-carousel";
 import { BIZ, wa } from "@/lib/site-data";
 
-/* Home · Photographic macrostructure. Full-bleed photo folds carry the page;
- * type stays small and quiet between folds. One orchestrated entrance on
- * load (hero), one scroll device per section after that. */
+/* Home · scroll-craft journey (BRIEF.md: scrollcraft/builds/bigbrother-home).
+ * Grammar: chaptered editorial, photographic. Hard ground cuts between folds,
+ * no drift. Devices: layered hero (parallax + slider widget), pin + counts
+ * (argument), flow+in (offers), pan (property peak), flow + carousel widget
+ * (menu), reveal wipe (region), pin + spotlight + magnet (close).
+ * Facts: distances from the client contact page; prices from the printed A3
+ * menu v3; property photos from the business's own Google Maps listing. */
+
+const PROPERTY_SHOTS = [
+  {
+    src: "/images/property-front.jpg",
+    alt: "Big Brother Guesthouse front: white buildings, carport, hills behind",
+    label: "The front. White walls, carport, hills behind.",
+  },
+  {
+    src: "/images/property-rooms.jpg",
+    alt: "The rooms block with gravel driveway and palm tree",
+    label: "The rooms block. Gravel drive, palm, secure gate.",
+  },
+  {
+    src: "/images/property-lapa.jpg",
+    alt: "Shaded lapa with tables on the lawn, palm trees around",
+    label: "The lapa. Shade, tables, lawn.",
+  },
+  {
+    src: "/images/property-pool.jpg",
+    alt: "The stone-edged garden pond beside the braai area",
+    label: "The garden pond. Stone edge, shade beside.",
+  },
+  {
+    src: "/images/property-pool-wide.jpg",
+    alt: "Wide view over the pool, lapa and garden corner",
+    label: "The corner. Pool, lapa, garden in one frame.",
+  },
+];
 
 export function HomeView() {
   const heroRef = useRef<HTMLElement>(null);
@@ -19,33 +51,25 @@ export function HomeView() {
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  const heroY = useTransform(scrollYProgress, [0, 1], reduced ? ["0%", "0%"] : ["0%", "18%"]);
-  const heroFade = useTransform(scrollYProgress, [0, 0.85], [1, 0.35]);
+  const heroY = useTransform(scrollYProgress, [0, 1], reduced ? ["0%", "0%"] : ["0%", "16%"]);
+  const heroFade = useTransform(scrollYProgress, [0, 0.85], [1, 0.3]);
 
   return (
     <>
-      {/* ATTENTION: the fold is a photograph. Caption in the corner, two CTAs, no badges. */}
-      <section ref={heroRef} className="relative overflow-hidden bg-ink text-paper" aria-label="Welcome">
+      {/* 1 · RECOGNITION: layered hero. Slider is the ground plane, type rides 1x,
+       * the photo plane drifts slower, the wash keeps the corner readable. */}
+      <section ref={heroRef} data-sc-act="flow" className="relative overflow-hidden bg-ink text-paper" aria-label="Welcome">
         <motion.div style={{ y: heroY }} className="absolute inset-0" aria-hidden="true">
-          <Image
-            src="/images/hero-platter.jpg"
-            alt=""
-            fill
-            priority
-            quality={60}
-            sizes="100vw"
-            className="scale-105 object-cover"
-          />
+          <HeroSlider />
         </motion.div>
-        {/* Single-hue ink wash, bottom-weighted, for text legibility */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(180deg,oklch(18%_0.008_70/0.55)_0%,oklch(18%_0.008_70/0.35)_45%,oklch(18%_0.008_70/0.82)_100%)]"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,oklch(18%_0.008_70/0.45)_0%,oklch(18%_0.008_70/0.28)_45%,oklch(18%_0.008_70/0.86)_100%)]"
         />
 
         <motion.div style={{ opacity: heroFade }} className="relative">
-          <div className="mx-auto flex min-h-[86svh] max-w-6xl flex-col items-center justify-center px-4 py-24 text-center md:px-6">
-            <h1 className="hero-rise mx-auto max-w-5xl font-display text-[clamp(2.6rem,6vw,5rem)] font-semibold leading-[1.05] tracking-[-0.02em]" style={{ "--i": 0 } as React.CSSProperties}>
+          <div className="mx-auto flex min-h-[92svh] max-w-6xl flex-col items-center justify-center px-4 pb-28 pt-24 text-center md:px-6">
+            <h1 className="hero-rise mx-auto max-w-5xl font-display text-[clamp(2.4rem,5.6vw,4.8rem)] font-semibold leading-[1.05] tracking-[-0.02em]" style={{ "--i": 0 } as React.CSSProperties}>
               Home away from home,{" "}
               <span className="text-ember">halfway to everywhere.</span>
             </h1>
@@ -68,178 +92,234 @@ export function HomeView() {
               </a>
             </div>
           </div>
-          {/* Photographic caption, corner-anchored */}
-          <p className="caption absolute bottom-5 right-5 hidden text-right md:block">
-            The Big Brother platter, made for sharing
-          </p>
         </motion.div>
       </section>
 
-      {/* INTEREST, opener: an editorial text fold with the honest distances */}
-      <section className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28" aria-label="Where we are">
-        <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
-          <h2 className="max-w-[16ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
-            Halfway between Windhoek and the sea.
-          </h2>
-          <div className="max-w-[62ch] text-lg leading-relaxed text-mut">
-            <p>
-              Usakos sits on the B2, {BIZ.distances.windhoekKm} km from Windhoek and{" "}
-              {BIZ.distances.swakopmundKm} km from Swakopmund, with the rocky shapes of the Erongo
-              Region all around. We sit right in that stretch: Plot 7, Laaste Begin, Usakos South,
-              on the bench of the Khan River, opposite the Shell station.
-            </p>
-            <p className="mt-4">
-              Stop for a room, stop for a plate, or stop for both. The kitchen opens from 07:00,
-              the bar stays cold, and the gate is marked Big Brother.
-            </p>
+      {/* 2 · RELIEF: pinned argument. The two real distances count in as the frame
+       * holds. First cue greets (ground rule), last cue runs to the end of the act. */}
+      <section data-sc-act="pin" data-sc-span="2.5" className="bg-ink text-paper" aria-label="Halfway between Windhoek and Swakopmund">
+        <div data-sc-stage className="sc-stage">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[radial-gradient(90%_70%_at_50%_38%,oklch(23%_0.012_70)_0%,oklch(18%_0.008_70)_100%)]"
+          />
+          <div className="absolute inset-0 flex items-center justify-center px-6">
+            <div className="w-full max-w-3xl text-center">
+              <p data-sc-cue="0 0.3 0 0.06" className="font-display text-[clamp(1.7rem,3.6vw,2.9rem)] font-semibold leading-[1.18] tracking-[-0.015em]">
+                Travelling the B2? We are the middle of it.
+              </p>
+              <p data-sc-cue="0.24 0.56 0.05 0.05" className="mt-6 font-display text-[clamp(2.6rem,7vw,5.4rem)] font-semibold leading-none tracking-[-0.02em]">
+                <span data-sc-count="0 210">210</span>
+                <span className="text-[0.32em] font-body font-medium uppercase tracking-[0.14em] text-paper/70"> km from Windhoek</span>
+              </p>
+              <p data-sc-cue="0.5 0.8 0.05 0.05" className="mt-6 font-display text-[clamp(2.6rem,7vw,5.4rem)] font-semibold leading-none tracking-[-0.02em]">
+                <span data-sc-count="0 147">147</span>
+                <span className="text-[0.32em] font-body font-medium uppercase tracking-[0.14em] text-paper/70"> km from Swakopmund</span>
+              </p>
+              <p data-sc-cue="0.74 1 0.05 0" className="mt-9 text-lg leading-relaxed text-paper/85">
+                Plot 7, Laaste Begin, on the bench of the Khan River. The gate is marked Big
+                Brother, opposite the Shell station.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* INTEREST: the bento. Three columns by three rows, spans 2x2 + 1 + 1 + 2 + 1,
-          grid-flow-dense, zero empty cells. */}
-      <section className="mx-auto max-w-6xl px-4 pb-20 md:px-6 md:pb-28" aria-label="What we offer">
-        <div className="grid auto-rows-[13rem] grid-flow-dense gap-4 md:auto-rows-[15rem] md:grid-cols-3">
-          {/* A: guesthouse, 2x2 */}
-          <BentoCell
-            href="/guesthouse"
-            img="/images/dish-feast.jpg"
-            alt="Braai feast served in the guesthouse garden"
-            title="Big Brother Guesthouse"
-            line="Spacious rooms, mountain views, pools and a garden."
-            cta="Plan your stay"
-            className="row-span-2 md:col-span-2 md:row-span-2"
-            sizes="(max-width: 768px) 100vw, 66vw"
-          />
-          {/* B: B&B */}
-          <BentoCell
-            href="/guesthouse"
-            img="/images/dish-breakfast.jpg"
-            alt="Breakfast tray with eggs, bacon and toast"
-            title="Bed & Breakfast"
-            line="Three luxury en suite rooms, breakfast included."
-            cta="See the B&B"
-            className="md:col-span-1"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-          {/* C: restaurant */}
-          <BentoCell
-            href="/restaurant"
-            img="/images/dish-braise.jpg"
-            alt="Slow braised meat with peppers and pap"
-            title="Big Brothers Restaurant"
-            line="Grills, seafood, pizza and a full bar, est. 2023."
-            cta="Visit the restaurant"
-            className="md:col-span-1"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-          {/* D: bar, wide */}
-          <BentoCell
-            href="/restaurant"
-            img="/images/cocktail-blue.jpg"
-            alt="Blue cocktail from the Big Brothers bar"
-            title="The bar"
-            line="Cold drinks while the grill does its work."
-            cta="See the drinks"
-            className="md:col-span-2"
-            sizes="(max-width: 768px) 100vw, 66vw"
-          />
-          {/* E: day visits */}
-          <BentoCell
-            href="/facilities"
-            img="/images/dish-chips.jpg"
-            alt="Welcome plate of seasoned chips with sauce writing"
-            title="Day visits"
-            line="Come enjoy the day with family and friends."
-            cta="Facilities & functions"
-            className="md:col-span-1"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
+      {/* 3 · CALM: the bento, entering on scroll. Quiet on purpose: the peak needs
+       * something quiet in front of it. */}
+      <section data-sc-act="flow" className="bg-paper" aria-label="What we offer">
+        <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+          <div data-sc-in data-sc-stagger="70" className="grid gap-4 md:auto-rows-[15rem] md:grid-flow-dense md:grid-cols-3">
+            <BentoCell
+              href="/guesthouse"
+              img="/images/property-pool.jpg"
+              alt="The stone-edged garden pond and braai area, from our Google Maps listing"
+              title="Big Brother Guesthouse"
+              line="Spacious rooms, mountain views, pools and a garden."
+              cta="Plan your stay"
+              className="md:col-span-2 md:row-span-2"
+              sizes="(max-width: 768px) 100vw, 66vw"
+            />
+            <BentoCell
+              href="/guesthouse"
+              img="/images/dish-breakfast.jpg"
+              alt="Breakfast tray with eggs, bacon and toast"
+              title="Bed & Breakfast"
+              line="Three luxury en suite rooms, breakfast included."
+              cta="See the B&B"
+              className="md:col-span-1"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <BentoCell
+              href="/restaurant"
+              img="/images/dish-braise.jpg"
+              alt="Slow braised meat with peppers and pap"
+              title="Big Brothers Restaurant"
+              line="Grills, seafood, pizza and a full bar, est. 2023."
+              cta="Visit the restaurant"
+              className="md:col-span-1"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <BentoCell
+              href="/restaurant"
+              img="/images/cocktail-blue.jpg"
+              alt="Blue cocktail from the Big Brothers bar"
+              title="The bar"
+              line="Cold drinks while the grill does its work."
+              cta="See the drinks"
+              className="md:col-span-2"
+              sizes="(max-width: 768px) 100vw, 66vw"
+            />
+            <BentoCell
+              href="/facilities"
+              img="/images/property-lapa.jpg"
+              alt="The lapa, lawn and pool corner, from our Google Maps listing"
+              title="Day visits"
+              line="Come enjoy the day with family and friends."
+              cta="Facilities & functions"
+              className="md:col-span-1"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+          </div>
         </div>
       </section>
 
-      {/* DESIRE: sticky stop-over. Left pane pins, right photos scroll past. */}
-      <section className="bg-cream" aria-label="Why stop at Big Brother">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 md:grid-cols-2 md:px-6 md:py-28">
-          <div className="md:sticky md:top-28 md:h-fit">
-            <h2 className="max-w-[18ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
-              Travelling the B2? Stop where the road gets friendly.
-            </h2>
-            <p className="mt-5 max-w-[58ch] leading-relaxed text-mut">
-              Whether you travel for business, on holiday, or you are just passing through the
-              Erongo Region, you will find comfort, convenience, and friendly service behind one
-              gate. Rooms for the night, a table for dinner, and space for the function in
-              between.
-            </p>
-            <ul className="mt-7 grid gap-2.5 text-[15px] text-ink sm:grid-cols-2">
-              {["Restaurant & bar on site", "Free Wi-Fi", "Secure gated parking", "Swimming pools & garden", "Daily housekeeping", "Functions & boardroom"].map(
-                (f) => (
-                  <li key={f} className="flex items-center gap-2.5">
-                    <Check size={16} strokeWidth={3} className="shrink-0 text-leaf-deep" aria-hidden="true" />
-                    {f}
-                  </li>
-                )
-              )}
-            </ul>
+      {/* 4 · ARRIVAL, the peak: the property travels sideways. Museum labels, real
+       * Google-Maps photographs, the largest span on the page. */}
+      <section data-sc-act="pan" data-sc-span="4.2" className="bg-cream" aria-label="The property, from our Google Maps listing">
+        <div data-sc-stage className="sc-stage">
+          <div className="flex h-full flex-col justify-center gap-8 py-16">
+            <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
+              <h2 className="max-w-[22ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
+                The property, exactly as Google sees it.
+              </h2>
+              <p className="mt-3 max-w-[58ch] leading-relaxed text-mut">
+                Five photographs from our own Google Maps listing, where guests check in before
+                they arrive. Nothing staged for the website.
+              </p>
+            </div>
+            <div className="w-full">
+              <div data-sc-pan="0.06" className="flex w-max items-stretch gap-5 px-[max(1rem,calc((100vw-72rem)/2))]">
+                {PROPERTY_SHOTS.map((p) => (
+                  <figure key={p.src} className="w-[19rem] shrink-0 snap-start md:w-[22rem]">
+                    <div data-sc-tilt="6">
+                      <div className="photo-frame aspect-[4/3] w-full">
+                        <Image
+                          src={p.src}
+                          alt={p.alt}
+                          width={1400}
+                          height={1050}
+                          loading="lazy"
+                          quality={60}
+                          sizes="(max-width: 768px) 76vw, 22rem"
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <figcaption className="mt-3 text-sm leading-snug text-mut">{p.label}</figcaption>
+                    </div>
+                  </figure>
+                ))}
+                <div className="flex w-[17rem] shrink-0 snap-start items-center md:w-[20rem]">
+                  <div className="border-l-2 border-ember pl-6">
+                    <p className="font-display text-xl font-semibold leading-snug">
+                      Checked in on Maps? Check in for real.
+                    </p>
+                    <Link
+                      href="/gallery"
+                      className="mt-3 inline-block font-semibold underline decoration-ember decoration-2 underline-offset-4 transition-colors hover:text-ember-deep"
+                    >
+                      See the full gallery
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5 · APPETITE: the dish carousel, prices from the printed menu. */}
+      <section className="bg-paper" aria-label="From the kitchen">
+        <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+          <div data-sc-in data-sc-stagger="70">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <h2 className="max-w-[20ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
+                Straight from our kitchen.
+              </h2>
+              <p className="max-w-[46ch] text-sm leading-relaxed text-mut">
+                Every price here comes from our own printed menu, nothing hidden. Drag, swipe, or
+                use the arrows.
+              </p>
+            </div>
+            <div className="mt-9">
+              <DishCarousel />
+            </div>
             <Link
-              href="/contact"
-              className="mt-8 inline-block rounded-full bg-ink px-7 py-3.5 font-semibold text-paper transition-colors hover:bg-ember-deep"
+              href="/menu"
+              className="mt-9 inline-block font-semibold text-ink underline decoration-ember decoration-2 underline-offset-8 transition-colors hover:text-ember-deep"
             >
-              Find us on the B2
+              Open the full menu, 139 items and every price
             </Link>
           </div>
+        </div>
+      </section>
 
-          <div className="grid gap-5">
-            <div className="photo-frame relative aspect-[4/3]">
+      {/* 6 · AWE: the road arrives as a wipe. One line, honest caption. */}
+      <section data-sc-act="flow" className="bg-ink text-paper" aria-label="The road here">
+        <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+          <figure data-sc-reveal="up" data-sc-reveal-at="0.2 0.6" className="overflow-hidden">
+            <div className="photo-frame aspect-[16/9] w-full md:aspect-[21/9]">
               <Image
-                src="/images/dish-chips.jpg"
-                alt="Welcome plate of seasoned chips with sauce writing"
-                fill
+                src="/images/region-road.jpg"
+                alt="A long straight road running towards desert mountains in Namibia"
+                width={1600}
+                height={937}
                 loading="lazy"
-                quality={55}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
+                quality={52}
+                sizes="100vw"
+                className="h-full w-full object-cover"
               />
             </div>
-            <div className="photo-frame relative aspect-[4/3] md:ml-10">
-              <Image
-                src="/images/cocktail-blue.jpg"
-                alt="Blue cocktail from the Big Brothers bar"
-                fill
-                loading="lazy"
-                quality={55}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="photo-frame relative aspect-[4/3]">
-              <Image
-                src="/images/dish-wings.jpg"
-                alt="Chicken wings platter with lemon and tomato"
-                fill
-                loading="lazy"
-                quality={55}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-              />
+          </figure>
+          <div data-sc-in data-sc-stagger="80" className="mt-8 grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
+            <p className="max-w-[24ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
+              The long middle of the B2. Stop where the road gets friendly.
+            </p>
+            <div className="text-[15px] leading-relaxed text-paper/75">
+              <p>
+                Usakos sits on the bench of the Khan River, with the rocky shapes of the Erongo
+                Region all around. Gravel roads, granite hills, and a sky that goes on forever.
+              </p>
+              <p className="caption mt-4 text-paper/60">
+                Region photograph, licensed from Pexels. The property photos above are ours.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* DESIRE, closer: scrub-revealed prices, then one typographic action */}
-      <section className="bg-ink py-24 text-paper md:py-32" aria-label="From the kitchen">
-        <div className="mx-auto max-w-4xl px-4 md:px-6">
-          <ScrubText
-            className="scrub-line font-display text-[clamp(1.6rem,3.4vw,2.6rem)] font-semibold leading-[1.25] tracking-[-0.01em]"
-            text="Kapana with pap at N$120. T-bone at N$230. Seafood platter at N$400. Every price comes straight from our own printed menu, nothing hidden."
-          />
-          <Link
-            href="/menu"
-            className="mt-9 inline-block font-semibold text-paper underline decoration-ember decoration-2 underline-offset-8 transition-colors hover:text-ember"
-          >
-            Open the full menu
-          </Link>
+      {/* 7 · RESOLVE: the page stops and answers. Spotlight, magnetic CTA, hold. */}
+      <section data-sc-act="pin" data-sc-span="1.2" className="bg-ink text-paper" aria-label="Book your stop">
+        <div data-sc-stage data-sc-spotlight className="sc-stage">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+            {/* Greet-and-hold on the last act: visible the moment the stage enters,
+             * holding to the end. The CTA and phone line carry no cue at all: the
+             * act needs a ground, and their own opaque fills must survive the
+             * contrast pass (a hidden pill gets graded against the page behind). */}
+            <h2 data-sc-cue="0 1 0 0" data-sc-kinetic="lines" className="max-w-[18ch] font-display text-[clamp(2rem,4.6vw,3.6rem)] font-semibold leading-[1.08] tracking-[-0.02em]">
+              Rooms for the night. A table for dinner. One gate.
+            </h2>
+            <a
+              data-sc-magnet="0.26"
+              href={wa(BIZ.guesthouse.phone1, "Hello Big Brother Guesthouse, do you have a room available?")}
+              className="mt-9 rounded-full bg-ember px-8 py-4 font-semibold text-ink transition-colors hover:bg-paper"
+            >
+              Book on WhatsApp
+            </a>
+            <p className="mt-6 text-sm text-paper/70">
+              Or call {BIZ.guesthouse.phone1Display} · Plot 7, Laaste Begin, Usakos South
+            </p>
+          </div>
         </div>
       </section>
     </>

@@ -4,11 +4,16 @@ import "@fontsource/fraunces/700.css";
 import "@fontsource/outfit/400.css";
 import "@fontsource/outfit/500.css";
 import "@fontsource/outfit/600.css";
+/* Engine CSS is layered from within globals.css (layer(engine), declared before
+ * Tailwind's layers) so Tailwind utilities win cascade ties. Both engine files
+ * are verbatim copies of skills/scroll-craft/engine; only the tokens are
+ * re-pointed, in globals.css. */
 import "./globals.css";
 import { BIZ } from "@/lib/site-data";
 import { Nav } from "@/components/site/nav";
 import { Footer } from "@/components/site/footer";
 import { B2Odometer } from "@/components/site/odometer";
+import { ScrollEngine } from "@/components/site/scroll-engine";
 
 const title = "Big Brother Guesthouse, B&B & Restaurant | Usakos, Namibia";
 const description =
@@ -62,7 +67,7 @@ const jsonLd = [
       addressRegion: BIZ.address.region,
       addressCountry: "NA",
     },
-    geo: { "@type": "GeoCoordinates", latitude: -22.0031, longitude: 15.5833, description: "Usakos town centre reference" },
+    geo: { "@type": "GeoCoordinates", latitude: -22.0064087, longitude: 15.5786901, description: "Google Maps place listing, Big Brother Guesthouse" },
     sameAs: [BIZ.socials.facebook, BIZ.socials.instagram],
   },
   {
@@ -89,7 +94,7 @@ const jsonLd = [
       addressRegion: BIZ.address.region,
       addressCountry: "NA",
     },
-    geo: { "@type": "GeoCoordinates", latitude: -22.0031, longitude: 15.5833 },
+    geo: { "@type": "GeoCoordinates", latitude: -22.0064087, longitude: 15.5786901 },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -130,6 +135,12 @@ export default function RootLayout({
         </main>
         <Footer />
         <B2Odometer />
+        <ScrollEngine />
+        <noscript>
+          {/* The engine reveals cue content on mount; without JS the acts must
+           * still read. Static layout, everything visible. */}
+          <style>{`[data-sc-cue]{opacity:1!important}[data-sc-act]{height:auto!important}[data-sc-stage],.sc-stage{position:static!important;height:auto!important}[data-sc-reveal]{clip-path:none!important}[data-sc-in],[data-sc-stagger]>*{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </body>
     </html>
   );

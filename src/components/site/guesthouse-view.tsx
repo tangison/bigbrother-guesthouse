@@ -54,21 +54,23 @@ export function GuesthouseView() {
         </div>
       </section>
 
-      {/* Fold 2: two ways to stay, asymmetric 7/5 on desktop */}
+      {/* Fold 2: two ways to stay, asymmetric 7/5 on desktop. The guesthouse card
+       * shows the actual rooms block; the B&B card keeps the breakfast it sells. */}
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24" aria-label="Ways to stay">
         <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
           <article>
             <div className="photo-frame aspect-[16/10]">
               <Image
-                src="/images/dish-feast.jpg"
-                alt="Braai platter served in the guesthouse garden"
+                src="/images/property-rooms.jpg"
+                alt="The Big Brother Guesthouse rooms block with shaded parking and palm tree"
                 fill
                 loading="lazy"
-                quality={55}
+                quality={58}
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover"
               />
             </div>
+            <p className="caption mt-2 text-mut">The rooms block, from our Google Maps listing</p>
             <div className="mt-6 max-w-[60ch]">
               <h2 className="font-display text-2xl font-semibold md:text-3xl">Big Brother Guesthouse</h2>
               <p className="mt-3 leading-relaxed text-mut">
@@ -105,6 +107,7 @@ export function GuesthouseView() {
                 className="object-cover"
               />
             </div>
+            <p className="caption mt-2 text-mut">Breakfast, included with the B&amp;B</p>
             <div className="mt-6 max-w-[52ch]">
               <h2 className="font-display text-2xl font-semibold md:text-3xl">Big Brother Bed & Breakfast</h2>
               <p className="mt-3 leading-relaxed text-mut">
@@ -125,7 +128,49 @@ export function GuesthouseView() {
         </div>
       </section>
 
-      {/* Fold 3: rates, the honest way */}
+      {/* Fold 3: the grounds, three real photographs from the Google listing */}
+      <section className="bg-cream" aria-label="The grounds">
+        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+          <h2 className="max-w-[24ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
+            Pools, lapa, garden. All behind the gate.
+          </h2>
+          <p className="mt-3 max-w-[58ch] text-mut">
+            Photographs from our own Google Maps listing. Have a walk through the grounds before
+            you arrive, then come and sit in the shade for real.
+          </p>
+          <div className="mt-9 grid gap-5 sm:grid-cols-3">
+            {[
+              { src: "/images/property-lapa.jpg", alt: "Shaded lapa with tables on the lawn", cap: "The lapa and lawn" },
+              { src: "/images/property-pool.jpg", alt: "The stone-edged garden pond beside the braai area", cap: "The garden pond" },
+              { src: "/images/property-front.jpg", alt: "The guesthouse front with carport and hills behind", cap: "The front gate" },
+            ].map((p) => (
+              <figure key={p.src}>
+                <div className="photo-frame aspect-[4/3]">
+                  <Image
+                    src={p.src}
+                    alt={p.alt}
+                    width={1200}
+                    height={900}
+                    loading="lazy"
+                    quality={55}
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <figcaption className="mt-2.5 text-sm font-medium">{p.cap}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <Link
+            href="/gallery"
+            className="mt-7 inline-block font-semibold underline decoration-ember decoration-2 underline-offset-8 transition-colors hover:text-ember-deep"
+          >
+            See the full gallery
+          </Link>
+        </div>
+      </section>
+
+      {/* Fold 4: rates, the honest way */}
       <section className="mx-auto max-w-6xl px-4 pb-20 md:px-6 md:pb-28" aria-label="Rates">
         <div className="grid gap-8 bg-ink p-8 text-paper md:grid-cols-[1.2fr_0.8fr] md:items-center md:p-14">
           <div>

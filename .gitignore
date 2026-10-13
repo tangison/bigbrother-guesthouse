@@ -64,3 +64,7 @@ scripts/tangison/scroll-craft/
 /agent/
 /tool-results/
 /scripts/*.png
+
+# scrollcraft build workspace (local evidence, not site code)
+scrollcraft/
+

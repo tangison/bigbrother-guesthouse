@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { DishCarousel } from "./dish-carousel";
 import { BIZ, wa } from "@/lib/site-data";
 
 /* Restaurant · Photographic folds. The braise photograph opens the page;
@@ -128,42 +129,18 @@ export function RestaurantView() {
         </div>
       </section>
 
-      {/* Fold 3: the dish rail, real plates only, prices from the printed menu */}
+      {/* Fold 3: the dish carousel, real plates only, prices from the printed menu.
+       * A real widget: drag, swipe, arrows, dots. */}
       <section className="bg-cream py-16 md:py-24" aria-label="From the kitchen">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <div className="flex items-end justify-between gap-4">
+          <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="font-display text-3xl font-semibold tracking-[-0.01em] md:text-4xl">
               Straight from our kitchen
             </h2>
-            <p className="hidden text-sm text-mut md:block">Scroll sideways for more</p>
+            <p className="max-w-[42ch] text-sm text-mut">Drag, swipe, or use the arrows. Every price comes from the printed menu.</p>
           </div>
-          <div className="rail mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4">
-            {[
-              { src: "/images/dish-traditional.jpg", alt: "Pap with matangara and spinach", cap: "Matangara & pap, a township classic" },
-              { src: "/images/dish-steak.jpg", alt: "T-bone steak with chips and vegetables", cap: "T-bone, N$230" },
-              { src: "/images/dish-pizza.jpg", alt: "Freshly baked pizza", cap: "Pizzas from N$190" },
-              { src: "/images/dish-wings.jpg", alt: "Chicken wings with lemon and tomato", cap: "Wings from N$80" },
-              { src: "/images/dish-fish.jpg", alt: "Crumbed fish with rice and sauce", cap: "Hake fillet, N$100" },
-              { src: "/images/dish-schnitzel.jpg", alt: "Crumbled schnitzel with mash", cap: "Schnitzel & cheddarmelt, N$150" },
-              { src: "/images/dish-english.jpg", alt: "English breakfast with eggs and steak", cap: "English breakfast, N$130" },
-              { src: "/images/cocktail-sunrise.jpg", alt: "Tequila sunrise cocktail", cap: "Tequila sunrise, N$100" },
-            ].map((d) => (
-              <figure key={d.src} className="w-72 shrink-0 snap-start md:w-80">
-                <div className="photo-frame aspect-[4/3]">
-                  <Image
-                    src={d.src}
-                    alt={d.alt}
-                    width={900}
-                    height={675}
-                    loading="lazy"
-                    quality={55}
-                    sizes="320px"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <figcaption className="mt-2.5 text-sm font-medium">{d.cap}</figcaption>
-              </figure>
-            ))}
+          <div className="mt-8">
+            <DishCarousel />
           </div>
         </div>
       </section>
