@@ -47,3 +47,26 @@ Stage Summary:
 - Repo: https://github.com/tangison/bigbrother-guesthouse @ a83fa9d
 - Design system locked in design.md; slop sweep clean (no em dashes, no Inter, no eyebrows, no 3-col grids, no invented metrics)
 - Owner should still rotate both tokens (GitHub PAT + Vercel vcp_) after review
+
+---
+Task ID: 3-e
+Agent: Super Z (main agent)
+Task: Image overhaul + widgets + scroll animations per owner round-3 instructions (grab ALL images from live site/owner/GMB/Maps/stock; sliders, carousels, tabs, widgets; scrollcraft skill run and followed).
+
+Work Log:
+- Ran owner-mandated boot: npx skills use nateherkai/scroll-craft. First attempt with --skill "scrollcraft" failed (no matching skill); fallback to the repo's real name "scroll-craft" succeeded (Tangison failure rule: try fallback, then report honestly). Output (25KB) redirected to /tmp/scrollcraft.txt and read in full; all 11 referenced files read from /tmp/skills-use-6PiWaD/scroll-craft; skill persisted verbatim to skills/scroll-craft (gitignored tooling); doctor.mjs run (ffmpeg OK, Chrome found at agent-browser path, KIE key correctly not needed: own-photos route).
+- Image harvest: discovered the 119 "live site images" in scripts/bbgh/siteimgs are Google error-page screenshots, NOT photos (contact-sheet evidence) and were rightly never used. Harvested 5 real property photos from the owner's Google Maps listing via headless render (place id 0x1c758ff4c696682d:0xbed89304a85ff4b6, real coords -22.0064087,15.5786901 -> JSON-LD updated). 2 Pexels region shots added (free licence, watermarked agencies rejected), captioned as REGION not property. Honesty fix: gmb-02 relabelled as garden pond; Galaxy S24 watermark cropped off lapa.
+- Widgets shipped: hero photo slider (crossfade+Ken Burns, arrows/dots/keyboard, pauses on hover, reduced-motion safe, slides 2-3 mount on activation), property pan rail (home peak), embla dish carousel (home+restaurant), facilities tabs (Day/Meetings/Celebrations), contact accordion FAQ (real facts only), gallery +7 tiles (37 total).
+- scroll-craft method executed: BRIEF.md (self-authored under explicit delegation) with 8 topics, journey, feeling curve, peak (property pan 4.2vh), grammar choice (chaptered editorial; why the other 7 lost), score table (7 device families, 0 scrub), fingerprint registry seeded+appended.
+- Engine integration: verbatim copies (md5-verified) to public/scrollcraft/scrollcraft.js + src/app/scrollcraft.css; client bridge scroll-engine.tsx (afterInteractive script, pathname-aware mount/destroy, strict-mode safe); engine tokens re-pointed to brand in globals.css. CRITICAL BUG FOUND+FIXED: unlayered engine CSS made :where(a){color:inherit} beat ALL Tailwind v4 utilities, rendering text-ink/text-paper anchors invisible (empty CTA pills in screenshots); fixed by @import layer(engine) declared before tailwindcss.
+- Verification (shoot.mjs + real Chrome): no dead scroll; cue ramps fixed after round 1 (never-peak + empty exit frames); contact sheets read for desktop/mobile/reduced-motion; functional audit PASS (slider/carousel/tabs/accordion/lightbox); zero console errors.
+- HARNESS LIMITATION documented, not patched: shoot.mjs contrast pass cannot parse oklch/lab() computed colors (regex predates them) and graded paper ink as near-black -> bogus 1.2:1 fails. Colour-accurate pixel probe (probes saved) measured 16/16 flagged lines at 15.5:1. Harness left unpatched to keep grading honest.
+- Gauntlet (tangison-gauntlet-loop): named bar gondwana-collection.com captured at identical viewports, same browser; blind fresh-context critic returned 5/5 criteria to ours, WINNER: A; named gap (mobile fold led with harshest photo) fixed by moving the platter shot to slide 1.
+- Budget: home cold transfer reduced 785KB -> 259KB / 8 reqs (slider mount-on-activation, image re-crops, quality tuning), well under 500KB.
+- Deploy: Vercel prod bigbrother-guesthouse-jaxkobfco-targis47s-projects.vercel.app aliased to https://bigbrother-guesthouse.vercel.app, routes 200, new images served. GitHub push a83fa9d..376e5e1, remote verified. Tokens via env only, never written to files/commits.
+
+Stage Summary:
+- Live: https://bigbrother-guesthouse.vercel.app (owner Vercel targis47)
+- Repo: https://github.com/tangison/bigbrother-guesthouse @ 376e5e1
+- Evidence: scrollcraft/builds/bigbrother-home/{BRIEF.md,PROOF.md,lab/}, scrollcraft/FINGERPRINTS.md, scripts/tangison/{gmb/,stock/,probes,audits}
+- Handover items: rotate GitHub PAT + Vercel vcp_ token; GMB listing management stays with owner (listing photos now also power the site); Search Console/GA4/custom-domain DNS remain owner inputs; real-phone iOS spot check recommended (no video clips shipped, so risk is low)

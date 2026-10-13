@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://webarchive.nationalarchives.gov.uk",
+    "name": "https://webarchive.nationalarchives.gov.uk/video/w",
+    "snippet": "No information is available for this page. Learn why",
+    "host_name": "webarchive.nationalarchives.gov.uk",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www-archive.mozilla.org",
+    "name": "Test Case Description for automatic web cam refresh - Mozilla",
+    "snippet": "Confirm that an automatically updated web cam continues to refresh over an extended (24 hours) period of time.",
+    "host_name": "www-archive.mozilla.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://news.ycombinator.com",
+    "name": "We probably shouldn't be using the \"archive\" site that",
+    "snippet": "We probably shouldn't be using the \"archive\" site that hijacks your browser into DDOSing other people. Use archive.is for what it is,",
+    "host_name": "news.ycombinator.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://lchc.ucsd.edu",
+    "name": "[xmca] Access the complete digital archives of our Russian",
+    "snippet": "Apr 10, 2012 — Access the complete digital archives of our Russian & East European journals. Phone: 865-974-7712",
+    "host_name": "lchc.ucsd.edu",
+    "rank": 3,
+    "date": "Apr 10, 2012",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.dccollection.share.library.harvard.edu",
+    "name": "Интернет-выставки Национального архива Республики",
+    "snippet": "Интернет-выставки Национального архива Республики Хакасия (Online Exhibitions of the National Archive of the Republic of Khakassia) (Open Access Primary Source). Read more",
+    "host_name": "www.dccollection.share.library.harvard.edu",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
