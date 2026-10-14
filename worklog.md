@@ -91,3 +91,25 @@ Stage Summary:
 - Repo: https://github.com/tangison/bigbrother-guesthouse @ f13625d
 - Site now: no visible photo captions anywhere, no pagination dots, no autoplay; manual arrows are the only slider controls
 - Standing reminder: rotate the GitHub PAT and Vercel vcp_ token (both appeared in chat)
+
+---
+Task ID: 4-a
+Agent: Super Z (main agent)
+Task: Owner super-prompt "Big Brother Site Upgrade": two brands in one site, booking flows, master-file data pages, supplied logos, contact strip, nav spacing fixes, image import from Gofile, copy fixes, preview deploy.
+
+Work Log:
+- Read the full uploaded prompt (374 lines) + master data file (494 lines); unzipped supplied logos (12 files) into originals/logos/; sampled brand colours from the SVGs (GH #ED6D0A/#131512/#FAF5E8 on-dark; Restaurant lime #A6E406, badge greens #447108/#080C06).
+- Skills: find-skills bootstrapped and read in full earlier in session; 4 new hunts (booking/whatsapp/facebook/calculator) all returned 1-23-install noise; 0 new installs; adobe image-seo (installed+vetted earlier) used for alt/SEO technique.
+- Architecture: root layout became a shell; all guesthouse pages moved to app/(site)/ with guesthouse nav+footer+LodgingBusiness JSON-LD; app/restaurant/ got its own layout (.brand-restaurant lime token scope, Restaurant JSON-LD, Eat-first strip). Shared SiteNav/SiteFooter parameterised by brand.
+- Gofile import round 2: API listing blocked (error-notPremium); listing recovered via the page's own guest session; store download pattern verified (any store host 302-redirects home); 171 images + 1 PDF in folder; 166 images recovered (5 files redirect to the app page = gone server-side; PDF unfetchable); first-run HTML-error-body bug fixed with PIL validation; every recovered image reviewed via contact sheets (9 sheets).
+- Selection: 16 masters built with sharp (auto-rotate, metadata stripped, max 1600w, mozjpeg 80) into public/images with clean hyphenated names; 2 owner 2048px shots replaced the old Maps-derived property masters; rejects: 3 Gemini AI-generated, ~45 date-stamped CCTV-style frames, 8+ identifiable-guest shots, 6 dark night shots, 3 blurry, bathroom shots, collage, near-duplicates.
+- Platform tree-reset fought the branch work twice (auto-commits reverted to main and wiped untracked public/scrollcraft); resolved by fast-forward merging site-upgrade into main; scrollcraft.js restored from skills/scroll-craft/engine + gitignore negation !public/scrollcraft/.
+- Deployed 5 preview deployments (never --prod); final: bigbrother-guesthouse-ca14yiugy. Stray auto-created "my-project" project deleted from owner's Vercel.
+- Verification (verify_upgrade.cjs): 46 internal links 0 broken; booking WhatsApp template decoded (greeting/details/VIP/total/confirm lines correct); reserve template correct; email body correct; viewports 320/360/390/412/768/1024/1280/1536 no h-scroll, bar outer margin 16px + inner padding 16px; 0 console errors; AVIF + WebP negotiation verified via Accept headers (hero 23KB AVIF at 1080w); first-load weights: home 473KB, all others 17-79KB.
+- GitHub: main pushed f13625d..e286dd0, site-upgrade branch also on remote; tokens env-only.
+
+Stage Summary:
+- Preview: https://bigbrother-guesthouse-ca14yiugy-targis47s-projects.vercel.app (NOT aliased to production, per owner approval gate)
+- Repo: tangison/bigbrother-guesthouse main @ e286dd0, branch site-upgrade @ 0f09f9a
+- Coverage: master file items Built/Adapted/Not-built documented in the owner report; ATTA badge, Instagram, NTB emblem, 10K-follower claim, Station Commander number all withheld pending owner input
+- Owner must rotate GitHub PAT + Vercel token (exposed in chat)
