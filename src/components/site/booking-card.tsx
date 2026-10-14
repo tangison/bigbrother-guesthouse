@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ROOM_TIERS, VIP, BANKING, formatNad, nightsBetween } from "@/lib/rates";
+import { ROOM_TIERS, VIP, formatNad, nightsBetween } from "@/lib/rates";
 import { GUESTHOUSE, HOLDINGS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
 import { PaymentCard } from "./payment-card";
 
@@ -364,8 +364,8 @@ export function BookingCard() {
         </dl>
         <p className="mt-3 text-xs leading-relaxed text-paper/60">
           Estimate. We confirm on WhatsApp. Prices come from the owner&apos;s own price list. Payment happens after
-          we confirm your booking, by EFT or at check-in. Banking details: {BANKING.bank}, account{" "}
-          {BANKING.accountNumber}.
+          we confirm your booking, by EFT or at check-in: the account details arrive with your
+          confirmation.
         </p>
       </aside>
     </div>
