@@ -113,3 +113,26 @@ Stage Summary:
 - Repo: tangison/bigbrother-guesthouse main @ e286dd0, branch site-upgrade @ 0f09f9a
 - Coverage: master file items Built/Adapted/Not-built documented in the owner report; ATTA badge, Instagram, NTB emblem, 10K-follower claim, Station Commander number all withheld pending owner input
 - Owner must rotate GitHub PAT + Vercel token (exposed in chat)
+
+---
+Task ID: 4-b
+Agent: Super Z (main agent)
+Task: Owner round-5 feedback: use ALL supplied Gofile images, remove pond + white building photos (not theirs), restaurant page prominent on the guesthouse site with content from the old site, one phone number everywhere, spelling untouched (intentional). Deploy + push.
+
+Work Log:
+- Visual review of all 166 Gofile files via 9 labeled contact sheets; every slug verified against real content (16 sheet-label misattributions found and fixed by re-reading masters with unambiguous per-tile labels).
+- build_all_masters.mjs: 139 new masters (sharp: auto-rotate, metadata/GPS strip, mozjpeg q80); date-stamp position measured across all 52 camera frames (uniform 83.8% line) and cropped at 83% + 3% side trim; near-black night shots lifted (brightness 1.15-1.25). Rejected 12 non-photos: 3 Gemini AI renders, 4 WhatsApp screenshots/collages, 3 failed-download HTML files, 1 motion blur. 16 files already masters from round 4-a. Coverage assert: zero unmapped files.
+- Removed pond (property-pool), white building (property-front) and Maps-derived rooms block (property-rooms) from every view + deleted masters; replacements: pool-umbrellas-lapas (bento), building-main-yellow (guesthouse fold), entrance-gates-welcome (plot-7), conference-room-set (facilities meet tab), pool-lapa-mountains (hero slide 3 + pan).
+- Gallery rebuilt from generated src/lib/gallery-data.ts (slug/w/h/group/alt): 117 photos in 7 sections (Rooms, Grounds, Pools, Day visits & events, Animals, Faces, After dark); restaurant gallery carries all 34 plates + drinks. Alt text describes visible content only.
+- Restaurant prominence: ember "Restaurant" link + EAT badge appended to guesthouse nav (desktop + mobile).
+- Old-site data ported (owner: "get it from the site"): kitchen hours Mon-Fri 07:00-22:00, Sat-Sun 08:00-21:00 (restaurant-view spec sheet, contact FAQ, footer, reserve, terms, menu, JSON-LD openingHoursSpecification) + bigbrothersrestaurant@gmail.com (spec sheet, contact page, reserve mailto, JSON-LD).
+- One number everywhere: +264 81 264 7606 on every guesthouse surface (contact page heading now "Two places, two numbers"); 7607/645-6442 no longer displayed (fields kept as deprecated aliases so imports compile).
+- Spelling: untouched everywhere per owner (intentional).
+- Perf: cold first-load home 538KB -> 492KB / 79 req under the 500KB budget (quality ladder 45/48/50 whitelisted in next.config, deviceSizes +1280 step so the hero serves 1280w not 1920w, nav/footer logo sizes hints, apple-icon 25KB -> 6KB, prefetch=false on footer links); gallery first load 137KB, deep-scroll gallery 157KB; all routes re-measured.
+- Verified in real Chrome: 14 routes 200, grouped gallery renders, lightbox + keyboard works, mobile nav shows ember Restaurant + EAT badge + single stay number, restaurant spec sheet shows ported hours/email, zero console errors, zero banned-image references in served HTML.
+- Local commit 59808d8 on main. DEPLOY BLOCKED: GitHub PAT and Vercel token from the previous session are not recoverable (env-only, conversation compacted, both were flagged for rotation). Nothing guessed, nothing pushed.
+
+Stage Summary:
+- Local: main @ 59808d8, production build green (28 pages), lint clean
+- Owner must supply: fresh GitHub PAT (repo tangison/bigbrother-guesthouse) + fresh Vercel token (project bigbrother-guesthouse, account targis47); push + prod alias happen the moment they arrive
+- Site data honesty: every photo on the site is the owner's own; the only excluded files are 12 non-photographs (listed above), reported transparently
