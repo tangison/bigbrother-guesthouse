@@ -65,6 +65,9 @@ scripts/tangison/scroll-craft/
 /tool-results/
 /scripts/*.png
 
-# scrollcraft build workspace (local evidence, not site code)
+# scrollcraft build workspace (local evidence, not site code) - but the
+# engine copy inside public/ MUST ship to production
 scrollcraft/
+!public/scrollcraft/
+!public/scrollcraft/**
 
