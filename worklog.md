@@ -70,3 +70,24 @@ Stage Summary:
 - Repo: https://github.com/tangison/bigbrother-guesthouse @ 376e5e1
 - Evidence: scrollcraft/builds/bigbrother-home/{BRIEF.md,PROOF.md,lab/}, scrollcraft/FINGERPRINTS.md, scripts/tangison/{gmb/,stock/,probes,audits}
 - Handover items: rotate GitHub PAT + Vercel vcp_ token; GMB listing management stays with owner (listing photos now also power the site); Search Console/GA4/custom-domain DNS remain owner inputs; real-phone iOS spot check recommended (no video clips shipped, so risk is low)
+
+---
+Task ID: 3-f
+Agent: Super Z (main agent)
+Task: Owner round-4 feedback: "Remove image captions and xation and auotmemddozer" -> strip visible photo captions, slider/carousel pagination dots, and hero autoplay; redeploy + push.
+
+Work Log:
+- Interpreted owner shorthand against the live build: captions = descriptive text under/over photos; "xation" = pagination dots (hero slider tablist + dish carousel tablist); "auotmemddozer" = the hero auto-advance (6000ms setInterval). No dozer/bulldozer content exists anywhere (verified by grep), so the auto-advance reading is the only grounded one.
+- Captions removed in 8 files: hero-slider (per-slide corner caption + cap fields), home-view (property-pan figcaptions + label fields, Pexels provenance caption, comment updates), facilities-view (2 TabPanel caption props + prop signature + meetings figcaption), guesthouse-view (2 under-photo captions + grounds cap fields + figcaption), restaurant-view (hero corner caption), menu-view (hero corner caption), gallery-view (lightbox figcaption). Dish carousel name+price figcaptions KEPT deliberately (printed-menu product labels, not photo captions). Bento overlay titles kept (nav card UI). Alt text untouched (SEO/a11y checklist requires 100% coverage).
+- Dots removed: hero slider role=tablist block and dish carousel tablist block + selected/onSelect state wiring; both control rows now justify-end with arrows only. Arrows, drag/swipe, keyboard reachability preserved. Facilities content tabs NOT touched (owner-requested widget, not pagination).
+- Autoplay removed: INTERVAL + setInterval effect + paused state + hover/focus pause handlers deleted from hero-slider; slider is manual-only now. Ken Burns still runs on the active slide, reduced-motion CSS gate unchanged.
+- Cleanup: orphaned .caption class removed from globals.css; comment blocks updated to match new behavior.
+- Verification: eslint clean; production build 19/19 routes; built HTML greps clean (no caption strings, no "Choose slide"/"Go to dish" dot controls, no interval in src); live checks: / and 5 routes HTTP 200, live HTML greps clean; agent-browser live DOM probe: 0 tablists, 0 .caption elements, 2 hero arrows, 0 dish dots, 8 figcaptions all dish name+price; screenshots of hero and property pan confirm clean frames.
+- Deploy: vercel link re-established (prj_uIBSMdzDlQ35LmlntMoVkQtuTmjO, team_nLqoCCjxE0cwPkgZNkP5ITX1; note: --scope flag rejected for personal account, plain link works); prod deploy bigbrother-guesthouse-k4y44ekwv-targis47s-projects.vercel.app aliased to https://bigbrother-guesthouse.vercel.app, HTTP 200.
+- GitHub: commit f13625d pushed 376e5e1..f13625d via one-shot PAT URL (no remote config write, no tokens in files/commits); remote main verified at f13625d. Note: platform tooling had auto-committed e616b67 (UUID) and re-encoded several images with mode changes; included in push.
+
+Stage Summary:
+- Live: https://bigbrother-guesthouse.vercel.app (production alias, owner Vercel targis47)
+- Repo: https://github.com/tangison/bigbrother-guesthouse @ f13625d
+- Site now: no visible photo captions anywhere, no pagination dots, no autoplay; manual arrows are the only slider controls
+- Standing reminder: rotate the GitHub PAT and Vercel vcp_ token (both appeared in chat)
