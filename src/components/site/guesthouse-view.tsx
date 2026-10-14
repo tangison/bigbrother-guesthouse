@@ -70,7 +70,6 @@ export function GuesthouseView() {
                 className="object-cover"
               />
             </div>
-            <p className="caption mt-2 text-mut">The rooms block, from our Google Maps listing</p>
             <div className="mt-6 max-w-[60ch]">
               <h2 className="font-display text-2xl font-semibold md:text-3xl">Big Brother Guesthouse</h2>
               <p className="mt-3 leading-relaxed text-mut">
@@ -107,7 +106,6 @@ export function GuesthouseView() {
                 className="object-cover"
               />
             </div>
-            <p className="caption mt-2 text-mut">Breakfast, included with the B&amp;B</p>
             <div className="mt-6 max-w-[52ch]">
               <h2 className="font-display text-2xl font-semibold md:text-3xl">Big Brother Bed & Breakfast</h2>
               <p className="mt-3 leading-relaxed text-mut">
@@ -140,9 +138,9 @@ export function GuesthouseView() {
           </p>
           <div className="mt-9 grid gap-5 sm:grid-cols-3">
             {[
-              { src: "/images/property-lapa.jpg", alt: "Shaded lapa with tables on the lawn", cap: "The lapa and lawn" },
-              { src: "/images/property-pool.jpg", alt: "The stone-edged garden pond beside the braai area", cap: "The garden pond" },
-              { src: "/images/property-front.jpg", alt: "The guesthouse front with carport and hills behind", cap: "The front gate" },
+              { src: "/images/property-lapa.jpg", alt: "Shaded lapa with tables on the lawn" },
+              { src: "/images/property-pool.jpg", alt: "The stone-edged garden pond beside the braai area" },
+              { src: "/images/property-front.jpg", alt: "The guesthouse front with carport and hills behind" },
             ].map((p) => (
               <figure key={p.src}>
                 <div className="photo-frame aspect-[4/3]">
@@ -157,7 +155,6 @@ export function GuesthouseView() {
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <figcaption className="mt-2.5 text-sm font-medium">{p.cap}</figcaption>
               </figure>
             ))}
           </div>

@@ -1,43 +1,32 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 /* Hero photo slider. The ground plane of the hero: three real photographs
  * (two from the owner's Google Maps listing, one from the owner's own kitchen)
- * crossfade on a slow clock. Controls: arrows, dots, keyboard. Auto-advance
- * pauses on hover and focus, and never runs under prefers-reduced-motion.
- * Captions are honest about where each photo comes from. */
+ * crossfade on manual control only: arrows, keyboard. No autoplay, no dots,
+ * no captions. Slides beyond the first mount only once first shown: the cold
+ * load carries one hero photo, not three. */
 
 const SLIDES = [
   {
     src: "/images/hero-platter.jpg",
     alt: "The Big Brothers family platter with pap, chicken and salads",
-    cap: "The platter, made for sharing",
   },
   {
     src: "/images/property-pool-wide.jpg",
     alt: "The Big Brother pool, lapa and garden, from the guesthouse Google Maps listing",
-    cap: "The pool and the lapa, from our Google listing",
   },
   {
     src: "/images/property-lapa.jpg",
     alt: "Shaded lapa tables on the lawn, from the guesthouse Google Maps listing",
-    cap: "Lunch under the lapa, from our Google listing",
   },
 ];
 
-const INTERVAL = 6000;
-
 export function HeroSlider() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [seen, setSeen] = useState<number[]>([0]);
-  const reduced = useRef(false);
-
-  useEffect(() => {
-    reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }, []);
 
   const go = useCallback((n: number) => {
     const next = (n + SLIDES.length) % SLIDES.length;
@@ -45,21 +34,12 @@ export function HeroSlider() {
     setSeen((s) => (s.includes(next) ? s : [...s, next]));
   }, []);
 
-  useEffect(() => {
-    if (paused || reduced.current) return;
-    const t = window.setInterval(() => go(active + 1), INTERVAL);
-    return () => window.clearInterval(t);
-  }, [paused, active, go]);
   return (
     <div
       className="absolute inset-0"
       role="group"
       aria-roledescription="carousel"
       aria-label="Photos of Big Brother Guesthouse and its food"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
     >
       {SLIDES.map((s, i) => (
         <div
@@ -69,8 +49,6 @@ export function HeroSlider() {
             i === active ? "opacity-100" : "opacity-0"
           }`}
         >
-          {/* Slides beyond the first mount only once first shown: the cold load
-           * carries one hero photo, not three. */}
           {seen.includes(i) && (
             <Image
               src={s.src}
@@ -88,22 +66,9 @@ export function HeroSlider() {
         </div>
       ))}
 
-      {/* Controls: arrows + dots. Sized for touch, labelled for screen readers. */}
-      <div className="absolute inset-x-0 bottom-4 z-10 flex items-center justify-between px-4 md:bottom-6 md:px-6">
-        <div className="flex items-center gap-2.5" role="tablist" aria-label="Choose slide">
-          {SLIDES.map((s, i) => (
-            <button
-              key={s.src}
-              role="tab"
-              aria-selected={i === active}
-              aria-label={`Slide ${i + 1} of ${SLIDES.length}: ${s.cap}`}
-              onClick={() => go(i)}
-              className={`h-2.5 rounded-full transition-all duration-200 ${
-                i === active ? "w-8 bg-paper" : "w-2.5 bg-paper/45 hover:bg-paper/70"
-              }`}
-            />
-          ))}
-        </div>
+      {/* Controls: arrows only, bottom right. Sized for touch, labelled for
+       * screen readers, keyboard reachable. */}
+      <div className="absolute inset-x-0 bottom-4 z-10 flex items-center justify-end px-4 md:bottom-6 md:px-6">
         <div className="flex items-center gap-2">
           <button
             onClick={() => go(active - 1)}
@@ -125,11 +90,6 @@ export function HeroSlider() {
           </button>
         </div>
       </div>
-
-      {/* Per-slide caption, corner anchored */}
-      <p aria-live="polite" className="caption absolute bottom-[4.4rem] left-5 z-10 md:bottom-[5.2rem] md:left-6">
-        {SLIDES[active].cap}
-      </p>
     </div>
   );
 }

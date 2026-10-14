@@ -12,7 +12,7 @@ import { BIZ, wa } from "@/lib/site-data";
 export function RestaurantView() {
   return (
     <>
-      {/* Fold 1: full-bleed kitchen photo, badge bottom-left, caption bottom-right */}
+      {/* Fold 1: full-bleed kitchen photo, badge bottom-left */}
       <section className="relative overflow-hidden bg-ink text-paper" aria-label="Big Brothers Restaurant">
         <div className="absolute inset-0" aria-hidden="true">
           <Image
@@ -52,7 +52,7 @@ export function RestaurantView() {
               Order on WhatsApp
             </a>
           </div>
-          <div className="hero-rise mt-10 flex items-end justify-between gap-4" style={{ "--i": 3 } as React.CSSProperties}>
+          <div className="hero-rise mt-10 flex items-end" style={{ "--i": 3 } as React.CSSProperties}>
             <Image
               src="/images/logo-restaurant.jpg"
               alt="Big Brothers Restaurant badge, established 2023 in Usakos"
@@ -60,9 +60,6 @@ export function RestaurantView() {
               height={847}
               className="h-24 w-24 rounded-full border-2 border-leaf/50 object-cover shadow-xl md:h-28 md:w-28"
             />
-            <p className="caption text-right">
-              From our grill · the braise that made the town talk
-            </p>
           </div>
         </div>
       </section>
@@ -130,7 +127,7 @@ export function RestaurantView() {
       </section>
 
       {/* Fold 3: the dish carousel, real plates only, prices from the printed menu.
-       * A real widget: drag, swipe, arrows, dots. */}
+       * A real widget: drag, swipe, arrows. */}
       <section className="bg-cream py-16 md:py-24" aria-label="From the kitchen">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <div className="flex flex-wrap items-end justify-between gap-4">

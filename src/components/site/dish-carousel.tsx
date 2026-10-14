@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useEffect, useState } from "react";
 
-/* Dish carousel on embla. Arrows, dots, drag and swipe, keyboard reachable.
+/* Dish carousel on embla. Arrows, drag and swipe, keyboard reachable.
  * Every plate and every price comes from the client's own photos and printed
  * A3 menu (v3). Wheel prices stay untouched. */
 
@@ -21,20 +20,6 @@ const DISHES = [
 
 export function DishCarousel() {
   const [emblaRef, embla] = useEmblaCarousel({ loop: true, align: "start", dragFree: false });
-  const [selected, setSelected] = useState(0);
-
-  const onSelect = useCallback(() => {
-    if (!embla) return;
-    setSelected(embla.selectedScrollSnap());
-  }, [embla]);
-
-  useEffect(() => {
-    if (!embla) return;
-    embla.on("select", onSelect).on("reInit", onSelect);
-    return () => {
-      embla.off("select", onSelect).off("reInit", onSelect);
-    };
-  }, [embla, onSelect]);
 
   return (
     <div className="relative">
@@ -63,21 +48,7 @@ export function DishCarousel() {
         </div>
       </div>
 
-      <div className="mt-5 flex items-center justify-between">
-        <div className="flex items-center gap-2" role="tablist" aria-label="Carousel position">
-          {DISHES.map((d, i) => (
-            <button
-              key={d.src}
-              role="tab"
-              aria-selected={i === selected}
-              aria-label={`Go to dish ${i + 1} of ${DISHES.length}: ${d.cap}`}
-              onClick={() => embla?.scrollTo(i)}
-              className={`h-2 rounded-full transition-all duration-200 ${
-                i === selected ? "w-7 bg-ink" : "w-2 bg-ink/25 hover:bg-ink/50"
-              }`}
-            />
-          ))}
-        </div>
+      <div className="mt-5 flex items-center justify-end">
         <div className="flex items-center gap-2">
           <button
             onClick={() => embla?.scrollPrev()}

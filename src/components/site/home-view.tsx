@@ -20,27 +20,22 @@ const PROPERTY_SHOTS = [
   {
     src: "/images/property-front.jpg",
     alt: "Big Brother Guesthouse front: white buildings, carport, hills behind",
-    label: "The front. White walls, carport, hills behind.",
   },
   {
     src: "/images/property-rooms.jpg",
     alt: "The rooms block with gravel driveway and palm tree",
-    label: "The rooms block. Gravel drive, palm, secure gate.",
   },
   {
     src: "/images/property-lapa.jpg",
     alt: "Shaded lapa with tables on the lawn, palm trees around",
-    label: "The lapa. Shade, tables, lawn.",
   },
   {
     src: "/images/property-pool.jpg",
     alt: "The stone-edged garden pond beside the braai area",
-    label: "The garden pond. Stone edge, shade beside.",
   },
   {
     src: "/images/property-pool-wide.jpg",
     alt: "Wide view over the pool, lapa and garden corner",
-    label: "The corner. Pool, lapa, garden in one frame.",
   },
 ];
 
@@ -184,7 +179,7 @@ export function HomeView() {
         </div>
       </section>
 
-      {/* 4 · ARRIVAL, the peak: the property travels sideways. Museum labels, real
+      {/* 4 · ARRIVAL, the peak: the property travels sideways. Clean frames, real
        * Google-Maps photographs, the largest span on the page. */}
       <section data-sc-act="pan" data-sc-span="4.2" className="bg-cream" aria-label="The property, from our Google Maps listing">
         <div data-sc-stage className="sc-stage">
@@ -215,7 +210,6 @@ export function HomeView() {
                           className="h-full w-full object-cover"
                         />
                       </div>
-                      <figcaption className="mt-3 text-sm leading-snug text-mut">{p.label}</figcaption>
                     </div>
                   </figure>
                 ))}
@@ -264,7 +258,7 @@ export function HomeView() {
         </div>
       </section>
 
-      {/* 6 · AWE: the road arrives as a wipe. One line, honest caption. */}
+      {/* 6 · AWE: the road arrives as a wipe. One line. */}
       <section data-sc-act="flow" className="bg-ink text-paper" aria-label="The road here">
         <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <figure data-sc-reveal="up" data-sc-reveal-at="0.2 0.6" className="overflow-hidden">
@@ -289,9 +283,6 @@ export function HomeView() {
               <p>
                 Usakos sits on the bench of the Khan River, with the rocky shapes of the Erongo
                 Region all around. Gravel roads, granite hills, and a sky that goes on forever.
-              </p>
-              <p className="caption mt-4 text-paper/60">
-                Region photograph, licensed from Pexels. The property photos above are ours.
               </p>
             </div>
           </div>
@@ -326,7 +317,7 @@ export function HomeView() {
   );
 }
 
-/* Bento cell: photograph fills the tile, caption bar anchors the bottom.
+/* Bento cell: photograph fills the tile, title bar anchors the bottom.
  * Hover physics: one signal, slow image scale inside the clipped frame. */
 function BentoCell({
   href,

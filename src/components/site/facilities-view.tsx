@@ -60,7 +60,6 @@ export function FacilitiesView() {
             <TabPanel
               img="/images/property-pool-wide.jpg"
               alt="The swimming pool and lapa, from our Google Maps listing"
-              caption="The pool and lapa, from our Google Maps listing"
               title="Come and spend the day with us."
               lines={[
                 "Day visitors are welcome. Bring the family or a car full of friends, order from the kitchen, and let the afternoon run long under the lapa.",
@@ -101,7 +100,6 @@ export function FacilitiesView() {
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <figcaption className="caption mt-2 text-mut">The main building, from our Google Maps listing</figcaption>
               </figure>
             </div>
           </TabsContent>
@@ -110,7 +108,6 @@ export function FacilitiesView() {
             <TabPanel
               img="/images/property-lapa.jpg"
               alt="Shaded lapa with tables on the lawn, from our Google Maps listing"
-              caption="The lapa and lawn, from our Google Maps listing"
               title="Birthdays, braais, and family gatherings."
               lines={[
                 "The venue, the shade, and the space are yours for the day. We tailor the setup to your group and cater from our own kitchen, so the food arrives straight off the grill.",
@@ -202,13 +199,11 @@ export function FacilitiesView() {
 function TabPanel({
   img,
   alt,
-  caption,
   title,
   lines,
 }: {
   img: string;
   alt: string;
-  caption: string;
   title: string;
   lines: string[];
 }) {
@@ -226,7 +221,6 @@ function TabPanel({
         <div className="photo-frame aspect-[4/3]">
           <Image src={img} alt={alt} width={1400} height={1050} loading="lazy" quality={58} sizes="(max-width: 1024px) 100vw, 40vw" className="h-full w-full object-cover" />
         </div>
-        <figcaption className="caption mt-2 text-mut">{caption}</figcaption>
       </figure>
     </div>
   );

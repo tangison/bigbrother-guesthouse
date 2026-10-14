@@ -141,7 +141,6 @@ export function GalleryView() {
               className="max-h-[80vh] w-auto object-contain"
               priority
             />
-            <figcaption className="caption mt-3 text-center">{PHOTOS[open].alt}</figcaption>
           </figure>
           <button
             className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-paper/30 px-4 py-3 text-paper transition-colors hover:bg-paper/10"

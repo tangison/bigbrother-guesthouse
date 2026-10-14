@@ -36,7 +36,7 @@ export function MenuView() {
 
   return (
     <>
-      {/* Fold: full-bleed kitchen photo, quiet caption, two actions */}
+      {/* Fold: full-bleed kitchen photo, two actions */}
       <section className="relative overflow-hidden bg-ink text-paper" aria-label="Menu">
         <div className="absolute inset-0" aria-hidden="true">
           <Image
@@ -75,7 +75,6 @@ export function MenuView() {
               WhatsApp your order
             </a>
           </div>
-          <p className="caption absolute bottom-5 right-5 hidden md:block">The feast platter · est. 2023</p>
         </div>
       </section>
 
