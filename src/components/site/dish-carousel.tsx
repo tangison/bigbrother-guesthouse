@@ -34,7 +34,7 @@ export function DishCarousel() {
                   width={900}
                   height={675}
                   loading="lazy"
-                  quality={55}
+                  quality={45}
                   sizes="(max-width: 640px) 78vw, (max-width: 1024px) 46vw, 24vw"
                   className="h-full w-full object-cover"
                 />

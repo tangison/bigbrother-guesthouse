@@ -75,8 +75,8 @@ export default function Plot7Page() {
           <figure>
             <div className="photo-frame aspect-[4/3]">
               <Image
-                src="/images/property-front.jpg"
-                alt="Big Brother Guesthouse front: white buildings, carport and hills behind"
+                src="/images/entrance-gates-welcome.jpg"
+                alt="Yellow entrance gates with the welcome boards"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"

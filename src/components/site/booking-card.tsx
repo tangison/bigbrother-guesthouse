@@ -30,9 +30,14 @@ export function BookingCard() {
   const [sent, setSent] = useState(false);
 
   // Deep link: /book?tier=r11-double preselects the room from the rooms page.
+  // Read once after mount (not in lazy state) so server and client HTML stay
+  // identical: the query only exists in the browser. setState runs in a rAF
+  // callback, not synchronously in the effect body.
   useEffect(() => {
     const t = new URLSearchParams(window.location.search).get("tier");
-    if (t && ROOM_TIERS.some((x) => x.id === t)) setTierId(t);
+    if (!t || !ROOM_TIERS.some((x) => x.id === t)) return;
+    const raf = requestAnimationFrame(() => setTierId(t));
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   const tier = useMemo(() => ROOM_TIERS.find((t) => t.id === tierId) ?? ROOM_TIERS[0], [tierId]);

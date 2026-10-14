@@ -29,7 +29,7 @@ const jsonLd = {
   },
   acceptsReservations: `https://wa.me/${RESTAURANT.phoneEatWhatsapp}`,
   telephone: RESTAURANT.phoneEatDisplay,
-  email: HOLDINGS.email,
+  email: RESTAURANT.email,
   image: `${HOLDINGS.site}/images/og-restaurant.jpg`,
   address: {
     "@type": "PostalAddress",
@@ -38,13 +38,19 @@ const jsonLd = {
     addressRegion: RESTAURANT.address.region,
     addressCountry: "NA",
   },
-  // Only the confirmed hours are published. Weekday times: owner question.
+  // Full hours from the owner's own restaurant page.
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Saturday", "Sunday"],
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       opens: "07:00",
-      closes: "23:59",
+      closes: "22:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Saturday", "Sunday"],
+      opens: "08:00",
+      closes: "21:00",
     },
   ],
   sameAs: [RESTAURANT.facebook],

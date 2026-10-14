@@ -29,6 +29,7 @@ export function SiteFooter({ brand }: { brand: Brand }) {
               alt={isEat ? "Big Brothers Restaurant, Usakos, est. 2023" : "Big Brother Guesthouse: your home away from home"}
               width={192}
               height={isEat ? 191 : 179}
+              sizes="160px"
               className={`${isEat ? "h-20 w-20" : "h-auto w-36"} object-contain`}
             />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-paper/70">
@@ -63,9 +64,7 @@ export function SiteFooter({ brand }: { brand: Brand }) {
               )}
             </address>
             {isEat ? (
-              <p className="mt-3 text-paper/70">
-                {RESTAURANT.hoursKnown}. Weekday times: ask us.
-              </p>
+              <p className="mt-3 text-paper/70">{RESTAURANT.hoursKnown}.</p>
             ) : (
               <p className="mt-3 text-paper/70">
                 {GUESTHOUSE.distances.swakopmundKm} km from Swakopmund · {GUESTHOUSE.distances.windhoekKm} km from
@@ -124,14 +123,6 @@ export function SiteFooter({ brand }: { brand: Brand }) {
                       href={`tel:${RESTAURANT.phoneEat}`}
                     >
                       Eat: {RESTAURANT.phoneEatDisplay}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
-                      href={`tel:${GUESTHOUSE.phoneBnb}`}
-                    >
-                      B&amp;B: {GUESTHOUSE.phoneBnbDisplay}
                     </a>
                   </li>
                 </>
@@ -209,12 +200,12 @@ export function SiteFooter({ brand }: { brand: Brand }) {
             </p>
             <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1" aria-label="Footer navigation">
               {(isEat ? RESTAURANT_ROUTES : GUESTHOUSE_ROUTES).map((r) => (
-                <Link key={r.key} className="transition-colors hover:text-paper" href={r.path}>
+                <Link key={r.key} prefetch={false} className="transition-colors hover:text-paper" href={r.path}>
                   {r.label}
                 </Link>
               ))}
               {LEGAL_ROUTES.map((r) => (
-                <Link key={r.path} className="transition-colors hover:text-paper" href={r.path}>
+                <Link key={r.path} prefetch={false} className="transition-colors hover:text-paper" href={r.path}>
                   {r.label}
                 </Link>
               ))}

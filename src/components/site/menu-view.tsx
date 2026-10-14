@@ -45,7 +45,7 @@ export function MenuView() {
             alt=""
             fill
             priority
-            quality={60}
+            quality={50}
             sizes="100vw"
             className="scale-105 object-cover"
           />
@@ -105,7 +105,7 @@ export function MenuView() {
                 width={900}
                 height={675}
                 loading={i === 0 ? "eager" : "lazy"}
-                quality={52}
+                quality={45}
                 sizes="(max-width: 640px) 100vw, 33vw"
                 className="h-full w-full object-cover"
               />
@@ -179,7 +179,7 @@ export function MenuView() {
         <div className="mx-auto max-w-4xl px-4 text-center md:px-6">
           <h2 className="font-display text-3xl font-semibold md:text-4xl">Hungry? We are in town centre.</h2>
           <p className="mt-3 text-sm text-paper/75">
-            {RESTAURANT.address.street}, Usakos. Confirmed hours: {RESTAURANT.hoursKnown}.
+            {RESTAURANT.address.street}, Usakos. Kitchen hours: {RESTAURANT.hoursKnown}.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link href="/restaurant/reserve" className="rounded-full bg-paper px-6 py-3 font-semibold text-ink transition-colors hover:bg-lime">

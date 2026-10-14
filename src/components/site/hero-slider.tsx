@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useCallback, useState } from "react";
 
 /* Hero photo slider. The ground plane of the hero: three real photographs
- * (two from the owner's Google Maps listing, one from the owner's own kitchen)
- * crossfade on manual control only: arrows, keyboard. No autoplay, no dots,
- * no captions. Slides beyond the first mount only once first shown: the cold
- * load carries one hero photo, not three. */
+ * straight from the owner's own camera and kitchen. They crossfade on manual
+ * control only: arrows, keyboard. No autoplay, no dots, no captions. Slides
+ * beyond the first mount only once first shown: the cold load carries one
+ * hero photo, not three. */
 
 const SLIDES = [
   {
@@ -16,11 +16,11 @@ const SLIDES = [
   },
   {
     src: "/images/property-pool-wide.jpg",
-    alt: "The Big Brother pool, lapa and garden, from the guesthouse Google Maps listing",
+    alt: "The Big Brother pool, lapa and garden from our own album",
   },
   {
-    src: "/images/property-lapa.jpg",
-    alt: "Shaded lapa tables on the lawn, from the guesthouse Google Maps listing",
+    src: "/images/pool-lapa-mountains.jpg",
+    alt: "Thatched lapa and pool with the hills behind",
   },
 ];
 
@@ -56,7 +56,7 @@ export function HeroSlider() {
               fill
               priority={i === 0}
               loading={i === 0 ? undefined : "lazy"}
-              quality={52}
+              quality={45}
               sizes="100vw"
               /* Ken Burns runs on the active slide; reduced motion is handled
                * in CSS (globals.css disables the animation). */

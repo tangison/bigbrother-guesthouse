@@ -26,7 +26,7 @@ export default function ReservePage() {
       <section className="mx-auto max-w-6xl px-4 pb-20 md:px-6 md:pb-28" aria-label="Reservation card">
         <ReserveCard />
         <p className="mt-8 text-sm text-mut">
-          We are at {RESTAURANT.address.street}, {RESTAURANT.address.area}. Confirmed hours: {RESTAURANT.hoursKnown}.
+          We are at {RESTAURANT.address.street}, {RESTAURANT.address.area}. Kitchen hours: {RESTAURANT.hoursKnown}.
         </p>
       </section>
     </>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { RESTAURANT, HOLDINGS, wa } from "@/lib/site-data";
+import { RESTAURANT, wa } from "@/lib/site-data";
 import { formatNad } from "@/lib/rates";
 
 /* Restaurant table reservation: name, phone, date, time, guests, notes.
@@ -75,7 +75,7 @@ export function ReserveCard() {
             Reserve on WhatsApp
           </a>
           <a
-            href={`mailto:${HOLDINGS.email}?subject=${encodeURIComponent("Table reservation" + (name.trim() ? ` from ${name.trim()}` : ""))}&body=${encodeURIComponent(message)}`}
+            href={`mailto:${RESTAURANT.email}?subject=${encodeURIComponent("Table reservation" + (name.trim() ? ` from ${name.trim()}` : ""))}&body=${encodeURIComponent(message)}`}
             onClick={() => setSent(true)}
             className="flex min-h-[48px] items-center justify-center rounded-full border border-ink/25 px-6 text-center font-semibold text-ink transition-colors hover:bg-sand/60"
           >
@@ -105,7 +105,7 @@ export function ReserveCard() {
         <h2 className="font-display text-2xl font-semibold">Good to know</h2>
         <ul className="mt-4 space-y-3 text-sm leading-relaxed text-paper/80">
           <li>We are at {RESTAURANT.address.street}, {RESTAURANT.address.area}.</li>
-          <li>Confirmed kitchen hours: {RESTAURANT.hoursKnown}. Weekday times: ask on WhatsApp.</li>
+          <li>Kitchen hours: {RESTAURANT.hoursKnown}. Public holidays can shift; ask on WhatsApp.</li>
           <li>Big groups: tell us the number and we will set the lapa tables.</li>
           <li>Prices run from {formatNad(30)} to the {formatNad(400)} platter, straight from our printed menu.</li>
         </ul>

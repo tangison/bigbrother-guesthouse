@@ -6,7 +6,8 @@ const nextConfig: NextConfig = {
      every used quality to be declared here. AVIF first, WebP fallback:
      Next negotiates via Accept and both formats are verified served. */
   images: {
-    qualities: [52, 55, 60, 75],
+    qualities: [45, 48, 50, 75],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1280, 1920, 2048, 3840],
     formats: ["image/avif", "image/webp"],
   },
   async redirects() {

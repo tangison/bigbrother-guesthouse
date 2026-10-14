@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { DishCarousel } from "./dish-carousel";
-import { RESTAURANT, HOLDINGS } from "@/lib/site-data";
+import { RESTAURANT } from "@/lib/site-data";
 
 /* Restaurant · Photographic folds. The braise photograph opens the page;
  * hours and contact read as a printed spec sheet; the dish rail keeps the
@@ -21,7 +21,7 @@ export function RestaurantView() {
             alt=""
             fill
             priority
-            quality={60}
+            quality={50}
             sizes="100vw"
             className="scale-105 object-cover"
           />
@@ -72,12 +72,12 @@ export function RestaurantView() {
             <h2 className="font-display text-3xl font-semibold tracking-[-0.01em]">Kitchen hours</h2>
             <dl className="mt-6 max-w-xl text-[15px]">
               <div className="flex items-baseline justify-between gap-4 border-b border-line py-3.5">
-                <dt className="text-mut">Confirmed</dt>
-                <dd className="font-display text-lg font-semibold">{RESTAURANT.hoursKnown}</dd>
+                <dt className="text-mut">Monday to Friday</dt>
+                <dd className="font-display text-lg font-semibold">{RESTAURANT.hoursMonFri}</dd>
               </div>
               <div className="flex items-baseline justify-between gap-4 border-b border-line py-3.5">
-                <dt className="text-mut">Monday to Friday</dt>
-                <dd className="font-display text-lg font-semibold">Ask us on WhatsApp</dd>
+                <dt className="text-mut">Saturday and Sunday</dt>
+                <dd className="font-display text-lg font-semibold">{RESTAURANT.hoursSatSun}</dd>
               </div>
             </dl>
             <p className="mt-4 max-w-md text-sm text-mut">
@@ -94,8 +94,8 @@ export function RestaurantView() {
               </li>
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
                 <span className="text-mut">Email</span>
-                <a href={`mailto:${HOLDINGS.email}`} className="font-semibold underline underline-offset-4">
-                  {HOLDINGS.email}
+                <a href={`mailto:${RESTAURANT.email}`} className="font-semibold underline underline-offset-4">
+                  {RESTAURANT.email}
                 </a>
               </li>
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
@@ -145,7 +145,7 @@ export function RestaurantView() {
       {/* Fold 4: one closing action, typographic */}
       <section className="mx-auto max-w-4xl px-4 py-20 text-center md:px-6 md:py-28" aria-label="Menu call to action">
         <p className="mx-auto max-w-[30ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
-          Breakfast from 07:00. Kapana till late.
+          Kitchen from 07:00 on weekdays, 08:00 on weekends.
         </p>
         <p className="mx-auto mt-4 max-w-lg text-mut">
           The full menu carries every price we charge, from a N$30 russian to the N$400 seafood

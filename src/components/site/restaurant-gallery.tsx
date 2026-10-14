@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { QuietFade } from "./motion";
 
-// Restaurant gallery: plates, drinks and the evening atmosphere at the town
-// centre kitchen only. Guesthouse photos stay on the guesthouse gallery,
-// because the two businesses sit at different locations.
+// Restaurant gallery: every plate and drink the owner photographed at the town
+// centre kitchen. Guesthouse photos stay on the guesthouse gallery, because
+// the two businesses sit at different locations.
 const PHOTOS = [
   { src: "dish-samoosa", alt: "Golden samoosas with sauce and salad on a plate" },
   { src: "dish-matangara", alt: "Matangara stew served with white rice" },
@@ -17,8 +17,30 @@ const PHOTOS = [
   { src: "dish-wings", alt: "Grilled chicken wings with lemon and tomato" },
   { src: "dish-fish", alt: "Crumbed fish fillet with rice and sauce" },
   { src: "dish-schnitzel", alt: "Crumbed schnitzel with mash and creamy sauce" },
+  { src: "tray-breakfast-eggs-sausage", alt: "Breakfast tray with eggs, sausage and toast" },
+  { src: "platter-breakfast-mushrooms", alt: "Breakfast platter with eggs, mushrooms and toast" },
+  { src: "tray-ribs-chips", alt: "Ribs and chips on a black tray" },
+  { src: "platter-wings-chips", alt: "Chicken wings and chips with lemon" },
+  { src: "platter-chicken-onions", alt: "Carved chicken with onion rings on a platter" },
+  { src: "platter-fish-eggs-salads", alt: "Whole fish platter with eggs, rice and salads" },
+  { src: "plate-steak-chips-salad", alt: "Steak, chips and salad on a Big Brothers plate" },
+  { src: "plate-grilled-chicken", alt: "Grilled chicken with salad and lemon" },
+  { src: "plate-steak-onion-rings", alt: "Steak topped with onion rings" },
+  { src: "plate-steak-chips-peppers", alt: "Steak and chips with grilled peppers" },
+  { src: "plate-chicken-rice-salad", alt: "Chicken pieces with rice and greek salad" },
+  { src: "plate-pap-spinach", alt: "Pap and spinach served the traditional way" },
+  { src: "plate-french-toast", alt: "French toast triangles with tomato and cucumber" },
+  { src: "pancake-wedges-cinnamon", alt: "Pancake cut in wedges with cinnamon sugar" },
+  { src: "pancake-stuffed-plate", alt: "Stuffed pancake on a white plate" },
+  { src: "pancakes-stuffed-two", alt: "Two stuffed pancakes on a plate" },
+  { src: "omelette-toast-plate", alt: "Omelette with buttered toast triangles" },
+  { src: "mini-pancakes-paddle", alt: "Three mini pancakes on a paddle board" },
+  { src: "pancake-paddles-grey-table", alt: "Three mini pancakes on wooden paddles" },
   { src: "cocktail-blue", alt: "Blue cocktail from the bar" },
   { src: "cocktail-sunrise", alt: "Sunset cocktail in a tall glass" },
+  { src: "cocktail-blue-goblet", alt: "Blue cocktail in a balloon glass" },
+  { src: "cocktail-orange-leaf", alt: "Orange cocktail with a fresh leaf" },
+  { src: "drink-lemon-ice", alt: "Lemon cooler with ice on the table" },
   { src: "evening-patio-dining", alt: "Patio tables set out for dinner in the evening" },
 ];
 
@@ -71,7 +93,7 @@ export function RestaurantGallery() {
                     width={900}
                     height={675}
                     loading="lazy"
-                    quality={52}
+                    quality={48}
                     sizes="(max-width: 768px) 50vw, 33vw"
                     className="h-auto w-full object-cover"
                   />

@@ -17,14 +17,17 @@ export const GUESTHOUSE = {
   name: "Big Brother Guesthouse",
   short: "Big Brother",
   tagline: "Home away from home",
-  // Stay number: master file. Secondary line +264 81 264 7607 (master file).
+  // The one number (owner instruction: use this on every number, it is the
+  // one on the old site's contact page and the WhatsApp line). The master
+  // file's other lines (081 264 7607, 081 645 6442) are no longer displayed.
   phoneStay: "+264812647606",
   phoneStayDisplay: "+264 81 264 7606",
   phoneStayWhatsapp: "264812647606",
-  phoneSecondary: "+264812647607",
-  phoneSecondaryDisplay: "+264 81 264 7607",
-  phoneBnb: "+264816456442",
-  phoneBnbDisplay: "+264 81 645 6442",
+  // Deprecated: kept only so old imports still compile. Do not display.
+  phoneSecondary: "+264812647606",
+  phoneSecondaryDisplay: "+264 81 264 7606",
+  phoneBnb: "+264812647606",
+  phoneBnbDisplay: "+264 81 264 7606",
   address: {
     street: "Plot 7, Laaste Begin, Usakos South",
     area: "B2 road, bench of the Khan River, 1 km turn-off south, opposite the Shell station",
@@ -53,6 +56,8 @@ export const RESTAURANT = {
   phoneEat: "+264813029522",
   phoneEatDisplay: "+264 81 302 9522",
   phoneEatWhatsapp: "264813029522",
+  // Restaurant's own email from the old site's restaurant page.
+  email: "bigbrothersrestaurant@gmail.com",
   address: {
     street: "Corner of Theo-Ben Gurirab Street and Bismarck Street",
     area: "Usakos town centre",
@@ -60,8 +65,11 @@ export const RESTAURANT = {
     region: "Erongo Region",
     country: "Namibia",
   },
-  // Only the confirmed hours. Weekday hours and closing times: owner question.
-  hoursKnown: "Saturday and Sunday: from 07:00",
+  // Full business hours, taken from the old site's restaurant page at the
+  // owner's instruction ("get it from the site").
+  hoursKnown: "Monday to Friday: 07:00 - 22:00, Saturday and Sunday: 08:00 - 21:00",
+  hoursMonFri: "07:00 - 22:00",
+  hoursSatSun: "08:00 - 21:00",
   facebook: GUESTHOUSE.facebook,
 };
 
@@ -73,8 +81,8 @@ export const BIZ = {
     tagline: GUESTHOUSE.tagline,
     phone1: GUESTHOUSE.phoneStay,
     phone1Display: GUESTHOUSE.phoneStayDisplay,
-    phone2: GUESTHOUSE.phoneSecondary,
-    phone2Display: GUESTHOUSE.phoneSecondaryDisplay,
+    phone2: GUESTHOUSE.phoneStay,
+    phone2Display: GUESTHOUSE.phoneStayDisplay,
     email: HOLDINGS.email,
     postal: HOLDINGS.postal,
   },
@@ -84,7 +92,7 @@ export const BIZ = {
     phone: RESTAURANT.phoneEat,
     phoneDisplay: RESTAURANT.phoneEatDisplay,
     whatsapp: RESTAURANT.phoneEatWhatsapp,
-    email: HOLDINGS.email,
+    email: RESTAURANT.email,
     hours: [{ days: RESTAURANT.hoursKnown, time: "Open" }],
   },
   address: GUESTHOUSE.address,

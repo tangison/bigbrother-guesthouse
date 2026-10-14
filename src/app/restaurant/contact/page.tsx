@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { RESTAURANT, HOLDINGS, wa } from "@/lib/site-data";
+import { RESTAURANT, wa } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Contact the Restaurant | Big Brothers, Usakos Town Centre",
@@ -62,15 +62,14 @@ export default function RestaurantContactPage() {
               <div className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
                 <dt className="text-mut">Email</dt>
                 <dd>
-                  <a href={`mailto:${HOLDINGS.email}`} className="font-semibold underline underline-offset-4">
-                    {HOLDINGS.email}
+                  <a href={`mailto:${RESTAURANT.email}`} className="font-semibold underline underline-offset-4">
+                    {RESTAURANT.email}
                   </a>
                 </dd>
               </div>
             </dl>
             <p className="mt-5 text-sm leading-relaxed text-mut">
-              Weekday hours and closing times are being confirmed with the owner. Ask us on WhatsApp and you get
-              today&apos;s answer in minutes.
+              Hours can shift on public holidays. Ask us on WhatsApp and you get today&apos;s answer in minutes.
             </p>
             <p className="mt-5 text-sm leading-relaxed text-mut">
               The restaurant is in town, NOT at the guesthouse. Sleeping over? Big Brother Guesthouse sits at Plot 7

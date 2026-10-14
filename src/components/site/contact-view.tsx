@@ -20,7 +20,7 @@ const FAQ = [
   },
   {
     q: "What are the kitchen hours?",
-    a: `Confirmed for the restaurant: ${RESTAURANT.hoursKnown}. Weekday hours and closing times are being confirmed with the owner; a quick WhatsApp gets you today's answer.`,
+    a: `The restaurant kitchen runs ${RESTAURANT.hoursKnown}. Hours can shift on public holidays; a quick WhatsApp gets you today's answer.`,
   },
   {
     q: "Can we visit for the day without sleeping over?",
@@ -40,7 +40,7 @@ export function ContactView() {
       <section className="bg-ink text-paper" aria-label="Contact Big Brother Holdings">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
           <h1 className="hero-rise max-w-[22ch] font-display text-[clamp(2.2rem,4.6vw,3.9rem)] font-semibold leading-[1.07] tracking-[-0.02em]">
-            Two places, three numbers, one family.
+            Two places, two numbers, one family.
           </h1>
           <p className="hero-rise mt-5 max-w-2xl text-lg leading-relaxed text-paper/80" style={{ "--i": 1 } as React.CSSProperties}>
             The guesthouse waits at Plot 7 on the B2. The restaurant cooks in town centre. Talk to whoever
@@ -51,26 +51,15 @@ export function ContactView() {
           <div className="hero-rise mt-10 max-w-3xl" style={{ "--i": 2 } as React.CSSProperties}>
             <ul className="divide-y divide-paper/15 border-y border-paper/15 text-[15px]">
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
-                <span className="text-paper/60">Stay: guesthouse bookings</span>
-                <span className="flex flex-wrap gap-4">
-                  <a href={`tel:${GUESTHOUSE.phoneStay}`} className="font-display text-lg font-semibold underline decoration-ember/70 underline-offset-4">
-                    {GUESTHOUSE.phoneStayDisplay}
-                  </a>
-                  <a href={`tel:${GUESTHOUSE.phoneSecondary}`} className="font-display text-lg font-semibold underline decoration-ember/70 underline-offset-4">
-                    {GUESTHOUSE.phoneSecondaryDisplay}
-                  </a>
-                </span>
+                <span className="text-paper/60">Stay: guesthouse and B&amp;B bookings</span>
+                <a href={`tel:${GUESTHOUSE.phoneStay}`} className="font-display text-lg font-semibold underline decoration-ember/70 underline-offset-4">
+                  {GUESTHOUSE.phoneStayDisplay}
+                </a>
               </li>
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
                 <span className="text-paper/60">Eat: the restaurant</span>
                 <a href={`tel:${RESTAURANT.phoneEat}`} className="font-display text-lg font-semibold underline decoration-ember/70 underline-offset-4">
                   {RESTAURANT.phoneEatDisplay}
-                </a>
-              </li>
-              <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
-                <span className="text-paper/60">Big Brother B&amp;B</span>
-                <a href={`tel:${GUESTHOUSE.phoneBnb}`} className="font-display text-lg font-semibold underline decoration-ember/70 underline-offset-4">
-                  {GUESTHOUSE.phoneBnbDisplay}
                 </a>
               </li>
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
@@ -132,7 +121,7 @@ export function ContactView() {
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-lime-deep">Eat · town centre</p>
             <h3 className="mt-2 font-display text-2xl font-semibold">Big Brothers Restaurant</h3>
             <p className="mt-3 text-[15px] leading-relaxed text-mut">
-              {RESTAURANT.address.street}. {RESTAURANT.address.area}. Confirmed hours: {RESTAURANT.hoursKnown}.
+              {RESTAURANT.address.street}. {RESTAURANT.address.area}. Kitchen hours: {RESTAURANT.hoursKnown}.
             </p>
             <a
               href={`https://www.google.com/maps/dir/?api=1&destination=${rQ}`}

@@ -14,28 +14,28 @@ import { BIZ, wa } from "@/lib/site-data";
  * (argument), flow+in (offers), pan (property peak), flow + carousel widget
  * (menu), reveal wipe (region), pin + spotlight + magnet (close).
  * Facts: distances from the client contact page; prices from the printed A3
- * menu v3; property photos from the business's own Google Maps listing. */
+ * menu v3; property photos all supplied by the owner (originals/gofile). */
 
 const PROPERTY_SHOTS = [
   {
-    src: "/images/property-front.jpg",
-    alt: "Big Brother Guesthouse front: white buildings, carport, hills behind",
+    src: "/images/building-main-yellow.jpg",
+    alt: "Main guesthouse building painted yellow and green",
   },
   {
-    src: "/images/property-rooms.jpg",
-    alt: "The rooms block with gravel driveway and palm tree",
+    src: "/images/pool-umbrellas-lapas.jpg",
+    alt: "Swimming pool with umbrellas and thatched lapas",
   },
   {
-    src: "/images/property-lapa.jpg",
-    alt: "Shaded lapa with tables on the lawn, palm trees around",
+    src: "/images/pool-lapa-mountains.jpg",
+    alt: "Thatched lapa and pool with the hills behind",
   },
   {
-    src: "/images/property-pool.jpg",
-    alt: "The stone-edged garden pond beside the braai area",
+    src: "/images/bar-thatch-menu-board.jpg",
+    alt: "Thatched bar with the Big Brother menu board",
   },
   {
-    src: "/images/property-pool-wide.jpg",
-    alt: "Wide view over the pool, lapa and garden corner",
+    src: "/images/patio-green-shade-floor.jpg",
+    alt: "Shaded patio with tables on the painted stone floor",
   },
 ];
 
@@ -127,8 +127,8 @@ export function HomeView() {
           <div data-sc-in data-sc-stagger="70" className="grid gap-4 md:auto-rows-[15rem] md:grid-flow-dense md:grid-cols-3">
             <BentoCell
               href="/guesthouse"
-              img="/images/property-pool.jpg"
-              alt="The stone-edged garden pond and braai area"
+              img="/images/pool-umbrellas-lapas.jpg"
+              alt="Swimming pool with shade umbrellas and thatched lapas"
               title="Big Brother Guesthouse"
               line="Spacious rooms, mountain views, pools and a garden."
               cta="Plan your stay"
@@ -179,18 +179,18 @@ export function HomeView() {
         </div>
       </section>
 
-      {/* 4 · ARRIVAL, the peak: the property travels sideways. Clean frames, real
-       * Google-Maps photographs, the largest span on the page. */}
-      <section data-sc-act="pan" data-sc-span="4.2" className="bg-cream" aria-label="The property, from our Google Maps listing">
+      {/* 4 · ARRIVAL, the peak: the property travels sideways. Clean frames,
+       * the owner's own photographs, the largest span on the page. */}
+      <section data-sc-act="pan" data-sc-span="4.2" className="bg-cream" aria-label="The property">
         <div data-sc-stage className="sc-stage">
           <div className="flex h-full flex-col justify-center gap-8 py-16">
             <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
               <h2 className="max-w-[22ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
-                The property, exactly as Google sees it.
+                The property, exactly as it is.
               </h2>
               <p className="mt-3 max-w-[58ch] leading-relaxed text-mut">
-                Five photographs from our own Google Maps listing, where guests check in before
-                they arrive. Nothing staged for the website.
+                Photographs we took ourselves: the building, the pools, the shade and the bar.
+                Nothing staged for the website.
               </p>
             </div>
             <div className="w-full">
@@ -205,7 +205,7 @@ export function HomeView() {
                           width={1400}
                           height={1050}
                           loading="lazy"
-                          quality={60}
+                          quality={45}
                           sizes="(max-width: 768px) 76vw, 22rem"
                           className="h-full w-full object-cover"
                         />
@@ -270,7 +270,7 @@ export function HomeView() {
                 width={1600}
                 height={937}
                 loading="lazy"
-                quality={52}
+                quality={45}
                 sizes="100vw"
                 className="h-full w-full object-cover"
               />
@@ -350,7 +350,7 @@ function BentoCell({
         alt={alt}
         fill
         loading="lazy"
-        quality={55}
+        quality={45}
         sizes={sizes}
         className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
       />

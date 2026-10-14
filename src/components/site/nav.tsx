@@ -94,6 +94,7 @@ export function SiteNav({ brand }: { brand: Brand }) {
                 width={isEat ? 192 : 192}
                 height={isEat ? 191 : 179}
                 priority
+                sizes="96px"
                 className="h-9 w-auto md:h-11"
               />
             </Link>
@@ -109,6 +110,17 @@ export function SiteNav({ brand }: { brand: Brand }) {
                   {r.label}
                 </Link>
               ))}
+              {/* Owner round-5: the restaurant page must be prominent on the
+                   guesthouse site too. Ember link, always last, always visible. */}
+              {brand === "guesthouse" && (
+                <Link
+                  href="/restaurant"
+                  aria-current={isActive("/restaurant") ? "page" : undefined}
+                  className="nav-link text-sm font-semibold text-ember-deep hover:text-ember"
+                >
+                  Restaurant
+                </Link>
+              )}
             </nav>
 
             <div className="hidden items-center gap-3 lg:flex">
@@ -189,6 +201,19 @@ export function SiteNav({ brand }: { brand: Brand }) {
                   {r.label}
                 </Link>
               ))}
+              {brand === "guesthouse" && (
+                <Link
+                  href="/restaurant"
+                  onClick={() => setOpen(false)}
+                  style={{ animationDelay: `${links.length * 45}ms` }}
+                  className="pop-in flex items-center justify-between border-b border-line py-4 text-left font-display text-3xl font-semibold text-ember-deep"
+                >
+                  Restaurant
+                  <span className="rounded-full bg-ember px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-ink">
+                    Eat
+                  </span>
+                </Link>
+              )}
             </nav>
 
             <div className="pop-in mt-6 grid gap-3" style={{ animationDelay: "300ms" }}>
@@ -201,16 +226,11 @@ export function SiteNav({ brand }: { brand: Brand }) {
               </Link>
               <div className="mt-2 grid gap-2 text-sm text-mut">
                 <a className="text-base font-semibold text-ink" href={`tel:${GUESTHOUSE.phoneStay}`}>
-                  Stay: {GUESTHOUSE.phoneStayDisplay}
+                  Stay &amp; B&amp;B: {GUESTHOUSE.phoneStayDisplay}
                 </a>
                 <a className="text-base font-semibold text-ink" href={`tel:${RESTAURANT.phoneEat}`}>
                   Eat: {RESTAURANT.phoneEatDisplay}
                 </a>
-                {!isEat && (
-                  <a className="text-sm" href={`tel:${GUESTHOUSE.phoneBnb}`}>
-                    B&amp;B: {GUESTHOUSE.phoneBnbDisplay}
-                  </a>
-                )}
                 <a
                   className="text-sm underline underline-offset-4"
                   href={wa(isEat ? RESTAURANT.phoneEatWhatsapp : GUESTHOUSE.phoneStayWhatsapp, isEat ? "Hello Big Brothers Restaurant, I would like to reserve a table." : GUESTHOUSE_WA_GREETING)}

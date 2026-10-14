@@ -8,9 +8,9 @@ import { StackCard } from "./motion";
 import { BIZ, wa } from "@/lib/site-data";
 
 /* Facilities · Tabs for planning, stack cards for amenities. The three ways to
- * use the property sit in one tabbed widget with real photographs from the
- * Google Maps listing; the guest facilities stack as pinned cards while you
- * scroll. Real content only: the boardroom list is the client's own. */
+ * use the property sit in one tabbed widget with the owner's own photographs;
+ * the guest facilities stack as pinned cards while you scroll. Real content
+ * only: the boardroom list is the client's own. */
 
 const BOARDROOM = ["Business meetings", "Staff training", "Workshops", "Small presentations", "Community or group discussions"];
 const BOARD_FEATURES = ["Comfortable conference seating", "Air-conditioning", "Whiteboard or flip chart, based on availability", "Refreshments available on request", "Optional catering from our kitchen"];
@@ -90,12 +90,12 @@ export function FacilitiesView() {
               <figure>
                 <div className="photo-frame aspect-[4/3]">
                   <Image
-                    src="/images/property-front.jpg"
-                    alt="The main building at Big Brother Guesthouse, home of the boardroom"
+                    src="/images/conference-room-set.jpg"
+                    alt="The conference room set with tables and chairs"
                     width={1200}
                     height={900}
                     loading="lazy"
-                    quality={55}
+                    quality={50}
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="h-full w-full object-cover"
                   />
@@ -220,7 +220,7 @@ function TabPanel({
       </div>
       <figure>
         <div className="photo-frame aspect-[4/3]">
-          <Image src={img} alt={alt} width={1400} height={1050} loading="lazy" quality={58} sizes="(max-width: 1024px) 100vw, 40vw" className="h-full w-full object-cover" />
+          <Image src={img} alt={alt} width={1400} height={1050} loading="lazy" quality={50} sizes="(max-width: 1024px) 100vw, 40vw" className="h-full w-full object-cover" />
         </div>
       </figure>
     </div>
@@ -266,7 +266,7 @@ function FacilityCard({
       </div>
       {img && alt && (
         <div className={`photo-frame relative aspect-[16/9] md:aspect-auto md:min-h-[280px] ${dark ? "rounded-none" : ""}`}>
-          <Image src={img} alt={alt} fill loading="lazy" quality={55} sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+          <Image src={img} alt={alt} fill loading="lazy" quality={50} sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
         </div>
       )}
     </article>

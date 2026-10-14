@@ -62,11 +62,11 @@ export function GuesthouseView() {
           <article>
             <div className="photo-frame aspect-[16/10]">
               <Image
-                src="/images/property-rooms.jpg"
-                alt="The Big Brother Guesthouse rooms block with shaded parking and palm tree"
+                src="/images/building-main-yellow.jpg"
+                alt="The Big Brother Guesthouse main building painted yellow and green"
                 fill
                 loading="lazy"
-                quality={58}
+                quality={50}
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover"
               />
@@ -102,7 +102,7 @@ export function GuesthouseView() {
                 alt="Fresh breakfast tray included with the B&B"
                 fill
                 loading="lazy"
-                quality={55}
+                quality={50}
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
               />
@@ -127,21 +127,21 @@ export function GuesthouseView() {
         </div>
       </section>
 
-      {/* Fold 3: the grounds, three real photographs from the Google listing */}
+      {/* Fold 3: the grounds, three real photographs from our own albums */}
       <section className="bg-cream" aria-label="The grounds">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
           <h2 className="max-w-[24ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
             Pools, lapa, garden. All behind the gate.
           </h2>
           <p className="mt-3 max-w-[58ch] text-mut">
-            Photographs from our own Google Maps listing. Have a walk through the grounds before
-            you arrive, then come and sit in the shade for real.
+            Photographs from our own albums. Have a walk through the grounds before you arrive,
+            then come and sit in the shade for real.
           </p>
           <div className="mt-9 grid gap-5 sm:grid-cols-3">
             {[
-              { src: "/images/property-lapa.jpg", alt: "Shaded lapa with tables on the lawn" },
-              { src: "/images/property-pool.jpg", alt: "The stone-edged garden pond beside the braai area" },
-              { src: "/images/property-front.jpg", alt: "The guesthouse front with carport and hills behind" },
+              { src: "/images/pool-lapa-mountains.jpg", alt: "Thatched lapa and pool with the hills behind" },
+              { src: "/images/pool-umbrellas-lapas.jpg", alt: "Swimming pool with umbrellas and thatched lapas" },
+              { src: "/images/entrance-gates-welcome.jpg", alt: "Yellow entrance gates with the welcome boards" },
             ].map((p) => (
               <figure key={p.src}>
                 <div className="photo-frame aspect-[4/3]">
@@ -151,7 +151,7 @@ export function GuesthouseView() {
                     width={1200}
                     height={900}
                     loading="lazy"
-                    quality={55}
+                    quality={50}
                     sizes="(max-width: 640px) 100vw, 33vw"
                     className="h-full w-full object-cover"
                   />

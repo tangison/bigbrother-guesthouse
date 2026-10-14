@@ -34,7 +34,7 @@ export default function BookPage() {
             </a>
           ))}
           <span>
-            Reception: {GUESTHOUSE.phoneStayDisplay} or {GUESTHOUSE.phoneSecondaryDisplay}
+            Reception: {GUESTHOUSE.phoneStayDisplay}
           </span>
         </div>
       </section>
