@@ -4,47 +4,22 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { QuietFade } from "./motion";
 
-// Gallery of real client photos (filebin upload, Oct 2026). All alt text written per image.
+// Guesthouse gallery: rooms, grounds and facilities at Plot 7 only.
+// Restaurant plates live in the restaurant's own gallery, because the two
+// businesses sit at different locations. All photos are the owner's own.
 const PHOTOS = [
-  { src: "gallery-01", alt: "Big Brothers Restaurant badge, established 2023 in Usakos", tall: true },
-  { src: "gallery-02", alt: "Big Brother Guesthouse logo, home away from home" },
-  { src: "gallery-03", alt: "Welcome plate of seasoned chips with sauce writing" },
-  { src: "gallery-04", alt: "English breakfast with eggs, minute steak and onions" },
-  { src: "gallery-05", alt: "Slow braised meat with peppers and greens" },
-  { src: "gallery-06", alt: "Sweet pancake with sauce" },
-  { src: "gallery-07", alt: "T-bone steak with chips and vegetables" },
-  { src: "gallery-08", alt: "Pap with matangara and tomato" },
-  { src: "gallery-09", alt: "Cheesy chips topped with mince" },
-  { src: "gallery-10", alt: "Salad plate with creamy dipping sauce" },
-  { src: "gallery-11", alt: "Family feast platter with pap, chicken and salads", tall: true },
-  { src: "gallery-12", alt: "Grilled chicken wings with lemon and tomato" },
-  { src: "gallery-13", alt: "Breakfast tray with eggs, bacon and toast" },
-  { src: "gallery-14", alt: "Freshly baked pizza straight from the oven", tall: true },
-  { src: "gallery-15", alt: "Chicken pieces with carrot sticks and chips" },
-  { src: "gallery-16", alt: "Pap and beef plate with pepper garnish", tall: true },
-  { src: "gallery-17", alt: "Pizza in a takeaway box", tall: true },
-  { src: "gallery-18", alt: "Loaded pizza with chilli and greens", tall: true },
-  { src: "gallery-19", alt: "Dumplings with chicken and side sauces" },
-  { src: "gallery-20", alt: "Toasted wraps on a decorated plate" },
-  { src: "gallery-21", alt: "Steak platter with onions and chips" },
-  { src: "gallery-22", alt: "Ribs with mash and vegetables", tall: true },
-  { src: "gallery-23", alt: "Blue cocktail from the bar", tall: true },
-  { src: "gallery-24", alt: "Sunset cocktail in a tall glass", tall: true },
-  { src: "gallery-25", alt: "Passion fruit and lemonade drink", tall: true },
-  { src: "gallery-26", alt: "Big breakfast with eggs, avocado and toast" },
-  { src: "gallery-27", alt: "Crumbled schnitzel with mash and creamy sauce" },
-  { src: "gallery-28", alt: "Chicken wings and chips with tomato relish" },
-  { src: "gallery-29", alt: "Family pizza in an open box", tall: true },
-  { src: "gallery-30", alt: "Crumbed fish with yellow rice and sauce" },
-  // Property photographs, from the business's own Google Maps listing (Oct 2026)
-  { src: "property-front", alt: "The Big Brother Guesthouse front: white buildings, carport and hills behind" },
-  { src: "property-rooms", alt: "The rooms block with gravel driveway and palm tree", tall: false },
-  { src: "property-lapa", alt: "Shaded lapa with tables on the lawn, palm trees around", tall: false },
-  { src: "property-pool", alt: "The stone-edged garden pond beside the braai area", tall: true },
-  { src: "property-pool-wide", alt: "Wide view over the pool, lapa and garden corner", tall: false },
-  // Region context, licensed from Pexels and labelled as the region, not the property
-  { src: "region-road", alt: "A long desert road running towards mountains in the Erongo Region" },
-  { src: "region-spitzkoppe", alt: "Granite boulders and peaks near Usakos at dusk, in the Erongo Region", tall: true },
+  { src: "property-front", alt: "Big Brother Guesthouse front: white buildings, carport and hills behind" },
+  { src: "property-rooms", alt: "The rooms block with gravel driveway and palm tree" },
+  { src: "property-lapa", alt: "Lawn, lapa and palm trees beside the swimming pool" },
+  { src: "property-pool-wide", alt: "Swimming pool with shade sails and thatched lapa" },
+  { src: "swimming-pool-closeup", alt: "Swimming pool with the lapa and pool umbrellas behind" },
+  { src: "property-pool", alt: "Stone-edged garden pond beside the braai area" },
+  { src: "room-double-wardrobe", alt: "Double room with a bed, wardrobe and wall art" },
+  { src: "room-kitchenette", alt: "Kitchenette with microwave, sink and fridge" },
+  { src: "thatched-lapa-orange-wall", alt: "Thatched lapa with tables beside an orange wall" },
+  { src: "braai-fireplace-thatch", alt: "Brick braai fireplace under a thatched roof" },
+  { src: "picnic-table-tree", alt: "Picnic table under a big shade tree on the lawn" },
+  { src: "guesthouse-exterior-deck", alt: "Guesthouse building with a raised braai deck" },
 ];
 
 export function GalleryView() {
@@ -72,10 +47,10 @@ export function GalleryView() {
       <section className="bg-cream" aria-label="Gallery">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
           <h1 className="hero-rise max-w-[20ch] font-display text-[clamp(2.2rem,4.6vw,3.9rem)] font-semibold leading-[1.07] tracking-[-0.02em]">
-            Real plates, real people, real Usakos.
+            The plot, the rooms, the shade. All real.
           </h1>
           <p className="hero-rise mt-4 max-w-xl text-lg text-mut" style={{ "--i": 1 } as React.CSSProperties}>
-            Every photo here comes from our own kitchen and bar. Tap any photo to see it larger.
+            Every photo here is Big Brother Guesthouse at Plot 7, taken by us. Tap any photo to see it larger.
           </p>
         </div>
       </section>
@@ -94,7 +69,7 @@ export function GalleryView() {
                     src={`/images/${p.src}.jpg`}
                     alt={p.alt}
                     width={900}
-                    height={p.tall ? 1200 : 675}
+                    height={675}
                     loading="lazy"
                     quality={52}
                     sizes="(max-width: 768px) 50vw, 33vw"
@@ -137,7 +112,7 @@ export function GalleryView() {
               src={`/images/${PHOTOS[open].src}.jpg`}
               alt={PHOTOS[open].alt}
               width={900}
-              height={1200}
+              height={675}
               className="max-h-[80vh] w-auto object-contain"
               priority
             />

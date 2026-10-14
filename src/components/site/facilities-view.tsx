@@ -58,12 +58,12 @@ export function FacilitiesView() {
 
           <TabsContent value="day" className="mt-8">
             <TabPanel
-              img="/images/property-pool-wide.jpg"
-              alt="The swimming pool and lapa, from our Google Maps listing"
+              img="/images/picnic-table-tree.jpg"
+              alt="Picnic table under a big shade tree on the lawn"
               title="Come and spend the day with us."
               lines={[
-                "Day visitors are welcome. Bring the family or a car full of friends, order from the kitchen, and let the afternoon run long under the lapa.",
-                "The pools, the garden, and the shaded seating are all part of it. The bar stays cold and the grill does the work.",
+                "Day visitors are welcome at the pools, the garden and the lapa. Bring the family or a car full of friends and let the afternoon run long.",
+                "Entry is per person: adults N$50, teenagers N$30, children up to 12 and senior citizens N$20. Order from the kitchen while you are here.",
               ]}
             />
           </TabsContent>
@@ -106,8 +106,8 @@ export function FacilitiesView() {
 
           <TabsContent value="celebrate" className="mt-8">
             <TabPanel
-              img="/images/property-lapa.jpg"
-              alt="Shaded lapa with tables on the lawn, from our Google Maps listing"
+              img="/images/thatched-lapa-orange-wall.jpg"
+              alt="Thatched lapa with tables beside the orange wall"
               title="Birthdays, braais, and family gatherings."
               lines={[
                 "The venue, the shade, and the space are yours for the day. We tailor the setup to your group and cater from our own kitchen, so the food arrives straight off the grill.",
@@ -120,8 +120,9 @@ export function FacilitiesView() {
         {/* One booking card serves all three tabs */}
         <div className="mt-10 grid gap-4 rounded-lg bg-ink p-8 text-paper md:grid-cols-[1.2fr_0.8fr] md:items-center">
           <p className="max-w-[52ch] leading-relaxed text-paper/85">
-            Book by the hour, or for the full day. We are happy to tailor packages to your needs,
-            including catering from our own kitchen.
+            The conference room seats up to 30 people at N$450 per booking; whether that is per day or per
+            event, we confirm with your quote. Functions are tailored to your group, with catering from our
+            own kitchen.
           </p>
           <div className="grid gap-3">
             <a
@@ -148,17 +149,17 @@ export function FacilitiesView() {
         <div className="mt-10 grid gap-6 md:gap-8">
           <StackCard index={0} total={6}>
             <FacilityCard
-              img="/images/cocktail-blue.jpg"
-              alt="Blue cocktail from the Big Brothers bar"
-              title="On-site restaurant & bar"
-              text="Hearty meals, snacks, and refreshments without leaving the property. The kitchen opens from 07:00 and the bar stays cold through the evening."
-              link={{ href: "/restaurant", label: "See the restaurant" }}
+              img="/images/dish-braise.jpg"
+              alt="Slow braised meat with peppers and pap from our kitchen"
+              title="Kitchen & bar service"
+              text="Guests eat from our own kitchen on the plot, and the day-visit crowd orders from the same kitchen. The full restaurant menu, grills to pizza, runs in town centre at Big Brothers Restaurant."
+              link={{ href: "/restaurant", label: "See the restaurant in town" }}
             />
           </StackCard>
           <StackCard index={1} total={6}>
             <FacilityCard
-              img="/images/property-pool.jpg"
-              alt="The stone-edged garden pond beside the braai area, from our Google Maps listing"
+              img="/images/swimming-pool-closeup.jpg"
+              alt="The swimming pool with the lapa and shade sails behind"
               title="Swimming pools & garden"
               text="Two pools to cool off in, lawn to lie on, and shade under the lapa. Day visitors welcome, residents first in the water."
             />

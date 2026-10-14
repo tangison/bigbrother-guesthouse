@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MENU, nads } from "@/lib/menu-data";
-import { BIZ, wa } from "@/lib/site-data";
+import { RESTAURANT, wa } from "@/lib/site-data";
 
 /* Menu · catalogue list with a sticky category rail and scroll spy.
  * Prices set in tabular figures, ink on cream, straight from the printed
@@ -58,23 +59,58 @@ export function MenuView() {
             Good food, great vibes.
           </h1>
           <p className="hero-rise mt-4 max-w-2xl text-lg leading-relaxed text-paper/85" style={{ "--i": 1 } as React.CSSProperties}>
-            Every price below comes from our own printed menu. Breakfast from 07:00, the grill
-            fires through dinner, and the bar stays cold.
+            Every price below comes from our own printed menu, from a N$30 russian to the N$400 seafood platter.
+            The kitchen opens from 07:00 on Saturdays and Sundays.
           </p>
-          <div className="hero-rise mt-7 flex flex-wrap gap-3" style={{ "--i": 2 } as React.CSSProperties}>
-            <a
-              href={`tel:${BIZ.restaurant.phone}`}
-              className="rounded-full bg-paper px-6 py-3 font-semibold text-ink transition-colors hover:bg-leaf"
+          <div className="hero-rise mt-7 flex flex-wrap items-center gap-3" style={{ "--i": 2 } as React.CSSProperties}>
+            <Link
+              href="/restaurant/reserve"
+              className="rounded-full bg-paper px-6 py-3 font-semibold text-ink transition-colors hover:bg-lime"
             >
-              Call to order
-            </a>
+              Reserve a table
+            </Link>
             <a
-              href={wa(BIZ.restaurant.whatsapp, "Hello Big Brothers Restaurant, I would like to order.")}
+              href={`tel:${RESTAURANT.phoneEat}`}
               className="rounded-full border border-paper/40 px-6 py-3 font-semibold text-paper transition-colors hover:bg-paper/10"
             >
-              WhatsApp your order
+              Call {RESTAURANT.phoneEatDisplay}
+            </a>
+            <a
+              href={wa(
+                RESTAURANT.phoneEatWhatsapp,
+                "Hello Big Brothers Restaurant, here is someone who wants your menu: " +
+                  (typeof window !== "undefined" ? window.location.href : "")
+              )}
+              rel="noopener"
+              className="text-sm font-semibold text-paper/85 underline decoration-paper/40 underline-offset-4 hover:text-paper"
+            >
+              Share this menu on WhatsApp
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Photo band: three real plates from this kitchen. No captions. */}
+      <section aria-label="From our kitchen" className="bg-ink pb-16 md:pb-20">
+        <div className="mx-auto grid max-w-6xl gap-4 px-4 sm:grid-cols-3 md:px-6">
+          {[
+            { src: "/images/dish-samoosa.jpg", alt: "Golden samoosas with sauce and salad on a plate" },
+            { src: "/images/dish-matangara.jpg", alt: "Matangara stew served with white rice" },
+            { src: "/images/cocktail-blue.jpg", alt: "Blue cocktail from the Big Brothers bar" },
+          ].map((p, i) => (
+            <div key={p.src} className="photo-frame aspect-[4/3]" data-sc-in data-sc-stagger="70">
+              <Image
+                src={p.src}
+                alt={p.alt}
+                width={900}
+                height={675}
+                loading={i === 0 ? "eager" : "lazy"}
+                quality={52}
+                sizes="(max-width: 640px) 100vw, 33vw"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -105,8 +141,8 @@ export function MenuView() {
             <div className="mt-5 hidden border border-line bg-paper p-4 text-sm md:block">
               <p className="font-semibold">Eating in a group?</p>
               <p className="mt-1 text-mut">Call the kitchen ahead of time and we will prepare for your group.</p>
-              <a href={`tel:${BIZ.restaurant.phone}`} className="mt-2 inline-block font-semibold underline decoration-ember decoration-2 underline-offset-4">
-                {BIZ.restaurant.phoneDisplay}
+              <a href={`tel:${RESTAURANT.phoneEat}`} className="mt-2 inline-block font-semibold underline decoration-ember decoration-2 underline-offset-4">
+                {RESTAURANT.phoneEatDisplay}
               </a>
             </div>
           </aside>
@@ -139,19 +175,18 @@ export function MenuView() {
       </div>
 
       {/* Closing band */}
-      <section className="bg-ink py-16 text-paper md:py-20" aria-label="Order">
+      <section className="bg-ink py-16 text-paper md:py-20" aria-label="Reserve">
         <div className="mx-auto max-w-4xl px-4 text-center md:px-6">
-          <h2 className="font-display text-3xl font-semibold md:text-4xl">Hungry now? We are on the B2.</h2>
-          <p className="mt-3 text-sm text-paper/75">Plot 7, Laaste Begin, Usakos South, opposite the Shell station.</p>
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">Hungry? We are in town centre.</h2>
+          <p className="mt-3 text-sm text-paper/75">
+            {RESTAURANT.address.street}, Usakos. Confirmed hours: {RESTAURANT.hoursKnown}.
+          </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <a href={`tel:${BIZ.restaurant.phone}`} className="rounded-full bg-paper px-6 py-3 font-semibold text-ink transition-colors hover:bg-ember">
-              Call {BIZ.restaurant.phoneDisplay}
-            </a>
-            <a
-              href={wa(BIZ.restaurant.whatsapp, "Hello Big Brothers Restaurant, I would like to order.")}
-              className="rounded-full border border-paper/40 px-6 py-3 font-semibold text-paper transition-colors hover:bg-paper/10"
-            >
-              WhatsApp your order
+            <Link href="/restaurant/reserve" className="rounded-full bg-paper px-6 py-3 font-semibold text-ink transition-colors hover:bg-lime">
+              Reserve a table
+            </Link>
+            <a href={`tel:${RESTAURANT.phoneEat}`} className="rounded-full border border-paper/40 px-6 py-3 font-semibold text-paper transition-colors hover:bg-paper/10">
+              Call {RESTAURANT.phoneEatDisplay}
             </a>
           </div>
         </div>

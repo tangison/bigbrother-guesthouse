@@ -69,12 +69,12 @@ export function HomeView() {
               <span className="text-ember">halfway to everywhere.</span>
             </h1>
             <p className="hero-rise mt-6 max-w-2xl text-lg leading-relaxed text-paper/85" style={{ "--i": 1 } as React.CSSProperties}>
-              A guesthouse, a bed and breakfast, and Big Brothers Restaurant, together behind one
-              gate on the B2 in Usakos.
+              Big Brother Guesthouse and B&B behind one gate on the B2 at Plot 7, and Big Brothers
+              Restaurant in the middle of Usakos town. Two places, one welcome.
             </p>
             <div className="hero-rise mt-9 flex flex-wrap items-center justify-center gap-3" style={{ "--i": 2 } as React.CSSProperties}>
               <Link
-                href="/menu"
+                href="/restaurant/menu"
                 className="rounded-full bg-paper px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-ember hover:text-ink"
               >
                 See the menu
@@ -128,7 +128,7 @@ export function HomeView() {
             <BentoCell
               href="/guesthouse"
               img="/images/property-pool.jpg"
-              alt="The stone-edged garden pond and braai area, from our Google Maps listing"
+              alt="The stone-edged garden pond and braai area"
               title="Big Brother Guesthouse"
               line="Spacious rooms, mountain views, pools and a garden."
               cta="Plan your stay"
@@ -136,7 +136,7 @@ export function HomeView() {
               sizes="(max-width: 768px) 100vw, 66vw"
             />
             <BentoCell
-              href="/guesthouse"
+              href="/rooms"
               img="/images/dish-breakfast.jpg"
               alt="Breakfast tray with eggs, bacon and toast"
               title="Bed & Breakfast"
@@ -150,7 +150,7 @@ export function HomeView() {
               img="/images/dish-braise.jpg"
               alt="Slow braised meat with peppers and pap"
               title="Big Brothers Restaurant"
-              line="Grills, seafood, pizza and a full bar, est. 2023."
+              line="Grills, seafood, pizza and a full bar in town centre."
               cta="Visit the restaurant"
               className="md:col-span-1"
               sizes="(max-width: 768px) 100vw, 33vw"
@@ -168,7 +168,7 @@ export function HomeView() {
             <BentoCell
               href="/facilities"
               img="/images/property-lapa.jpg"
-              alt="The lapa, lawn and pool corner, from our Google Maps listing"
+              alt="The lapa, lawn and pool corner"
               title="Day visits"
               line="Come enjoy the day with family and friends."
               cta="Facilities & functions"
@@ -232,16 +232,17 @@ export function HomeView() {
         </div>
       </section>
 
-      {/* 5 · APPETITE: the dish carousel, prices from the printed menu. */}
+      {/* 5 · APPETITE: the dish carousel from the restaurant in town, honestly framed. */}
       <section className="bg-paper" aria-label="From the kitchen">
         <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <div data-sc-in data-sc-stagger="70">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <h2 className="max-w-[20ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
-                Straight from our kitchen.
+                Hungry? The kitchen is in town.
               </h2>
               <p className="max-w-[46ch] text-sm leading-relaxed text-mut">
-                Every price here comes from our own printed menu, nothing hidden. Drag, swipe, or
+                Big Brothers Restaurant runs its own kitchen in Usakos town centre, corner of Theo-Ben
+                Gurirab and Bismarck. Every price here comes from their printed menu. Drag, swipe, or
                 use the arrows.
               </p>
             </div>
@@ -249,7 +250,7 @@ export function HomeView() {
               <DishCarousel />
             </div>
             <Link
-              href="/menu"
+              href="/restaurant/menu"
               className="mt-9 inline-block font-semibold text-ink underline decoration-ember decoration-2 underline-offset-8 transition-colors hover:text-ember-deep"
             >
               Open the full menu, 139 items and every price

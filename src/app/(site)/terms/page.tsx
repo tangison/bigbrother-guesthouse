@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BIZ, wa } from "@/lib/site-data";
+import { BIZ, RESTAURANT, wa } from "@/lib/site-data";
 
 const title = "Terms of Stay & Service | Big Brother Guesthouse, Usakos";
 const description =
@@ -62,11 +62,11 @@ export default function TermsPage() {
             <h2 className="font-display text-2xl font-semibold">The restaurant</h2>
             <p className="mt-3">
               The menu on this website lists the prices from our own printed menu so you know what to expect before
-              you arrive. Kitchen hours are {BIZ.restaurant.hours[0].days.toLowerCase()} from{" "}
-              {BIZ.restaurant.hours[0].time} and {BIZ.restaurant.hours[1].days.toLowerCase()} from{" "}
-              {BIZ.restaurant.hours[1].time}, and they can shift on public holidays, which is why we suggest a
+              you arrive. Confirmed kitchen hours: {RESTAURANT.hoursKnown}. Weekday times are confirmed on request,
+              and hours can shift on public holidays, which is why we suggest a
               quick WhatsApp on the day. If a dish is not to your liking, speak to us while you are still seated and
-              we will make it right.
+              we will make it right. The restaurant sits in Usakos town centre at the corner of Theo-Ben Gurirab
+              Street and Bismarck Street, not at the guesthouse plot.
             </p>
           </section>
 

@@ -1,12 +1,13 @@
-// Single source of truth for every route: label, path, and per-route metadata.
-// The webmaster checklist demands unique meta titles (<60 chars) and
-// descriptions (<155 chars) on every route. Location keywords included so the
-// site ranks for Usakos queries, which the old Google Sites never did.
+// Single source of truth for every route: label, path, brand, and per-route
+// metadata (titles < 60 chars, descriptions < 155 chars, per the webmaster
+// checklist). The site runs two brands: the Guesthouse (main site) and the
+// Restaurant (its own section under /restaurant, different location).
 
 export type RouteInfo = {
   key: string
   path: string
   label: string
+  brand: "guesthouse" | "restaurant"
   title: string
   description: string
 }
@@ -16,63 +17,112 @@ export const ROUTES: RouteInfo[] = [
     key: "home",
     path: "/",
     label: "Home",
-    title: "Big Brother Guesthouse, B&B & Restaurant | Usakos, Namibia",
+    brand: "guesthouse",
+    title: "Big Brother Guesthouse | Usakos Accommodation on the B2",
     description:
-      "Home away from home in Usakos on the B2, halfway between Windhoek and Swakopmund. Rooms, a restaurant and bar on site, traditional food, pizzas and grills.",
+      "Home away from home at Plot 7 on the B2 in Usakos, halfway between Windhoek and Swakopmund. Rooms from N$450, secure parking, pools and a garden.",
   },
   {
-    key: "restaurant",
-    path: "/restaurant",
-    label: "Restaurant",
-    title: "Big Brothers Restaurant | Grills, Pizza & Bar in Usakos",
+    key: "rooms",
+    path: "/rooms",
+    label: "Rooms & Rates",
+    brand: "guesthouse",
+    title: "Rooms & Rates | Big Brother Guesthouse, Usakos",
     description:
-      "Big Brothers Restaurant in Usakos: local flavours, township classics, grills, seafood, pizza and a full bar. On the B2, opposite the Shell station. Est. 2023.",
-  },
-  {
-    key: "menu",
-    path: "/menu",
-    label: "Menu",
-    title: "Menu & Prices | Big Brothers Restaurant, Usakos, Namibia",
-    description:
-      "The full Big Brothers Restaurant menu with every price: breakfast, kapana and pap, grills, pizzas, seafood, cocktails. From a N$30 russian to the N$400 platter.",
-  },
-  {
-    key: "guesthouse",
-    path: "/guesthouse",
-    label: "Guesthouse",
-    title: "Guesthouse & B&B Rooms in Usakos | Big Brother Guesthouse",
-    description:
-      "Spacious rooms with mountain views, secure parking, pools and a garden, plus three luxury en suite B&B rooms. Your Usakos stopover on the B2, Erongo Region.",
+      "Every room and every rate at Big Brother Guesthouse, Usakos: standard rooms from N$450, private units, a family unit for 8, and the conference room.",
   },
   {
     key: "facilities",
     path: "/facilities",
     label: "Facilities",
+    brand: "guesthouse",
     title: "Facilities & Functions | Big Brother Guesthouse, Usakos",
     description:
-      "Event venues, a boardroom, bar, braai area, pools and garden at Big Brother Guesthouse, Usakos. Weddings, conferences and family functions on the B2.",
+      "Pool, lawn, thatched lapas, braai area, a conference room for 30 and day visits from N$20 at Big Brother Guesthouse, Plot 7, Usakos.",
+  },
+  {
+    key: "plot-7",
+    path: "/plot-7",
+    label: "Plot 7",
+    brand: "guesthouse",
+    title: "Plot 7, Laaste Begin | Big Brother Guesthouse, Usakos",
+    description:
+      "Find us at Plot 7, Laaste Begin, Usakos South, on the B2 opposite the Shell station: 147 km from Swakopmund, 210 km from Windhoek.",
   },
   {
     key: "gallery",
     path: "/gallery",
     label: "Gallery",
+    brand: "guesthouse",
     title: "Photo Gallery | Big Brother Guesthouse, Usakos, Namibia",
     description:
-      "Real photos from Big Brother Guesthouse and Big Brothers Restaurant in Usakos: rooms, food from our kitchen, functions, and life on the Khan River bench.",
+      "Real photos of Big Brother Guesthouse: the rooms, the grounds, the lapa and the garden on the Khan River bench in Usakos.",
+  },
+  {
+    key: "vip",
+    path: "/vip",
+    label: "VIP Card",
+    brand: "guesthouse",
+    title: "VIP Membership Card | Big Brother Guesthouse, Usakos",
+    description:
+      "Pay N$1,200 once a year and get 20 percent off accommodation every time you book at Big Brother Guesthouse, Usakos.",
   },
   {
     key: "contact",
     path: "/contact",
     label: "Contact",
+    brand: "guesthouse",
     title: "Contact & Directions | Big Brother Guesthouse, Usakos",
     description:
-      "Find Big Brother Guesthouse at Plot 7, Laaste Begin, Usakos South, opposite the Shell station. Call +264 81 264 7606 or WhatsApp us for bookings and orders.",
+      "Stay: +264 81 264 7606. Eat: +264 81 302 9522. Plot 7, Laaste Begin, Usakos South for the guesthouse; the restaurant is in town centre.",
+  },
+  {
+    key: "restaurant",
+    path: "/restaurant",
+    label: "Restaurant",
+    brand: "restaurant",
+    title: "Big Brothers Restaurant & Bar | Usakos Town Centre",
+    description:
+      "Big Brothers Restaurant in Usakos town centre: grills, seafood, pizza, kapana and a full bar. Est. 2023. Reserve a table on WhatsApp.",
+  },
+  {
+    key: "menu",
+    path: "/restaurant/menu",
+    label: "Menu",
+    brand: "restaurant",
+    title: "Menu & Prices | Big Brothers Restaurant, Usakos",
+    description:
+      "The full Big Brothers Restaurant menu with every price: breakfast, kapana and pap, grills, pizzas, seafood, cocktails. From N$30 to the N$400 platter.",
+  },
+  {
+    key: "reserve",
+    path: "/restaurant/reserve",
+    label: "Reserve a Table",
+    brand: "restaurant",
+    title: "Reserve a Table | Big Brothers Restaurant, Usakos",
+    description:
+      "Reserve a table at Big Brothers Restaurant, corner of Theo-Ben Gurirab and Bismarck Street, Usakos. WhatsApp +264 81 302 9522 or email.",
   },
 ]
 
+export const RESTAURANT_ROUTES = ROUTES.filter((r) => r.brand === "restaurant")
+export const GUESTHOUSE_ROUTES = ROUTES.filter((r) => r.brand === "guesthouse" && r.key !== "home")
+
 // Pages that exist for trust and completeness, not in the main nav.
 export const LEGAL_ROUTES: { path: string; label: string }[] = [
+  { path: "/guesthouse", label: "The guesthouse" },
+  { path: "/book", label: "Book" },
+  { path: "/feedback", label: "Feedback" },
+  { path: "/guest-info", label: "Guest info" },
   { path: "/brand", label: "Brand book" },
   { path: "/privacy-policy", label: "Privacy policy" },
   { path: "/terms", label: "Terms" },
 ]
+
+function routeMeta(path: string) {
+  const r = ROUTES.find((x) => x.path === path)
+  if (r) return { title: r.title, description: r.description }
+  return null
+}
+
+export { routeMeta }

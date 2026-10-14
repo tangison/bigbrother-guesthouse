@@ -27,9 +27,10 @@ export default function PrivacyPolicyPage() {
           <section>
             <h2 className="font-display text-2xl font-semibold">Who we are</h2>
             <p className="mt-3">
-              Big Brother Holdings runs Big Brother Guesthouse, Big Brother Bed &amp; Breakfast and Big Brothers
-              Restaurant at {BIZ.address.street}, {BIZ.address.town}, {BIZ.address.region}, {BIZ.address.country}.
-              You can reach us on {BIZ.guesthouse.phone1Display}, on{" "}
+              Big Brother Holdings runs Big Brother Guesthouse and Big Brother Bed &amp; Breakfast at Plot 7,
+              Laaste Begin, Usakos South, and Big Brothers Restaurant in Usakos town centre at the corner of
+              Theo-Ben Gurirab Street and Bismarck Street, Usakos, Erongo Region, Namibia.
+              You can reach us on {BIZ.guesthouse.phone1Display} or {BIZ.restaurant.phoneDisplay}, on{" "}
               <a className="underline decoration-ember/60 underline-offset-4" href={`mailto:${BIZ.guesthouse.email}`}>
                 {BIZ.guesthouse.email}
               </a>
@@ -40,7 +41,10 @@ export default function PrivacyPolicyPage() {
           <section>
             <h2 className="font-display text-2xl font-semibold">What we collect and why</h2>
             <p className="mt-3">
-              This website is a brochure site. It does not have a booking engine, a contact form, or user accounts,
+              This website has no user accounts and stores nothing. The booking card, the table reservation,
+              the VIP application and the feedback form do not send anything to a server: they build a message
+              in your browser and hand it to WhatsApp or your email app, so the message and its details go
+              straight from your device to ours. When you then contact us
               so we do not collect any details through the site itself. When you contact us the way most guests do,
               by phone, WhatsApp, or email, we receive your name, your contact details, and the information you
               choose to share, such as dates, group size, or dietary needs. We use that information for one purpose:

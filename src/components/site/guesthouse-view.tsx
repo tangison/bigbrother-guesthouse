@@ -12,15 +12,16 @@ import { BIZ, wa } from "@/lib/site-data";
 export function GuesthouseView() {
   return (
     <>
-      {/* Fold 1: the real logo beside the words */}
+      {/* Fold 1: the real logo, transparent PNG straight from the supplied
+       * files. No box, no plate: the cream ground carries it. */}
       <section className="bg-cream" aria-label="Guesthouse and B&B">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-[0.85fr_1.15fr] md:px-6 md:py-24">
-          <div className="hero-rise w-fit rounded-xl bg-white p-5 shadow-sm">
+          <div className="hero-rise w-fit">
             <Image
-              src="/images/logo-guesthouse.jpg"
+              src="/logos/logo-guesthouse.png"
               alt="Big Brother Guesthouse logo: home away from home"
-              width={547}
-              height={323}
+              width={300}
+              height={280}
               priority
               className="h-auto w-full max-w-[300px]"
             />
@@ -37,18 +38,18 @@ export function GuesthouseView() {
               convenience, and friendly service.
             </p>
             <div className="hero-rise mt-8 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
-              <a
-                href={wa(BIZ.guesthouse.phone1, "Hello Big Brother Guesthouse, do you have a room available?")}
+              <Link
+                href="/book"
                 className="rounded-full bg-ink px-7 py-3.5 font-semibold text-paper transition-colors hover:bg-ember-deep"
               >
                 Check availability
-              </a>
-              <a
-                href={`tel:${BIZ.guesthouse.phone1}`}
+              </Link>
+              <Link
+                href="/rooms"
                 className="rounded-full border border-ink/25 px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-sand/60"
               >
-                Call {BIZ.guesthouse.phone1Display}
-              </a>
+                See rooms and rates
+              </Link>
             </div>
           </div>
         </div>

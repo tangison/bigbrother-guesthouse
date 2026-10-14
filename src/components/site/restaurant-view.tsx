@@ -3,11 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { DishCarousel } from "./dish-carousel";
-import { BIZ, wa } from "@/lib/site-data";
+import { RESTAURANT, HOLDINGS } from "@/lib/site-data";
 
 /* Restaurant · Photographic folds. The braise photograph opens the page;
  * hours and contact read as a printed spec sheet; the dish rail keeps the
- * real plates moving. The client's real badge anchors the hero. */
+ * real plates moving. This is the RESTAURANT brand: lime scope, town centre
+ * address, the supplied badge logo (transparent, works on dark). */
 
 export function RestaurantView() {
   return (
@@ -32,7 +33,7 @@ export function RestaurantView() {
         <div className="relative mx-auto flex min-h-[78svh] max-w-6xl flex-col justify-end px-4 pb-20 pt-28 md:px-6">
           <h1 className="hero-rise max-w-4xl font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.06] tracking-[-0.02em]" style={{ "--i": 0 } as React.CSSProperties}>
             Big Brothers Restaurant.
-            <span className="block text-leaf">Good food, great vibes.</span>
+            <span className="block text-lime">Good food, great vibes.</span>
           </h1>
           <p className="hero-rise mt-5 max-w-2xl text-lg leading-relaxed text-paper/85" style={{ "--i": 1 } as React.CSSProperties}>
             Local flavours, hearty favourites, township classics, grills, seafood, pizza and a
@@ -40,25 +41,25 @@ export function RestaurantView() {
           </p>
           <div className="hero-rise mt-8 flex flex-wrap gap-3" style={{ "--i": 2 } as React.CSSProperties}>
             <Link
-              href="/menu"
-              className="rounded-full bg-paper px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-leaf"
+              href="/restaurant/reserve"
+              className="rounded-full bg-paper px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-lime"
             >
-              Open the full menu
+              Reserve a table
             </Link>
-            <a
-              href={wa(BIZ.restaurant.whatsapp, "Hello Big Brothers Restaurant, I would like to order.")}
+            <Link
+              href="/restaurant/menu"
               className="rounded-full border border-paper/40 px-7 py-3.5 font-semibold text-paper transition-colors hover:bg-paper/10"
             >
-              Order on WhatsApp
-            </a>
+              See the menu
+            </Link>
           </div>
           <div className="hero-rise mt-10 flex items-end" style={{ "--i": 3 } as React.CSSProperties}>
             <Image
-              src="/images/logo-restaurant.jpg"
-              alt="Big Brothers Restaurant badge, established 2023 in Usakos"
-              width={720}
-              height={847}
-              className="h-24 w-24 rounded-full border-2 border-leaf/50 object-cover shadow-xl md:h-28 md:w-28"
+              src="/logos/logo-restaurant.png"
+              alt="Big Brothers Restaurant, Usakos, established 2023"
+              width={96}
+              height={96}
+              className="h-24 w-24 object-contain drop-shadow-xl md:h-28 md:w-28"
             />
           </div>
         </div>
@@ -70,15 +71,14 @@ export function RestaurantView() {
           <div>
             <h2 className="font-display text-3xl font-semibold tracking-[-0.01em]">Kitchen hours</h2>
             <dl className="mt-6 max-w-xl text-[15px]">
-              {BIZ.restaurant.hours.map((h) => (
-                <div
-                  key={h.days}
-                  className="flex items-baseline justify-between gap-4 border-b border-line py-3.5"
-                >
-                  <dt className="text-mut">{h.days}</dt>
-                  <dd className="font-display text-lg font-semibold tabular-nums">{h.time}</dd>
-                </div>
-              ))}
+              <div className="flex items-baseline justify-between gap-4 border-b border-line py-3.5">
+                <dt className="text-mut">Confirmed</dt>
+                <dd className="font-display text-lg font-semibold">{RESTAURANT.hoursKnown}</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4 border-b border-line py-3.5">
+                <dt className="text-mut">Monday to Friday</dt>
+                <dd className="font-display text-lg font-semibold">Ask us on WhatsApp</dd>
+              </div>
             </dl>
             <p className="mt-4 max-w-md text-sm text-mut">
               Kitchen hours can change on public holidays. A quick WhatsApp confirms it.
@@ -88,14 +88,14 @@ export function RestaurantView() {
             <ul className="mt-5 max-w-xl divide-y divide-line border-y border-line text-[15px]">
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
                 <span className="text-mut">Phone and WhatsApp</span>
-                <a href={`tel:${BIZ.restaurant.phone}`} className="font-display text-lg font-semibold underline decoration-ember decoration-2 underline-offset-4">
-                  {BIZ.restaurant.phoneDisplay}
+                <a href={`tel:${RESTAURANT.phoneEat}`} className="font-display text-lg font-semibold underline decoration-ember decoration-2 underline-offset-4">
+                  {RESTAURANT.phoneEatDisplay}
                 </a>
               </li>
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
                 <span className="text-mut">Email</span>
-                <a href={`mailto:${BIZ.restaurant.email}`} className="font-semibold underline underline-offset-4">
-                  {BIZ.restaurant.email}
+                <a href={`mailto:${HOLDINGS.email}`} className="font-semibold underline underline-offset-4">
+                  {HOLDINGS.email}
                 </a>
               </li>
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
@@ -105,22 +105,22 @@ export function RestaurantView() {
             </ul>
           </div>
 
-          <aside className="h-fit bg-ink p-8 text-paper md:sticky md:top-28">
+          <aside className="h-fit bg-ink p-8 text-paper md:sticky md:top-32">
             <h2 className="font-display text-2xl font-semibold">Where to find us</h2>
             <p className="mt-4 text-sm leading-relaxed text-paper/85">
-              {BIZ.address.street}
+              {RESTAURANT.address.street}
               <br />
-              {BIZ.address.area}
+              {RESTAURANT.address.area}
             </p>
             <p className="mt-4 text-sm text-paper/70">
-              {BIZ.distances.swakopmundKm} km from Swakopmund, {BIZ.distances.windhoekKm} km from
-              Windhoek, right on the B2, opposite the Shell station.
+              In the middle of Usakos, walking distance from the town shops. The guesthouse, Big Brother
+              Guesthouse, sits apart at Plot 7 on the B2.
             </p>
             <Link
-              href="/contact"
-              className="mt-6 inline-block rounded-full bg-paper px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-leaf"
+              href="/restaurant/contact"
+              className="mt-6 inline-block rounded-full bg-paper px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-lime"
             >
-              Directions & map
+              Directions &amp; contact
             </Link>
           </aside>
         </div>
