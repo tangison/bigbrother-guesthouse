@@ -136,3 +136,21 @@ Stage Summary:
 - Local: main @ 59808d8, production build green (28 pages), lint clean
 - Owner must supply: fresh GitHub PAT (repo tangison/bigbrother-guesthouse) + fresh Vercel token (project bigbrother-guesthouse, account targis47); push + prod alias happen the moment they arrive
 - Site data honesty: every photo on the site is the owner's own; the only excluded files are 12 non-photographs (listed above), reported transparently
+
+---
+Task ID: 4-c
+Agent: Super Z (main agent)
+Task: Owner supplied fresh GitHub PAT ("Just push it on github and the vercel is diferent") -> push round-5 build to GitHub, assess Vercel path.
+
+Work Log:
+- Repo state verified: main @ 0321107 (59808d8 site work + worklog commit), tree clean, no remote configured, no .env tracked
+- Secret scan of unpushed range e286dd0..0321107: no tokens in diff (only a worklog line mentioning rotation reminder); 225 files, +2242/-195
+- New PAT validated via GitHub API: login tangison, push:true on tangison/bigbrother-guesthouse
+- Push: one-shot x-access-token URL, main fast-forwarded e286dd0..0321107, remote verified equal to local HEAD (032110754b724a5e9a71e4f9b4c740fc2180c486); token used via env only, never written to git config or files
+- Vercel check: no Vercel token anywhere in env/filesystem, no .vercel link file (session reset); probed live https://bigbrother-guesthouse.vercel.app at +0s/+100s/+250s after push - still old build (property-pool x27, property-front, property-rooms present; zero round-5 markers, no EAT badge) => project has NO GitHub auto-deploy connected; CLI deploy impossible without a fresh Vercel token
+- Conclusion: GitHub done; Vercel production still serves the pre-round-5 build. Owner must either connect the repo in the Vercel dashboard (Settings > Git > tangison/bigbrother-guesthouse) for auto-deploys, or supply a fresh Vercel token (account targis47, project bigbrother-guesthouse) for CLI deploy
+
+Stage Summary:
+- Repo: https://github.com/tangison/bigbrother-guesthouse main @ 0321107 (round-5: all owner photos, pond/white building removed, restaurant prominent, one number)
+- Live: https://bigbrother-guesthouse.vercel.app still OLD build - awaiting Vercel path decision
+- Security: new GitHub PAT appeared in chat and was used for this push - rotate after review; no tokens stored anywhere
