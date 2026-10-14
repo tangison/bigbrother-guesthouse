@@ -25,10 +25,10 @@ export function SiteFooter({ brand }: { brand: Brand }) {
           <div>
             {/* Supplied logo, on-dark variant for the Guesthouse, no box behind it */}
             <Image
-              src={isEat ? "/logos/logo-restaurant.png" : "/logos/logo-guesthouse-on-dark.svg"}
+              src={isEat ? "/logos/logo-restaurant-192.png" : "/logos/logo-guesthouse-on-dark-192.png"}
               alt={isEat ? "Big Brothers Restaurant, Usakos, est. 2023" : "Big Brother Guesthouse: your home away from home"}
-              width={isEat ? 96 : 150}
-              height={isEat ? 96 : 140}
+              width={192}
+              height={isEat ? 191 : 179}
               className={`${isEat ? "h-20 w-20" : "h-auto w-36"} object-contain`}
             />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-paper/70">

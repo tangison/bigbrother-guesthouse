@@ -71,7 +71,7 @@ export function SiteNav({ brand }: { brand: Brand }) {
   };
 
   const links = LINKS[brand];
-  const logoSrc = isEat ? "/logos/logo-restaurant.svg" : "/logos/logo-guesthouse.svg";
+  const logoSrc = isEat ? "/logos/logo-restaurant-192.png" : "/logos/logo-guesthouse-192.png";
   const logoAlt = isEat
     ? "Big Brothers Restaurant, Usakos, est. 2023"
     : "Big Brother Guesthouse: your home away from home";
@@ -91,8 +91,8 @@ export function SiteNav({ brand }: { brand: Brand }) {
               <Image
                 src={logoSrc}
                 alt={logoAlt}
-                width={isEat ? 60 : 128}
-                height={isEat ? 60 : 66}
+                width={isEat ? 192 : 192}
+                height={isEat ? 191 : 179}
                 priority
                 className="h-9 w-auto md:h-11"
               />
