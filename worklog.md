@@ -316,3 +316,23 @@ Stage Summary:
 - Local: main ahead of origin, commit "Round 8..." ready to push; all 7 owner items built and verified locally (52 curl checks + 19 probe checks pass).
 - Live: still round 7 until push; Room 13/phones/QR/chips NOT yet on production.
 - Blocked on owner: fresh GitHub PAT to push (old one chat-exposed -> rotate); Room 13 poster image + new conference room photos did not arrive - resend; confirm restaurant@bigbrotherguesthouse.com mailbox exists; direct Booking.com/Agoda listing URLs to replace search chips; Telecom number 85 264 7606 double-check ("[confirm]" in owner message).
+
+---
+Task ID: 9
+Agent: Super Z (main agent)
+Task: Round 9 "finish everything": place every remaining owner gallery photo (incl. restaurant shots) in galleries, push rounds 8+9 with the owner's fresh PAT, verify production end to end.
+
+Work Log:
+- Grounding: recovered round-8 state from worklog (built + verified locally, push blocked on tokens). Owner sent a fresh GitHub PAT + Vercel token in chat (both re-exposed -> rotation reminder stands). upload/ held only the pre-round-7 matangara screenshot (already fixed live) and IMG-20261014-WA0151.jpg - which round 6 had already mastered as hero-pool-gardens.jpg (datestamp cropped at 80% height); no new Room 13 / conference photos arrived.
+- Audit of public/images against all src references: found 8 owner masters processed since round 5 but never placed: property-pool-wide, room-double-wardrobe, braai-fireplace-thatch, entertainment-pool-table, patio-bar-counter, breakfast-eggs-beans, plus two sitting under misleading names (guesthouse-exterior-deck.jpg was actually a plate of yellow rice + spinach + curry; breakfast-board-wors.jpg was actually pap with braised meat). Also property-pool-wide carried a baked-in "Galaxy S24" watermark.
+- round9_gallery_masters.mjs: rebuilt room-double-wardrobe from the 8160x6120 DSLR original at 1600w (was an 816w thumbnail), rebuilt property-pool-wide with bottom 10% cropped (watermark gone, verified visually), built plate-yellow-rice-curry.jpg + plate-pap-braise.jpg from the originals, deleted the two misleading files.
+- gallery-data.ts: +10 owner photos across rooms/pools/grounds/events/night/food with descriptive alts (175 -> 185). gallery-01..30 remain legacy old-site scrapes, intentionally excluded.
+- restaurant-gallery.tsx rebuilt: new "The place" section (11 restaurant interior/exterior owner photos) above "Plates & drinks"; single lightbox spans both sections (index over concat); 5 new plates added. Rationale: /gallery deliberately excludes food/drinks groups (round-5 design, plates live on the restaurant gallery), so new food masters must surface there.
+- Verify: eslint clean; build green (25 routes); round8_verify.sh 52/52 local AND live; round9_probe.cjs 17/17 (390px overflow 0 on both gallery pages, lightbox open/arrow/escape, place + plate sections, alt text, rebuilt masters 200, deleted files 404). Stale :3100 server lesson re-learned - killed zombie, probed :3200. Weights: /gallery 250KB, /restaurant/gallery 117KB (<500KB).
+- Deploy: pushed 50e3e84..aa30f91 (rounds 8+9) to tangison/bigbrother-guesthouse main via one-shot PAT URL (not stored); Vercel auto-deploy confirmed live on first poll (~90s).
+- Live verification: Room 13 x4 + no 7609 + both tel:/wa.me lines + split mailtos + booking chips + Family N$3,050/8 + day N$30 all PASS on production; /gallery 5/5 new photos; /restaurant/gallery place section live; matangara tripe alt + separate mopani card confirmed on live /restaurant; live QR PNG decodes via OpenCV to exactly https://www.bigbrotherguesthouse.com/restaurant/menu.
+
+Stage Summary:
+- Live: https://www.bigbrotherguesthouse.com @ aa30f91 (rounds 8+9). All seven round-8 owner items are now on production, plus the completed photo galleries.
+- Every real photo the owner supplied is now on the site (the "every photo is on the site" claim in gallery-data is finally true).
+- Still blocked on owner: Room 13 photo + new conference photos (never arrived - WA0151 was the hero shot); restaurant@bigbrotherguesthouse.com mailbox creation; direct Booking.com/Agoda URLs to replace platform-search chips; GSC verify + sitemap submit; rotate BOTH chat-exposed tokens (GitHub PAT re-pasted this round, Vercel vcp_ token).
