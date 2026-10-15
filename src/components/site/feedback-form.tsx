@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { GUESTHOUSE, RESTAURANT, HOLDINGS, wa } from "@/lib/site-data";
 
-/* Guest Voice & Feedback portal (master file section 8): compliments,
- * contributions and complaints. Restaurant feedback goes to the Eat number,
- * everything else to the Stay number. Ratings are sent, never displayed or
- * averaged. Nothing stored on the website. */
+/* Guest Voice & Feedback portal (master file section 8, round 6 categories):
+ * compliments, reviews and complaints. Restaurant feedback goes to the Eat
+ * number, everything else to the Stay number. Ratings are sent, never
+ * displayed or averaged. Nothing stored on the website. */
 export function FeedbackForm() {
   const [type, setType] = useState("Compliment");
   const [place, setPlace] = useState("Guesthouse");
@@ -38,7 +38,11 @@ export function FeedbackForm() {
       <fieldset>
         <legend className="text-sm font-semibold uppercase tracking-[0.12em] text-mut">What is this?</legend>
         <div className="mt-3 grid gap-2 sm:grid-cols-3">
-          {["Compliment", "Contribution", "Complaint"].map((t) => (
+          {[
+            "Compliment",
+            "Review",
+            "Complaint",
+          ].map((t) => (
             <label
               key={t}
               className={`flex min-h-[44px] cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium ${

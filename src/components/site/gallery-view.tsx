@@ -11,7 +11,7 @@ import { GALLERY, GROUP_LABELS, type GalleryGroup, type GalleryPhoto } from "@/l
  * describes what is visible and invents nothing. Lightbox: tap, arrows,
  * keyboard, escape. */
 
-const ORDER: GalleryGroup[] = ["rooms", "grounds", "pools", "events", "animals", "crew", "night"];
+const ORDER: GalleryGroup[] = ["rooms", "grounds", "pools", "events", "restaurant", "animals", "crew", "night"];
 
 export function GalleryView() {
   const [open, setOpen] = useState<number | null>(null);

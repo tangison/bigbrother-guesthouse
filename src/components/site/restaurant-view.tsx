@@ -2,30 +2,99 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import { DishCarousel } from "./dish-carousel";
+import { ReserveCard } from "./reserve-card";
 import { RESTAURANT } from "@/lib/site-data";
 
-/* Restaurant · Photographic folds. The braise photograph opens the page;
- * hours and contact read as a printed spec sheet; the dish rail keeps the
- * real plates moving. This is the RESTAURANT brand: lime scope, town centre
- * address, the supplied badge logo (transparent, works on dark). */
+/* Restaurant · Photographic folds. The hero is a background slideshow of the
+ * owner's own interior photographs (round 6), opening on the counter-and-
+ * tables shot the owner picked as the starting image. Hours read as a printed
+ * spec sheet; the dish rail keeps the real plates moving; "Book a table"
+ * embeds the reservation form right on the page. This is the RESTAURANT
+ * brand: lime scope, town centre address, the supplied badge logo. */
+
+/* Hero background slideshow. Slide 1 is the owner-specified starting image.
+ * Manual-free ambient behaviour mirrors the home hero: slow crossfade, no
+ * controls, no captions, reduced motion gets one still photograph. */
+const HERO_SLIDES = [
+  {
+    src: "/images/restaurant-interior-counter.jpg",
+    alt: "Inside Big Brothers Restaurant: the counter, tables with yellow runners and the drinks fridge",
+  },
+  {
+    src: "/images/restaurant-interior-wide.jpg",
+    alt: "The restaurant dining room set for supper",
+  },
+  {
+    src: "/images/restaurant-interior-fridges.jpg",
+    alt: "The restaurant counter with display fridges and tables",
+  },
+  {
+    src: "/images/restaurant-interior-evening.jpg",
+    alt: "Evening light inside the restaurant, tables set and fridge stocked",
+  },
+  {
+    src: "/images/restaurant-bar-taps.jpg",
+    alt: "The wooden bar with beer taps and high tables",
+  },
+];
+
+const HERO_INTERVAL = 6500;
+
+function RestaurantHeroSlideshow() {
+  const [active, setActive] = useState(0);
+  const [seen, setSeen] = useState<number[]>([0]);
+  const reduced = useReducedMotion();
+
+  useEffect(() => {
+    if (reduced || document.hidden) return;
+    const id = window.setInterval(() => {
+      if (!document.hidden) {
+        setActive((a) => {
+          const next = (a + 1) % HERO_SLIDES.length;
+          setSeen((s) => (s.includes(next) ? s : [...s, next]));
+          return next;
+        });
+      }
+    }, HERO_INTERVAL);
+    return () => window.clearInterval(id);
+  }, [active, reduced]);
+
+  return (
+    <div className="absolute inset-0" aria-hidden="true">
+      {HERO_SLIDES.map((s, i) => (
+        <div
+          key={s.src}
+          className={`absolute inset-0 transition-opacity duration-[1400ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
+            i === active ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          {seen.includes(i) && (
+            <Image
+              src={s.src}
+              alt=""
+              fill
+              priority={i === 0}
+              loading={i === 0 ? undefined : "lazy"}
+              quality={48}
+              sizes="100vw"
+              className={`object-cover ${i === active ? "kenburns" : ""}`}
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export function RestaurantView() {
   return (
     <>
-      {/* Fold 1: full-bleed kitchen photo, badge bottom-left */}
+      {/* Fold 1: full-bleed interior slideshow, badge bottom-left */}
       <section className="relative overflow-hidden bg-ink text-paper" aria-label="Big Brothers Restaurant">
-        <div className="absolute inset-0" aria-hidden="true">
-          <Image
-            src="/images/hero-braise.jpg"
-            alt=""
-            fill
-            priority
-            quality={50}
-            sizes="100vw"
-            className="scale-105 object-cover"
-          />
-        </div>
+        <RestaurantHeroSlideshow />
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-[linear-gradient(180deg,oklch(18%_0.008_70/0.6)_0%,oklch(18%_0.008_70/0.4)_50%,oklch(18%_0.008_70/0.85)_100%)]"
@@ -41,10 +110,10 @@ export function RestaurantView() {
           </p>
           <div className="hero-rise mt-8 flex flex-wrap gap-3" style={{ "--i": 2 } as React.CSSProperties}>
             <Link
-              href="/restaurant/reserve"
+              href="#book-a-table"
               className="rounded-full bg-paper px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-lime"
             >
-              Reserve a table
+              Book a table
             </Link>
             <Link
               href="/restaurant/menu"
@@ -72,12 +141,12 @@ export function RestaurantView() {
             <h2 className="font-display text-3xl font-semibold tracking-[-0.01em]">Kitchen hours</h2>
             <dl className="mt-6 max-w-xl text-[15px]">
               <div className="flex items-baseline justify-between gap-4 border-b border-line py-3.5">
-                <dt className="text-mut">Monday to Friday</dt>
-                <dd className="font-display text-lg font-semibold">{RESTAURANT.hoursMonFri}</dd>
+                <dt className="text-mut">Monday to Saturday</dt>
+                <dd className="font-display text-lg font-semibold">Open from 09:30 / 10:00</dd>
               </div>
               <div className="flex items-baseline justify-between gap-4 border-b border-line py-3.5">
-                <dt className="text-mut">Saturday and Sunday</dt>
-                <dd className="font-display text-lg font-semibold">{RESTAURANT.hoursSatSun}</dd>
+                <dt className="text-mut">Opening time</dt>
+                <dd className="font-display text-lg font-semibold">09:30 or 10:00, depending on the day</dd>
               </div>
             </dl>
             <p className="mt-4 max-w-md text-sm text-mut">
@@ -142,10 +211,28 @@ export function RestaurantView() {
         </div>
       </section>
 
-      {/* Fold 4: one closing action, typographic */}
+      {/* Fold 4: Book a Table, right on the page (owner round 6). WhatsApp
+       * and email routing both live in the reserve card. */}
+      <section id="book-a-table" className="mx-auto max-w-6xl scroll-mt-28 px-4 py-16 md:px-6 md:py-24" aria-label="Book a table">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-lime-deep">Book a table</p>
+          <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.01em] md:text-4xl">
+            Tell us when, and the table waits for you.
+          </h2>
+          <p className="mt-4 max-w-[56ch] leading-relaxed text-mut">
+            Fill in your details and send it straight to the kitchen on WhatsApp, or by email if you prefer.
+            Big groups, birthdays and braai nights: mention it in the notes and we will set the tables.
+          </p>
+        </div>
+        <div className="mt-10">
+          <ReserveCard />
+        </div>
+      </section>
+
+      {/* Fold 5: one closing action, typographic */}
       <section className="mx-auto max-w-4xl px-4 py-20 text-center md:px-6 md:py-28" aria-label="Menu call to action">
         <p className="mx-auto max-w-[30ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
-          Kitchen from 07:00 on weekdays, 08:00 on weekends.
+          Kitchen open Monday to Saturday, from 09:30.
         </p>
         <p className="mx-auto mt-4 max-w-lg text-mut">
           The full menu carries every price we charge, from a N$30 russian to the N$400 seafood

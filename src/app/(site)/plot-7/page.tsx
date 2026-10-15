@@ -93,10 +93,10 @@ export default function Plot7Page() {
           </h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { title: "Rooms 1 to 13", line: "Standard rooms, private units and the family unit that sleeps 8.", href: "/rooms" },
+              { title: "Rooms 1 to 12", line: "Standard rooms, private units and the family unit that sleeps 8.", href: "/rooms" },
               { title: "Pools, lawn, lapa", line: "Two pools, shaded lapas and the braai area under thatch.", href: "/facilities" },
-              { title: "Day visits", line: "From N$20 a head. Bring the family, order from the kitchen.", href: "/facilities" },
-              { title: "Conference room", line: "Seats up to 30 people for meetings and workshops.", href: "/facilities" },
+              { title: "Day visits", line: "N$30 a head. Bring the family, order from the kitchen.", href: "/facilities" },
+              { title: "Conference room", line: "Seats 20 delegates, up to 30 on request, at N$450 a day.", href: "/facilities" },
             ].map((c) => (
               <Link key={c.title} href={c.href} className="group rounded-xl border border-line bg-paper p-5 transition-colors hover:border-ember">
                 <p className="font-display text-lg font-semibold">{c.title}</p>

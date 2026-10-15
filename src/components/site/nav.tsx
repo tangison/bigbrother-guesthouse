@@ -226,7 +226,10 @@ export function SiteNav({ brand }: { brand: Brand }) {
               </Link>
               <div className="mt-2 grid gap-2 text-sm text-mut">
                 <a className="text-base font-semibold text-ink" href={`tel:${GUESTHOUSE.phoneStay}`}>
-                  Stay &amp; B&amp;B: {GUESTHOUSE.phoneStayDisplay}
+                  Stay (MTC): {GUESTHOUSE.phoneStayDisplay}
+                </a>
+                <a className="text-base font-semibold text-ink" href={`tel:${GUESTHOUSE.phoneStay2}`}>
+                  Stay (Telecom): {GUESTHOUSE.phoneStay2Display}
                 </a>
                 <a className="text-base font-semibold text-ink" href={`tel:${RESTAURANT.phoneEat}`}>
                   Eat: {RESTAURANT.phoneEatDisplay}

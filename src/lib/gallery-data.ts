@@ -3,7 +3,7 @@
 // Every photo the owner supplied is on the site; alt text describes what is
 // visible and invents nothing.
 
-export type GalleryGroup = "rooms" | "grounds" | "pools" | "events" | "food" | "drinks" | "animals" | "night" | "crew";
+export type GalleryGroup = "rooms" | "grounds" | "pools" | "events" | "food" | "drinks" | "animals" | "night" | "crew" | "restaurant";
 
 export const GROUP_LABELS: Record<GalleryGroup, string> = {
   "rooms": "Rooms & bathrooms",
@@ -15,6 +15,7 @@ export const GROUP_LABELS: Record<GalleryGroup, string> = {
   "animals": "The animals",
   "night": "After dark",
   "crew": "Faces of Big Brother",
+  "restaurant": "The restaurant in town",
 };
 
 export type GalleryPhoto = { slug: string; group: GalleryGroup; alt: string; w: number; h: number };
@@ -159,4 +160,17 @@ export const GALLERY: GalleryPhoto[] = [
   { slug: "team-shirts-pool", group: "crew", alt: "Team shirts by the pool", w: 1584, h: 786 },
   { slug: "team-shirts-three", group: "crew", alt: "Big Brother shirts in orange and yellow", w: 1488, h: 2337 },
   { slug: "team-three-smiles", group: "crew", alt: "Three of the team posing together", w: 768, h: 1024 },
+  { slug: "pool-day-guests-drinks", group: "crew", alt: "Day visitors with cold drinks at the pool lapa", w: 1600, h: 1200 },
+  { slug: "pool-day-guest-relax", group: "crew", alt: "A day visitor relaxing with a drink by the pool", w: 765, h: 1020 },
+  { slug: "restaurant-interior-counter", group: "restaurant", alt: "Inside Big Brothers Restaurant: counter, tables and drinks fridge", w: 1080, h: 810 },
+  { slug: "restaurant-interior-evening", group: "restaurant", alt: "Evening light inside the restaurant with tables set", w: 1080, h: 810 },
+  { slug: "restaurant-interior-wide", group: "restaurant", alt: "The restaurant dining room set for supper", w: 1080, h: 810 },
+  { slug: "restaurant-interior-fridges", group: "restaurant", alt: "The restaurant counter with display fridges", w: 1080, h: 810 },
+  { slug: "restaurant-bar-sign", group: "restaurant", alt: "The Big Brothers Restaurant sign above the bar counter", w: 1080, h: 810 },
+  { slug: "restaurant-bar-corner", group: "restaurant", alt: "The restaurant bar corner with the wooden back bar", w: 1080, h: 810 },
+  { slug: "restaurant-bar-taps", group: "restaurant", alt: "The wooden bar with beer taps and high tables", w: 1080, h: 810 },
+  { slug: "restaurant-exterior-banner-dusk", group: "restaurant", alt: "The Big Brothers banner wall at dusk", w: 810, h: 1080 },
+  { slug: "restaurant-exterior-table", group: "restaurant", alt: "Street-side table outside the restaurant window", w: 810, h: 1080 },
+  { slug: "restaurant-exterior-entrance-flag", group: "restaurant", alt: "The restaurant entrance with the brand banner and flag", w: 810, h: 1080 },
+  { slug: "restaurant-exterior-entrance", group: "restaurant", alt: "The restaurant entrance with green and yellow posts", w: 810, h: 1080 },
 ];

@@ -2,11 +2,12 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ROOM_TIERS, GROUP_LABELS, rateLabel, type RoomGroup } from "@/lib/rates";
+import { VISIBLE_TIERS, GROUP_LABELS, rateLabel, type RoomGroup } from "@/lib/rates";
 
-/* Filterable room cards, fed from the one rates file (rates.ts). Filters:
- * all, single, twin or double, private bathroom, family unit. Every card
- * deep-links into the booking card with the tier preselected. */
+/* Filterable room cards, fed from the one rates file (rates.ts), visible tiers
+ * only (owner round 6 pricing table). Filters: all, single, twin or double,
+ * private bathroom, family unit. Every card deep-links into the booking card
+ * with the tier preselected. */
 const FILTERS: { key: string; label: string; match: (g: RoomGroup, o: string) => boolean }[] = [
   { key: "all", label: "All rooms", match: () => true },
   { key: "single", label: "Single", match: (_g, o) => o === "Single" },
@@ -22,7 +23,7 @@ const FILTERS: { key: string; label: string; match: (g: RoomGroup, o: string) =>
 export function RoomCards() {
   const [filter, setFilter] = useState("all");
   const active = FILTERS.find((f) => f.key === filter) ?? FILTERS[0];
-  const rooms = useMemo(() => ROOM_TIERS.filter((t) => active.match(t.group, t.occupancy)), [active]);
+  const rooms = useMemo(() => VISIBLE_TIERS.filter((t) => active.match(t.group, t.occupancy)), [active]);
 
   return (
     <div>
@@ -53,6 +54,11 @@ export function RoomCards() {
               <p className="font-display text-xl font-semibold tabular-nums text-ember-deep">{rateLabel(t.rate)}</p>
             </div>
             <p className="mt-1 text-xs uppercase tracking-[0.12em] text-mut">{GROUP_LABELS[t.group]}</p>
+            {t.badge && (
+              <p className="mt-2 w-fit rounded-full bg-leaf px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-paper">
+                {t.badge}
+              </p>
+            )}
             <p className="mt-3 text-sm leading-relaxed text-mut">{t.bathroom}.</p>
             <p className="mt-1 text-sm leading-relaxed text-mut">{t.amenities}.</p>
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3">

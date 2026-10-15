@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ROOM_TIERS, VIP, formatNad, nightsBetween } from "@/lib/rates";
+import { VISIBLE_TIERS, VIP, CONFERENCE, DAY_VISIT_RATE, formatNad, nightsBetween } from "@/lib/rates";
 import { GUESTHOUSE, HOLDINGS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
 import { PaymentCard } from "./payment-card";
 
@@ -18,7 +18,7 @@ const today = () => new Date().toISOString().slice(0, 10);
 
 export function BookingCard() {
   const [property, setProperty] = useState<Property>("rooms");
-  const [tierId, setTierId] = useState(ROOM_TIERS[0].id);
+  const [tierId, setTierId] = useState(VISIBLE_TIERS[0].id);
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [rooms, setRooms] = useState(1);
@@ -32,15 +32,16 @@ export function BookingCard() {
   // Deep link: /book?tier=r11-double preselects the room from the rooms page.
   // Read once after mount (not in lazy state) so server and client HTML stay
   // identical: the query only exists in the browser. setState runs in a rAF
-  // callback, not synchronously in the effect body.
+  // callback, not synchronously in the effect body. Hidden tiers (owner round
+  // 6) are not bookable, so they never preselect.
   useEffect(() => {
     const t = new URLSearchParams(window.location.search).get("tier");
-    if (!t || !ROOM_TIERS.some((x) => x.id === t)) return;
+    if (!t || !VISIBLE_TIERS.some((x) => x.id === t)) return;
     const raf = requestAnimationFrame(() => setTierId(t));
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  const tier = useMemo(() => ROOM_TIERS.find((t) => t.id === tierId) ?? ROOM_TIERS[0], [tierId]);
+  const tier = useMemo(() => VISIBLE_TIERS.find((t) => t.id === tierId) ?? VISIBLE_TIERS[0], [tierId]);
   const nights = nightsBetween(checkIn, checkOut);
   const minOut = checkIn || today();
 
@@ -65,7 +66,7 @@ export function BookingCard() {
         : property === "bnb"
           ? "Big Brother B&B (price on request)"
           : property === "conference"
-            ? `Conference room, up to ${30} people`
+            ? `Conference room (seats ${CONFERENCE.standard}, up to ${CONFERENCE.max} on request)`
             : "Day visit"
     }`,
     `Number of Guests: ${guests}`,
@@ -102,16 +103,20 @@ export function BookingCard() {
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {(
               [
-                ["rooms", "Guesthouse, Plot 7 (rooms 1 to 13)"],
-                ["bnb", "Big Brother B&B (three en suite rooms)"],
-                ["conference", "Conference room (up to 30 people)"],
+                ["rooms", "Guesthouse, Plot 7"],
+                ["bnb", "Big Brother B&B — unavailable for daily bookings"],
+                ["conference", "Conference room (seats 20, up to 30 on request)"],
                 ["day", "Day visit (pool and entertainment area)"],
               ] as [Property, string][]
             ).map(([value, label]) => (
               <label
                 key={value}
                 className={`flex min-h-[44px] cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium ${
-                  property === value ? "border-ember bg-sand/60" : "border-line bg-paper"
+                  value === "bnb"
+                    ? "cursor-not-allowed border-line bg-cream text-mut"
+                    : property === value
+                      ? "border-ember bg-sand/60"
+                      : "border-line bg-paper"
                 }`}
               >
                 <input
@@ -119,6 +124,7 @@ export function BookingCard() {
                   name="property"
                   value={value}
                   checked={property === value}
+                  disabled={value === "bnb"}
                   onChange={() => setProperty(value)}
                   className="accent-ember"
                 />
@@ -126,6 +132,11 @@ export function BookingCard() {
               </label>
             ))}
           </div>
+          <p className="mt-3 rounded-xl border border-line bg-cream p-4 text-sm leading-relaxed text-mut">
+            <span className="font-semibold text-ink">B&amp;B notice:</span> the separate B&amp;B unit, not on the
+            same grounds as the guesthouse, is currently unavailable for daily bookings. It is occupied under a
+            1-year long-term corporate lease for mine workers.
+          </p>
         </fieldset>
 
         {/* 2 · Room and occupancy */}
@@ -145,7 +156,7 @@ export function BookingCard() {
               }}
               className="mt-3 min-h-[44px] w-full rounded-xl border border-line bg-paper px-4 text-sm font-medium"
             >
-              {ROOM_TIERS.map((t) => (
+              {VISIBLE_TIERS.map((t) => (
                 <option key={t.id} value={t.id}>
                   {t.room} · {t.occupancy} · {t.rate === null ? "POA" : formatNad(t.rate)} per night
                 </option>
@@ -348,8 +359,8 @@ export function BookingCard() {
                   ? "POA"
                   : `${formatNad(tier.rate)} x ${nights} x ${rooms}`
                 : property === "conference"
-                  ? `${formatNad(450)} per booking`
-                  : "From N$20 per person"}
+                  ? `${formatNad(CONFERENCE.rate)} per day or event`
+                  : `${formatNad(DAY_VISIT_RATE)} per person`}
             </dd>
           </div>
           {discount > 0 && (

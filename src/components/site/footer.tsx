@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { GUESTHOUSE, RESTAURANT, HOLDINGS, wa, GUESTHOUSE_WA_GREETING, type Brand } from "@/lib/site-data";
+import { GUESTHOUSE, RESTAURANT, HOLDINGS, SOCIALS, wa, GUESTHOUSE_WA_GREETING, type Brand } from "@/lib/site-data";
 import { GUESTHOUSE_ROUTES, RESTAURANT_ROUTES, LEGAL_ROUTES } from "@/lib/routes";
+import { SocialIcon } from "./social-icons";
 
 /* Two statement footers, one per brand. Guesthouse: on-dark logo variant
  * (the standard logo has black text and would disappear on ink), Stay number
@@ -89,44 +90,41 @@ export function SiteFooter({ brand }: { brand: Brand }) {
             <p className="font-display text-lg font-semibold">Talk to us</p>
             <ul className="mt-3 space-y-2 text-paper/80">
               {isEat ? (
-                <>
-                  <li>
-                    <a
-                      className="font-semibold text-paper underline decoration-ember/70 underline-offset-4 hover:decoration-ember"
-                      href={`tel:${RESTAURANT.phoneEat}`}
-                    >
-                      Eat: {RESTAURANT.phoneEatDisplay}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
-                      href={`tel:${GUESTHOUSE.phoneStay}`}
-                    >
-                      Stay: {GUESTHOUSE.phoneStayDisplay}
-                    </a>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li>
-                    <a
-                      className="font-semibold text-paper underline decoration-ember/70 underline-offset-4 hover:decoration-ember"
-                      href={`tel:${GUESTHOUSE.phoneStay}`}
-                    >
-                      Stay: {GUESTHOUSE.phoneStayDisplay}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
-                      href={`tel:${RESTAURANT.phoneEat}`}
-                    >
-                      Eat: {RESTAURANT.phoneEatDisplay}
-                    </a>
-                  </li>
-                </>
-              )}
+                <li>
+                  <a
+                    className="font-semibold text-paper underline decoration-ember/70 underline-offset-4 hover:decoration-ember"
+                    href={`tel:${RESTAURANT.phoneEat}`}
+                  >
+                    Eat: {RESTAURANT.phoneEatDisplay}
+                  </a>
+                </li>
+              ) : null}
+              <li>
+                <a
+                  className={`underline decoration-paper/40 underline-offset-4 hover:decoration-paper ${isEat ? "" : "font-semibold text-paper decoration-ember/70 hover:decoration-ember"}`}
+                  href={`tel:${GUESTHOUSE.phoneStay}`}
+                >
+                  Stay (MTC): {GUESTHOUSE.phoneStayDisplay}
+                </a>
+              </li>
+              <li>
+                <a
+                  className="underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
+                  href={`tel:${GUESTHOUSE.phoneStay2}`}
+                >
+                  Stay (Telecom): {GUESTHOUSE.phoneStay2Display}
+                </a>
+              </li>
+              {!isEat ? (
+                <li>
+                  <a
+                    className="underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
+                    href={`tel:${RESTAURANT.phoneEat}`}
+                  >
+                    Eat: {RESTAURANT.phoneEatDisplay}
+                  </a>
+                </li>
+              ) : null}
               <li>
                 <a
                   className="underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
@@ -136,7 +134,7 @@ export function SiteFooter({ brand }: { brand: Brand }) {
                 </a>
               </li>
             </ul>
-            <div className="mt-4 flex flex-wrap gap-3">
+            <div className="mt-4 flex flex-wrap items-center gap-3">
               <a
                 className="rounded-full bg-paper px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-ember hover:text-ink"
                 href={
@@ -148,26 +146,40 @@ export function SiteFooter({ brand }: { brand: Brand }) {
               >
                 {isEat ? "WhatsApp the restaurant" : "WhatsApp bookings"}
               </a>
-              <a
-                className="rounded-full border border-paper/30 px-5 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-paper/10"
-                href={GUESTHOUSE.facebook}
-                rel="noopener"
-              >
-                Facebook
-              </a>
+              <div className="flex items-center gap-2" role="group" aria-label="Our social pages">
+                {SOCIALS.map((s) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    rel="noopener"
+                    aria-label={`${s.name} (opens in a new tab)`}
+                    className="grid h-10 w-10 place-items-center rounded-full border border-paper/30 text-paper transition-colors hover:bg-paper/10"
+                  >
+                    <SocialIcon name={s.name} size={16} />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* NTB registration: text only, from the owner's own certificate.
-            An emblem appears only if the owner supplies an official file. */}
+        {/* NTB registration: from the owner's own certificate, with the
+            board's official site linked for verification. */}
         {!isEat && (
           <div className="mt-10 border-t border-paper/15 pt-6 text-xs leading-relaxed text-paper/60">
             <p className="font-semibold text-paper/80">Registered establishment</p>
             <p className="mt-1 max-w-2xl">
               Big Brother Guesthouse is registered with the Namibia Tourism Board as a Guesthouse.
               Registration No. {GUESTHOUSE.ntb.number}, approved {GUESTHOUSE.ntb.approved}, certificate
-              awarded {GUESTHOUSE.ntb.certificate}.
+              awarded {GUESTHOUSE.ntb.certificate}. Verify registered status with the board at{" "}
+              <a
+                className="underline decoration-paper/40 underline-offset-4 hover:text-paper"
+                href="https://namibiatourism.com.na/"
+                rel="noopener"
+              >
+                namibiatourism.com.na
+              </a>
+              .
             </p>
           </div>
         )}

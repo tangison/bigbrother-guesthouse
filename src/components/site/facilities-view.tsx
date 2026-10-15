@@ -6,6 +6,7 @@ import { Check } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { StackCard } from "./motion";
 import { BIZ, wa } from "@/lib/site-data";
+import { CONFERENCE, COOLERS, CORKAGE, DAY_VISIT_RATE, ENTERTAINMENT_AREA, formatNad } from "@/lib/rates";
 
 /* Facilities · Tabs for planning, stack cards for amenities. The three ways to
  * use the property sit in one tabbed widget with the owner's own photographs;
@@ -57,15 +58,52 @@ export function FacilitiesView() {
           </TabsList>
 
           <TabsContent value="day" className="mt-8">
-            <TabPanel
-              img="/images/picnic-table-tree.jpg"
-              alt="Picnic table under a big shade tree on the lawn"
-              title="Come and spend the day with us."
-              lines={[
-                "Day visitors are welcome at the pools, the garden and the lapa. Bring the family or a car full of friends and let the afternoon run long.",
-                "Entry is per person: adults N$50, teenagers N$30, children up to 12 and senior citizens N$20. Order from the kitchen while you are here.",
-              ]}
-            />
+            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+              <div>
+                <h2 className="font-display text-2xl font-semibold md:text-3xl">Come and spend the day with us.</h2>
+                <p className="mt-4 max-w-[60ch] leading-relaxed text-mut">
+                  Day visitors are welcome at the pools, the garden and the lapa. Bring the family or a car full of
+                  friends and let the afternoon run long. Order from the kitchen while you are here.
+                </p>
+                <div className="mt-6 flex flex-wrap items-baseline justify-between gap-4 border-y border-line py-4 text-[15px]">
+                  <span className="text-mut">Day visit entry fee, per person</span>
+                  <span className="font-display text-3xl font-semibold tabular-nums text-ember-deep">
+                    {formatNad(DAY_VISIT_RATE)}
+                  </span>
+                </div>
+                <h3 className="mt-8 font-display text-lg font-semibold">Cooler boxes</h3>
+                <ul className="mt-3 divide-y divide-line border-y border-line text-[15px]">
+                  {COOLERS.map((c) => (
+                    <li key={c.size} className="flex items-baseline justify-between gap-4 py-3">
+                      <span className="text-mut">{c.size}</span>
+                      <span className="font-display text-lg font-semibold tabular-nums">{formatNad(c.fee)}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 rounded-xl border border-line bg-paper p-5">
+                  <h3 className="font-display text-lg font-semibold">Own bottles, spirits &amp; whiskey</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-mut">{CORKAGE.policy}</p>
+                  <p className="mt-3 text-sm">
+                    <span className="text-mut">Courtesy fee range: </span>
+                    <span className="font-display font-semibold tabular-nums">{CORKAGE.range}</span>
+                  </p>
+                </div>
+              </div>
+              <figure>
+                <div className="photo-frame aspect-[4/3]">
+                  <Image
+                    src="/images/picnic-table-tree.jpg"
+                    alt="Picnic table under a big shade tree on the lawn"
+                    width={1400}
+                    height={1050}
+                    loading="lazy"
+                    quality={50}
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </figure>
+            </div>
           </TabsContent>
 
           <TabsContent value="meet" className="mt-8">
@@ -86,6 +124,12 @@ export function FacilitiesView() {
                     </li>
                   ))}
                 </ul>
+                <h3 className="mt-8 font-display text-lg font-semibold">Room and rate</h3>
+                <p className="mt-3 max-w-[56ch] text-[15px] leading-relaxed text-mut">
+                  Seats {CONFERENCE.standard} delegates comfortably, expandable up to {CONFERENCE.max} on request.
+                  The rate is {formatNad(CONFERENCE.rate)} {CONFERENCE.unit.toLowerCase()}, and it includes
+                  complimentary drinking water and a tea/coffee station.
+                </p>
               </div>
               <figure>
                 <div className="photo-frame aspect-[4/3]">
@@ -105,24 +149,59 @@ export function FacilitiesView() {
           </TabsContent>
 
           <TabsContent value="celebrate" className="mt-8">
-            <TabPanel
-              img="/images/thatched-lapa-orange-wall.jpg"
-              alt="Thatched lapa with tables beside the orange wall"
-              title="Birthdays, braais, and family gatherings."
-              lines={[
-                "The venue, the shade, and the space are yours for the day. We tailor the setup to your group and cater from our own kitchen, so the food arrives straight off the grill.",
-                "Tell us the date, the group size, and how long you need the space. A quick WhatsApp is enough to start planning.",
-              ]}
-            />
+            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+              <div>
+                <h2 className="font-display text-2xl font-semibold md:text-3xl">Birthdays, braais, and family gatherings.</h2>
+                <p className="mt-4 max-w-[60ch] leading-relaxed text-mut">
+                  The private entertainment area, the shade, and the space are yours for the day. We tailor the
+                  setup to your group and cater from our own kitchen, so the food arrives straight off the grill.
+                </p>
+                <h3 className="mt-8 font-display text-lg font-semibold">Private entertainment area booking</h3>
+                <dl className="mt-3 divide-y divide-line border-y border-line text-[15px]">
+                  <div className="flex flex-wrap items-baseline justify-between gap-4 py-3">
+                    <dt className="text-mut">The venue, per day</dt>
+                    <dd className="font-display text-lg font-semibold tabular-nums">
+                      From {formatNad(ENTERTAINMENT_AREA.venueFrom)} to {formatNad(ENTERTAINMENT_AREA.venueTo)}
+                    </dd>
+                  </div>
+                  <div className="flex flex-wrap items-baseline justify-between gap-4 py-3">
+                    <dt className="text-mut">Plus, per person</dt>
+                    <dd className="font-display text-lg font-semibold tabular-nums">
+                      {formatNad(ENTERTAINMENT_AREA.perPerson)}
+                    </dd>
+                  </div>
+                </dl>
+                <p className="mt-4 max-w-[56ch] text-[15px] leading-relaxed text-mut">
+                  Tell us the date, the group size, and how long you need the space. A quick WhatsApp is enough to
+                  start planning.
+                </p>
+              </div>
+              <figure>
+                <div className="photo-frame aspect-[4/3]">
+                  <Image
+                    src="/images/thatched-lapa-orange-wall.jpg"
+                    alt="Thatched lapa with tables beside the orange wall"
+                    width={1400}
+                    height={1050}
+                    loading="lazy"
+                    quality={50}
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </figure>
+            </div>
           </TabsContent>
         </Tabs>
 
         {/* One booking card serves all three tabs */}
         <div className="mt-10 grid gap-4 rounded-lg bg-ink p-8 text-paper md:grid-cols-[1.2fr_0.8fr] md:items-center">
           <p className="max-w-[52ch] leading-relaxed text-paper/85">
-            The conference room seats up to 30 people at N$450 per booking; whether that is per day or per
-            event, we confirm with your quote. Functions are tailored to your group, with catering from our
-            own kitchen.
+            The conference room seats {CONFERENCE.standard} delegates, up to {CONFERENCE.max} on request, at
+            {" "}{formatNad(CONFERENCE.rate)} {CONFERENCE.unit.toLowerCase()} with drinking water and a tea and
+            coffee station included. The private entertainment area runs from
+            {" "}{formatNad(ENTERTAINMENT_AREA.venueFrom)} to {formatNad(ENTERTAINMENT_AREA.venueTo)} plus
+            {" "}{formatNad(ENTERTAINMENT_AREA.perPerson)} per person, with catering from our own kitchen.
           </p>
           <div className="grid gap-3">
             <a
@@ -167,8 +246,8 @@ export function FacilitiesView() {
           <StackCard index={2} total={6}>
             <FacilityCard
               dark
-              title="Outdoor areas"
-              text="Relax in our courtyard or shaded outdoor seating spaces after a long day. The garden and pools carry the sound of the Khan River bench, not the traffic."
+              title="Outdoor seating areas"
+              text="Relax in our courtyard or shaded outdoor seating areas after a long day. The garden and pools carry the sound of the Khan River bench, not the traffic."
             />
           </StackCard>
           <StackCard index={3} total={6}>
@@ -194,36 +273,6 @@ export function FacilitiesView() {
         </div>
       </section>
     </>
-  );
-}
-
-function TabPanel({
-  img,
-  alt,
-  title,
-  lines,
-}: {
-  img: string;
-  alt: string;
-  title: string;
-  lines: string[];
-}) {
-  return (
-    <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-      <div>
-        <h2 className="font-display text-2xl font-semibold md:text-3xl">{title}</h2>
-        {lines.map((l) => (
-          <p key={l.slice(0, 24)} className="mt-4 max-w-[60ch] leading-relaxed text-mut">
-            {l}
-          </p>
-        ))}
-      </div>
-      <figure>
-        <div className="photo-frame aspect-[4/3]">
-          <Image src={img} alt={alt} width={1400} height={1050} loading="lazy" quality={50} sizes="(max-width: 1024px) 100vw, 40vw" className="h-full w-full object-cover" />
-        </div>
-      </figure>
-    </div>
   );
 }
 

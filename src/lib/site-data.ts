@@ -1,8 +1,8 @@
 // Real business data for Big Brother Holdings (two brands, two locations).
 // Sources: owner master file Big_Brother_Guesthouse_Master_Prompt.md (Oct 2026),
 // live site audit Oct 2026, NTB approval letter + certificate (2017) in master file.
-// Restaurant hours: only Saturday/Sunday from 07:00 are confirmed. Weekday
-// hours and closing times are an open owner question and are NOT invented here.
+// Restaurant hours (round 6): Monday to Saturday, opening 09:30/10:00 by day.
+// Closing times are not confirmed and are NOT invented here.
 
 export type Brand = "guesthouse" | "restaurant";
 
@@ -17,12 +17,15 @@ export const GUESTHOUSE = {
   name: "Big Brother Guesthouse",
   short: "Big Brother",
   tagline: "Home away from home",
-  // The one number (owner instruction: use this on every number, it is the
-  // one on the old site's contact page and the WhatsApp line). The master
-  // file's other lines (081 264 7607, 081 645 6442) are no longer displayed.
+  // Stay lines, owner instruction (round 6): both lines visible everywhere.
+  // phoneStay is the MTC mobile line and the WhatsApp line; phoneStay2 is
+  // the Telecom line. The master file's other old lines (081 264 7607,
+  // 081 645 6442) are still not displayed.
   phoneStay: "+264812647606",
   phoneStayDisplay: "+264 81 264 7606",
   phoneStayWhatsapp: "264812647606",
+  phoneStay2: "+264852647609",
+  phoneStay2Display: "+264 85 264 7609",
   // Deprecated: kept only so old imports still compile. Do not display.
   phoneSecondary: "+264812647606",
   phoneSecondaryDisplay: "+264 81 264 7606",
@@ -45,8 +48,18 @@ export const GUESTHOUSE = {
     approved: "10 March 2017",
     certificate: "9 May 2017",
   },
+  // Official socials, owner supplied (round 6). Canonical profile URLs
+  // resolved from the owner's own share links.
   facebook: "https://www.facebook.com/bigbrotherguesthouse/",
+  instagram: "https://www.instagram.com/bigbrotherguesthouse/",
+  tiktok: "https://www.tiktok.com/@bigbrotherguest",
 };
+
+export const SOCIALS = [
+  { name: "Facebook", href: GUESTHOUSE.facebook },
+  { name: "Instagram", href: GUESTHOUSE.instagram },
+  { name: "TikTok", href: GUESTHOUSE.tiktok },
+];
 
 export const RESTAURANT = {
   name: "Big Brothers Restaurant",
@@ -65,11 +78,11 @@ export const RESTAURANT = {
     region: "Erongo Region",
     country: "Namibia",
   },
-  // Full business hours, taken from the old site's restaurant page at the
-  // owner's instruction ("get it from the site").
-  hoursKnown: "Monday to Friday: 07:00 - 22:00, Saturday and Sunday: 08:00 - 21:00",
-  hoursMonFri: "07:00 - 22:00",
-  hoursSatSun: "08:00 - 21:00",
+  // Kitchen hours, owner instruction (round 6): Monday to Saturday, opening
+  // from 09:30 or 10:00 depending on the day. Closing times are not confirmed,
+  // so none are displayed.
+  hoursKnown: "Monday to Saturday, opening from 09:30 or 10:00 depending on the day",
+  hoursShort: "Mon to Sat, from 09:30",
   facebook: GUESTHOUSE.facebook,
 };
 

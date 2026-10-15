@@ -12,7 +12,7 @@ const jsonLd = {
   name: GUESTHOUSE.name,
   description,
   url: `${HOLDINGS.site}/`,
-  telephone: GUESTHOUSE.phoneStayDisplay,
+  telephone: [GUESTHOUSE.phoneStayDisplay, GUESTHOUSE.phoneStay2Display],
   email: HOLDINGS.email,
   image: `${HOLDINGS.site}/images/og-guesthouse.jpg`,
   priceRange: "N$450 to N$3,050 per night",
@@ -34,7 +34,7 @@ const jsonLd = {
     name: "Namibia Tourism Board registration",
     value: GUESTHOUSE.ntb.number,
   },
-  sameAs: [GUESTHOUSE.facebook],
+  sameAs: [GUESTHOUSE.facebook, GUESTHOUSE.instagram, GUESTHOUSE.tiktok],
 };
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {

@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { GUESTHOUSE, RESTAURANT, HOLDINGS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
+import { GUESTHOUSE, RESTAURANT, HOLDINGS, SOCIALS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
+import { DAY_VISIT_RATE, formatNad } from "@/lib/rates";
+import { SocialIcon } from "./social-icons";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-/* Contact · all locations and all three numbers. Two direction cards with
- * plain Google Maps links (no heavy embedded map), then a plain-language
- * FAQ. Every answer is a confirmed fact. Instagram is deliberately absent:
- * no verified handle exists. */
+/* Contact · all locations and all four published lines (stay MTC, stay
+ * Telecom, eat, email). Two direction cards with plain Google Maps links
+ * (no heavy embedded map), then a plain-language FAQ, then the official
+ * socials. Every answer is a confirmed fact. */
 
 const FAQ = [
   {
@@ -24,11 +26,11 @@ const FAQ = [
   },
   {
     q: "Can we visit for the day without sleeping over?",
-    a: "Yes. Day visitors are welcome at the pools, the garden and the lapa at Plot 7, and order from the kitchen. Adults N$50, teenagers N$30, children and senior citizens N$20.",
+    a: `Yes. Day visitors are welcome at the pools, the garden and the lapa at Plot 7, and order from the kitchen. Entry is ${formatNad(DAY_VISIT_RATE)} per person; cooler boxes pay a small fee.`,
   },
   {
     q: "Do you host functions and meetings?",
-    a: "Yes. The boardroom at Plot 7 takes up to 30 people for meetings, training and workshops, and the lapa handles celebrations, with catering from our own kitchen. Enquire on WhatsApp with your date and group size.",
+    a: "Yes. The boardroom at Plot 7 seats 20 delegates, up to 30 on request, with drinking water and a tea and coffee station included, and the private entertainment area handles celebrations, with catering from our own kitchen. Enquire on WhatsApp with your date and group size.",
   },
 ];
 
@@ -40,7 +42,7 @@ export function ContactView() {
       <section className="bg-ink text-paper" aria-label="Contact Big Brother Holdings">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
           <h1 className="hero-rise max-w-[22ch] font-display text-[clamp(2.2rem,4.6vw,3.9rem)] font-semibold leading-[1.07] tracking-[-0.02em]">
-            Two places, two numbers, one family.
+            Two places, three lines, one family.
           </h1>
           <p className="hero-rise mt-5 max-w-2xl text-lg leading-relaxed text-paper/80" style={{ "--i": 1 } as React.CSSProperties}>
             The guesthouse waits at Plot 7 on the B2. The restaurant cooks in town centre. Talk to whoever
@@ -51,9 +53,15 @@ export function ContactView() {
           <div className="hero-rise mt-10 max-w-3xl" style={{ "--i": 2 } as React.CSSProperties}>
             <ul className="divide-y divide-paper/15 border-y border-paper/15 text-[15px]">
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
-                <span className="text-paper/60">Stay: guesthouse and B&amp;B bookings</span>
+                <span className="text-paper/60">Stay: bookings (MTC line)</span>
                 <a href={`tel:${GUESTHOUSE.phoneStay}`} className="font-display text-lg font-semibold underline decoration-ember/70 underline-offset-4">
                   {GUESTHOUSE.phoneStayDisplay}
+                </a>
+              </li>
+              <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
+                <span className="text-paper/60">Stay: bookings (Telecom line)</span>
+                <a href={`tel:${GUESTHOUSE.phoneStay2}`} className="font-display text-lg font-semibold underline decoration-ember/70 underline-offset-4">
+                  {GUESTHOUSE.phoneStay2Display}
                 </a>
               </li>
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
@@ -75,7 +83,7 @@ export function ContactView() {
             </ul>
           </div>
 
-          <div className="hero-rise mt-8 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
+          <div className="hero-rise mt-8 flex flex-wrap items-center gap-3" style={{ "--i": 3 } as React.CSSProperties}>
             <a
               href={wa(GUESTHOUSE.phoneStayWhatsapp, GUESTHOUSE_WA_GREETING)}
               rel="noopener"
@@ -89,13 +97,19 @@ export function ContactView() {
             >
               Send an email
             </a>
-            <a
-              href={GUESTHOUSE.facebook}
-              rel="noopener"
-              className="rounded-full border border-paper/40 px-6 py-3 font-semibold text-paper transition-colors hover:bg-paper/10"
-            >
-              Facebook
-            </a>
+            <div className="flex items-center gap-2" role="group" aria-label="Our social pages">
+              {SOCIALS.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  rel="noopener"
+                  aria-label={`${s.name} (opens in a new tab)`}
+                  className="grid h-11 w-11 place-items-center rounded-full border border-paper/40 text-paper transition-colors hover:bg-paper/10"
+                >
+                  <SocialIcon name={s.name} size={18} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>

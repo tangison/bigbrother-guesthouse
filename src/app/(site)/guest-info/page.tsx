@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { GUESTHOUSE, RESTAURANT, HOLDINGS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
-import { DAY_VISITS, VIP, formatNad } from "@/lib/rates";
+import { DAY_VISIT_RATE, VIP, formatNad } from "@/lib/rates";
 
 export const metadata: Metadata = {
   title: "Guest Info & FAQ | Big Brother Guesthouse, Usakos",
@@ -38,7 +38,7 @@ const FAQ = [
   },
   {
     q: "Can we visit for the day, without sleeping over?",
-    a: `Yes. Day visits to the pools, lawn and lapa cost from ${formatNad(DAY_VISITS[0].rate)} per person (senior citizens and children) to ${formatNad(DAY_VISITS[3].rate)} for adults. Order from the kitchen while you are here.`,
+    a: `Yes. Day visits to the pools, lawn and lapa cost ${formatNad(DAY_VISIT_RATE)} per person. Cooler boxes pay a small fee, and order from the kitchen while you are here.`,
   },
   {
     q: "How does payment work?",

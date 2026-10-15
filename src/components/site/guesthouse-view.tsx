@@ -96,7 +96,7 @@ export function GuesthouseView() {
           </article>
 
           <article className="lg:pt-16">
-            <div className="photo-frame aspect-[4/3]">
+            <div className="photo-frame relative aspect-[4/3]">
               <Image
                 src="/images/dish-breakfast.jpg"
                 alt="Fresh breakfast tray included with the B&B"
@@ -106,22 +106,24 @@ export function GuesthouseView() {
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
               />
+              <span className="absolute left-4 top-4 rounded-full bg-ink px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-paper">
+                Daily bookings paused
+              </span>
             </div>
             <div className="mt-6 max-w-[52ch]">
-              <h2 className="font-display text-2xl font-semibold md:text-3xl">Big Brother Bed & Breakfast</h2>
+              <h2 className="font-display text-2xl font-semibold md:text-3xl">Big Brother Bed &amp; Breakfast</h2>
               <p className="mt-3 leading-relaxed text-mut">
-                Part of Big Brother Guesthouse under the same management. Situated in Usakos with
-                three luxury, spacious en suite rooms and free internet access. Cosy, personal,
-                and full of warmth, ideal for couples and small families.
+                Part of Big Brother Guesthouse under the same management, on its own grounds away from the main
+                plot. Three luxury, spacious en suite rooms with free internet access. Cosy, personal, and full
+                of warmth.
               </p>
-              <ul className="mt-5 grid gap-2 text-[15px]">
-                {["Three luxury en suite rooms", "Free internet access", "Fresh breakfast in the morning", "Friendly, personal service"].map((f) => (
-                  <li key={f} className="flex items-center gap-2.5">
-                    <Check size={16} strokeWidth={3} className="shrink-0 text-leaf-deep" aria-hidden="true" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-4 rounded-xl border border-line bg-cream p-4">
+                <p className="text-sm leading-relaxed text-mut">
+                  <span className="font-semibold text-ink">Currently unavailable for daily bookings.</span> The
+                  B&amp;B is occupied under a 1-year long-term corporate lease for mine workers. For longer
+                  stays, ask us on WhatsApp and we will tell you what is possible.
+                </p>
+              </div>
             </div>
           </article>
         </div>

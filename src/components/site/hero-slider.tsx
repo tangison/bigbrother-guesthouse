@@ -1,51 +1,77 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
-/* Hero photo slider. The ground plane of the hero: three real photographs
- * straight from the owner's own camera and kitchen. They crossfade on manual
- * control only: arrows, keyboard. No autoplay, no dots, no captions. Slides
- * beyond the first mount only once first shown: the cold load carries one
- * hero photo, not three. */
+/* Hero background slideshow (owner round 6: "make it more of a slideshow in
+ * the background"). The ground plane of the hero: the owner's own photographs
+ * crossfading slowly behind the type, no visible controls, no dots, no
+ * captions. Auto-advance pauses while the tab is hidden; visitors who prefer
+ * reduced motion get a single still photograph (the kenburns animation is
+ * already gated in globals.css). Slides beyond the first mount only once
+ * first shown: the cold load carries one hero photo, not five. */
 
 const SLIDES = [
   {
-    src: "/images/hero-platter.jpg",
-    alt: "The Big Brothers family platter with pap, chicken and salads",
+    src: "/images/hero-pool-gardens.jpg",
+    alt: "The Big Brother pool, gardens and thatched lapas under a clear blue sky",
   },
   {
-    src: "/images/property-pool-wide.jpg",
-    alt: "The Big Brother pool, lapa and garden from our own album",
+    src: "/images/building-main-yellow.jpg",
+    alt: "Main guesthouse building painted yellow and green",
+  },
+  {
+    src: "/images/pool-umbrellas-lapas.jpg",
+    alt: "Swimming pool with shade umbrellas and thatched lapas",
   },
   {
     src: "/images/pool-lapa-mountains.jpg",
     alt: "Thatched lapa and pool with the hills behind",
   },
+  {
+    src: "/images/entrance-gates-welcome.jpg",
+    alt: "Yellow entrance gates with the welcome boards",
+  },
 ];
+
+const INTERVAL = 6500;
 
 export function HeroSlider() {
   const [active, setActive] = useState(0);
   const [seen, setSeen] = useState<number[]>([0]);
+  const reduced = useReducedMotion();
 
-  const go = useCallback((n: number) => {
-    const next = (n + SLIDES.length) % SLIDES.length;
-    setActive(next);
-    setSeen((s) => (s.includes(next) ? s : [...s, next]));
-  }, []);
+  useEffect(() => {
+    // Reduced motion: no auto-advance at all, one still photograph.
+    if (reduced) return;
+    // Ambient advance: skip entirely while the document is hidden so the
+    // slider never burns data or cycles unseen.
+    if (document.hidden) return;
+    const id = window.setInterval(() => {
+      if (!document.hidden) {
+        setActive((a) => {
+          const next = (a + 1) % SLIDES.length;
+          setSeen((s) => (s.includes(next) ? s : [...s, next]));
+          return next;
+        });
+      }
+    }, INTERVAL);
+    return () => window.clearInterval(id);
+  }, [active, reduced]);
 
   return (
     <div
       className="absolute inset-0"
       role="group"
       aria-roledescription="carousel"
-      aria-label="Photos of Big Brother Guesthouse and its food"
+      aria-label="Photos of Big Brother Guesthouse and its grounds"
     >
       {SLIDES.map((s, i) => (
         <div
           key={s.src}
           aria-hidden={i !== active}
-          className={`absolute inset-0 transition-opacity duration-[1100ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
+          className={`absolute inset-0 transition-opacity duration-[1400ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
             i === active ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -65,31 +91,6 @@ export function HeroSlider() {
           )}
         </div>
       ))}
-
-      {/* Controls: arrows only, bottom right. Sized for touch, labelled for
-       * screen readers, keyboard reachable. */}
-      <div className="absolute inset-x-0 bottom-4 z-10 flex items-center justify-end px-4 md:bottom-6 md:px-6">
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => go(active - 1)}
-            aria-label="Previous photo"
-            className="grid h-11 w-11 place-items-center rounded-full border border-paper/40 bg-ink/25 text-paper backdrop-blur-sm transition-colors hover:bg-ink/50 active:scale-95"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-          <button
-            onClick={() => go(active + 1)}
-            aria-label="Next photo"
-            className="grid h-11 w-11 place-items-center rounded-full border border-paper/40 bg-ink/25 text-paper backdrop-blur-sm transition-colors hover:bg-ink/50 active:scale-95"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        </div>
-      </div>
     </div>
   );
 }

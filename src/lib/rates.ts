@@ -15,6 +15,8 @@ export type RoomTier = {
   rate: number | null; // null = price on request
   bathroom: string;
   amenities: string;
+  badge?: string; // short highlight, e.g. Self-Catering
+  hidden?: boolean; // true = not displayed, not bookable (owner round 6)
 };
 
 const SHARED_KITCHEN =
@@ -31,14 +33,18 @@ export const ROOM_TIERS: RoomTier[] = [
   { id: "r5-single", group: "standard", room: "Room 5", occupancy: "Single", sleeps: 1, rate: 450, bathroom: "Private bathroom (toilet and shower) in the room", amenities: `Aircon in bedroom. ${SHARED_KITCHEN}` },
   { id: "r5-double", group: "standard", room: "Room 5", occupancy: "Double", sleeps: 2, rate: 700, bathroom: "Private bathroom (toilet and shower) in the room", amenities: `Aircon in bedroom. ${SHARED_KITCHEN}` },
 
-  // B. Family unit: rooms 1 to 5 booked together
-  { id: "family", group: "family", room: "Family unit (Rooms 1 to 5)", occupancy: "Sleeps up to 8 people", sleeps: 8, rate: 3050, bathroom: "Shareable + Room 5 private bathroom", amenities: "The whole standard wing booked as one house" },
+  // B. Family unit: rooms 1 to 5 booked together. Owner round 6: badge it
+  // Self-Catering, and state the bathroom layout plainly (1 to 4 share,
+  // 5 en-suite).
+  { id: "family", group: "family", room: "Family unit (Rooms 1 to 5)", occupancy: "Sleeps up to 8 guests across 5 rooms", sleeps: 8, rate: 3050, badge: "Self-Catering", bathroom: "Rooms 1 to 4 share bathroom facilities. Room 5 has its own private en-suite bathroom", amenities: "The whole standard wing booked as one house. Self-catering kitchen: deep freezer, fridge, microwave, coffee corner, stove" },
 
-  // C. Private units: rooms 6 and 7
+  // C. Private units. Owner round 6 pricing table lists Room 6 (single or
+  // double, double N$800). Room 7 is not in the round 6 table: hidden from
+  // display and booking, kept here so the data stays honest and reversible.
   { id: "r6-single", group: "private", room: "Room 6", occupancy: "Single", sleeps: 1, rate: 500, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
   { id: "r6-double", group: "private", room: "Room 6", occupancy: "Double", sleeps: 2, rate: 800, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
-  { id: "r7-single", group: "private", room: "Room 7", occupancy: "Single", sleeps: 1, rate: 500, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
-  { id: "r7-double", group: "private", room: "Room 7", occupancy: "Double", sleeps: 2, rate: 800, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
+  { id: "r7-single", group: "private", room: "Room 7", occupancy: "Single", sleeps: 1, rate: 500, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
+  { id: "r7-double", group: "private", room: "Room 7", occupancy: "Double", sleeps: 2, rate: 800, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
 
   // D. Shared bathroom unit: rooms 8 to 10
   { id: "r8-single", group: "shared", room: "Room 8", occupancy: "Single", sleeps: 1, rate: 450, bathroom: "Shared bathroom", amenities: "Aircon, TV, fridge in the room" },
@@ -48,37 +54,66 @@ export const ROOM_TIERS: RoomTier[] = [
   { id: "r10-single", group: "shared", room: "Room 10", occupancy: "Single", sleeps: 1, rate: 500, bathroom: "Shared bathroom", amenities: "Aircon, TV, fridge in the room" },
   { id: "r10-twin", group: "shared", room: "Room 10", occupancy: "Shareable (twin beds)", sleeps: 2, rate: 750, bathroom: "Shared bathroom", amenities: "Aircon, TV, fridge in the room" },
 
-  // E. Private units: rooms 11 to 13
+  // E. Private units. Owner round 6 pricing table lists Room 11 (single and
+  // double) and Room 12 (single only). Rooms 13's tiers are not in the round 6
+  // table: hidden from display and booking, kept for reversibility.
   { id: "r11-single", group: "private", room: "Room 11", occupancy: "Single", sleeps: 1, rate: 550, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
   { id: "r11-double", group: "private", room: "Room 11", occupancy: "Double", sleeps: 2, rate: 850, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
   { id: "r12-single", group: "private", room: "Room 12", occupancy: "Single", sleeps: 1, rate: 550, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
-  { id: "r12-double", group: "private", room: "Room 12", occupancy: "Double", sleeps: 2, rate: 850, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
-  { id: "r13-single", group: "private", room: "Room 13", occupancy: "Single", sleeps: 1, rate: 550, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
-  { id: "r13-double", group: "private", room: "Room 13", occupancy: "Double", sleeps: 2, rate: 850, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
-  { id: "r13-triple", group: "private", room: "Room 13", occupancy: "Triple", sleeps: 3, rate: 990, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
-  { id: "r13-quad", group: "private", room: "Room 13", occupancy: "Quadruple", sleeps: 4, rate: 1200, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
+  { id: "r12-double", group: "private", room: "Room 12", occupancy: "Double", sleeps: 2, rate: 850, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
+  { id: "r13-single", group: "private", room: "Room 13", occupancy: "Single", sleeps: 1, rate: 550, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
+  { id: "r13-double", group: "private", room: "Room 13", occupancy: "Double", sleeps: 2, rate: 850, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
+  { id: "r13-triple", group: "private", room: "Room 13", occupancy: "Triple", sleeps: 3, rate: 990, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
+  { id: "r13-quad", group: "private", room: "Room 13", occupancy: "Quadruple", sleeps: 4, rate: 1200, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
 ];
+
+/** Tiers actually shown and bookable (owner round 6 pricing table). */
+export const VISIBLE_TIERS = ROOM_TIERS.filter((t) => !t.hidden);
 
 export const GROUP_LABELS: Record<RoomGroup, string> = {
   standard: "Standard rooms (1 to 5)",
-  private: "Private units (6, 7 and 11 to 13)",
+  private: "Private units (6 and 11 to 12)",
   shared: "Shared bathroom unit (8 to 10)",
   family: "Family unit",
 };
 
-// F. Day visits (per person, pool and entertainment area access)
-export const DAY_VISITS = [
-  { who: "Senior citizens", rate: 20 },
-  { who: "Children (up to 12 years)", rate: 20 },
-  { who: "Teenagers", rate: 30 },
-  { who: "Adults", rate: 50 },
+// F. Day visits: one flat entry fee per person (owner round 6), pool,
+// gardens and entertainment area access. The old tiered list (N$20 to N$50)
+// is replaced by this single rate.
+export const DAY_VISIT_RATE = 30;
+
+// Cooler box fees at the pool and entertainment area (owner round 6).
+export const COOLERS = [
+  { size: "Small cooler box", fee: 60 },
+  { size: "Big cooler box", fee: 100 },
 ];
 
-// G. Conference room
+// Bottle courtesy fee (owner round 6): loose bottles such as spirits or
+// whiskey brought in bags. First bottle is included; a courtesy surcharge
+// applies for every 2 additional bottles, N$60 to N$200 by volume.
+export const CORKAGE = {
+  range: "N$60 to N$200",
+  policy:
+    "Bringing your own bottles? The first bottle is included. A courtesy fee of N$60 to N$200, depending on volume and quantity, applies for every 2 additional bottles you bring onto the premises.",
+};
+
+// G. Conference room (owner round 6): seats 20 delegates comfortably,
+// expandable to 30 on request. N$450 per day or per event, drinking water
+// and a tea/coffee station included in the rate.
 export const CONFERENCE = {
-  capacity: 30,
+  standard: 20,
+  max: 30,
   rate: 450,
-  unitNote: "Per booking. Per day or per event: owner to confirm.",
+  unit: "Per day or per event",
+  includes: ["Complimentary drinking water", "Tea and coffee station"],
+};
+
+// Private Entertainment Area hire (owner round 6): the venue runs from
+// N$500 to N$2,000 depending on the setup, plus N$50 per person.
+export const ENTERTAINMENT_AREA = {
+  venueFrom: 500,
+  venueTo: 2000,
+  perPerson: 50,
 };
 
 // 4. VIP membership card

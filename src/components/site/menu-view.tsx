@@ -60,7 +60,7 @@ export function MenuView() {
           </h1>
           <p className="hero-rise mt-4 max-w-2xl text-lg leading-relaxed text-paper/85" style={{ "--i": 1 } as React.CSSProperties}>
             Every price below comes from our own printed menu, from a N$30 russian to the N$400 seafood platter.
-            The kitchen opens from 07:00 on Saturdays and Sundays.
+            The kitchen opens Monday to Saturday, from 09:30 or 10:00 depending on the day.
           </p>
           <div className="hero-rise mt-7 flex flex-wrap items-center gap-3" style={{ "--i": 2 } as React.CSSProperties}>
             <Link
@@ -95,7 +95,7 @@ export function MenuView() {
         <div className="mx-auto grid max-w-6xl gap-4 px-4 sm:grid-cols-3 md:px-6">
           {[
             { src: "/images/dish-samoosa.jpg", alt: "Golden samoosas with sauce and salad on a plate" },
-            { src: "/images/dish-matangara.jpg", alt: "Matangara stew served with white rice" },
+            { src: "/images/dish-matangara.jpg", alt: "Matangara and pap plated with cucumber and tomato" },
             { src: "/images/cocktail-blue.jpg", alt: "Blue cocktail from the Big Brothers bar" },
           ].map((p, i) => (
             <div key={p.src} className="photo-frame aspect-[4/3]" data-sc-in data-sc-stagger="70">

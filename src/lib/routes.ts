@@ -38,7 +38,7 @@ export const ROUTES: RouteInfo[] = [
     brand: "guesthouse",
     title: "Facilities & Functions | Big Brother Guesthouse, Usakos",
     description:
-      "Pool, lawn, thatched lapas, braai area, a conference room for 30 and day visits from N$20 at Big Brother Guesthouse, Plot 7, Usakos.",
+      "Pool, lawn, thatched lapas, braai area, a conference room for 20 to 30 and day visits at N$30 per person at Big Brother Guesthouse, Plot 7, Usakos.",
   },
   {
     key: "plot-7",

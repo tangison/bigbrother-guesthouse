@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteNav } from "@/components/site/nav";
 import { SiteFooter } from "@/components/site/footer";
 import { StickyActionBar } from "@/components/site/sticky-action-bar";
-import { RESTAURANT, HOLDINGS } from "@/lib/site-data";
+import { RESTAURANT, GUESTHOUSE, HOLDINGS } from "@/lib/site-data";
 
 /* The Restaurant is its own small website inside the main one: own nav,
  * footer, lime theme scope (.brand-restaurant), address, numbers and schema.
@@ -38,22 +38,10 @@ const jsonLd = {
     addressRegion: RESTAURANT.address.region,
     addressCountry: "NA",
   },
-  // Full hours from the owner's own restaurant page.
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "07:00",
-      closes: "22:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Saturday", "Sunday"],
-      opens: "08:00",
-      closes: "21:00",
-    },
-  ],
-  sameAs: [RESTAURANT.facebook],
+  // Opening hours: the owner's confirmed schedule is Monday to Saturday with
+  // a 09:30/10:00 open. Closing times are not confirmed, so no machine hours
+  // are published here (an invalid closes value would be worse than none).
+  sameAs: [GUESTHOUSE.facebook, GUESTHOUSE.instagram, GUESTHOUSE.tiktok],
 };
 
 export default function RestaurantLayout({ children }: { children: React.ReactNode }) {
