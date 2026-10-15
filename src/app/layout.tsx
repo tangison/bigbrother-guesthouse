@@ -16,7 +16,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.bigbrotherguesthouse.com"),
   title: {
     default: "Big Brother Guesthouse | Usakos Accommodation on the B2",
-    template: "%s | Big Brother",
+    /* No %s template: every route exports its own full title that already
+     * carries the brand, so a template only duplicated it
+     * ("... Usakos | Big Brother", 60+ chars, truncated in SERPs). */
   },
   description:
     "Home away from home at Plot 7 on the B2 in Usakos. Rooms from N$450, pools, lapa and garden, halfway between Windhoek and Swakopmund.",

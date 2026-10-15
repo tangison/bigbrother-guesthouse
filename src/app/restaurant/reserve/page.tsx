@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
+import { routeMetadata } from "@/lib/metadata";
 import { ReserveCard } from "@/components/site/reserve-card";
 import { RESTAURANT } from "@/lib/site-data";
 
-export const metadata: Metadata = {
-  title: "Reserve a Table | Big Brothers Restaurant, Usakos",
-  description:
-    "Reserve a table at Big Brothers Restaurant, corner of Theo-Ben Gurirab and Bismarck Street, Usakos. WhatsApp +264 81 302 9522 or email.",
-};
+export const metadata = routeMetadata("reserve", "/images/og-restaurant.jpg");
 
 export default function ReservePage() {
   return (

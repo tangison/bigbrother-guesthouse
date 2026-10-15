@@ -9,7 +9,7 @@ import { QuietFade } from "./motion";
 // the two businesses sit at different locations.
 const PHOTOS = [
   { src: "dish-samoosa", alt: "Golden samoosas with sauce and salad on a plate" },
-  { src: "dish-matangara", alt: "Matangara and pap plated with cucumber and tomato" },
+  { src: "dish-matangara", alt: "Matangara tripe in tomato gravy served with pap" },
   { src: "dish-feast", alt: "Family feast platter with pap, chicken and salads" },
   { src: "dish-braise", alt: "Slow braised meat with peppers and pap" },
   { src: "dish-steak", alt: "T-bone steak with chips and vegetables" },

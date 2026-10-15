@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { GUESTHOUSE, RESTAURANT, HOLDINGS, SOCIALS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
+import { LISTINGS } from "@/lib/nearby";
 import { DAY_VISIT_RATE, formatNad } from "@/lib/rates";
 import { SocialIcon } from "./social-icons";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -153,6 +154,43 @@ export function ContactView() {
           </Link>
           .
         </p>
+      </section>
+
+      {/* Verified third-party listings (Task 2-a, 15 Oct 2026). Only real,
+       * checked entries go here; Agoda, Booking.com and Airbnb carry no
+       * Big Brother listing and are deliberately absent. */}
+      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20" aria-label="Find us on other sites">
+        <h2 className="font-display text-2xl font-semibold tracking-[-0.01em] md:text-3xl">Find us on other sites.</h2>
+        <p className="mt-3 max-w-[62ch] leading-relaxed text-mut">
+          Besides our own pages here, these listings are ours and kept current:
+          reviews on TripAdvisor, bookings through SafariNow, and our pin on
+          Google Maps. Our registration lives in the Namibia Tourism Board&apos;s
+          own directory as well.
+        </p>
+        <ul className="mt-6 flex flex-wrap gap-3">
+          {LISTINGS.map((l) => (
+            <li key={l.name}>
+              <a
+                href={l.href}
+                rel="noopener"
+                target="_blank"
+                className="inline-block rounded-full border border-ink/25 px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-sand/60"
+              >
+                {l.name}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a
+              href={GUESTHOUSE.ntb.directory}
+              rel="noopener"
+              target="_blank"
+              className="inline-block rounded-full border border-ink/25 px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-sand/60"
+            >
+              Namibia Tourism Board directory
+            </a>
+          </li>
+        </ul>
       </section>
 
       {/* FAQ: plain-language answers, real facts, one tap to open */}

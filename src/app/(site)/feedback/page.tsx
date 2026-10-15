@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { FeedbackForm } from "@/components/site/feedback-form";
 import { GUESTHOUSE, RESTAURANT } from "@/lib/site-data";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Feedback: Compliments & Complaints | Big Brother, Usakos",
   description:
     "Praise, ideas and complaints go straight to the owner of Big Brother Guesthouse and Big Brothers Restaurant, Usakos, by WhatsApp or email.",
-};
+  path: "/feedback",
+});
 
 export default function FeedbackPage() {
   return (

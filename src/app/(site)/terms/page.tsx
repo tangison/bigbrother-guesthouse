@@ -1,15 +1,11 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { BIZ, RESTAURANT, wa } from "@/lib/site-data";
 
 const title = "Terms of Stay & Service | Big Brother Guesthouse, Usakos";
 const description =
   "The plain terms for staying at Big Brother Guesthouse, eating at Big Brothers Restaurant, and booking functions in Usakos, Namibia.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: "/terms" },
-};
+export const metadata = pageMetadata({ title, description, path: "/terms" });
 
 export default function TermsPage() {
   return (

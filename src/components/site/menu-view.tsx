@@ -95,7 +95,7 @@ export function MenuView() {
         <div className="mx-auto grid max-w-6xl gap-4 px-4 sm:grid-cols-3 md:px-6">
           {[
             { src: "/images/dish-samoosa.jpg", alt: "Golden samoosas with sauce and salad on a plate" },
-            { src: "/images/dish-matangara.jpg", alt: "Matangara and pap plated with cucumber and tomato" },
+            { src: "/images/dish-matangara.jpg", alt: "Matangara tripe in tomato gravy served with pap" },
             { src: "/images/cocktail-blue.jpg", alt: "Blue cocktail from the Big Brothers bar" },
           ].map((p, i) => (
             <div key={p.src} className="photo-frame aspect-[4/3]" data-sc-in data-sc-stagger="70">

@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { pageMetadata } from "@/lib/metadata";
 import { GUESTHOUSE, RESTAURANT, HOLDINGS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
 import { DAY_VISIT_RATE, VIP, formatNad } from "@/lib/rates";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Guest Info & FAQ | Big Brother Guesthouse, Usakos",
   description:
     "Usakos emergency numbers, directions, and honest answers about parking, breakfast, day visits and payment at Big Brother Guesthouse.",
-};
+  path: "/guest-info",
+});
 
 /* Public local contacts only (hospital, police, town council, taxi). The
  * internal staff and supplier directory is never published. The Station

@@ -20,7 +20,7 @@ export const ROUTES: RouteInfo[] = [
     brand: "guesthouse",
     title: "Big Brother Guesthouse | Usakos Accommodation on the B2",
     description:
-      "Home away from home at Plot 7 on the B2 in Usakos, halfway between Windhoek and Swakopmund. Rooms from N$450, secure parking, pools and a garden.",
+      "Home away from home on the B2 in Usakos, halfway to Swakopmund. Rooms from N$450, restaurant and bar on site, pools, lapa and secure parking.",
   },
   {
     key: "rooms",

@@ -1,13 +1,9 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { routeMetadata } from "@/lib/metadata";
 import { GUESTHOUSE } from "@/lib/site-data";
 
-export const metadata: Metadata = {
-  title: "Plot 7, Laaste Begin | Big Brother Guesthouse, Usakos",
-  description:
-    "Find us at Plot 7, Laaste Begin, Usakos South, on the B2 opposite the Shell station: 147 km from Swakopmund, 210 km from Windhoek.",
-};
+export const metadata = routeMetadata("plot-7", "/images/og-guesthouse.jpg");
 
 /* Plot 7: the guesthouse's own dedicated page (master file requires it).
  * Every fact here is from the owner's contact data and the live site. */

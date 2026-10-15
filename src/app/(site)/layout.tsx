@@ -2,6 +2,7 @@ import { SiteNav } from "@/components/site/nav";
 import { SiteFooter } from "@/components/site/footer";
 import { StickyActionBar } from "@/components/site/sticky-action-bar";
 import { GUESTHOUSE, HOLDINGS } from "@/lib/site-data";
+import { LISTINGS } from "@/lib/nearby";
 
 const description =
   "Home away from home at Plot 7 on the B2 in Usakos, halfway between Windhoek and Swakopmund. Rooms from N$450, pools, lapa and garden, secure parking.";
@@ -10,6 +11,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
   name: GUESTHOUSE.name,
+  // The spaced two-word form is how press and OTAs sometimes spell it
+  // (New Era, SafariNow slug). Alternate names help search consolidate.
+  alternateName: "Big Brother Guest House",
   description,
   url: `${HOLDINGS.site}/`,
   telephone: [GUESTHOUSE.phoneStayDisplay, GUESTHOUSE.phoneStay2Display],
@@ -34,7 +38,14 @@ const jsonLd = {
     name: "Namibia Tourism Board registration",
     value: GUESTHOUSE.ntb.number,
   },
-  sameAs: [GUESTHOUSE.facebook, GUESTHOUSE.instagram, GUESTHOUSE.tiktok],
+  sameAs: [
+    GUESTHOUSE.facebook,
+    GUESTHOUSE.instagram,
+    GUESTHOUSE.tiktok,
+    // Official NTB directory entry + the verified TripAdvisor listing.
+    GUESTHOUSE.ntb.directory,
+    LISTINGS.find((l) => l.name === "TripAdvisor")?.href,
+  ].filter((u): u is string => Boolean(u)),
 };
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {

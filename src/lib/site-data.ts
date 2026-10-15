@@ -47,6 +47,11 @@ export const GUESTHOUSE = {
     act: "Namibia Tourism Board Act, 2000 (Act No. 21 of 2000), Section 20",
     approved: "10 March 2017",
     certificate: "9 May 2017",
+    // The board's own public establishment listing (visitnamibia.com.na is
+    // the NTB's directory; verified live 15 Oct 2026). The old
+    // namibiatourism.com.na domain currently serves a bare hosting
+    // placeholder, so it is not linked anywhere.
+    directory: "https://visitnamibia.com.na/directory/big_brother_guesthouse/",
   },
   // Official socials, owner supplied (round 6). Canonical profile URLs
   // resolved from the owner's own share links.

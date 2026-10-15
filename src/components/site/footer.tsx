@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { GUESTHOUSE, RESTAURANT, HOLDINGS, SOCIALS, wa, GUESTHOUSE_WA_GREETING, type Brand } from "@/lib/site-data";
+import { LISTINGS } from "@/lib/nearby";
 import { GUESTHOUSE_ROUTES, RESTAURANT_ROUTES, LEGAL_ROUTES } from "@/lib/routes";
 import { SocialIcon } from "./social-icons";
 
@@ -164,22 +165,41 @@ export function SiteFooter({ brand }: { brand: Brand }) {
         </div>
 
         {/* NTB registration: from the owner's own certificate, with the
-            board's official site linked for verification. */}
+            board's own directory entry linked for verification (the
+            namibiatourism.com.na domain currently serves a hosting
+            placeholder, verified 15 Oct 2026). */}
         {!isEat && (
           <div className="mt-10 border-t border-paper/15 pt-6 text-xs leading-relaxed text-paper/60">
             <p className="font-semibold text-paper/80">Registered establishment</p>
             <p className="mt-1 max-w-2xl">
               Big Brother Guesthouse is registered with the Namibia Tourism Board as a Guesthouse.
               Registration No. {GUESTHOUSE.ntb.number}, approved {GUESTHOUSE.ntb.approved}, certificate
-              awarded {GUESTHOUSE.ntb.certificate}. Verify registered status with the board at{" "}
+              awarded {GUESTHOUSE.ntb.certificate}. See our entry in the board&apos;s own directory:{" "}
               <a
                 className="underline decoration-paper/40 underline-offset-4 hover:text-paper"
-                href="https://namibiatourism.com.na/"
+                href={GUESTHOUSE.ntb.directory}
                 rel="noopener"
               >
-                namibiatourism.com.na
+                visitnamibia.com.na/directory/big_brother_guesthouse
               </a>
               .
+            </p>
+            {/* Verified third-party listings (Task 2-a, 15 Oct 2026). Agoda,
+             * Booking.com and Airbnb carry no Big Brother listing, so none
+             * are shown. */}
+            <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1">
+              <span className="font-semibold text-paper/80">Also listed on</span>
+              {LISTINGS.map((l) => (
+                <a
+                  key={l.name}
+                  href={l.href}
+                  rel="noopener"
+                  target="_blank"
+                  className="underline decoration-paper/40 underline-offset-4 hover:text-paper"
+                >
+                  {l.name}
+                </a>
+              ))}
             </p>
           </div>
         )}

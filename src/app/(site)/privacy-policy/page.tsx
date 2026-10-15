@@ -1,15 +1,11 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { BIZ } from "@/lib/site-data";
 
 const title = "Privacy Policy | Big Brother Guesthouse, Usakos";
 const description =
   "How Big Brother Holdings in Usakos, Namibia handles the personal details you share when you call, WhatsApp, email or visit us.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: "/privacy-policy" },
-};
+export const metadata = pageMetadata({ title, description, path: "/privacy-policy" });
 
 export default function PrivacyPolicyPage() {
   return (

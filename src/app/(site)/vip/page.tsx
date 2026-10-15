@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
+import { routeMetadata } from "@/lib/metadata";
 import { VipJoin } from "@/components/site/vip-join";
 import { VIP, formatNad } from "@/lib/rates";
 
-export const metadata: Metadata = {
-  title: "VIP Membership Card | Big Brother Guesthouse, Usakos",
-  description:
-    "Pay N$1,200 once a year and get 20 percent off accommodation every time you book at Big Brother Guesthouse, Usakos.",
-};
+export const metadata = routeMetadata("vip", "/images/og-guesthouse.jpg");
 
 export default function VipPage() {
   return (

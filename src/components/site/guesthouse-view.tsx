@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { BIZ, wa } from "@/lib/site-data";
+import { NEARBY } from "@/lib/nearby";
 
 /* Guesthouse · editorial fold + asymmetric stay split. The client's real
  * logo anchors the hero (it carries the name and tagline, drawn once, used
@@ -178,9 +179,10 @@ export function GuesthouseView() {
               Rates, the honest way.
             </h2>
             <p className="mt-4 max-w-xl leading-relaxed text-paper/80">
-              Prices may vary by season, room, and group size, so we do not publish fixed numbers
-              here. Send us a WhatsApp with your dates and group, and you will get today&rsquo;s
-              real rate within minutes.
+              Every room and every rate sits on one honest price list, the same
+              numbers the booking card uses: standard rooms from N$450, private
+              units, and the family unit that sleeps eight. See the full table,
+              or send a WhatsApp with your dates and we confirm within minutes.
             </p>
           </div>
           <div className="grid gap-3">
@@ -188,7 +190,7 @@ export function GuesthouseView() {
               href={wa(BIZ.guesthouse.phone1, "Hello Big Brother Guesthouse, please send me your current rates. My dates are: ")}
               className="rounded-full bg-paper px-6 py-3.5 text-center font-semibold text-ink transition-colors hover:bg-leaf"
             >
-              WhatsApp for today&rsquo;s rates
+              WhatsApp us your dates
             </a>
             <a
               href={`tel:${BIZ.guesthouse.phone1}`}
@@ -197,12 +199,80 @@ export function GuesthouseView() {
               Call {BIZ.guesthouse.phone1Display}
             </a>
             <Link
+              href="/rooms"
+              className="px-2 py-1 text-center text-sm text-paper/70 underline underline-offset-4 transition-colors hover:text-paper"
+            >
+              See the full rates table
+            </Link>
+            <Link
               href="/facilities"
               className="px-2 py-1 text-center text-sm text-paper/70 underline underline-offset-4 transition-colors hover:text-paper"
             >
-              See facilities & functions
+              See facilities &amp; functions
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Fold 5: when we are full. The owner asked for a section about the
+       * competitors (15 Oct 2026). Real, checked places only, grouped by
+       * distance, each link verified the day it was written. Honest for
+       * guests, good for Usakos: everybody books ahead, everybody wins. */}
+      {/* Fold 5 anchor is linked from the booking page. */}
+      <section id="fully-booked" className="bg-cream" aria-label="Where to stay when we are full">
+        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-ember-deep">Usakos and around</p>
+          <h2 className="mt-3 max-w-[26ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
+            Fully booked? Here is where we send people.
+          </h2>
+          <p className="mt-4 max-w-[62ch] leading-relaxed text-mut">
+            Usakos is a small town and the beds in it are few. On long weekends, mine
+            shift changes and Spitzkoppe season, every room in the district goes. If
+            we are full, these are the places we genuinely send people: the old hotel
+            in town, a few simple self-catering spots, and farms and lodges within
+            half an hour of our gate. Wherever you land, book ahead, and keep our
+            number for the next time through.
+          </p>
+          {([
+            {
+              area: "In town" as const,
+              note: "A few minutes by car from our gate, walking distance from the station.",
+            },
+            {
+              area: "Nearby farms" as const,
+              note: "Green riverine farms and eco camps five to fifteen minutes out of town.",
+            },
+            {
+              area: "Worth the drive" as const,
+              note: "Lodges and cabins up to about half an hour away, towards the Erongo mountains and Spitzkoppe.",
+            },
+          ]).map((group) => (
+            <div key={group.area} className="mt-10">
+              <h3 className="font-display text-xl font-semibold md:text-2xl">{group.area}</h3>
+              <p className="mt-1 text-sm text-mut">{group.note}</p>
+              <div className="mt-5 grid gap-4 md:grid-cols-3">
+                {NEARBY.filter((n) => n.area === group.area).map((n) => (
+                  <article key={n.name} className="flex flex-col rounded-2xl border border-line bg-paper p-6">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ember-deep">{n.type}</p>
+                    <h4 className="mt-2 font-display text-lg font-semibold">{n.name}</h4>
+                    <p className="mt-2 flex-1 text-[15px] leading-relaxed text-mut">{n.blurb}</p>
+                    <a
+                      className="mt-4 inline-block font-semibold underline decoration-ember decoration-2 underline-offset-8 transition-colors hover:text-ember-deep"
+                      href={n.href}
+                      rel="noopener"
+                      target="_blank"
+                    >
+                      {n.linkLabel}
+                    </a>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))}
+          <p className="mt-8 text-sm leading-relaxed text-mut">
+            Every place above was checked by hand before it went up. Tell us how your
+            stay was, and it stays on the list.
+          </p>
         </div>
       </section>
     </>

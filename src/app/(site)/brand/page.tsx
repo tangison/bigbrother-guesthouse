@@ -1,16 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { pageMetadata } from "@/lib/metadata";
 import { ROUTES } from "@/lib/routes";
 
 const title = "Brand Book | Big Brother Guesthouse, Usakos";
 const description =
   "The Big Brother Holdings brand system: colours sampled from our own logos, the Fraunces and Outfit type pairing, and how our marks may be used.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: "/brand" },
-};
+export const metadata = pageMetadata({ title, description, path: "/brand" });
 
 const COLORS = [
   { name: "Ink", hex: "#1B1712", use: "Headings, dark grounds, footer", cls: "bg-ink", light: false },

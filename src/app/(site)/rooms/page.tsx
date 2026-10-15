@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { routeMetadata } from "@/lib/metadata";
 import { Check } from "lucide-react";
 import { RoomCards } from "@/components/site/room-cards";
 import { PaymentCard } from "@/components/site/payment-card";
@@ -13,11 +13,7 @@ import {
 } from "@/lib/rates";
 import { GUESTHOUSE } from "@/lib/site-data";
 
-export const metadata: Metadata = {
-  title: "Rooms & Rates | Big Brother Guesthouse, Usakos",
-  description:
-    "Every room and every rate at Big Brother Guesthouse, Usakos: standard rooms from N$450, private units, a family unit for 8, and the conference room.",
-};
+export const metadata = routeMetadata("rooms", "/images/og-guesthouse.jpg");
 
 /* Rooms and rates. One rule: every number here comes from the owner's master
  * price list (rates.ts), the same file the booking calculator reads. The old

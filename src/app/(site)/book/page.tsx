@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { BookingCard } from "@/components/site/booking-card";
 import { GUESTHOUSE } from "@/lib/site-data";
 import { GUESTHOUSE_ROUTES } from "@/lib/routes";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Book a Room | Big Brother Guesthouse, Usakos",
   description:
     "Book a room at Big Brother Guesthouse, Plot 7, Usakos: pick your dates and room, see the estimate, and send it on WhatsApp or email.",
-};
+  path: "/book",
+});
 
 export default function BookPage() {
   return (
@@ -37,6 +38,13 @@ export default function BookPage() {
             Reception: {GUESTHOUSE.phoneStayDisplay}
           </span>
         </div>
+        <p className="mt-4 text-sm text-mut">
+          If we are full for your dates, see{" "}
+          <a href="/guesthouse#fully-booked" className="font-semibold underline underline-offset-4 hover:text-ink">
+            where we send people in and around Usakos
+          </a>
+          .
+        </p>
       </section>
     </>
   );

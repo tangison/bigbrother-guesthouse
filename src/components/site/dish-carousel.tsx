@@ -8,7 +8,8 @@ import useEmblaCarousel from "embla-carousel-react";
  * A3 menu (v3). Wheel prices stay untouched. */
 
 const DISHES = [
-  { src: "/images/dish-traditional.jpg", alt: "Pap with matangara and spinach", cap: "Matangara & pap", price: "N$120" },
+  { src: "/images/dish-matangara.jpg", alt: "Matangara tripe in tomato gravy served with pap", cap: "Matangara & pap", price: "N$120" },
+  { src: "/images/dish-mopani.jpg", alt: "Mopani worms with pap, tomato and cucumber on the side", cap: "Mopani worms & pap", price: "N$100" },
   { src: "/images/dish-steak.jpg", alt: "T-bone steak with chips and vegetables", cap: "T-bone & chips", price: "N$230" },
   { src: "/images/dish-pizza.jpg", alt: "Freshly baked pizza from the Big Brothers oven", cap: "Pizza", price: "from N$190" },
   { src: "/images/dish-wings.jpg", alt: "Grilled chicken wings with lemon and tomato", cap: "Chicken wings", price: "from N$80" },

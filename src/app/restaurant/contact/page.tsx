@@ -1,13 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { RESTAURANT, wa } from "@/lib/site-data";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact the Restaurant | Big Brothers, Usakos Town Centre",
   description:
     "Big Brothers Restaurant: corner of Theo-Ben Gurirab and Bismarck Street, Usakos town centre. Call or WhatsApp +264 81 302 9522.",
-};
+  path: "/restaurant/contact",
+  image: "/images/og-restaurant.jpg",
+});
 
 export default function RestaurantContactPage() {
   return (
