@@ -135,7 +135,7 @@ export function FacilitiesView() {
                 <div className="photo-frame aspect-[4/3]">
                   <Image
                     src="/images/conference-room-set.jpg"
-                    alt="The conference room set with tables and chairs"
+                    alt="The conference room at Plot 7 set up for delegates: tables with white cloths, chairs and windows onto the garden"
                     width={1200}
                     height={900}
                     loading="lazy"

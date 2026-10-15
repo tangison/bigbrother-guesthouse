@@ -32,6 +32,9 @@ export function FeedbackForm() {
   const subject = `${type} for ${place} - Big Brother`;
   const messageText = [`Hello Big Brother, guest feedback:`, "", ...lines].join("\n");
   const phone = toEat ? RESTAURANT.phoneEatWhatsapp : GUESTHOUSE.phoneStayWhatsapp;
+  // Owner round 8: restaurant feedback goes to the restaurant email, never
+  // to the guesthouse inbox.
+  const feedbackEmail = toEat ? RESTAURANT.email : HOLDINGS.email;
 
   return (
     <div className="rounded-2xl border border-line bg-paper p-5 md:p-8">
@@ -131,7 +134,7 @@ export function FeedbackForm() {
           Send on WhatsApp
         </a>
         <a
-          href={`mailto:${HOLDINGS.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageText)}`}
+          href={`mailto:${feedbackEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageText)}`}
           onClick={() => setSent(true)}
           className="flex min-h-[48px] items-center justify-center rounded-full border border-ink/25 px-6 text-center font-semibold text-ink transition-colors hover:bg-sand/60"
         >

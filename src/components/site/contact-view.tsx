@@ -72,9 +72,15 @@ export function ContactView() {
                 </a>
               </li>
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
-                <span className="text-paper/60">Email</span>
+                <span className="text-paper/60">Email · guesthouse</span>
                 <a href={`mailto:${HOLDINGS.email}`} className="font-semibold underline underline-offset-4">
                   {HOLDINGS.email}
+                </a>
+              </li>
+              <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
+                <span className="text-paper/60">Email · restaurant</span>
+                <a href={`mailto:${RESTAURANT.email}`} className="font-semibold underline underline-offset-4">
+                  {RESTAURANT.email}
                 </a>
               </li>
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
@@ -85,12 +91,20 @@ export function ContactView() {
           </div>
 
           <div className="hero-rise mt-8 flex flex-wrap items-center gap-3" style={{ "--i": 3 } as React.CSSProperties}>
+            {/* Owner round 8: both stay lines tap to call AND tap to WhatsApp. */}
             <a
               href={wa(GUESTHOUSE.phoneStayWhatsapp, GUESTHOUSE_WA_GREETING)}
               rel="noopener"
               className="rounded-full bg-paper px-6 py-3 font-semibold text-ink transition-colors hover:bg-ember"
             >
-              Message us on WhatsApp
+              WhatsApp {GUESTHOUSE.phoneStayDisplay}
+            </a>
+            <a
+              href={wa(GUESTHOUSE.phoneStay2Whatsapp, GUESTHOUSE_WA_GREETING)}
+              rel="noopener"
+              className="rounded-full border border-paper/40 px-6 py-3 font-semibold text-paper transition-colors hover:bg-paper/10"
+            >
+              WhatsApp {GUESTHOUSE.phoneStay2Display}
             </a>
             <a
               href={`mailto:${HOLDINGS.email}`}
@@ -156,16 +170,17 @@ export function ContactView() {
         </p>
       </section>
 
-      {/* Verified third-party listings (Task 2-a, 15 Oct 2026). Only real,
-       * checked entries go here; Agoda, Booking.com and Airbnb carry no
-       * Big Brother listing and are deliberately absent. */}
+      {/* Booking and listing links (owner round 8, 15 Oct 2026): one chip
+       * per platform, every one opening in a new tab. Booking.com and Agoda
+       * carry no direct Big Brother listing we could verify on 15 Oct 2026,
+       * so they point at the platform's own search for the guesthouse. */}
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20" aria-label="Find us on other sites">
         <h2 className="font-display text-2xl font-semibold tracking-[-0.01em] md:text-3xl">Find us on other sites.</h2>
         <p className="mt-3 max-w-[62ch] leading-relaxed text-mut">
-          Besides our own pages here, these listings are ours and kept current:
-          reviews on TripAdvisor, bookings through SafariNow, and our pin on
-          Google Maps. Our registration lives in the Namibia Tourism Board&apos;s
-          own directory as well.
+          Every booking and review platform we are on, in one place: SafariNow takes
+          bookings, TripAdvisor carries the guest reviews, Google Maps holds our pin, and
+          Booking.com and Agoda open their search for us. Our registration lives in the
+          Namibia Tourism Board&apos;s own directory as well.
         </p>
         <ul className="mt-6 flex flex-wrap gap-3">
           {LISTINGS.map((l) => (

@@ -106,6 +106,13 @@ export function SiteFooter({ brand }: { brand: Brand }) {
                   href={`tel:${GUESTHOUSE.phoneStay}`}
                 >
                   Stay (MTC): {GUESTHOUSE.phoneStayDisplay}
+                </a>{" "}
+                <a
+                  className="text-xs text-paper/60 underline decoration-paper/40 underline-offset-4 hover:text-paper"
+                  href={wa(GUESTHOUSE.phoneStayWhatsapp, GUESTHOUSE_WA_GREETING)}
+                  rel="noopener"
+                >
+                  WhatsApp
                 </a>
               </li>
               <li>
@@ -114,6 +121,13 @@ export function SiteFooter({ brand }: { brand: Brand }) {
                   href={`tel:${GUESTHOUSE.phoneStay2}`}
                 >
                   Stay (Telecom): {GUESTHOUSE.phoneStay2Display}
+                </a>{" "}
+                <a
+                  className="text-xs text-paper/60 underline decoration-paper/40 underline-offset-4 hover:text-paper"
+                  href={wa(GUESTHOUSE.phoneStay2Whatsapp, GUESTHOUSE_WA_GREETING)}
+                  rel="noopener"
+                >
+                  WhatsApp
                 </a>
               </li>
               {!isEat ? (
@@ -129,9 +143,9 @@ export function SiteFooter({ brand }: { brand: Brand }) {
               <li>
                 <a
                   className="underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
-                  href={`mailto:${HOLDINGS.email}`}
+                  href={`mailto:${isEat ? RESTAURANT.email : HOLDINGS.email}`}
                 >
-                  {HOLDINGS.email}
+                  {isEat ? RESTAURANT.email : HOLDINGS.email}
                 </a>
               </li>
             </ul>
@@ -184,9 +198,9 @@ export function SiteFooter({ brand }: { brand: Brand }) {
               </a>
               .
             </p>
-            {/* Verified third-party listings (Task 2-a, 15 Oct 2026). Agoda,
-             * Booking.com and Airbnb carry no Big Brother listing, so none
-             * are shown. */}
+            {/* Booking and listing links (owner round 8): includes Booking.com
+             * and Agoda, which point at each platform's own search for the
+             * guesthouse until the owner sends the direct listing URLs. */}
             <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1">
               <span className="font-semibold text-paper/80">Also listed on</span>
               {LISTINGS.map((l) => (

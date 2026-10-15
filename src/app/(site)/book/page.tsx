@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/metadata";
 import { BookingCard } from "@/components/site/booking-card";
 import { GUESTHOUSE } from "@/lib/site-data";
+import { LISTINGS } from "@/lib/nearby";
 import { GUESTHOUSE_ROUTES } from "@/lib/routes";
 
 export const metadata = pageMetadata({
@@ -45,6 +46,36 @@ export default function BookPage() {
           </a>
           .
         </p>
+
+        {/* Owner round 8: a button for every platform on his list, each one
+         * opening in a new tab. Booking.com and Agoda point at the
+         * platform's own search for the guesthouse (no direct listing was
+         * verifiable on 15 Oct 2026); the owner's direct URLs slot straight
+         * into nearby.ts when he sends them. */}
+        <div className="mt-10 rounded-2xl border border-line bg-cream p-6 md:p-8">
+          <h2 className="font-display text-xl font-semibold tracking-[-0.01em]">
+            Prefer to book or review us elsewhere?
+          </h2>
+          <p className="mt-2 max-w-[58ch] text-sm leading-relaxed text-mut">
+            Every button opens that platform in a new tab. It is the same family behind all of
+            them, and our own site always carries today&apos;s rate first.
+          </p>
+          <ul className="mt-4 flex flex-wrap gap-3">
+            {LISTINGS.map((l) => (
+              <li key={l.name}>
+                <a
+                  href={l.href}
+                  rel="noopener"
+                  target="_blank"
+                  className="inline-block rounded-full border border-ink/25 bg-paper px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-sand/60"
+                >
+                  {l.name}
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
     </>
   );

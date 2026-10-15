@@ -19,13 +19,15 @@ export const GUESTHOUSE = {
   tagline: "Home away from home",
   // Stay lines, owner instruction (round 6): both lines visible everywhere.
   // phoneStay is the MTC mobile line and the WhatsApp line; phoneStay2 is
-  // the Telecom line. The master file's other old lines (081 264 7607,
-  // 081 645 6442) are still not displayed.
+  // the Telecom line. Owner round 8 (15 Oct 2026): "replace any number
+  // ending in 9 with the correct one ending in 6" - the Telecom line is
+  // +264 85 264 7606, and both lines get click-to-call AND click-to-WhatsApp.
   phoneStay: "+264812647606",
   phoneStayDisplay: "+264 81 264 7606",
   phoneStayWhatsapp: "264812647606",
-  phoneStay2: "+264852647609",
-  phoneStay2Display: "+264 85 264 7609",
+  phoneStay2: "+264852647606",
+  phoneStay2Display: "+264 85 264 7606",
+  phoneStay2Whatsapp: "264852647606",
   // Deprecated: kept only so old imports still compile. Do not display.
   phoneSecondary: "+264812647606",
   phoneSecondaryDisplay: "+264 81 264 7606",
@@ -74,8 +76,12 @@ export const RESTAURANT = {
   phoneEat: "+264813029522",
   phoneEatDisplay: "+264 81 302 9522",
   phoneEatWhatsapp: "264813029522",
-  // Restaurant's own email from the old site's restaurant page.
-  email: "bigbrothersrestaurant@gmail.com",
+  // Restaurant's own email. Owner round 8 (15 Oct 2026): proposed
+  // restaurant@bigbrotherguesthouse.com, to be confirmed by the owner. The
+  // guesthouse email (bigbrotherguest@gmail.com) must never appear in the
+  // restaurant section. NOTE for the owner: this mailbox must exist on the
+  // domain (mail setup or forwarding) before mail sent here lands anywhere.
+  email: "restaurant@bigbrotherguesthouse.com",
   address: {
     street: "Corner of Theo-Ben Gurirab Street and Bismarck Street",
     area: "Usakos town centre",

@@ -100,21 +100,38 @@ export const NEARBY: NearbyStay[] = [
   },
 ];
 
-// Verified third-party listings for the guesthouse (Task 2-a, 15 Oct 2026).
-// Agoda, Booking.com, Airbnb and Lekkeslaap were checked and carry no
-// Big Brother listing, so none are shown. SafariNow's public www host
-// redirects to an agency; the office host is the verified bookable page.
+// Booking and listing links (owner round 8, 15 Oct 2026): a button for each
+// of the owner's list, all opening in a new tab. Verified 15 Oct 2026:
+// SafariNow www host serves the live bookable page; Google Maps is the
+// official Maps-URL format to the verified GBP pin; TripAdvisor is the
+// property page. Booking.com and Agoda: research (worklog Task 2-a) found
+// NO direct Big Brother listing on either platform on 15 Oct 2026, so per
+// the owner's instruction these go to the platform's own search for the
+// guesthouse - they always resolve, and surface the listing as soon as it
+// exists. Owner: send the direct listing URLs and they get swapped in.
 export const LISTINGS = [
   {
-    name: "TripAdvisor",
-    href: "https://www.tripadvisor.com/Hotel_Review-g1182990-d11826846-Reviews-Big_Brother_Guesthouse_Usakos-Usakos_Erongo_Region.html",
+    name: "Booking.com",
+    href: "https://www.booking.com/searchresults.html?ss=Big+Brother+Guesthouse+Usakos+Namibia",
   },
   {
     name: "SafariNow",
-    href: "https://office.safarinow.com/go/big-brother-guest-house",
+    href: "https://www.safarinow.com/go/big-brother-guest-house",
   },
   {
     name: "Google Maps",
     href: "https://www.google.com/maps/search/?api=1&query=Big+Brother+Guesthouse+Usakos",
+  },
+  {
+    name: "Agoda",
+    href: "https://www.agoda.com/search?textToSearch=Big+Brother+Guesthouse+Usakos",
+  },
+  {
+    name: "Our website",
+    href: "https://www.bigbrotherguesthouse.com",
+  },
+  {
+    name: "TripAdvisor",
+    href: "https://www.tripadvisor.com/Hotel_Review-g1182990-d11826846-Reviews-Big_Brother_Guesthouse_Usakos-Usakos_Erongo_Region.html",
   },
 ];

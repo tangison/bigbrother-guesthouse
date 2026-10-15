@@ -16,7 +16,7 @@ export type RoomTier = {
   bathroom: string;
   amenities: string;
   badge?: string; // short highlight, e.g. Self-Catering
-  hidden?: boolean; // true = not displayed, not bookable (owner round 6)
+  hidden?: boolean; // true = not displayed, not bookable (round 8: none hidden)
 };
 
 const SHARED_KITCHEN =
@@ -38,13 +38,15 @@ export const ROOM_TIERS: RoomTier[] = [
   // 5 en-suite).
   { id: "family", group: "family", room: "Family unit (Rooms 1 to 5)", occupancy: "Sleeps up to 8 guests across 5 rooms", sleeps: 8, rate: 3050, badge: "Self-Catering", bathroom: "Rooms 1 to 4 share bathroom facilities. Room 5 has its own private en-suite bathroom", amenities: "The whole standard wing booked as one house. Self-catering kitchen: deep freezer, fridge, microwave, coffee corner, stove" },
 
-  // C. Private units. Owner round 6 pricing table lists Room 6 (single or
-  // double, double N$800). Room 7 is not in the round 6 table: hidden from
-  // display and booking, kept here so the data stays honest and reversible.
+  // C. Private units. Rooms 6 and 7, both single N$500 / double N$800.
+  // Owner round 8 (15 Oct 2026): "the previous rooms were fine, I do not
+  // know why you made the 12 if they are thirteen" - Room 7 was missing
+  // from the round 6 table (the same cut-off that hid Room 13), so it is
+  // shown again at the master poster's rate (master prompt section C).
   { id: "r6-single", group: "private", room: "Room 6", occupancy: "Single", sleeps: 1, rate: 500, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
   { id: "r6-double", group: "private", room: "Room 6", occupancy: "Double", sleeps: 2, rate: 800, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
-  { id: "r7-single", group: "private", room: "Room 7", occupancy: "Single", sleeps: 1, rate: 500, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
-  { id: "r7-double", group: "private", room: "Room 7", occupancy: "Double", sleeps: 2, rate: 800, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
+  { id: "r7-single", group: "private", room: "Room 7", occupancy: "Single", sleeps: 1, rate: 500, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
+  { id: "r7-double", group: "private", room: "Room 7", occupancy: "Double", sleeps: 2, rate: 800, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
 
   // D. Shared bathroom unit: rooms 8 to 10
   { id: "r8-single", group: "shared", room: "Room 8", occupancy: "Single", sleeps: 1, rate: 450, bathroom: "Shared bathroom", amenities: "Aircon, TV, fridge in the room" },
@@ -54,25 +56,31 @@ export const ROOM_TIERS: RoomTier[] = [
   { id: "r10-single", group: "shared", room: "Room 10", occupancy: "Single", sleeps: 1, rate: 500, bathroom: "Shared bathroom", amenities: "Aircon, TV, fridge in the room" },
   { id: "r10-twin", group: "shared", room: "Room 10", occupancy: "Shareable (twin beds)", sleeps: 2, rate: 750, bathroom: "Shared bathroom", amenities: "Aircon, TV, fridge in the room" },
 
-  // E. Private units. Owner round 6 pricing table lists Room 11 (single and
-  // double) and Room 12 (single only). Rooms 13's tiers are not in the round 6
-  // table: hidden from display and booking, kept for reversibility.
+  // E. Private units 11 to 13. Owner round 8 (15 Oct 2026): Rooms 11 and 12
+  // are N$550 single / N$850 double, and Room 13 was cut off in the round 6
+  // rate sheet and "must appear in full, with nothing cut off": single N$550,
+  // double N$850, triple N$990, quadruple N$1,200. Verified against the
+  // master poster transcription (master prompt section E) - identical.
+  // Description and inclusions for Room 13 come from the same poster line:
+  // Fridge, TV, Aircon, Microwave, Coffee Corner, Own Private Bathroom and
+  // Kitchen Corner.
   { id: "r11-single", group: "private", room: "Room 11", occupancy: "Single", sleeps: 1, rate: 550, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
   { id: "r11-double", group: "private", room: "Room 11", occupancy: "Double", sleeps: 2, rate: 850, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
   { id: "r12-single", group: "private", room: "Room 12", occupancy: "Single", sleeps: 1, rate: 550, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
-  { id: "r12-double", group: "private", room: "Room 12", occupancy: "Double", sleeps: 2, rate: 850, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
-  { id: "r13-single", group: "private", room: "Room 13", occupancy: "Single", sleeps: 1, rate: 550, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
-  { id: "r13-double", group: "private", room: "Room 13", occupancy: "Double", sleeps: 2, rate: 850, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
-  { id: "r13-triple", group: "private", room: "Room 13", occupancy: "Triple", sleeps: 3, rate: 990, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
-  { id: "r13-quad", group: "private", room: "Room 13", occupancy: "Quadruple", sleeps: 4, rate: 1200, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner", hidden: true },
+  { id: "r12-double", group: "private", room: "Room 12", occupancy: "Double", sleeps: 2, rate: 850, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
+  { id: "r13-single", group: "private", room: "Room 13", occupancy: "Single", sleeps: 1, rate: 550, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
+  { id: "r13-double", group: "private", room: "Room 13", occupancy: "Double", sleeps: 2, rate: 850, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
+  { id: "r13-triple", group: "private", room: "Room 13", occupancy: "Triple", sleeps: 3, rate: 990, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
+  { id: "r13-quad", group: "private", room: "Room 13", occupancy: "Quadruple", sleeps: 4, rate: 1200, bathroom: "Own private bathroom", amenities: "Fridge, TV, aircon, microwave, coffee corner, kitchen corner" },
 ];
 
-/** Tiers actually shown and bookable (owner round 6 pricing table). */
+/** Tiers actually shown and bookable. Owner round 8 restored the full
+ * thirteen-room list: Room 7, Room 12 double and all four Room 13 tiers. */
 export const VISIBLE_TIERS = ROOM_TIERS.filter((t) => !t.hidden);
 
 export const GROUP_LABELS: Record<RoomGroup, string> = {
   standard: "Standard rooms (1 to 5)",
-  private: "Private units (6 and 11 to 12)",
+  private: "Private units (6, 7 and 11 to 13)",
   shared: "Shared bathroom unit (8 to 10)",
   family: "Family unit",
 };

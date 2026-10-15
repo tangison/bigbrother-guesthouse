@@ -185,6 +185,22 @@ export function RestaurantView() {
               In the middle of Usakos, walking distance from the town shops. The guesthouse, Big Brother
               Guesthouse, sits apart at Plot 7 on the B2.
             </p>
+            {/* Owner round 8: the printed-menu QR, verified to decode to
+             * /restaurant/menu exactly. White card = the quiet margin. */}
+            <div className="mt-6 rounded-xl bg-paper p-5 text-center">
+              <Image
+                src="/images/qr-restaurant-menu.png"
+                alt="QR code: scanning it opens the full Big Brothers Restaurant menu page with every dish and price"
+                width={720}
+                height={720}
+                className="mx-auto h-44 w-44"
+                sizes="176px"
+              />
+              <p className="mt-3 font-display text-lg font-semibold text-ink">Scan for our full menu</p>
+              <p className="mt-1 text-xs leading-relaxed text-mut">
+                Opens the menu page on any phone: every dish and every price.
+              </p>
+            </div>
             <Link
               href="/restaurant/contact"
               className="mt-6 inline-block rounded-full bg-paper px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-lime"
@@ -239,7 +255,7 @@ export function RestaurantView() {
           platter. No surprises when the bill arrives.
         </p>
         <Link
-          href="/menu"
+          href="/restaurant/menu"
           className="mt-8 inline-block font-semibold text-ink underline decoration-ember decoration-2 underline-offset-8 transition-colors hover:text-ember-deep"
         >
           Open the full menu

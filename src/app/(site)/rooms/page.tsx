@@ -26,7 +26,7 @@ export default function RoomsPage() {
         <div className="mx-auto max-w-6xl px-4 pb-10 pt-14 md:px-6 md:pb-12 md:pt-20">
           <p className="text-sm font-semibold uppercase tracking-[0.14em] text-ember-deep">Rooms &amp; rates</p>
           <h1 className="hero-rise mt-3 max-w-[22ch] font-display text-[clamp(2.1rem,4.4vw,3.6rem)] font-semibold leading-[1.06] tracking-[-0.02em]">
-            Twelve rooms, four ways to stay, one honest price list.
+            Thirteen rooms, four ways to stay, one honest price list.
           </h1>
           <p className="hero-rise mt-4 max-w-2xl text-lg leading-relaxed text-mut" style={{ "--i": 1 } as React.CSSProperties}>
             Every price below is per night and comes straight from the owner&apos;s own rate list, the same numbers
