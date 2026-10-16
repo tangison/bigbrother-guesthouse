@@ -1,0 +1,212 @@
+[
+  {
+    "file": "gallery/restaurant/big-brothers-restaurant-usakos-chips-and-greek-salad-takeaway.jpg",
+    "width": 700,
+    "height": 875,
+    "source": "IMG-20261014-WA0440.jpg",
+    "alt": "Chips and Greek salad with olives and feta in a take-away box",
+    "caption": "Chips and Greek salad, packed to go",
+    "use_on": "restaurant, restaurant/gallery",
+    "status": "ready"
+  },
+  {
+    "file": "gallery/restaurant/big-brothers-restaurant-usakos-pineapple-and-ham-pizza.jpg",
+    "width": 810,
+    "height": 1012,
+    "source": "1000047710.jpg",
+    "alt": "Freshly baked pizza with pineapple, ham and green pepper in a delivery box",
+    "caption": "Pizza, baked to order",
+    "use_on": "restaurant, restaurant/gallery, menu",
+    "status": "ready"
+  },
+  {
+    "file": "gallery/restaurant/big-brothers-restaurant-usakos-salami-pizza.jpg",
+    "width": 810,
+    "height": 1012,
+    "source": "1000047711.jpg",
+    "alt": "Salami pizza with melted cheese served on a wooden paddle",
+    "caption": "Salami pizza",
+    "use_on": "restaurant, restaurant/gallery, menu",
+    "status": "ready"
+  },
+  {
+    "file": "gallery/restaurant/big-brothers-restaurant-usakos-t-bone-steak-and-chips.jpg",
+    "width": 810,
+    "height": 790,
+    "source": "1000047713.jpg",
+    "alt": "Grilled T-bone steak with chips on a square white plate",
+    "caption": "T-bone steak and chips",
+    "use_on": "restaurant, restaurant/gallery, home",
+    "status": "ready"
+  },
+  {
+    "file": "gallery/restaurant/big-brothers-restaurant-usakos-bbq-chicken-wings-and-chips.jpg",
+    "width": 850,
+    "height": 748,
+    "source": "1000047715.jpg",
+    "alt": "Glazed chicken wings and chips on a square white plate",
+    "caption": "Chicken wings and chips",
+    "use_on": "restaurant, restaurant/gallery, home",
+    "status": "ready"
+  },
+  {
+    "file": "gallery/restaurant/big-brothers-restaurant-usakos-grilled-chicken-and-greek-salad.jpg",
+    "width": 608,
+    "height": 645,
+    "source": "1000047714.jpg",
+    "alt": "Grilled chicken piece with Greek salad and sauce on a square plate",
+    "caption": "Grilled chicken and Greek salad",
+    "use_on": "restaurant/gallery",
+    "status": "ready"
+  },
+  {
+    "file": "gallery/restaurant/big-brothers-restaurant-usakos-crumbed-fish-with-lemon.jpg",
+    "width": 768,
+    "height": 768,
+    "source": "1000047708.jpg",
+    "alt": "Crumbed fish fillet topped with lemon slices, served with a mound of pap or mash",
+    "caption": "Crumbed fish with lemon",
+    "use_on": "restaurant/gallery, menu",
+    "status": "ready"
+  },
+  {
+    "file": "gallery/restaurant/big-brothers-restaurant-usakos-fried-fish-and-greek-salad.jpg",
+    "width": 768,
+    "height": 768,
+    "source": "1000047712.jpg",
+    "alt": "Fried fish with lemon slices and Greek salad with feta and olives",
+    "caption": "Fried fish and Greek salad",
+    "use_on": "restaurant/gallery",
+    "status": "ready"
+  },
+  {
+    "file": "gallery/restaurant/big-brothers-restaurant-usakos-breakfast-wrap-with-egg-and-bacon.jpg",
+    "width": 810,
+    "height": 1012,
+    "source": "1000047716.jpg",
+    "alt": "Breakfast wrap filled with scrambled egg, bacon, lettuce and tomato",
+    "caption": "Breakfast wrap",
+    "use_on": "restaurant/gallery, menu",
+    "status": "ready"
+  },
+  {
+    "file": "guesthouse/bar/big-brother-guesthouse-usakos-thatched-bar-and-pool-table-day.jpg",
+    "width": 1600,
+    "height": 1200,
+    "source": "1000047743.jpg",
+    "alt": "Thatched-roof bar with yellow counter, bar stools and a pool table",
+    "caption": "The bar and pool table by day",
+    "use_on": "restaurant, restaurant/gallery, facilities",
+    "status": "ready"
+  },
+  {
+    "file": "guesthouse/bar/big-brother-guesthouse-usakos-thatched-bar-evening.jpg",
+    "width": 1600,
+    "height": 1200,
+    "source": "1000047728.jpg",
+    "alt": "Evening view of the thatched bar with yellow counter and bar stools",
+    "caption": "The bar in the evening",
+    "use_on": "facilities, restaurant/gallery",
+    "status": "ready"
+  },
+  {
+    "file": "guesthouse/conference/big-brother-guesthouse-usakos-conference-room-tables-and-chairs.jpg",
+    "width": 1600,
+    "height": 1200,
+    "source": "1000047796.jpg",
+    "alt": "Conference room with draped tables, white chairs and a whiteboard",
+    "caption": "Conference room, set for a meeting",
+    "use_on": "facilities, guesthouse, home",
+    "status": "ready"
+  },
+  {
+    "file": "guesthouse/conference/big-brother-guesthouse-usakos-conference-room-long-table-in-sunlight.jpg",
+    "width": 1200,
+    "height": 1600,
+    "source": "1000047781.jpg",
+    "alt": "Long conference table with tablecloth and chairs lit by afternoon sun",
+    "caption": "Long table setup",
+    "use_on": "facilities",
+    "status": "ready"
+  },
+  {
+    "file": "guesthouse/conference/big-brother-guesthouse-usakos-conference-room-windows-and-refreshments.jpg",
+    "width": 1600,
+    "height": 1200,
+    "source": "1000047774.jpg",
+    "alt": "Conference room with windows, refreshment table and long tables",
+    "caption": "Refreshments on hand",
+    "use_on": "facilities",
+    "status": "ready"
+  },
+  {
+    "file": "guesthouse/conference/big-brother-guesthouse-usakos-conference-room-whiteboard-and-seating.jpg",
+    "width": 1200,
+    "height": 1600,
+    "source": "1000047852.jpg",
+    "alt": "Conference room with red and gold tablecloths, white chairs and a whiteboard",
+    "caption": "Seating and whiteboard",
+    "use_on": "facilities",
+    "status": "ready"
+  },
+  {
+    "file": "guesthouse/camping/big-brother-guesthouse-usakos-campsite-shade-tree-and-picnic-bench.jpg",
+    "width": 1400,
+    "height": 1400,
+    "source": "1000047812.jpg",
+    "alt": "Shade tree with a picnic bench and braai stand on sandy camping ground",
+    "caption": "Shade and picnic bench",
+    "use_on": "facilities (camping)",
+    "status": "ready"
+  },
+  {
+    "file": "guesthouse/camping/big-brother-guesthouse-usakos-campsite-tree-with-light-and-drum.jpg",
+    "width": 1397,
+    "height": 1600,
+    "source": "1000047766.jpg",
+    "alt": "Large shade tree with a light and a steel drum on open sandy camping ground",
+    "caption": "Open camping ground",
+    "use_on": "facilities (camping)",
+    "status": "ready"
+  },
+  {
+    "file": "guesthouse/camping/big-brother-guesthouse-usakos-campsite-shade-tree-in-the-grounds.jpg",
+    "width": 1600,
+    "height": 1157,
+    "source": "1000047788.jpg",
+    "alt": "Shade tree and sandy grounds with mountains in the distance",
+    "caption": "Grounds and mountain view",
+    "use_on": "facilities (camping)",
+    "status": "ready"
+  },
+  {
+    "file": "guesthouse/camping/big-brother-guesthouse-usakos-campsite-grounds-with-shade-trees-and-thatch.jpg",
+    "width": 1600,
+    "height": 1200,
+    "source": "1000047820.jpg",
+    "alt": "Camping grounds with shade trees, a tyre wall and a thatched roof under a clear sky",
+    "caption": "Grounds at dusk",
+    "use_on": "facilities (camping)",
+    "status": "ready"
+  },
+  {
+    "file": "gallery/restaurant/big-brothers-restaurant-usakos-crumbed-fish-and-greek-salad.jpg",
+    "width": 768,
+    "height": 960,
+    "source": "1000047709.jpg",
+    "alt": "Crumbed fish fillet with lemon slices beside a Greek salad of feta, olives and tomato",
+    "caption": "Crumbed fish and Greek salad",
+    "use_on": "restaurant/gallery, menu",
+    "status": "ready"
+  },
+  {
+    "file": "gallery/restaurant/big-brothers-restaurant-usakos-breakfast-wrap-on-square-plate.jpg",
+    "width": 810,
+    "height": 930,
+    "source": "1000047717.jpg",
+    "alt": "Breakfast wrap cut in half on a square white plate with cucumber and sauce",
+    "caption": "Breakfast wrap, plated",
+    "use_on": "restaurant, restaurant/gallery",
+    "status": "ready"
+  }
+]

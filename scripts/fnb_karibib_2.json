@@ -1,0 +1,95 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.fnbnamibia.com.na",
+    "name": "Home | First National Bank | FNB",
+    "snippet": "Find a branch. Grootfontein Branch . First National Bank of Namibia LTD Hage Geingob Ave, Grootfontein. Contact Centre: +264 61 299 2222 | +264 81 9536262. Card ... Read more",
+    "host_name": "www.fnbnamibia.com.na",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.namibpages.com/fnb-namibia-branch-codes",
+    "name": "Branch Codes of FNB Namibia",
+    "snippet": "FNB Namibia Branch codes . Branch Codes of FNB Namibia. Search the branch here: Branch – Code. Arandis – 289177; Aranos – 280771; Ausspannplatz – 280272; Eenhana ... Read more",
+    "host_name": "www.namibpages.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.online.fnb.co.za/rhelp_0_45/OB_NAMIBIA_Downloads/Downloads/Pay/Namibia_BIC_Codes.pdf",
+    "name": "Namibia BIC Codes",
+    "snippet": "Namibia BIC Codes. Bank Name. SWIFT BIC Code . First National Bank . FIRNNANX. Bank BIC Namibia . BBNLNANA. Bank Atlantico Namibia . BAPANANX. Bank of Namibia . Read more 1 page",
+    "host_name": "www.online.fnb.co.za",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.fnbnamibia.com.na/downloads/namibia/finresults2008/Representationpoints.pdf",
+    "name": "Representation points",
+    "snippet": "Code . Telephone. Fax. Aranos fnbaranos @ fnbnamibia .com.na. Box 91. 063. 272035 ... Otjiwarongo Midway Service Branch fnbotjiwarongo @ fnbnamibia .com.na. Box 2047. Read more 1 page",
+    "host_name": "www.fnbnamibia.com.na",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.xe.com/en-us/swift-codes/countries/namibia/fnb-namibia-swift-code",
+    "name": "First National Bank of Namibia SWIFT code in Namibia",
+    "snippet": "The main office SWIFT code for First National Bank of Namibia is FIRNNANXXXX . This code is commonly used for international wire transfers to the bank's Windhoek ... Read more",
+    "host_name": "www.xe.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.fnbnamibia.com.na/ways-to-bank/for-me/branch.html",
+    "name": "Branch | Ways to bank",
+    "snippet": "Find a branch. Grove Mall Branch . First National Bank of Namibia LTD C/O Chasie & Frankie Fredericks St, Ground Floor shop 44, Windhoek. Contact Centre: +264 ... Read more",
+    "host_name": "www.fnbnamibia.com.na",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wise.com/gb/swift-codes/FIRNNANXXXX",
+    "name": "FIRNNANXXXX BIC / Swift Code - FIRST NATIONAL BANK",
+    "snippet": "Find the BIC / Swift code for FIRST NATIONAL BANK OF NAMIBIA LIMITED in Namibia here. Check your bank's Swift code and get all details you need for ...",
+    "host_name": "wise.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.online.fnbnamibia.com.na/locators/branch-locator.html",
+    "name": "Find a branch | Locators",
+    "snippet": "Search for a branch name, city or province . Refine the search by selecting branches with extended operating hours, with WiFi, those not affected by ...",
+    "host_name": "www.online.fnbnamibia.com.na",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.fnbnamibia.com.na/forex/payments/global-receipts.html",
+    "name": "Global receipts | Forex",
+    "snippet": "Find a branch. Groot fontein Branch. First National Bank of Namibia LTD Hage Geingob Ave, Grootfontein. Contact Centre: +264 61 299 2222 | +264 81 9536262. Card ... Read more",
+    "host_name": "www.fnbnamibia.com.na",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://x.com/FNBNamibia/status/633675287214039040",
+    "name": "FNB Namibia",
+    "snippet": "Find the contact details, location and branch code of any FNB branch. Just search the name: http://t.co/DlXJUWSAvr.",
+    "host_name": "x.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

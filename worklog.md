@@ -336,3 +336,24 @@ Stage Summary:
 - Live: https://www.bigbrotherguesthouse.com @ aa30f91 (rounds 8+9). All seven round-8 owner items are now on production, plus the completed photo galleries.
 - Every real photo the owner supplied is now on the site (the "every photo is on the site" claim in gallery-data is finally true).
 - Still blocked on owner: Room 13 photo + new conference photos (never arrived - WA0151 was the hero shot); restaurant@bigbrotherguesthouse.com mailbox creation; direct Booking.com/Agoda URLs to replace platform-search chips; GSC verify + sitemap submit; rotate BOTH chat-exposed tokens (GitHub PAT re-pasted this round, Vercel vcp_ token).
+
+---
+Task ID: 10
+Agent: Super Z (main agent)
+Task: Prompt v3 - Step 0 Tangison super skill run, asset pack intake, QR audit, live URL tests, FNB branch research, build plan for approval (no site code changed).
+
+Work Log:
+- Step 0: npx skills use find-skills succeeded (output saved scripts/find-skills.txt, read in full). Local skills listed: no tangison-* folders on disk; Tangison rules active from chat (full-output-enforcement, company-profile-code, tangison-client-handover). 6 hunt searches via npx skills find + skills.sh leaderboard fetched (919KB, contains vercel-react-best-practices).
+- Picks: install ONLY vercel-labs/agent-skills@vercel-react-best-practices. Install FAILED twice (200s + 590s timeouts, GitHub unreachable from sandbox; raw/jsdelivr fetches 404). Reported honestly; proceeding with local skills (fullstack-dev, seo-audit, pdf, docx, web-search, anti-slop, image-seo) per failure rules.
+- Asset pack v3 unzipped to repo root: gallery/restaurant (11 food photos), guesthouse/bar (2), guesthouse/conference (4), guesthouse/camping (4), menus/ (2 compressed PDFs 869KB + 903KB), images-manifest.json (21 entries, read in full; use_on maps: 6 restaurant mini-gallery, 13 gallery, 5 menu pages).
+- QR audit (scripts/qr_audit_pack.py, OpenCV, 300+600 DPI, quadrant crops, both pages): Guesthouse PDF QR = https://bigbrotherguesthouse.com/menu (hidden text agrees). Restaurant PDF QR = https://bigbrotherguesthouse.com/menu (CONFLICT: lands on guesthouse menu per required routes), hidden text carries BOTH www.bigbrotherguesthouse.com/restaurant-menu AND /menu. Stop-and-ask raised to owner with fix options.
+- Live tests (desktop+mobile UA): /menu 308 to /restaurant/menu on both hosts (must revert so /menu serves guesthouse menu); /restaurant-menu 404 (308 redirect to add); /restaurant/menu 200; apex serves 200 (apex->www 308 to add); bigbrother-usakos.com still 200 (broken SPA, GBP points there - owner action).
+- A3 master PDFs (scripts/tangison/assets/) cross-checked earlier: guesthouse QR identical (apex /menu); restaurant A3 page 1 had NO decodable QR (pack PDF is authoritative and does carry one).
+- FNB Karibib branch code: namibpages (secondary) says 281073; 282672 appears as FNB Namibia universal code via multiple independent non-official sources (NBC FB video, WeCare Foundation IG, Inuka pay page); FNB official PDF (2008) lists the branch but no codes in text layer. Per brief: hide the code row on the public card, record candidates + sources in site-config comments, TO CONFIRM with owner.
+- Form check: feedback-form.tsx is a client-side mailto/WhatsApp composer (no third-party service, no env vars needed). payment-card.tsx shows the owner-supplied guesthouse BANKING from rates.ts (stays; restaurant EFT card is new and separate). site-data.ts contacts correct (both stay lines end 6; restaurant@ still unconfirmed; v3 table adds bookings@bigbrotherguesthouse.com for both brands).
+
+Stage Summary:
+- No site code touched. Asset pack on disk at repo root awaiting move into public/ during build.
+- One blocking question: restaurant PDF QR encodes /menu (guesthouse menu). Fix options sent with plan; /restaurant-menu -> /restaurant/menu 308 + reprint QR card recommended.
+- Plan presented for approval: data/ JSON+site-config, verify-menu.ts with committed text snapshots (portable to Vercel), /menu restore, /restaurant/menu + /restaurant/gallery rebuild, /stay-nearby, conference/camping/bar sections, restaurant EFT card, contacts split (bookings@ + gmail general), next/og OG images, image sitemap, analytics events, then QC and Digital Foundation Pack.
+- Tokens: owner re-pasted GitHub PAT + Vercel token in chat again; rotation reminder stands.

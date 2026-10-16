@@ -1,0 +1,95 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.namibpages.com/fnb-namibia-branch-codes",
+    "name": "Branch Codes of FNB Namibia",
+    "snippet": "Karibib – 281073 ; Katima Mulilo – 280475; Katutura Agency – 280674; Katutura Branch – 280674; Keetmanshoop – 280271; Khomasdal Branch – 289178; Klein Windhoek ... Read more",
+    "host_name": "www.namibpages.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.fnbnamibia.com.na/downloads/namibia/finresults2008/Representationpoints.pdf",
+    "name": "Representation points",
+    "snippet": "Code . Telephone. Fax. Aranos fnbaranos @ fnbnamibia .com.na. Box 91. 063. 272035 ... Otjiwarongo Midway Service Branch fnbotjiwarongo @ fnbnamibia .com.na. Box 2047. Read more 1 page",
+    "host_name": "www.fnbnamibia.com.na",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.fnbnamibia.com.na",
+    "name": "FNB Namibia",
+    "snippet": "Find a branch. Karibib Branch . First National Bank of Namibia LTD Erf 46 shop no 2 Woerman and Brock Complex, Karibib. Contact Centre: +264 61 299 2222 | +264 ... Read more",
+    "host_name": "www.fnbnamibia.com.na",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.online.fnb.co.za/rhelp_0_45/OB_NAMIBIA_Downloads/Downloads/Pay/Namibia_BIC_Codes.pdf",
+    "name": "Namibia BIC Codes",
+    "snippet": "Branch Identification Codes (BIC). Namibia . April 2024. Namibia BIC Codes . Bank Name. SWIFT BIC Code . First National Bank. FIRNNANX. Bank BIC Namibia . BBNLNANA. Read more 1 page",
+    "host_name": "www.online.fnb.co.za",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.fnbnamibia.com.na/ways-to-bank/for-me/branch.html",
+    "name": "Branch | Ways to bank",
+    "snippet": "Find a branch. Karibib Branch . First National Bank of Namibia LTD Erf 46 shop no 2 Woerman and Brock Complex, Karibib. Contact Centre: +264 61 299 2222 | +264 ... Read more",
+    "host_name": "www.fnbnamibia.com.na",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.xe.com/en-us/swift-codes/countries/namibia/fnb-namibia-swift-code",
+    "name": "First National Bank of Namibia SWIFT code in Namibia",
+    "snippet": "The main SWIFT code for First National Bank of Namibia in Namibia is FIRNNANXXXX . This code identifies the bank's main office for international payments in ... Read more",
+    "host_name": "www.xe.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wise.com/us/swift-codes/FIRNNANXCUS",
+    "name": "FIRNNANXCUS BIC / Swift Code - FIRST NATIONAL",
+    "snippet": "Find the BIC / Swift code for FIRST NATIONAL BANK OF NAMIBIA LIMITED in Namibia here. Check your bank's Swift code and get all details you need for ...",
+    "host_name": "wise.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.fnbnamibia.com.na/contact-us/index.html",
+    "name": "Contact us",
+    "snippet": "Karibib Branch First National Bank. Karibib Contact Centre: +264 61 299 2222 | +264 81 9536262 Card Cancellation: +26461 299 2999 Email: info@fnbnamibia.com.na",
+    "host_name": "www.fnbnamibia.com.na",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://x.com/FNBNamibia/status/633675287214039040",
+    "name": "FNB Namibia",
+    "snippet": "Find the contact details, location and branch code of any FNB branch . Just search the name: http://t.co/DlXJUWSAvr.",
+    "host_name": "x.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.fnbnamibia.com.na/leadforms/v2.2/leadform.html?uid=LFF001&area=onlinebanking&standalone=true",
+    "name": "Get in touch | First National Bank | FNB",
+    "snippet": "Find a branch. Karibib Branch . First National Bank of Namibia LTD Erf 46 shop no 2 Woerman and Brock Complex, Karibib. Contact Centre: +264 61 299 2222 | +264 ... Read more",
+    "host_name": "www.fnbnamibia.com.na",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!
