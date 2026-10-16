@@ -3,14 +3,18 @@
 // live site audit Oct 2026, NTB approval letter + certificate (2017) in master file.
 // Restaurant hours (round 6): Monday to Saturday, opening 09:30/10:00 by day.
 // Closing times are not confirmed and are NOT invented here.
+// Emails and banking live in data/site-config.ts (single source).
+import { EMAILS, SITE } from "../../data/site-config";
+
+export { EMAILS };
 
 export type Brand = "guesthouse" | "restaurant";
 
 export const HOLDINGS = {
   name: "Big Brother Holdings",
-  email: "bigbrotherguest@gmail.com",
-  postal: "P.O. Box 324, Usakos, Namibia",
-  site: "https://www.bigbrotherguesthouse.com",
+  email: EMAILS.general,
+  postal: SITE.postal,
+  site: SITE.site,
 };
 
 export const GUESTHOUSE = {
@@ -76,12 +80,12 @@ export const RESTAURANT = {
   phoneEat: "+264813029522",
   phoneEatDisplay: "+264 81 302 9522",
   phoneEatWhatsapp: "264813029522",
-  // Restaurant's own email. Owner round 8 (15 Oct 2026): proposed
-  // restaurant@bigbrotherguesthouse.com, to be confirmed by the owner. The
-  // guesthouse email (bigbrotherguest@gmail.com) must never appear in the
-  // restaurant section. NOTE for the owner: this mailbox must exist on the
-  // domain (mail setup or forwarding) before mail sent here lands anywhere.
-  email: "restaurant@bigbrotherguesthouse.com",
+  // Restaurant's own email (data/site-config.ts). Owner round 8 (15 Oct
+  // 2026): proposed restaurant@bigbrotherguesthouse.com. The guesthouse
+  // gmail must never appear in the restaurant section. NOTE for the
+  // owner: this mailbox must exist on the domain (mail setup or
+  // forwarding) before mail sent here lands anywhere.
+  email: EMAILS.restaurant,
   address: {
     street: "Corner of Theo-Ben Gurirab Street and Bismarck Street",
     area: "Usakos town centre",

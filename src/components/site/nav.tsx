@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { GUESTHOUSE, RESTAURANT, wa, GUESTHOUSE_WA_GREETING, type Brand } from "@/lib/site-data";
 import { GUESTHOUSE_ROUTES, RESTAURANT_ROUTES } from "@/lib/routes";
 import { ContactStrip } from "./contact-strip";
+import { track } from "@/lib/track";
 
 /* N10 floating-on-scroll morph, shared by both brands. One DOM per brand,
  * two visual modes, one class toggle past an 80px threshold, single 520ms
@@ -124,11 +125,16 @@ export function SiteNav({ brand }: { brand: Brand }) {
             </nav>
 
             <div className="hidden items-center gap-3 lg:flex">
-              <a href={`tel:${phone}`} className="nav-link text-sm font-semibold text-ink">
+              <a
+                href={`tel:${phone}`}
+                onClick={() => track("call_click", { brand, path: pathname })}
+                className="nav-link text-sm font-semibold text-ink"
+              >
                 {phoneDisplay}
               </a>
               <Link
                 href={ctaHref}
+                onClick={() => track("cta_click", { brand, path: pathname, target: ctaHref })}
                 className="whitespace-nowrap rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-ember-deep"
               >
                 {ctaLabel}

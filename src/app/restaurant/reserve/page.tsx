@@ -1,5 +1,6 @@
 import { routeMetadata } from "@/lib/metadata";
 import { ReserveCard } from "@/components/site/reserve-card";
+import { RestaurantPaymentCard } from "@/components/site/payment-card";
 import { RESTAURANT } from "@/lib/site-data";
 
 export const metadata = routeMetadata("reserve", "/images/og-restaurant.jpg");
@@ -20,10 +21,19 @@ export default function ReservePage() {
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-4 pb-20 md:px-6 md:pb-28" aria-label="Reservation card">
-        <ReserveCard />
-        <p className="mt-8 text-sm text-mut">
-          We are at {RESTAURANT.address.street}, {RESTAURANT.address.area}. Kitchen hours: {RESTAURANT.hoursKnown}.
-        </p>
+        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+          <div>
+            <ReserveCard />
+            <p className="mt-8 text-sm text-mut">
+              We are at {RESTAURANT.address.street}, {RESTAURANT.address.area}. Kitchen hours: {RESTAURANT.hoursKnown}.
+            </p>
+          </div>
+          {/* Owner v3: restaurant payment card. EFT details pending with the
+           * owner (data/site-config.ts); the card shows the honest fallback. */}
+          <aside className="lg:sticky lg:top-28">
+            <RestaurantPaymentCard />
+          </aside>
+        </div>
       </section>
     </>
   );

@@ -271,7 +271,12 @@ export function GuesthouseView() {
           ))}
           <p className="mt-8 text-sm leading-relaxed text-mut">
             Every place above was checked by hand before it went up. Tell us how your
-            stay was, and it stays on the list.
+            stay was, and it stays on the list. The full list, with all nine places
+            and what each one is good for, lives on its own page:{" "}
+            <Link href="/stay-nearby" className="font-semibold underline decoration-ember decoration-2 underline-offset-4 hover:text-ember-deep">
+              Fully booked? Where to stay near Usakos
+            </Link>
+            .
           </p>
         </div>
       </section>

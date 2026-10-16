@@ -187,4 +187,16 @@ export const GALLERY: GalleryPhoto[] = [
   { slug: "plate-pap-braise", group: "food", alt: "Pap with braised meat topped with onion rings", w: 1024, h: 768 },
   { slug: "hero-wings", group: "food", alt: "Grilled wings with lemon, tomato and lettuce on a black platter", w: 1400, h: 854 },
   { slug: "hero-platter", group: "food", alt: "Chicken platter with pap, relish and pepper rings", w: 1600, h: 905 },
+  // Round v3 asset pack (16 Oct 2026): camping, conference and bar photos,
+  // supplied by the owner and optimized to web weight (each under 250 KB).
+  { slug: "camping-picnic-bench", group: "grounds", alt: "Shade tree with a picnic bench and braai stand on sandy camping ground", w: 1400, h: 1400 },
+  { slug: "camping-tree-drum", group: "grounds", alt: "Large shade tree with a light and a steel drum on open sandy camping ground", w: 1200, h: 1374 },
+  { slug: "camping-shade-tree", group: "grounds", alt: "Shade tree and sandy grounds with mountains in the distance", w: 1600, h: 1157 },
+  { slug: "camping-grounds-thatch", group: "grounds", alt: "Camping grounds with shade trees, a tyre wall and a thatched roof under a clear sky", w: 1600, h: 1200 },
+  { slug: "conference-tables-chairs", group: "events", alt: "Conference room with draped tables, white chairs and a whiteboard", w: 1600, h: 1200 },
+  { slug: "conference-long-table", group: "events", alt: "Long conference table with tablecloth and chairs lit by afternoon sun", w: 1200, h: 1600 },
+  { slug: "conference-refreshments", group: "events", alt: "Conference room with windows, refreshment table and long tables", w: 1600, h: 1200 },
+  { slug: "conference-whiteboard", group: "events", alt: "Conference room with red and gold tablecloths, white chairs and a whiteboard", w: 1200, h: 1600 },
+  { slug: "bar-thatched-day", group: "drinks", alt: "Thatched-roof bar with yellow counter, bar stools and a pool table", w: 1600, h: 1200 },
+  { slug: "bar-thatched-evening", group: "drinks", alt: "Evening view of the thatched bar with yellow counter and bar stools", w: 1600, h: 1200 },
 ];

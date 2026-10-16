@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { VISIBLE_TIERS, VIP, CONFERENCE, DAY_VISIT_RATE, formatNad, nightsBetween } from "@/lib/rates";
+import { VISIBLE_TIERS, ROOM_TIERS, VIP, CONFERENCE, DAY_VISIT_RATE, formatNad, nightsBetween } from "@/lib/rates";
 import { GUESTHOUSE, HOLDINGS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
 import { PaymentCard } from "./payment-card";
 

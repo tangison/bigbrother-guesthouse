@@ -220,22 +220,155 @@ export function FacilitiesView() {
         </div>
       </section>
 
+      {/* Camping: the owner's own campsite photographs (v3 asset pack).
+       * Rates are NOT in any brief, so none are printed here - TODO(owner):
+       * send camping rates and they go straight into this block. */}
+      <section className="bg-cream" aria-label="Camping">
+        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ember">Camping</p>
+              <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.01em] md:text-4xl">
+                Bring the tent. We have the shade.
+              </h2>
+              <p className="mt-4 max-w-[58ch] leading-relaxed text-mut">
+                Camp on the sandy grounds under the big shade trees, with a braai stand and a
+                picnic bench at your site, the pools and the thatched lapa a short walk away,
+                and the kitchen on the plot for breakfast and dinner. The mountains sit on the
+                horizon and the B2 stays close enough to find us in the dark.
+              </p>
+              <p className="mt-4 max-w-[58ch] leading-relaxed text-mut">
+                Campsites are open to overnights and to day visitors travelling with tents.
+                Ask us for the current camping rates and availability on WhatsApp, and tell us
+                the size of your setup so we can point you at the right tree.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a
+                  href={wa(BIZ.guesthouse.phone1, "Hello Big Brother Guesthouse, I would like to ask about camping on your grounds.")}
+                  className="rounded-full bg-ink px-6 py-3 font-semibold text-paper transition-colors hover:bg-ember-deep"
+                >
+                  Ask about camping on WhatsApp
+                </a>
+                <a
+                  href={`tel:${BIZ.guesthouse.phone1}`}
+                  className="rounded-full border border-line px-6 py-3 font-semibold transition-colors hover:bg-paper"
+                >
+                  Call {BIZ.guesthouse.phone1Display}
+                </a>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { src: "/images/camping-picnic-bench.jpg", alt: "Shade tree with a picnic bench and braai stand on sandy camping ground" },
+                { src: "/images/camping-tree-drum.jpg", alt: "Large shade tree with a light and a steel drum on open sandy camping ground" },
+                { src: "/images/camping-shade-tree.jpg", alt: "Shade tree and sandy grounds with mountains in the distance" },
+                { src: "/images/camping-grounds-thatch.jpg", alt: "Camping grounds with shade trees, a tyre wall and a thatched roof under a clear sky" },
+              ].map((p, i) => (
+                <div key={p.src} className={`photo-frame aspect-[4/3] ${i % 2 === 1 ? "sm:translate-y-6" : ""}`}>
+                  <Image
+                    src={p.src}
+                    alt={p.alt}
+                    width={1200}
+                    height={900}
+                    loading="lazy"
+                    quality={48}
+                    sizes="(max-width: 1024px) 50vw, 30vw"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Meetings: the conference room as its own server-rendered section,
+       * so the facts and the owner's conference photographs are in the HTML
+       * (the tabbed widget above client-mounts its hidden tabs). */}
+      <section className="bg-cream" aria-label="Meetings and conferences">
+        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ember">Conference room</p>
+              <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.01em] md:text-4xl">
+                A proper table for twenty, thirty on request.
+              </h2>
+              <p className="mt-4 max-w-[58ch] leading-relaxed text-mut">
+                The conference room at Plot 7 seats {CONFERENCE.standard} delegates comfortably
+                and expands to {CONFERENCE.max} for bigger groups. The rate is{" "}
+                {formatNad(CONFERENCE.rate)} {CONFERENCE.unit.toLowerCase()}, with drinking water
+                and a tea and coffee station included. Whiteboard, aircon and garden light come
+                as standard, and catering runs from our own kitchen when you want it.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a
+                  href={wa(BIZ.guesthouse.phone1, "Hello Big Brother Guesthouse, I would like to book the conference room.")}
+                  className="rounded-full bg-ink px-6 py-3 font-semibold text-paper transition-colors hover:bg-ember-deep"
+                >
+                  Book the room on WhatsApp
+                </a>
+                <a
+                  href={`tel:${BIZ.guesthouse.phone1}`}
+                  className="rounded-full border border-line px-6 py-3 font-semibold transition-colors hover:bg-paper"
+                >
+                  Call {BIZ.guesthouse.phone1Display}
+                </a>
+              </div>
+            </div>
+            <div className="grid gap-4">
+              <div className="photo-frame aspect-[16/9]">
+                <Image
+                  src="/images/conference-tables-chairs.jpg"
+                  alt="Conference room with draped tables, white chairs and a whiteboard"
+                  width={1600}
+                  height={1200}
+                  loading="lazy"
+                  quality={50}
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="photo-frame aspect-[16/9]">
+                <Image
+                  src="/images/conference-refreshments.jpg"
+                  alt="Conference room with windows, refreshment table and long tables"
+                  width={1600}
+                  height={1200}
+                  loading="lazy"
+                  quality={50}
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Guest facilities: pinned stacking cards */}
       <section className="mx-auto max-w-6xl px-4 pb-24 md:px-6" aria-label="Guest facilities">
         <h2 className="font-display text-3xl font-semibold tracking-[-0.01em] md:text-4xl">Guest facilities</h2>
         <p className="mt-3 max-w-[55ch] text-mut">Everything sits behind the same gate, so nothing is ever far away.</p>
 
         <div className="mt-10 grid gap-6 md:gap-8">
-          <StackCard index={0} total={6}>
+          <StackCard index={0} total={7}>
             <FacilityCard
               img="/images/dish-braise.jpg"
               alt="Slow braised meat with peppers and pap from our kitchen"
               title="Kitchen & bar service"
               text="Guests eat from our own kitchen on the plot, and the day-visit crowd orders from the same kitchen. The full restaurant menu, grills to pizza, runs in town centre at Big Brothers Restaurant."
-              link={{ href: "/restaurant", label: "See the restaurant in town" }}
+              link={{ href: "/menu", label: "See the guesthouse menu" }}
             />
           </StackCard>
-          <StackCard index={1} total={6}>
+          <StackCard index={1} total={7}>
+            <FacilityCard
+              img="/images/bar-thatched-day.jpg"
+              alt="Thatched-roof bar with yellow counter, bar stools and a pool table"
+              title="Thatched bar & pool table"
+              text="Cold drinks on ice, the game on the screen and the pool table waiting. The thatched bar keeps the evening easy, and the lapa next door carries the braai smoke."
+            />
+          </StackCard>
+          <StackCard index={2} total={7}>
             <FacilityCard
               img="/images/swimming-pool-closeup.jpg"
               alt="The swimming pool with the lapa and shade sails behind"
@@ -243,27 +376,27 @@ export function FacilitiesView() {
               text="Two pools to cool off in, lawn to lie on, and shade under the lapa. Day visitors welcome, residents first in the water."
             />
           </StackCard>
-          <StackCard index={2} total={6}>
+          <StackCard index={3} total={7}>
             <FacilityCard
               dark
               title="Outdoor seating areas"
               text="Relax in our courtyard or shaded outdoor seating areas after a long day. The garden and pools carry the sound of the Khan River bench, not the traffic."
             />
           </StackCard>
-          <StackCard index={3} total={6}>
+          <StackCard index={4} total={7}>
             <FacilityCard
               title="Secure parking"
               text="Your vehicle stays safe on our gated property with 24/7 monitoring. Park once and walk to your room, the restaurant, and the pool."
             />
           </StackCard>
-          <StackCard index={4} total={6}>
+          <StackCard index={5} total={7}>
             <FacilityCard
               dark
               title="Daily housekeeping"
               text="We keep your room fresh and tidy so you can focus on enjoying your stay. Missed breakfast? Housekeeping will point you at the kitchen."
             />
           </StackCard>
-          <StackCard index={5} total={6}>
+          <StackCard index={6} total={7}>
             <FacilityCard
               title="Friendly staff"
               text="Local tips, transport arrangements, or anything else you need. Just ask at reception or over WhatsApp, and we will make a plan with you."

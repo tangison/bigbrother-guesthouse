@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { GUESTHOUSE, RESTAURANT, HOLDINGS, SOCIALS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
+import { GUESTHOUSE, RESTAURANT, HOLDINGS, EMAILS, SOCIALS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
 import { LISTINGS } from "@/lib/nearby";
 import { DAY_VISIT_RATE, formatNad } from "@/lib/rates";
 import { SocialIcon } from "./social-icons";
@@ -72,7 +72,13 @@ export function ContactView() {
                 </a>
               </li>
               <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
-                <span className="text-paper/60">Email · guesthouse</span>
+                <span className="text-paper/60">Email · bookings, both brands</span>
+                <a href={`mailto:${EMAILS.bookings}`} className="font-semibold underline underline-offset-4">
+                  {EMAILS.bookings}
+                </a>
+              </li>
+              <li className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
+                <span className="text-paper/60">Email · guesthouse general</span>
                 <a href={`mailto:${HOLDINGS.email}`} className="font-semibold underline underline-offset-4">
                   {HOLDINGS.email}
                 </a>

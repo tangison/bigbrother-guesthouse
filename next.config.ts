@@ -12,8 +12,17 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // The menu belongs to the Restaurant brand. Old URL keeps working.
-      { source: "/menu", destination: "/restaurant/menu", permanent: true },
+      // QR safety (round v3, 16 Oct 2026). The guesthouse's printed menu
+      // QR encodes /menu, so /menu now SERVES the guesthouse menu (the
+      // old "/menu -> /restaurant/menu" redirect is gone). The restaurant
+      // keeps its own menu at /restaurant/menu.
+      //
+      // Legacy and misprint-proof targets, permanent 308s:
+      // - /restaurant-menu was named in the restaurant menu print as the
+      //   scan target; it now lands on the restaurant's own menu.
+      // - /home must land on the home page (owner instruction).
+      { source: "/restaurant-menu", destination: "/restaurant/menu", permanent: true },
+      { source: "/home", destination: "/", permanent: true },
     ];
   },
   typescript: {

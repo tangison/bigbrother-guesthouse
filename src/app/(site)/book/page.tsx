@@ -41,7 +41,7 @@ export default function BookPage() {
         </div>
         <p className="mt-4 text-sm text-mut">
           If we are full for your dates, see{" "}
-          <a href="/guesthouse#fully-booked" className="font-semibold underline underline-offset-4 hover:text-ink">
+          <a href="/stay-nearby" className="font-semibold underline underline-offset-4 hover:text-ink">
             where we send people in and around Usakos
           </a>
           .

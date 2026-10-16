@@ -69,15 +69,21 @@ export function HomeView() {
               <span className="text-ember">halfway to everywhere.</span>
             </h1>
             <p className="hero-rise mt-6 max-w-2xl text-lg leading-relaxed text-paper/85" style={{ "--i": 1 } as React.CSSProperties}>
-              Big Brother Guesthouse and B&B behind one gate on the B2 at Plot 7, and Big Brothers
+              Big Brother Guesthouse on the B2 at Plot 7, and Big Brothers
               Restaurant in the middle of Usakos town. Two places, one welcome.
             </p>
             <div className="hero-rise mt-9 flex flex-wrap items-center justify-center gap-3" style={{ "--i": 2 } as React.CSSProperties}>
               <Link
-                href="/restaurant/menu"
+                href="/menu"
                 className="rounded-full bg-paper px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-ember hover:text-ink"
               >
-                See the menu
+                Guesthouse menu
+              </Link>
+              <Link
+                href="/restaurant/menu"
+                className="rounded-full bg-paper px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-lime hover:text-ink"
+              >
+                Restaurant menu
               </Link>
               <a
                 href={wa(BIZ.guesthouse.phone1, "Hello Big Brother Guesthouse, do you have a room available?")}
@@ -253,7 +259,7 @@ export function HomeView() {
               href="/restaurant/menu"
               className="mt-9 inline-block font-semibold text-ink underline decoration-ember decoration-2 underline-offset-8 transition-colors hover:text-ember-deep"
             >
-              Open the full menu, 139 items and every price
+              Open the restaurant menu, 133 items and every price
             </Link>
           </div>
         </div>
@@ -299,7 +305,7 @@ export function HomeView() {
              * act needs a ground, and their own opaque fills must survive the
              * contrast pass (a hidden pill gets graded against the page behind). */}
             <h2 data-sc-cue="0 1 0 0" data-sc-kinetic="lines" className="max-w-[18ch] font-display text-[clamp(2rem,4.6vw,3.6rem)] font-semibold leading-[1.08] tracking-[-0.02em]">
-              Rooms for the night. A table for dinner. One gate.
+              Rooms for the night. A table for dinner in town. Home away from home.
             </h2>
             <a
               data-sc-magnet="0.26"

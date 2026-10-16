@@ -1,0 +1,300 @@
+[
+  {
+    "id": "breakfast",
+    "title": "Breakfast",
+    "items": [
+      { "name": "English Breakfast", "price": 130, "note": "Eggs, mushrooms, onions, bacon, sausage and toast" },
+      { "name": "Big Brother Breakfast", "price": 170, "note": "Eggs, minute steak, sausage, avocado and toast" },
+      { "name": "Omelette", "price": 120, "note": "Eggs, bacon or mince and cheese" },
+      { "name": "Breakfast Wrap", "price": 100, "note": "Eggs, bacon, cheese" },
+      { "name": "Vegetarian Breakfast", "price": 120 },
+      { "name": "Special Breakfast", "price": 150, "note": "Eggs, mushrooms, onions, garlic, cheese, tomatoes and one protein: sausage, chicken, bacon or beef" },
+      { "name": "Kiddies Pancakes", "price": 80, "note": "Honey and cinnamon" },
+      { "name": "Extras", "price": 40, "note": "Olives, green pepper, garlic, mushrooms, bacon, salami, mince, boerewors, avocado, tomato" }
+    ]
+  },
+  {
+    "id": "toasted-sandwiches",
+    "title": "Toasted Sandwiches",
+    "items": [
+      { "name": "Ham, Cheese & Tomato", "price": 75 },
+      { "name": "Bacon, Egg & Cheese", "price": 100 },
+      { "name": "Bacon, Egg & Tomato", "price": 85 },
+      { "name": "Tomato & Cheese", "price": 65 },
+      { "name": "Chicken Mayo", "price": 95 },
+      { "name": "Tuna Mayo", "price": 95 }
+    ]
+  },
+  {
+    "id": "burgers",
+    "title": "Burgers",
+    "items": [
+      { "name": "Chicken Burger", "price": 115 },
+      { "name": "Beef Burger", "price": 120 },
+      { "name": "Double Beef, Bacon & Cheese Burger", "price": 160 }
+    ]
+  },
+  {
+    "id": "wraps-fast-food",
+    "title": "Wraps & Fast Food",
+    "items": [
+      { "name": "Chicken Wrap", "price": 120 },
+      { "name": "Calamari Wrap", "price": 100 },
+      { "name": "Hawaiian Wrap", "price": 100 },
+      { "name": "Chicken Burrito", "price": 150 },
+      { "name": "Beef Burrito", "price": 150 },
+      { "name": "Cheesy Chips", "price": 110 },
+      { "name": "Russian & Chips", "price": 63 },
+      { "name": "Russian", "price": 33 },
+      { "name": "Chips", "price": 30 }
+    ]
+  },
+  {
+    "id": "lunch",
+    "title": "Lunch",
+    "kicker": "Served with mash potato, chips or Greek salad",
+    "items": [
+      { "name": "Chicken Schnitzel & Cheddarmelt", "price": 150 },
+      { "name": "Chicken Quarter Leg", "price": 150 },
+      { "name": "Chicken Strips", "price": 120 }
+    ]
+  },
+  {
+    "id": "dinner",
+    "title": "Dinner",
+    "kicker": "Served with mash potato, chips, Greek salad, pap or rice",
+    "items": [
+      { "name": "T-Bone Steak", "price": 230 },
+      { "name": "Rump Steak", "price": 230 },
+      { "name": "Lamb Chops", "price": 230 },
+      { "name": "Spare Ribs", "price": 160 },
+      { "name": "Pork Chops", "price": 150 },
+      { "name": "Beef Stew", "price": 130 },
+      { "name": "Beef Chop", "price": 200 },
+      { "name": "Meatballs", "price": 100 },
+      { "name": "Spaghetti Bolognese", "price": 120 }
+    ]
+  },
+  {
+    "id": "pizzas",
+    "title": "Pizzas",
+    "kicker": "Make your own pizza on request",
+    "items": [
+      { "name": "Big Brother Pizza", "price": 190 },
+      { "name": "Mexican Pizza", "price": 190, "note": "Ground beef, fresh chilli, olives, corn" },
+      { "name": "Vegetarian Pizza", "price": 190, "note": "Mixed veggies, mushrooms, gherkins, onions, garlic" },
+      { "name": "Chicken Pizza", "price": 190, "note": "Chicken cubes, mushrooms, green pepper, onions" },
+      { "name": "Hawaiian Pizza", "price": 190, "note": "Cheese, pineapple, ham" },
+      { "name": "Extras", "price": 40, "note": "Garlic, tomato, avocado, cheese, salami, pineapple, green pepper" },
+      { "name": "Take-Away Box", "price": 10 }
+    ]
+  },
+  {
+    "id": "wings",
+    "title": "Wings",
+    "kicker": "4 wings / 6 wings / 8 wings, drumsticks available",
+    "items": [
+      { "name": "Plain / Honey", "price": "80 / 100 / 140" },
+      { "name": "Lemon Pepper", "price": "108 / 140 / 244" },
+      { "name": "Sweet Chilli", "price": "108 / 140 / 244" },
+      { "name": "Spicy", "price": "108 / 140 / 244" },
+      { "name": "Sticky", "price": "108 / 140 / 244" },
+      { "name": "Cowboy Butter", "price": "108 / 140 / 244" }
+    ]
+  },
+  {
+    "id": "seafood",
+    "title": "Seafood",
+    "kicker": "Seafood boil on request only",
+    "items": [
+      { "name": "Calamari", "price": 120 },
+      { "name": "Prawns", "price": 120 },
+      { "name": "Shrimps", "price": 120 },
+      { "name": "Hake Fillet", "price": 100 },
+      { "name": "Kabeljou", "price": 180 },
+      { "name": "Kingklip", "price": 180 },
+      { "name": "Garlion", "price": 200 },
+      { "name": "Seafood Platter", "price": 400 }
+    ]
+  },
+  {
+    "id": "salads",
+    "title": "Salads",
+    "items": [
+      { "name": "Greek Salad", "price": 95 },
+      { "name": "Chicken Salad", "price": 120 },
+      { "name": "Tuna Salad", "price": 110 },
+      { "name": "Beetroot Salad", "price": 60 },
+      { "name": "Coleslaw", "price": 60 },
+      { "name": "Potato Salad", "price": 110 }
+    ]
+  },
+  {
+    "id": "traditional",
+    "title": "Traditional Food",
+    "items": [
+      { "name": "Kapana with Pap", "price": 120 },
+      { "name": "Marathon Chicken & Pap", "price": 250 },
+      { "name": "Mupani Worms & Pap", "price": 100 },
+      { "name": "Matangara & Pap", "price": 120 },
+      { "name": "Smiley & Pap", "price": 200, "note": "Cooked goat or sheep head, served with pap and spinach" },
+      { "name": "Extras: Spinach, Pap, Beans", "price": 40 }
+    ]
+  },
+  {
+    "id": "desserts",
+    "title": "Desserts",
+    "items": [
+      { "name": "Malva Pudding", "price": 100 },
+      { "name": "Waffles", "price": 80 },
+      { "name": "Ice Cream", "price": "20 / 40", "note": "Small / large" }
+    ]
+  },
+  {
+    "id": "kiddies",
+    "title": "Kiddies Menu",
+    "items": [
+      { "name": "Vienna & Chips", "price": 55 },
+      { "name": "Sweet Pancakes", "price": 40 },
+      { "name": "Chicken Pops", "price": 45 },
+      { "name": "Hot Dog", "price": 35 },
+      { "name": "Chicken Burger", "price": 45 },
+      { "name": "Beef Burger", "price": 45 }
+    ]
+  },
+  {
+    "id": "milkshakes",
+    "title": "Milkshakes",
+    "items": [
+      { "name": "Milkshakes", "price": 45, "note": "N$45 each: strawberry, banana, bubblegum, chocolate, vanilla" }
+    ]
+  },
+  {
+    "id": "hot-drinks",
+    "title": "Hot Beverages",
+    "items": [
+      { "name": "Tea", "price": 20 },
+      { "name": "Coffee", "price": 30 },
+      { "name": "Cappuccino", "price": 30 },
+      { "name": "Latte", "price": 30 }
+    ]
+  },
+  {
+    "id": "cool-drinks",
+    "title": "Cool Drinks",
+    "kicker": "600 ml",
+    "items": [
+      { "name": "Fanta", "price": 23 },
+      { "name": "Sprite", "price": 23 },
+      { "name": "Coke", "price": 23 },
+      { "name": "Coke Zero", "price": 23 }
+    ]
+  },
+  {
+    "id": "juice",
+    "title": "Juice",
+    "items": [
+      { "name": "Fruitree", "price": 25 }
+    ]
+  },
+  {
+    "id": "energy-drinks",
+    "title": "Energy Drinks",
+    "items": [
+      { "name": "Powerade", "price": 25 },
+      { "name": "Monster", "price": 30 },
+      { "name": "Predator", "price": 30 },
+      { "name": "Redbull", "price": 35 }
+    ]
+  },
+  {
+    "id": "healthy-drinks",
+    "title": "Healthy Drinks",
+    "kicker": "Ndapamekwa · 500 ml",
+    "items": [
+      { "name": "Ginger Turmeric", "price": 25 },
+      { "name": "Ginger Lemon", "price": 25 },
+      { "name": "Ginger Baobab", "price": 25 },
+      { "name": "Reseller Hibiscus", "price": 25 }
+    ]
+  },
+  {
+    "id": "boosters",
+    "title": "Boosters",
+    "items": [
+      { "name": "Green Power", "price": 50 },
+      { "name": "Immunity Boosters", "price": 50 }
+    ]
+  },
+  {
+    "id": "beer-500",
+    "title": "Beer, 500 ml",
+    "items": [
+      { "name": "Windhoek Draught", "price": 30 },
+      { "name": "Tafel Lager", "price": 30 },
+      { "name": "Windhoek Lager", "price": 30 },
+      { "name": "Black Label", "price": 30 },
+      { "name": "Castle Lite", "price": 30 }
+    ]
+  },
+  {
+    "id": "beer-750",
+    "title": "Beer, 750 ml",
+    "items": [
+      { "name": "Tafel Lager", "price": 35 },
+      { "name": "Windhoek Draught", "price": 35 },
+      { "name": "Windhoek Lager", "price": 35 }
+    ]
+  },
+  {
+    "id": "ciders",
+    "title": "Ciders",
+    "items": [
+      { "name": "Bernini 500 ml", "price": 33 },
+      { "name": "Flying Fish 500 ml", "price": 30 },
+      { "name": "Savanna Dry 600 ml", "price": 45 },
+      { "name": "Savanna Dry 330 ml", "price": 30 },
+      { "name": "Hunters Dry", "price": 30 },
+      { "name": "Hunters Gold", "price": 30 },
+      { "name": "Brutal Fruit", "price": 33 },
+      { "name": "Belgravia", "price": 35 },
+      { "name": "Strongbow", "price": 33 },
+      { "name": "Corona 330 ml", "price": 35 }
+    ]
+  },
+  {
+    "id": "non-alcoholic",
+    "title": "Non-Alcoholic",
+    "items": [
+      { "name": "Tafel Radler", "price": 30 },
+      { "name": "Windhoek Non-Alcoholic", "price": 30 },
+      { "name": "Lemon Clausthaler", "price": 30 }
+    ]
+  },
+  {
+    "id": "wine",
+    "title": "Wine",
+    "kicker": "N$35 per glass",
+    "items": [
+      { "name": "Tall Horse Red / White", "price": 200 },
+      { "name": "Four Cousins", "price": 120 },
+      { "name": "Nederburg Chardonnay", "price": 200 },
+      { "name": "Nederburg Baronne", "price": 200 },
+      { "name": "Nederburg Merlot", "price": 200 },
+      { "name": "Spier White Wine", "price": 180 },
+      { "name": "Two Oceans", "price": 180 },
+      { "name": "Tassenberg", "price": 100 }
+    ]
+  },
+  {
+    "id": "hot-stuff",
+    "title": "Hot Stuff",
+    "kicker": "Per tot",
+    "items": [
+      { "name": "Richelieu", "price": 35 },
+      { "name": "Jägermeister", "price": 35 },
+      { "name": "Potency", "price": 35 },
+      { "name": "Jack Daniel's", "price": 35 }
+    ]
+  }
+]

@@ -4,6 +4,10 @@
 // Every price is per night in Namibian Dollar. No price on this site may come
 // from anywhere else. B&B rates are not in the master file: shown as POA.
 
+import { BANKING as BANKING_CONFIG, RESTAURANT_BANKING } from "../../data/site-config";
+
+export { BANKING_CONFIG as BANKING, RESTAURANT_BANKING };
+
 export type RoomGroup = "standard" | "private" | "shared" | "family";
 
 export type RoomTier = {
@@ -131,17 +135,10 @@ export const VIP = {
   appliesTo: "accommodation only (rooms and the family unit)",
 };
 
-// Banking details (master file, section 6). Shown ONLY inside the booking
-// confirmation panel and the payment card on the rooms page. Never in the
-// footer, meta tags, schema or images.
-export const BANKING = {
-  bank: "FNB (First National Bank Namibia)",
-  accountName: "Big Brother Guesthouse",
-  branch: "Karibib",
-  branchCode: "281073",
-  accountNumber: "62257058604",
-  note: "Pay after we confirm your booking. Send proof of payment on WhatsApp or email.",
-};
+// Banking details (single source: data/site-config.ts, from the master
+// file section 6 + the banking whiteboard photo). Shown ONLY inside the
+// booking confirmation panel and the payment card on the rooms page.
+// Never in the footer, meta tags, schema or images.
 
 export const POA = "POA, price on request";
 

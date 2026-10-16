@@ -3,10 +3,16 @@ import { ROUTES } from "./routes";
 
 const OG_DEFAULT = "/images/og-guesthouse.jpg";
 
-export function routeMetadata(key: string, image?: string): Metadata {
+export function routeMetadata(key: string, image?: string | null): Metadata {
   const r = ROUTES.find((x) => x.key === key);
   if (!r) return {};
-  const ogImage = image ?? OG_DEFAULT;
+  /* image === null: no explicit OG image. The route's file-convention
+   * opengraph-image.tsx (next/og) supplies the card instead, and Next
+   * injects it into the meta tags. */
+  const imgs =
+    image === null
+      ? undefined
+      : [{ url: image ?? OG_DEFAULT, width: 1600, height: 1200, alt: r.title }];
   return {
     title: r.title,
     description: r.description,
@@ -18,9 +24,14 @@ export function routeMetadata(key: string, image?: string): Metadata {
       siteName: "Big Brother Holdings",
       locale: "en_NA",
       type: "website",
-      images: [{ url: ogImage, width: 1600, height: 1200, alt: r.title }],
+      ...(imgs ? { images: imgs } : {}),
     },
-    twitter: { card: "summary_large_image", title: r.title, description: r.description, images: [ogImage] },
+    twitter: {
+      card: "summary_large_image",
+      title: r.title,
+      description: r.description,
+      ...(imgs ? { images: imgs.map((i) => i.url) } : {}),
+    },
   };
 }
 
@@ -32,9 +43,13 @@ export function pageMetadata(opts: {
   title: string;
   description: string;
   path: string;
-  image?: string;
+  /** null: let the route's opengraph-image file convention supply the card. */
+  image?: string | null;
 }): Metadata {
-  const ogImage = opts.image ?? OG_DEFAULT;
+  const imgs =
+    opts.image === null
+      ? undefined
+      : [{ url: opts.image ?? OG_DEFAULT, width: 1600, height: 1200, alt: opts.title }];
   return {
     title: opts.title,
     description: opts.description,
@@ -46,8 +61,13 @@ export function pageMetadata(opts: {
       siteName: "Big Brother Holdings",
       locale: "en_NA",
       type: "website",
-      images: [{ url: ogImage, width: 1600, height: 1200, alt: opts.title }],
+      ...(imgs ? { images: imgs } : {}),
     },
-    twitter: { card: "summary_large_image", title: opts.title, description: opts.description, images: [ogImage] },
+    twitter: {
+      card: "summary_large_image",
+      title: opts.title,
+      description: opts.description,
+      ...(imgs ? { images: imgs.map((i) => i.url) } : {}),
+    },
   };
 }

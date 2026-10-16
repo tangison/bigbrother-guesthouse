@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
-import { RESTAURANT, wa } from "@/lib/site-data";
+import { RESTAURANT, EMAILS, wa } from "@/lib/site-data";
+import { RestaurantPaymentCard } from "@/components/site/payment-card";
 
 export const metadata = pageMetadata({
   title: "Contact the Restaurant | Big Brothers, Usakos Town Centre",
@@ -69,7 +70,26 @@ export default function RestaurantContactPage() {
                   </a>
                 </dd>
               </div>
+              <div className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
+                <dt className="text-mut">Email · bookings, both brands</dt>
+                <dd>
+                  <a href={`mailto:${EMAILS.bookings}`} className="font-semibold underline underline-offset-4">
+                    {EMAILS.bookings}
+                  </a>
+                </dd>
+              </div>
+              <div className="flex flex-wrap items-baseline justify-between gap-2 py-3.5">
+                <dt className="text-mut">Post</dt>
+                <dd className="text-right font-semibold">PO Box 324, Usakos</dd>
+              </div>
             </dl>
+            {/* Owner v3: a restaurant payment card. EFT details were never
+             * supplied, so the card says exactly what is true: pay at the
+             * restaurant, or ask on WhatsApp. data/site-config.ts holds
+             * the TODO and lights the fields up when the owner sends them. */}
+            <div className="mt-6">
+              <RestaurantPaymentCard />
+            </div>
             <p className="mt-5 text-sm leading-relaxed text-mut">
               Hours can shift on public holidays. Ask us on WhatsApp and you get today&apos;s answer in minutes.
             </p>

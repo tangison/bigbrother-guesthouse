@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { GUESTHOUSE, RESTAURANT, HOLDINGS, SOCIALS, wa, GUESTHOUSE_WA_GREETING, type Brand } from "@/lib/site-data";
+import { GUESTHOUSE, RESTAURANT, HOLDINGS, EMAILS, SOCIALS, wa, GUESTHOUSE_WA_GREETING, type Brand } from "@/lib/site-data";
 import { LISTINGS } from "@/lib/nearby";
 import { GUESTHOUSE_ROUTES, RESTAURANT_ROUTES, LEGAL_ROUTES } from "@/lib/routes";
 import { SocialIcon } from "./social-icons";
@@ -140,6 +140,14 @@ export function SiteFooter({ brand }: { brand: Brand }) {
                   </a>
                 </li>
               ) : null}
+              <li>
+                <a
+                  className="underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
+                  href={`mailto:${EMAILS.bookings}`}
+                >
+                  Bookings: {EMAILS.bookings}
+                </a>
+              </li>
               <li>
                 <a
                   className="underline decoration-paper/40 underline-offset-4 hover:decoration-paper"

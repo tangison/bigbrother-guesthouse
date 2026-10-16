@@ -41,6 +41,19 @@ export const ROUTES: RouteInfo[] = [
       "Pool, lawn, thatched lapas, braai area, a conference room for 20 to 30 and day visits at N$30 per person at Big Brother Guesthouse, Plot 7, Usakos.",
   },
   {
+    // The guesthouse's own menu. This exact URL is printed as a QR
+    // on the guesthouse menu card (audited 16 Oct 2026), so /menu
+    // must always serve the guesthouse menu. The restaurant menu
+    // lives at /restaurant/menu.
+    key: "menu",
+    path: "/menu",
+    label: "Menu",
+    brand: "guesthouse",
+    title: "Guesthouse Menu & Prices | Big Brother Guesthouse, Usakos",
+    description:
+      "The Big Brother Guesthouse menu with every price: breakfast, grills, pizza, traditional plates and the full bar list. Breakfast from N$80.",
+  },
+  {
     key: "plot-7",
     path: "/plot-7",
     label: "Plot 7",
@@ -86,13 +99,17 @@ export const ROUTES: RouteInfo[] = [
       "Big Brothers Restaurant in Usakos town centre: grills, seafood, pizza, kapana and a full bar. Est. 2023. Reserve a table on WhatsApp.",
   },
   {
-    key: "menu",
+    // The restaurant's own menu, a different price list from the
+    // guesthouse menu. The printed restaurant QR card is being
+    // replaced with one that points here (old card encodes /menu;
+    // /restaurant-menu also 308-redirects here for safety).
+    key: "restaurant-menu",
     path: "/restaurant/menu",
     label: "Menu",
     brand: "restaurant",
     title: "Menu & Prices | Big Brothers Restaurant, Usakos",
     description:
-      "The full Big Brothers Restaurant menu with every price: breakfast, kapana and pap, grills, pizzas, seafood, cocktails. From N$30 to the N$400 platter.",
+      "The Big Brothers Restaurant menu with every price: breakfast, kapana and pap, grills, pizzas, seafood and the full bar. From N$23 to the N$400 platter.",
   },
   {
     key: "reserve",
@@ -112,6 +129,7 @@ export const GUESTHOUSE_ROUTES = ROUTES.filter((r) => r.brand === "guesthouse" &
 export const LEGAL_ROUTES: { path: string; label: string }[] = [
   { path: "/guesthouse", label: "The guesthouse" },
   { path: "/book", label: "Book" },
+  { path: "/stay-nearby", label: "Fully booked?" },
   { path: "/feedback", label: "Feedback" },
   { path: "/guest-info", label: "Guest info" },
   { path: "/brand", label: "Brand book" },

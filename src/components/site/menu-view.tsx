@@ -3,15 +3,50 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { MENU, nads } from "@/lib/menu-data";
-import { RESTAURANT, wa } from "@/lib/site-data";
+import type { MenuSection } from "@/lib/menu-data";
+import { nads } from "@/lib/menu-data";
 
-/* Menu · catalogue list with a sticky category rail and scroll spy.
- * Prices set in tabular figures, ink on cream, straight from the printed
- * A3 menu. One photo fold opens the page; the list itself is typography. */
+/* MenuBook · one catalogue renderer, two menus. The guesthouse menu
+ * (/menu, the printed QR target) and the restaurant menu
+ * (/restaurant/menu) are different price lists; both render here
+ * from their JSON source. Prices set in tabular figures, ink on
+ * cream, straight from the printed menus. Sections arrive as props
+ * from the server page, so nothing is hardcoded. */
 
-export function MenuView() {
-  const [active, setActive] = useState(MENU[0].id);
+export type MenuBookContact = {
+  tel: string;
+  telDisplay: string;
+  whatsapp: string;
+  whatsappText: string;
+  ctaHref: string;
+  ctaLabel: string;
+};
+
+export type MenuBookProps = {
+  brand: "guesthouse" | "restaurant";
+  sections: MenuSection[];
+  heroTitle: string;
+  heroCopy: string;
+  heroImage: string;
+  photoBand: { src: string; alt: string }[];
+  contact: MenuBookContact;
+  /* The other kitchen's menu: slim interlink banner above the list. */
+  crossMenu: { href: string; label: string; note: string };
+  closing: { title: string; line: string };
+};
+
+export function MenuBook({
+  brand,
+  sections,
+  heroTitle,
+  heroCopy,
+  heroImage,
+  photoBand,
+  contact,
+  crossMenu,
+  closing,
+}: MenuBookProps) {
+  const [active, setActive] = useState(sections[0].id);
 
   // Scroll spy for the category rail
   useEffect(() => {
@@ -24,7 +59,7 @@ export function MenuView() {
       { rootMargin: "-20% 0px -70% 0px" }
     );
     const timer = setTimeout(() => {
-      MENU.forEach((s) => {
+      sections.forEach((s) => {
         const el = document.getElementById(`sec-${s.id}`);
         if (el) obs.observe(el);
       });
@@ -33,7 +68,9 @@ export function MenuView() {
       clearTimeout(timer);
       obs.disconnect();
     };
-  }, []);
+  }, [sections]);
+
+  const isEat = brand === "restaurant";
 
   return (
     <>
@@ -41,7 +78,7 @@ export function MenuView() {
       <section className="relative overflow-hidden bg-ink text-paper" aria-label="Menu">
         <div className="absolute inset-0" aria-hidden="true">
           <Image
-            src="/images/dish-feast.jpg"
+            src={heroImage}
             alt=""
             fill
             priority
@@ -56,31 +93,26 @@ export function MenuView() {
         />
         <div className="relative mx-auto flex min-h-[64svh] max-w-6xl flex-col justify-end px-4 pb-16 pt-28 md:px-6 md:pb-20">
           <h1 className="hero-rise max-w-3xl font-display text-[clamp(2.4rem,5vw,4.4rem)] font-semibold leading-[1.06] tracking-[-0.02em]">
-            Good food, great vibes.
+            {heroTitle}
           </h1>
           <p className="hero-rise mt-4 max-w-2xl text-lg leading-relaxed text-paper/85" style={{ "--i": 1 } as React.CSSProperties}>
-            Every price below comes from our own printed menu, from a N$30 russian to the N$400 seafood platter.
-            The kitchen opens Monday to Saturday, from 09:30 or 10:00 depending on the day.
+            {heroCopy}
           </p>
           <div className="hero-rise mt-7 flex flex-wrap items-center gap-3" style={{ "--i": 2 } as React.CSSProperties}>
             <Link
-              href="/restaurant/reserve"
+              href={contact.ctaHref}
               className="rounded-full bg-paper px-6 py-3 font-semibold text-ink transition-colors hover:bg-lime"
             >
-              Reserve a table
+              {contact.ctaLabel}
             </Link>
             <a
-              href={`tel:${RESTAURANT.phoneEat}`}
+              href={`tel:${contact.tel}`}
               className="rounded-full border border-paper/40 px-6 py-3 font-semibold text-paper transition-colors hover:bg-paper/10"
             >
-              Call {RESTAURANT.phoneEatDisplay}
+              Call {contact.telDisplay}
             </a>
             <a
-              href={wa(
-                RESTAURANT.phoneEatWhatsapp,
-                "Hello Big Brothers Restaurant, here is someone who wants your menu: " +
-                  (typeof window !== "undefined" ? window.location.href : "")
-              )}
+              href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(contact.whatsappText)}`}
               rel="noopener"
               className="text-sm font-semibold text-paper/85 underline decoration-paper/40 underline-offset-4 hover:text-paper"
             >
@@ -93,11 +125,7 @@ export function MenuView() {
       {/* Photo band: three real plates from this kitchen. No captions. */}
       <section aria-label="From our kitchen" className="bg-ink pb-16 md:pb-20">
         <div className="mx-auto grid max-w-6xl gap-4 px-4 sm:grid-cols-3 md:px-6">
-          {[
-            { src: "/images/dish-samoosa.jpg", alt: "Golden samoosas with sauce and salad on a plate" },
-            { src: "/images/dish-matangara.jpg", alt: "Matangara tripe in tomato gravy served with pap" },
-            { src: "/images/cocktail-blue.jpg", alt: "Blue cocktail from the Big Brothers bar" },
-          ].map((p, i) => (
+          {photoBand.map((p, i) => (
             <div key={p.src} className="photo-frame aspect-[4/3]" data-sc-in data-sc-stagger="70">
               <Image
                 src={p.src}
@@ -114,12 +142,25 @@ export function MenuView() {
         </div>
       </section>
 
+      {/* Two kitchens, two menus: point lost scanners at the right list */}
+      <div className="border-b border-line bg-cream">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-3 text-sm md:px-6">
+          <p className="text-mut">{crossMenu.note}</p>
+          <Link
+            href={crossMenu.href}
+            className="font-semibold underline decoration-ember decoration-2 underline-offset-4 hover:text-ember-deep"
+          >
+            {crossMenu.label}
+          </Link>
+        </div>
+      </div>
+
       <div className="menu-paper" id="menu-top">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-[220px_1fr] md:px-6 md:py-16">
           {/* Category rail: sticks while the list runs */}
           <aside className="min-w-0 md:sticky md:top-24 md:h-fit" aria-label="Menu categories">
             <nav className="rail flex gap-2 overflow-x-auto pb-2 md:flex-col md:overflow-visible" aria-label="Jump to menu section">
-              {MENU.map((s) => (
+              {sections.map((s) => (
                 <a
                   key={s.id}
                   href={`#sec-${s.id}`}
@@ -139,17 +180,21 @@ export function MenuView() {
               ))}
             </nav>
             <div className="mt-5 hidden border border-line bg-paper p-4 text-sm md:block">
-              <p className="font-semibold">Eating in a group?</p>
-              <p className="mt-1 text-mut">Call the kitchen ahead of time and we will prepare for your group.</p>
-              <a href={`tel:${RESTAURANT.phoneEat}`} className="mt-2 inline-block font-semibold underline decoration-ember decoration-2 underline-offset-4">
-                {RESTAURANT.phoneEatDisplay}
+              <p className="font-semibold">{isEat ? "Eating in a group?" : "Staying with us?"}</p>
+              <p className="mt-1 text-mut">
+                {isEat
+                  ? "Call the kitchen ahead of time and we will prepare for your group."
+                  : "Residents eat from this menu at the plot, and day visitors order from it too."}
+              </p>
+              <a href={`tel:${contact.tel}`} className="mt-2 inline-block font-semibold underline decoration-ember decoration-2 underline-offset-4">
+                {contact.telDisplay}
               </a>
             </div>
           </aside>
 
           {/* Sections: printed-menu typography, tabular prices */}
           <div className="grid gap-12">
-            {MENU.map((s) => (
+            {sections.map((s) => (
               <section key={s.id} id={`sec-${s.id}`} className="scroll-mt-28" aria-label={s.title}>
                 <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 border-ink pb-3">
                   <h2 className="font-display text-2xl font-semibold md:text-3xl">{s.title}</h2>
@@ -168,6 +213,7 @@ export function MenuView() {
                     </li>
                   ))}
                 </ul>
+                {s.foot && <p className="mt-3 text-sm text-mut">{s.foot}</p>}
               </section>
             ))}
           </div>
@@ -175,18 +221,16 @@ export function MenuView() {
       </div>
 
       {/* Closing band */}
-      <section className="bg-ink py-16 text-paper md:py-20" aria-label="Reserve">
+      <section className="bg-ink py-16 text-paper md:py-20" aria-label={isEat ? "Reserve" : "Book"}>
         <div className="mx-auto max-w-4xl px-4 text-center md:px-6">
-          <h2 className="font-display text-3xl font-semibold md:text-4xl">Hungry? We are in town centre.</h2>
-          <p className="mt-3 text-sm text-paper/75">
-            {RESTAURANT.address.street}, Usakos. Kitchen hours: {RESTAURANT.hoursKnown}.
-          </p>
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">{closing.title}</h2>
+          <p className="mt-3 text-sm text-paper/75">{closing.line}</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link href="/restaurant/reserve" className="rounded-full bg-paper px-6 py-3 font-semibold text-ink transition-colors hover:bg-lime">
-              Reserve a table
+            <Link href={contact.ctaHref} className="rounded-full bg-paper px-6 py-3 font-semibold text-ink transition-colors hover:bg-lime">
+              {contact.ctaLabel}
             </Link>
-            <a href={`tel:${RESTAURANT.phoneEat}`} className="rounded-full border border-paper/40 px-6 py-3 font-semibold text-paper transition-colors hover:bg-paper/10">
-              Call {RESTAURANT.phoneEatDisplay}
+            <a href={`tel:${contact.tel}`} className="rounded-full border border-paper/40 px-6 py-3 font-semibold text-paper transition-colors hover:bg-paper/10">
+              Call {contact.telDisplay}
             </a>
           </div>
         </div>
