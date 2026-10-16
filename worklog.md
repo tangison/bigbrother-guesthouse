@@ -440,3 +440,25 @@ Work Log:
 Stage Summary:
 - /restaurant now carries the restaurant's own gallery inline (all 50 photos + lightbox) and Gallery is in the restaurant nav; live on production after deploy
 - Photo lists remain single-source (PLACES/PLATES/ALL in restaurant-gallery.tsx); guesthouse gallery untouched
+
+---
+Task ID: 5
+Agent: Super Z (main agent)
+Task: Comprehensive website audit pass (owner message 5): pricing, hours, media, UI/UX, widgets, nav, Airbnb
+
+Work Log:
+- Day visits: DAY_VISIT_RATE=30 replaced by DAY_VISIT_TIERS (under-12 N$20, 13-18 N$30, 19-59 N$50, 60+ N$20) in rates.ts; tier tables on /facilities + /rooms; range text in contact FAQ, guest-info FAQ, booking estimate, routes meta. Old flat rate removed everywhere
+- Hours: RESTAURANT.hours (Mon-Fri 08:00-22:00, Sat 09:00-22:00/kitchen 21:30, Sun 09:30-21:30/kitchen 21:00) as single source; hours table on /restaurant fold 2; hoursKnown/hoursShort strings updated (auto-flows to footer, FAQs, reserve card, menu page, terms, restaurant/contact); openingHoursSpecification added to restaurant schema; GUESTHOUSE_HOURS (24/7, service 08:00-22:00, kitchen to 20:30) published via facilities kitchen card + new "When is the guesthouse open?" FAQ + guest-info hours FAQ
+- Facilities media: Day visits tab picnic-table-tree (campsite-look) -> pool-day-visitors; Meetings tab conference-room-set (old) -> conference-long-table; Conference section two stacked images -> ONE conference-tables-chairs (multi-image layout owner-rejected); Celebrations untouched (verified)
+- Restaurant gallery: evening-patio-dining (guesthouse patio, category error) removed from PLATES last slot; moved to guesthouse GALLERY night group with honest alt
+- Reserve a Table: root cause = ReserveCard's own lg grid + sticky-md aside nested inside the page's grid -> double-grid squeeze + md sticky in stacked flow. Fixed with withAside prop (false on /restaurant/reserve), aside sticky lg-only, min-w-0 on inputs. Verified 0px overflow at 1440x900 / 1024x768 / 390x844
+- Widgets: StickyActionBar now persistent on ALL pages (owner override), 2-button (Call/WhatsApp) on /book + /restaurant/reserve, safe-area bottom padding, body clearance padding in globals.css so footers never covered; new BackToTop component (appears >600px scroll, bottom-right, mobile docks above the bar, reduced-motion aware, a11y label), mounted in both layouts
+- Nav: "Guesthouse" lime bordered button added to restaurant desktop nav (mirrors mobile brand switcher + guesthouse's ember Restaurant link)
+- Airbnb: AIRBNB slot in data/site-config.ts (supplied:false, url:""), conditional button on /book renders when URL arrives. TODO(owner): send Airbnb listing URL
+- Trap hit: old standalone server held port 3111 (EADDRINUSE, stale mixed build served) -> killed PID, restarted, re-ran QC clean
+- QC script scripts/qc_audit_pass.cjs: all green (tiers present, flat rate gone, hours rows, 1 conference image, nav button, patio photo moved, back-to-top, bar on form pages)
+- Deployed: a9a5b2e pushed, Vercel READY
+
+Stage Summary:
+- Every audit checklist item implemented except two owner-pending items: Airbnb URL and campsite photography (progressive assets)
+- Currency note: owner wrote "$" for day-visit tiers; published as N$ (site currency, same numerals) - flagged in report
