@@ -381,3 +381,24 @@ Stage Summary:
 - Local main ahead: full Prompt v3 build committed, 76/76 QC PASS locally, three QR deliverables re-verified.
 - Blocked on owner: fresh GitHub PAT (fine-grained, tangison/bigbrother-guesthouse, Contents read/write) - both previously chat-exposed tokens must be rotated anyway.
 - Owner actions carried from round 8/10: replacement restaurant QR card must replace the printed one (old card scans land on the guesthouse menu until swapped); create restaurant@ + bookings@ mailboxes; confirm FNB branch code (281073 vs 282672); send restaurant EFT details; camping rates; direct Booking.com/Agoda URLs.
+
+---
+Task ID: 12
+Agent: Super Z (main agent)
+Task: Owner "respect the print" precision pass - verify both menus against the printed PDFs item-by-item, fix deviations, re-run full QC, commit, prepare deploy.
+
+Work Log:
+- Re-read both print briefs (scripts/briefs/gh_menu.txt, rest_menu.txt, verbatim pdftotext of menus/*.pdf) and compared them to data/menu-guesthouse.json + data/menu-restaurant.json item-by-item.
+- Found and fixed 3 deviations from the print: (1) Sauces block was nested under Desserts on the guesthouse menu and MISSING entirely on the restaurant menu - it now stands alone after Burgers on both lists, exactly as printed (N$30 each: Creamy garlic, Cheese, Pepper, Mushroom, White); (2) restaurant Ice Cream carried an invented "Small / large" note - the print only says N$20 / 40, note removed per never-invent rule; (3) home page restaurant item count 133 -> 134.
+- Final data shape: guesthouse 28 sections / 161 items (the "even more" list), restaurant 27 sections / 134 items. Every price re-verified against print: Lamb Chops 230, Russian 33, Russian & Chips 63, guesthouse-only cocktails/shandies/cordials/shooters/Hansa/Heineken/2L block, restaurant-only Tall Horse 200 / Four Cousins 120 / Latte / own cider + beer ladder / Hot Stuff all N$35, ice cream GH 40 vs RS 20/40.
+- Re-decoded every QR with my own eyes (scripts/qr_audit_final.py, 150+300 DPI): guesthouse print QR = https://bigbrotherguesthouse.com/menu (served by /menu, no redirect); restaurant print QR ALSO encodes /menu (client print error) while the printed text names /restaurant-menu - both URLs resolve (308 to /restaurant/menu). Replacement restaurant card files decode exactly to https://www.bigbrotherguesthouse.com/restaurant/menu at multiple scales (print PNG + A6 card PDF).
+- next.config.ts redirects confirmed: /restaurant-menu -> /restaurant/menu (308), /home -> / (308); middleware canonical host apex -> www (308, path+query kept). /menu serves the guesthouse list.
+- QC: lint clean, build green (33 routes), standalone server, v3_verify.mjs extended to 76 checks (added: Sauces on both menus, no invented ice-cream sizes, 134 count) - ALL PASS. Visual eyeball via playwright-core (scripts/v3_menu_eyeball.cjs): Sauces renders standalone on both pages, /home lands on / in a real browser. Screenshots at scripts/v3_gh_menu_sauces.png, scripts/v3_rest_menu_sauces.png.
+- Git: silenced filesystem mode-change noise (core.fileMode false; the 66 dirty files were 644->755 only, zero content), committed precision pass as f0311b8 on main.
+- Deploy: still blocked - no GitHub PAT / Vercel token exists in this session (one-shot tokens wiped at restart, never stored on disk, no git remote, no ssh binary). Commit f0311b8 is push-ready the moment the owner pastes a fresh fine-grained PAT (tangison/bigbrother-guesthouse, Contents read/write).
+
+Stage Summary:
+- Both menus now match the client's printed PDFs exactly, verified item-by-item; QC 76/76; /home, /restaurant-menu, trailing slash and canonical-host redirects verified at HTTP and browser level; QR scan URLs verified working.
+- Local main (f0311b8) ahead of live site (deployed @ 9ff023f, predates Prompt v3). One action flips it live: owner pastes fresh GitHub PAT, then git push https://<PAT>@github.com/tangison/bigbrother-guesthouse.git main (Vercel auto-deploys).
+- Still carried from earlier rounds (owner actions): replace the printed restaurant QR card with the new one in download/BB-Restaurant-Menu-QR-card.pdf, create restaurant@ + bookings@ mailboxes, confirm FNB branch code (281073 vs 282672), send restaurant EFT details + camping rates, fix or retire bigbrother-usakos.com (broken SPA, GBP points there).
+- Digital Foundation Pack queued immediately after the push goes live.
