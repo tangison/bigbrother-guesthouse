@@ -45,6 +45,7 @@ for (const p of ["/", "/menu", "/restaurant/menu", "/restaurant/gallery", "/stay
   ok("/menu: Russian & Chips N$63 (new price)", html.includes("Russian &amp; Chips") && /N\$63/.test(html));
   ok("/menu: Stoney 25/20 (guesthouse soft drinks)", html.includes("Stoney"));
   ok("/menu: Lamb Chops N$230 (corrected)", /Lamb Chops/.test(html));
+  ok("/menu: Sauces standalone section (as printed)", html.includes("Creamy Garlic, Cheese, Pepper, Mushroom or White"));
   ok("/menu: cross-link to restaurant menu", html.includes("/restaurant/menu"));
   ok("/menu: Menu JSON-LD present", html.includes('"@type":"Menu"') && html.includes("Big Brother Guesthouse Menu"));
   ok("/menu: NOT the restaurant menu title", !html.includes("Good food, great vibes."));
@@ -63,6 +64,8 @@ for (const p of ["/", "/menu", "/restaurant/menu", "/restaurant/gallery", "/stay
   ok("/restaurant/menu: NO Hansa Draught (guesthouse only)", !html.includes("Hansa Draught"));
   ok("/restaurant/menu: NO Rainbow Cocktail (guesthouse only)", !html.includes("Rainbow Cocktail"));
   ok("/restaurant/menu: Ice Cream 20 / 40", html.includes("20 / 40"));
+  ok("/restaurant/menu: no invented ice-cream sizes (print shows N$20 / 40 only)", !html.includes("Small / large"));
+  ok("/restaurant/menu: Sauces section (print block restored)", html.includes("Creamy Garlic, Cheese, Pepper, Mushroom or White"));
   ok("/restaurant/menu: cross-link to guesthouse menu", html.includes('href="/menu"'));
   ok("/restaurant/menu: Menu JSON-LD present", html.includes('"@type":"Menu"') && html.includes("Big Brothers Restaurant Menu"));
 }
@@ -72,7 +75,7 @@ for (const p of ["/", "/menu", "/restaurant/menu", "/restaurant/gallery", "/stay
   const { html } = await page("/");
   ok("home: no 'one gate' wording", !html.toLowerCase().includes("one gate"), "removed per owner correction");
   ok("home: two menu CTAs", html.includes("Guesthouse menu") && html.includes("Restaurant menu"));
-  ok("home: item count updated (133)", html.includes("133 items"));
+  ok("home: item count updated (134)", html.includes("134 items"));
 }
 
 // 6. /stay-nearby carries the nine places

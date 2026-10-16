@@ -35,6 +35,13 @@
     ]
   },
   {
+    "id": "sauces",
+    "title": "Sauces",
+    "items": [
+      { "name": "Creamy Garlic, Cheese, Pepper, Mushroom or White", "price": 30, "note": "N$30 each" }
+    ]
+  },
+  {
     "id": "wraps-fast-food",
     "title": "Wraps & Fast Food",
     "items": [
@@ -147,8 +154,7 @@
     "items": [
       { "name": "Malva Pudding", "price": 100 },
       { "name": "Waffles", "price": 80 },
-      { "name": "Ice Cream", "price": 40 },
-      { "name": "Sauces", "price": 30, "note": "Creamy garlic, cheese, pepper, mushroom or white" }
+      { "name": "Ice Cream", "price": 40 }
     ]
   },
   {

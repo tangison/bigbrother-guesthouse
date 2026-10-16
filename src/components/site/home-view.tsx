@@ -259,7 +259,7 @@ export function HomeView() {
               href="/restaurant/menu"
               className="mt-9 inline-block font-semibold text-ink underline decoration-ember decoration-2 underline-offset-8 transition-colors hover:text-ember-deep"
             >
-              Open the restaurant menu, 133 items and every price
+              Open the restaurant menu, 134 items and every price
             </Link>
           </div>
         </div>
