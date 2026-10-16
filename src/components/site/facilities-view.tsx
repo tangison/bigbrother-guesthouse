@@ -221,8 +221,9 @@ export function FacilitiesView() {
       </section>
 
       {/* Camping: the owner's own campsite photographs (v3 asset pack).
-       * Rates are NOT in any brief, so none are printed here - TODO(owner):
-       * send camping rates and they go straight into this block. */}
+       * Rates supplied by the owner 16 Oct 2026: N$200 adults, N$150
+       * kids, per person. Displayed exactly as given (no "per night"
+       * invented). */}
       <section className="bg-cream" aria-label="Camping">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -239,9 +240,20 @@ export function FacilitiesView() {
               </p>
               <p className="mt-4 max-w-[58ch] leading-relaxed text-mut">
                 Campsites are open to overnights and to day visitors travelling with tents.
-                Ask us for the current camping rates and availability on WhatsApp, and tell us
-                the size of your setup so we can point you at the right tree.
+                Tell us the size of your setup when you book so we can point you at the
+                right tree.
               </p>
+              <dl className="mt-6 max-w-xs rounded-xl border border-line bg-paper p-5">
+                <div className="flex items-baseline justify-between gap-4 py-1.5">
+                  <dt className="text-sm text-mut">Adults</dt>
+                  <dd className="font-display text-lg font-semibold tabular-nums">N$200</dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-4 py-1.5">
+                  <dt className="text-sm text-mut">Kids</dt>
+                  <dd className="font-display text-lg font-semibold tabular-nums">N$150</dd>
+                </div>
+                <p className="mt-2 border-t border-line pt-2 text-xs text-mut">Rates per person.</p>
+              </dl>
               <div className="mt-7 flex flex-wrap gap-3">
                 <a
                   href={wa(BIZ.guesthouse.phone1, "Hello Big Brother Guesthouse, I would like to ask about camping on your grounds.")}

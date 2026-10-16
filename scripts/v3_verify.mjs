@@ -93,7 +93,9 @@ for (const p of ["/", "/menu", "/restaurant/menu", "/restaurant/gallery", "/stay
   for (const img of ["camping-picnic-bench", "camping-tree-drum", "camping-shade-tree", "camping-grounds-thatch", "bar-thatched-day", "conference-tables-chairs", "conference-refreshments"]) {
     ok(`/facilities: ${img}`, html.includes(img));
   }
-  ok("/facilities: camping CTA (no invented rate)", html.includes("Ask about camping on WhatsApp") && !/N\$\d+ per (site|night)/i.test(html));
+  ok("/facilities: camping CTA (no invented rate)", html.includes("Ask about camping on WhatsApp"));
+  ok("/facilities: camping rates as given by owner (N$200 / N$150 per person)", html.includes("N$200") && html.includes("N$150") && html.includes("Rates per person"));
+  ok("/facilities: no invented per-night camping wording", !/per night/i.test(html.split("Camping")[1]?.split("</section>")[0] ?? ""));
 }
 
 // 8. Emails split + gallery additions
@@ -112,13 +114,19 @@ for (const p of ["/", "/menu", "/restaurant/menu", "/restaurant/gallery", "/stay
   ok("/gallery: camping photo present", gallery.includes("camping-grounds-thatch") || gallery.includes("camping-picnic-bench"));
 }
 
-// 9. Banking placement: account number lives ONLY in the booking
-//    confirmation panel (client-side, by design); the unconfirmed branch
-//    code must appear nowhere public.
+// 9. Banking placement: branch code 281073 is OWNER-CONFIRMED
+//    (16 Oct 2026) and shows on the rooms page + booking panel.
+//    It must still appear nowhere outside the payment cards
+//    (never footer, meta tags or schema).
 {
+  const { html: rooms } = await page("/rooms");
+  ok("/rooms: confirmed branch code 281073 shown", rooms.includes("281073"), "owner-confirmed 16 Oct 2026");
   const { html: book } = await page("/book");
-  ok("/book: unconfirmed branch code 281073 hidden", !book.includes("281073"), "hidden per v3 plan");
-  ok("/book: no branch code in rooms page either", !(await page("/rooms")).html.includes("281073"));
+  ok("/book: branch code renders client-side (booking panel, not initial HTML)", !book.includes("281073"));
+  const { html: home } = await page("/");
+  ok("branch code never on home (footer/schema rule)", !home.includes("281073"));
+  const { html: contact } = await page("/contact");
+  ok("branch code never on /contact (footer/schema rule)", !contact.includes("281073"));
 }
 
 // 10. Sitemap + robots

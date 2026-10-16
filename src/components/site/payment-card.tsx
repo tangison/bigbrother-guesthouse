@@ -4,9 +4,9 @@ import { useState } from "react";
 import { BANKING, RESTAURANT_BANKING, formatNad } from "@/lib/rates";
 
 /* Payment details cards. The guesthouse card lives ONLY inside the booking
- * "Request sent" panel and once on the rooms page. The branch code row is
-// hidden until the owner confirms the code (two candidates found online:
-// 281073 Karibib vs 282672 FNB universal) - see data/site-config.ts.
+ * "Request sent" panel and once on the rooms page. The branch code row
+// shows the owner-confirmed code (281073, confirmed 16 Oct 2026 - see
+// data/site-config.ts).
  * Copy-account-number button uses the clipboard with a plain fallback for
  * older browsers. The restaurant card renders wherever the restaurant talks
  * about payment and stays honest while the owner's EFT details are pending. */

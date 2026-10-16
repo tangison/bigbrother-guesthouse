@@ -23,10 +23,9 @@ export const SITE = {
 };
 
 // ---- Emails -------------------------------------------------
-// TODO(owner): create these two mailboxes on the domain (mail
-// setup or forwarding) before mail sent to them lands anywhere.
-// Until the mailboxes exist, mail to the gmail address is the
-// one guaranteed to arrive.
+// Mailboxes confirmed created by the owner (16 Oct 2026 chat):
+// bookings@ and restaurant@ are live on the domain. The gmail
+// address stays the long-standing general inbox.
 export const EMAILS = {
   // Long-standing general address, printed on the guesthouse menu.
   general: "bigbrotherguest@gmail.com",
@@ -42,18 +41,16 @@ export const EMAILS = {
 // word for word. Shown ONLY inside the booking confirmation panel
 // and the payment card. Never in the footer, meta tags or schema.
 //
-// Branch code note (round v3 research, 16 Oct 2026): the master
-// file says 281073 (Karibib, via namibpages); 282672 appears
-// online as FNB Namibia's universal branch code through several
-// independent non-official sources. The two disagree, so the code
-// row is NOT displayed on the public card until the owner
-// confirms. TODO(owner): confirm the Karibib branch code.
+// Branch code (round v3 research, 16 Oct 2026): two candidates
+// appeared online (281073 Karibib vs 282672 FNB universal). The
+// owner confirmed 281073 in chat on 16 Oct 2026, so the code row
+// now displays on the payment cards (booking panel + rooms page).
 export const BANKING = {
   bank: "FNB (First National Bank Namibia)",
   accountName: "Big Brother Guesthouse",
   branch: "Karibib",
-  branchCode: "281073", // kept for reference, hidden on the card
-  branchCodeConfirmed: false,
+  branchCode: "281073", // owner-confirmed 16 Oct 2026
+  branchCodeConfirmed: true,
   accountNumber: "62257058604",
   note: "Pay after we confirm your booking. Send proof of payment on WhatsApp or email.",
 };
@@ -75,16 +72,23 @@ export const RESTAURANT_BANKING = {
 };
 
 // ---- Printed QR targets (round v3 audit, 16 Oct 2026) -------
-// Both printed menu PDFs were QR-decoded at 150 and 300 DPI:
+// Both printed menu PDFs were QR-decoded at 150, 300 and 600 DPI:
 //   guesthouse QR  -> https://bigbrotherguesthouse.com/menu
 //   restaurant QR  -> https://bigbrotherguesthouse.com/menu
 //                    (same URL as the guesthouse QR: a print
-//                    error on the restaurant card. The printed
-//                    card needs the replacement QR that points
-//                    at /restaurant/menu - files delivered.)
-// /menu therefore serves the GUESTHOUSE menu, and the site
-// keeps /restaurant-menu -> /restaurant/menu alive (next.config
-// redirects) so any older print or link still lands right.
+//                    error on the restaurant card.)
+// OWNER DECISION (16 Oct 2026): the printed cards stay as
+// printed - no reprint required. The site carries the
+// correctness instead:
+//   - /menu serves the GUESTHOUSE menu (guesthouse card scans
+//     land exactly as printed)
+//   - /restaurant-menu (the URL printed on the restaurant card)
+//     308-redirects to /restaurant/menu
+//   - /menu carries a prominent two-kitchens banner so a scan of
+//     the old restaurant card still reaches the restaurant menu
+//     in one tap
+// Replacement QR card files remain in /download as an optional
+// extra for a future reprint.
 export const QR_ROUTES = {
   guesthouseMenu: "/menu",
   restaurantMenu: "/restaurant/menu",
