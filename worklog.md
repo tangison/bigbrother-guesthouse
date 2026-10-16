@@ -422,3 +422,21 @@ Stage Summary:
 - Remote remains unconfigured locally (one-shot push URL protocol); no tokens on disk.
 - Remaining owner-side: send restaurant EFT details (card flips automatically when supplied); optionally print the replacement restaurant QR card for future stock; fix or retire bigbrother-usakos.com (broken SPA that GBP points at).
 - NEXT: Digital Foundation Pack (client handover + company profile) - gate cleared (site passed QC and is live).
+
+---
+Task ID: 4
+Agent: Super Z (main agent)
+Task: Restaurant must have its own gallery, added on the restaurant page (owner message 4)
+
+Work Log:
+- Found root cause of "where is the gallery": /restaurant/gallery existed with all 50 photos but was never in ROUTES nav nor linked from /restaurant, so it was undiscoverable
+- Refactored restaurant-gallery.tsx: exported PLACES/PLATES/ALL, extracted shared RestaurantPhotoGrid + RestaurantPhotoLightbox + useRestaurantLightbox hook; added RestaurantGalleryInline (all 50 photos inline, masonry, lightbox, "Open the full gallery" link, auto photo count in copy)
+- restaurant-view.tsx: new Fold 4 gallery section between dish carousel and Book a table; Book a table restyled to full-bleed bg-cream band (fold rhythm: paper/cream alternation preserved)
+- routes.ts: added restaurant-gallery route (label "Gallery", brand restaurant) -> appears in restaurant nav + footer
+- Fixed missing Link import (build prerender error on /restaurant)
+- QC: build green; served standalone: /restaurant 200 with gallery heading + 50 view-photo buttons + full-gallery link; /restaurant/gallery still 200; nav Gallery link present on /restaurant/menu; playwright visual QC: 0px horizontal overflow desktop+mobile, images load (37/50 in captured fold, rest lazy), lightbox opens
+- Deployed: commit 183f41b pushed main->main, Vercel dpl_5E55nipkd2Bo8D6297moVegKjomM READY
+
+Stage Summary:
+- /restaurant now carries the restaurant's own gallery inline (all 50 photos + lightbox) and Gallery is in the restaurant nav; live on production after deploy
+- Photo lists remain single-source (PLACES/PLATES/ALL in restaurant-gallery.tsx); guesthouse gallery untouched
