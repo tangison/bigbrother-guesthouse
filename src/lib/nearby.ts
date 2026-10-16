@@ -101,22 +101,22 @@ export const NEARBY: NearbyStay[] = [
 ];
 
 // Booking and listing links (owner round 8, 15 Oct 2026): a button for each
-// of the owner's list, all opening in a new tab. Verified 15 Oct 2026:
-// SafariNow www host serves the live bookable page; Google Maps is the
-// official Maps-URL format to the verified GBP pin; TripAdvisor is the
-// property page. Booking.com and Agoda: research (worklog Task 2-a) found
-// NO direct Big Brother listing on either platform on 15 Oct 2026, so per
-// the owner's instruction these go to the platform's own search for the
-// guesthouse - they always resolve, and surface the listing as soon as it
-// exists. Owner: send the direct listing URLs and they get swapped in.
+// of the owner's list, all opening in a new tab. Verified 16 Oct 2026.
+// SafariNow was on the owner's original list, but the owner removed it on
+// 16 Oct 2026 ("remove safari now from the list, it is redirecting to a
+// wrong place") and the audit agreed: safarinow.com/go/big-brother-guest-house
+// now dumps on travelstart.co.za/accommodation, a generic Travelstart page
+// that is not our listing. Google Maps is the official Maps-URL format to
+// the verified GBP pin; TripAdvisor is the property page. Booking.com and
+// Agoda: research (worklog Task 2-a) found NO direct Big Brother listing on
+// either platform on 15 Oct 2026, so per the owner's instruction these go to
+// the platform's own search for the guesthouse - they always resolve, and
+// surface the listing as soon as it exists. Owner: send the direct listing
+// URLs and they get swapped in.
 export const LISTINGS = [
   {
     name: "Booking.com",
     href: "https://www.booking.com/searchresults.html?ss=Big+Brother+Guesthouse+Usakos+Namibia",
-  },
-  {
-    name: "SafariNow",
-    href: "https://www.safarinow.com/go/big-brother-guest-house",
   },
   {
     name: "Google Maps",

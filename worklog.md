@@ -462,3 +462,24 @@ Work Log:
 Stage Summary:
 - Every audit checklist item implemented except two owner-pending items: Airbnb URL and campsite photography (progressive assets)
 - Currency note: owner wrote "$" for day-visit tiers; published as N$ (site currency, same numerals) - flagged in report
+
+---
+Task ID: 6
+Agent: Super Z (main agent)
+Task: Remove SafariNow from the listings (redirects to a wrong place), verify every link on the site points to the right target, finish off the round (owner message 6)
+
+Work Log:
+- Reproduced the owner report: safarinow.com/go/big-brother-guest-house now 302s to travelstart.co.za/accommodation, a generic Travelstart page, not our listing (SafariNow/Travelstart killed the /go/ deep links)
+- Removed SafariNow from LISTINGS in src/lib/nearby.ts (single source); chips disappear automatically from /contact "Find us on other sites", /book "Prefer to book or review us elsewhere?" and the footer "Also listed on" strip; comment documents evidence + date
+- Rewrote the /contact intro copy (SafariNow sentence out, TripAdvisor/Maps/Booking/Agoda/NTB remain)
+- Updated the alternateName comment in (site)/layout.tsx (no SafariNow reference); schema itself unchanged and correct
+- Full link audit (scripts/link_audit.py + link_audit_pass2.py): 21 internal routes 200; /restaurant-menu 308 -> /restaurant/menu; /home 308 -> /; apex 308 -> www (middleware); Google Maps pins, NTB directory, all 9 stay-nearby places, wa.me/tel links, studio credit tested; TripAdvisor/Facebook/Instagram 403/429 login walls (bot handling, URL formats correct); TikTok region-locks our test network to an about page (handle owner-supplied, flagged for phone verification); Booking.com + Agoda search chips bounce to platform homepages from this datacenter (bot handling; Booking URL is their canonical format, Agoda format looks dead, flagged for phone verification); ameib.com SSL handshake timeout x2 from this network (was live 15 Oct, flagged)
+- Trap hit again: stale standalone server from a previous session held port 3111, new server died EADDRINUSE and QC ran against the old build (7 false failures); killed PID 6139, restarted fresh, all green
+- QC scripts/qc_safarinow_removal.cjs: 49/49 (SafariNow string absent on /, /contact, /book incl. lowercase, 5 remaining chips present, updated copy present, 21 routes 200, both legacy QR redirects 308)
+- QC scripts/qc_safarinow_visual.cjs: 0px horizontal overflow on /, /contact, /book at 1440x900 + 390x844; no safari link in DOM; TripAdvisor chip present; screenshots in download/
+- Regression spot-checks re-verified Task 5 items still live: DAY_VISIT_TIERS 4 files, pool/conference facility photos, patio photo out of PLATES, StickyActionBar + BackToTop on both layouts, Guesthouse button in restaurant nav, AIRBNB slot on /book
+- Deployed: commit pushed main->main via one-shot PAT URL, Vercel production checked READY
+
+Stage Summary:
+- SafariNow gone site-wide; every shipped link tested; internal routing + legacy QR redirects proven; prior audit pass re-verified intact
+- Owner-pending: Airbnb URL, Booking/Agoda direct listing URLs, phone-verify TikTok handle + Agoda/Booking chips + ameib.com, campsite photos, restaurant EFT details

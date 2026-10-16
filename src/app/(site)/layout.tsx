@@ -12,8 +12,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
   name: GUESTHOUSE.name,
-  // The spaced two-word form is how press and OTAs sometimes spell it
-  // (New Era, SafariNow slug). Alternate names help search consolidate.
+  // The spaced two-word form is how press and the booking platforms
+  // sometimes spell it. Alternate names help search consolidate.
   alternateName: "Big Brother Guest House",
   description,
   url: `${HOLDINGS.site}/`,

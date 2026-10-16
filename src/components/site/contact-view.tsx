@@ -187,10 +187,10 @@ export function ContactView() {
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20" aria-label="Find us on other sites">
         <h2 className="font-display text-2xl font-semibold tracking-[-0.01em] md:text-3xl">Find us on other sites.</h2>
         <p className="mt-3 max-w-[62ch] leading-relaxed text-mut">
-          Every booking and review platform we are on, in one place: SafariNow takes
-          bookings, TripAdvisor carries the guest reviews, Google Maps holds our pin, and
-          Booking.com and Agoda open their search for us. Our registration lives in the
-          Namibia Tourism Board&apos;s own directory as well.
+          Every booking and review platform we are on, in one place: TripAdvisor carries
+          the guest reviews, Google Maps holds our pin, and Booking.com and Agoda open
+          their search for us. Our registration lives in the Namibia Tourism Board&apos;s
+          own directory as well.
         </p>
         <ul className="mt-6 flex flex-wrap gap-3">
           {LISTINGS.map((l) => (
