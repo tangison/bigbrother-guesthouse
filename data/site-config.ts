@@ -71,6 +71,18 @@ export const RESTAURANT_BANKING = {
   note: "Ask us on WhatsApp or by email for our EFT details, or pay cash or by card at the restaurant.",
 };
 
+// ---- Airbnb (owner audit, 16 Oct 2026) ----------------------
+// The owner listed "Airbnb Integration: not connected - connect and
+// link the Airbnb listing URL to the website", but the listing URL
+// itself was not included in the audit message. Nothing may be
+// invented, so the slot ships empty. TODO(owner): send the Airbnb
+// listing URL; set `supplied` to true and the button renders
+// automatically on the Book page next to the other platforms.
+export const AIRBNB = {
+  supplied: false,
+  url: "",
+};
+
 // ---- Printed QR targets (round v3 audit, 16 Oct 2026) -------
 // Both printed menu PDFs were QR-decoded at 150, 300 and 600 DPI:
 //   guesthouse QR  -> https://bigbrotherguesthouse.com/menu

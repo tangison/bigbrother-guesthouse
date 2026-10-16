@@ -6,8 +6,12 @@ import { formatNad } from "@/lib/rates";
 
 /* Restaurant table reservation: name, phone, date, time, guests, notes.
  * "Reserve on WhatsApp" goes to the Eat number; "Reserve by email" always
- * sits next to it. Nothing stored, the message is built in the browser. */
-export function ReserveCard() {
+ * sits next to it. Nothing stored, the message is built in the browser.
+ * withAside: the ink "Good to know" card rides along on /restaurant itself,
+ * but NOT on /restaurant/reserve, where the page already pairs the form
+ * with the payment card in its own grid. Nesting both grids was the cause
+ * of the broken desktop container (owner audit 16 Oct 2026). */
+export function ReserveCard({ withAside = true }: { withAside?: boolean }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
@@ -28,34 +32,34 @@ export function ReserveCard() {
   const message = ["Hello Big Brothers Restaurant, I would like to reserve a table.", "", ...lines.map((l) => `- ${l}`)].join("\n");
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+    <div className={withAside ? "grid gap-6 lg:grid-cols-[1.25fr_0.75fr]" : ""}>
       <div className="rounded-2xl border border-line bg-paper p-5 md:p-8">
         <div className="grid gap-3 sm:grid-cols-2">
           <label className="grid gap-1 text-sm">
             <span className="font-medium">Name</span>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name"
-              className="min-h-[44px] rounded-xl border border-line bg-paper px-4 text-sm" />
+              className="min-h-[44px] min-w-0 rounded-xl border border-line bg-paper px-4 text-sm" />
           </label>
           <label className="grid gap-1 text-sm">
             <span className="font-medium">Phone</span>
             <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" placeholder="+264 81 ..."
-              className="min-h-[44px] rounded-xl border border-line bg-paper px-4 text-sm" />
+              className="min-h-[44px] min-w-0 rounded-xl border border-line bg-paper px-4 text-sm" />
           </label>
           <label className="grid gap-1 text-sm">
             <span className="font-medium">Date</span>
             <input type="date" value={date} onChange={(e) => setDate(e.target.value)}
-              className="min-h-[44px] rounded-xl border border-line bg-paper px-4 text-sm" />
+              className="min-h-[44px] min-w-0 rounded-xl border border-line bg-paper px-4 text-sm" />
           </label>
           <label className="grid gap-1 text-sm">
             <span className="font-medium">Time</span>
             <input type="time" value={time} onChange={(e) => setTime(e.target.value)}
-              className="min-h-[44px] rounded-xl border border-line bg-paper px-4 text-sm" />
+              className="min-h-[44px] min-w-0 rounded-xl border border-line bg-paper px-4 text-sm" />
           </label>
           <label className="grid gap-1 text-sm">
             <span className="font-medium">Guests</span>
             <input type="number" inputMode="numeric" min={1} max={40} value={guests}
               onChange={(e) => setGuests(Math.max(1, Number(e.target.value) || 1))}
-              className="min-h-[44px] rounded-xl border border-line bg-paper px-4 text-sm" />
+              className="min-h-[44px] min-w-0 rounded-xl border border-line bg-paper px-4 text-sm" />
           </label>
           <label className="grid gap-1 text-sm sm:col-span-2">
             <span className="font-medium">Notes (optional)</span>
@@ -101,21 +105,23 @@ export function ReserveCard() {
         )}
       </div>
 
-      <aside className="h-fit rounded-2xl bg-ink p-6 text-paper md:sticky md:top-32 md:p-8">
-        <h2 className="font-display text-2xl font-semibold">Good to know</h2>
-        <ul className="mt-4 space-y-3 text-sm leading-relaxed text-paper/80">
-          <li>We are at {RESTAURANT.address.street}, {RESTAURANT.address.area}.</li>
-          <li>Kitchen hours: {RESTAURANT.hoursKnown}. Public holidays can shift; ask on WhatsApp.</li>
-          <li>Big groups: tell us the number and we will set the lapa tables.</li>
-          <li>Prices run from {formatNad(30)} to the {formatNad(400)} platter, straight from our printed menu.</li>
-        </ul>
-        <a
-          href={`tel:${RESTAURANT.phoneEat}`}
-          className="mt-6 inline-block rounded-full border border-paper/30 px-5 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-paper/10"
-        >
-          Or call {RESTAURANT.phoneEatDisplay}
-        </a>
-      </aside>
+      {withAside && (
+        <aside className="h-fit rounded-2xl bg-ink p-6 text-paper lg:sticky lg:top-32 lg:p-8">
+          <h2 className="font-display text-2xl font-semibold">Good to know</h2>
+          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-paper/80">
+            <li>We are at {RESTAURANT.address.street}, {RESTAURANT.address.area}.</li>
+            <li>Hours: {RESTAURANT.hoursKnown}. Public holidays can shift; ask on WhatsApp.</li>
+            <li>Big groups: tell us the number and we will set the lapa tables.</li>
+            <li>Prices run from {formatNad(30)} to the {formatNad(400)} platter, straight from our printed menu.</li>
+          </ul>
+          <a
+            href={`tel:${RESTAURANT.phoneEat}`}
+            className="mt-6 inline-block rounded-full border border-paper/30 px-5 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-paper/10"
+          >
+            Or call {RESTAURANT.phoneEatDisplay}
+          </a>
+        </aside>
+      )}
     </div>
   );
 }

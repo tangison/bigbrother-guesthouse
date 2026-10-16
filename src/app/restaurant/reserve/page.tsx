@@ -21,11 +21,14 @@ export default function ReservePage() {
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-4 pb-20 md:px-6 md:pb-28" aria-label="Reservation card">
-        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+        <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
           <div>
-            <ReserveCard />
+            {/* withAside=false: the "Good to know" card must not nest inside
+             * this grid too (that double grid broke the desktop container,
+             * owner audit 16 Oct 2026). The payment card aside serves here. */}
+            <ReserveCard withAside={false} />
             <p className="mt-8 text-sm text-mut">
-              We are at {RESTAURANT.address.street}, {RESTAURANT.address.area}. Kitchen hours: {RESTAURANT.hoursKnown}.
+              We are at {RESTAURANT.address.street}, {RESTAURANT.address.area}. Hours: {RESTAURANT.hoursKnown}.
             </p>
           </div>
           {/* Owner v3: restaurant payment card. EFT details pending with the

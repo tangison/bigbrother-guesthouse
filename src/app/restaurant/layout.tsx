@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteNav } from "@/components/site/nav";
 import { SiteFooter } from "@/components/site/footer";
 import { StickyActionBar } from "@/components/site/sticky-action-bar";
+import { BackToTop } from "@/components/site/back-to-top";
 import { RESTAURANT, GUESTHOUSE, HOLDINGS } from "@/lib/site-data";
 
 /* The Restaurant is its own small website inside the main one: own nav,
@@ -38,9 +39,19 @@ const jsonLd = {
     addressRegion: RESTAURANT.address.region,
     addressCountry: "NA",
   },
-  // Opening hours: the owner's confirmed schedule is Monday to Saturday with
-  // a 09:30/10:00 open. Closing times are not confirmed, so no machine hours
-  // are published here (an invalid closes value would be worse than none).
+  // Opening hours (owner audit, 16 Oct 2026, confirmed): the venue schedule.
+  // The kitchen closes up to 30 minutes earlier on weekends; schema carries
+  // the venue hours guests can plan around.
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "22:00",
+    },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "22:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "09:30", closes: "21:30" },
+  ],
   sameAs: [GUESTHOUSE.facebook, GUESTHOUSE.instagram, GUESTHOUSE.tiktok],
 };
 
@@ -54,6 +65,7 @@ export default function RestaurantLayout({ children }: { children: React.ReactNo
       </main>
       <SiteFooter brand="restaurant" />
       <StickyActionBar brand="restaurant" />
+      <BackToTop />
     </div>
   );
 }

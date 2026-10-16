@@ -89,10 +89,24 @@ export const GROUP_LABELS: Record<RoomGroup, string> = {
   family: "Family unit",
 };
 
-// F. Day visits: one flat entry fee per person (owner round 6), pool,
-// gardens and entertainment area access. The old tiered list (N$20 to N$50)
-// is replaced by this single rate.
-export const DAY_VISIT_RATE = 30;
+// F. Day visits (owner audit, 16 Oct 2026): the single flat N$30 rate is
+// GONE. Entry is a 4-tier age schedule, quoted exactly as the owner gave
+// it: under-12s N$20, youths 13-18 N$30, adults 19-59 N$50, seniors 60+
+// N$20. Tiers display on the facilities page, the rooms page and in the
+// FAQ answers. No other day-visit price may appear anywhere.
+export type DayVisitTier = { id: string; group: string; ages: string; rate: number };
+
+export const DAY_VISIT_TIERS: DayVisitTier[] = [
+  { id: "children", group: "Children", ages: "Under 12 years", rate: 20 },
+  { id: "youths", group: "Youths", ages: "13 to 18 years", rate: 30 },
+  { id: "adults", group: "Adults", ages: "19 to 59 years", rate: 50 },
+  { id: "seniors", group: "Seniors", ages: "60 years and older", rate: 20 },
+];
+
+// Range helpers for one-line mentions (FAQs, booking estimate).
+export const DAY_VISIT_RATE_MIN = 20;
+export const DAY_VISIT_RATE_MAX = 50;
+export const DAY_VISIT_RANGE = "N$20 to N$50 per person, by age";
 
 // Cooler box fees at the pool and entertainment area (owner round 6).
 export const COOLERS = [

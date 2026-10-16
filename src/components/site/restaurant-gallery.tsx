@@ -64,7 +64,6 @@ export const PLATES: Photo[] = [
   { src: "cocktail-blue-goblet", alt: "Blue cocktail in a balloon glass", w: 900, h: 675 },
   { src: "cocktail-orange-leaf", alt: "Orange cocktail with a fresh leaf", w: 900, h: 675 },
   { src: "drink-lemon-ice", alt: "Lemon cooler with ice on the table", w: 900, h: 675 },
-  { src: "evening-patio-dining", alt: "Patio tables set out for dinner in the evening", w: 900, h: 675 },
 ];
 
 export const ALL: Photo[] = [...PLACES, ...PLATES];

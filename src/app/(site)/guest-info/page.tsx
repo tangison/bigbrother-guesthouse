@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { pageMetadata } from "@/lib/metadata";
-import { GUESTHOUSE, RESTAURANT, HOLDINGS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
-import { DAY_VISIT_RATE, VIP, formatNad } from "@/lib/rates";
+import { GUESTHOUSE, RESTAURANT, HOLDINGS, wa, GUESTHOUSE_WA_GREETING, GUESTHOUSE_HOURS } from "@/lib/site-data";
+import { DAY_VISIT_TIERS, VIP, formatNad } from "@/lib/rates";
 
 export const metadata = pageMetadata({
   title: "Guest Info & FAQ | Big Brother Guesthouse, Usakos",
@@ -39,7 +39,11 @@ const FAQ = [
   },
   {
     q: "Can we visit for the day, without sleeping over?",
-    a: `Yes. Day visits to the pools, lawn and lapa cost ${formatNad(DAY_VISIT_RATE)} per person. Cooler boxes pay a small fee, and order from the kitchen while you are here.`,
+    a: `Yes. Day visits to the pools, lawn and lapa are priced by age: ${DAY_VISIT_TIERS.map((t) => `${t.group} ${formatNad(t.rate)}`).join(", ")} per person. Cooler boxes pay a small fee, and order from the kitchen while you are here.`,
+  },
+  {
+    q: "What are your opening hours?",
+    a: `The guesthouse never closes: reception and the gate run 24/7, every day. The daily service window is 08:00 to 22:00, and the guesthouse kitchen takes food orders from 08:00 up to 20:30 sharp. In town, Big Brothers Restaurant opens Mon to Fri 08:00-22:00, Sat 09:00-22:00 and Sun 09:30-21:30.`,
   },
   {
     q: "How does payment work?",

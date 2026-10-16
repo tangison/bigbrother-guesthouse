@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { GUESTHOUSE, RESTAURANT, HOLDINGS, EMAILS, SOCIALS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
+import { GUESTHOUSE, RESTAURANT, HOLDINGS, EMAILS, SOCIALS, wa, GUESTHOUSE_WA_GREETING, GUESTHOUSE_HOURS } from "@/lib/site-data";
 import { LISTINGS } from "@/lib/nearby";
-import { DAY_VISIT_RATE, formatNad } from "@/lib/rates";
+import { DAY_VISIT_RANGE } from "@/lib/rates";
 import { SocialIcon } from "./social-icons";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -23,11 +23,15 @@ const FAQ = [
   },
   {
     q: "What are the kitchen hours?",
-    a: `The restaurant kitchen runs ${RESTAURANT.hoursKnown}. Hours can shift on public holidays; a quick WhatsApp gets you today's answer.`,
+    a: `Two kitchens, two schedules. In town, Big Brothers Restaurant runs Mon to Fri 08:00 to 22:00, Sat 09:00 to 22:00 (kitchen closes 21:30) and Sun 09:30 to 21:30 (kitchen closes 21:00). On the plot, the guesthouse kitchen takes orders daily from 08:00 until 20:30 sharp. Hours can shift on public holidays; a quick WhatsApp gets you today's answer.`,
+  },
+  {
+    q: "When is the guesthouse open?",
+    a: `The property is open 24/7, every day of the week: arrive late and the gate still opens. The daily service window runs 08:00 to 22:00, and the guesthouse kitchen serves from 08:00 to 20:30, with last food orders at 20:30.`,
   },
   {
     q: "Can we visit for the day without sleeping over?",
-    a: `Yes. Day visitors are welcome at the pools, the garden and the lapa at Plot 7, and order from the kitchen. Entry is ${formatNad(DAY_VISIT_RATE)} per person; cooler boxes pay a small fee.`,
+    a: `Yes. Day visitors are welcome at the pools, the garden and the lapa at Plot 7, and order from the kitchen while here. Entry is ${DAY_VISIT_RANGE}: under-12s N$20, youths 13 to 18 N$30, adults N$50 and seniors 60+ N$20. Cooler boxes pay a small fee.`,
   },
   {
     q: "Do you host functions and meetings?",

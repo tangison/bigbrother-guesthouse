@@ -5,7 +5,7 @@ import { RoomCards } from "@/components/site/room-cards";
 import { PaymentCard } from "@/components/site/payment-card";
 import { NtbModals, BankingModalButton } from "@/components/site/ntb-modals";
 import {
-  DAY_VISIT_RATE,
+  DAY_VISIT_TIERS,
   COOLERS,
   CORKAGE,
   CONFERENCE,
@@ -57,16 +57,24 @@ export default function RoomsPage() {
       <section className="bg-cream py-16 md:py-24" aria-label="Day visits and conference">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:px-6">
           <div>
-            <h2 className="font-display text-3xl font-semibold tracking-[-0.01em]">Day visits, per person</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-[-0.01em]">Day visits, by age</h2>
             <p className="mt-3 max-w-md leading-relaxed text-mut">
               Come enjoy the day: pools, lawn, shade under the lapa. Order from the kitchen while you are here.
             </p>
-            <div className="mt-5 flex flex-wrap items-baseline justify-between gap-4 border-y border-line py-4 text-[15px]">
-              <span className="text-mut">Day visit entry fee, per person</span>
-              <span className="font-display text-3xl font-semibold tabular-nums text-ember-deep">
-                {formatNad(DAY_VISIT_RATE)}
-              </span>
-            </div>
+            <ul className="mt-5 max-w-md divide-y divide-line border-y border-line text-[15px]">
+              {DAY_VISIT_TIERS.map((t) => (
+                <li key={t.id} className="flex items-baseline justify-between gap-4 py-3">
+                  <span>
+                    {t.group}
+                    <span className="block text-xs text-mut">{t.ages}</span>
+                  </span>
+                  <span className="font-display text-xl font-semibold tabular-nums text-ember-deep">
+                    {formatNad(t.rate)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 max-w-md text-xs text-mut">Per person, per day. Children under 12 pay the children rate.</p>
             <h3 className="mt-8 font-display text-xl font-semibold">Cooler boxes</h3>
             <ul className="mt-3 divide-y divide-line border-y border-line text-[15px]">
               {COOLERS.map((c) => (

@@ -44,7 +44,7 @@ export default function RestaurantMenuPage() {
         brand="restaurant"
         sections={RESTAURANT_MENU}
         heroTitle="Good food, great vibes."
-        heroCopy="Every price below comes from our own printed menu, from a N$23 cool drink to the N$400 seafood platter. The kitchen opens Monday to Saturday, from 09:30 or 10:00 depending on the day."
+        heroCopy="Every price below comes from our own printed menu, from a N$23 cool drink to the N$400 seafood platter. The kitchen opens Mon to Fri from 08:00, Sat from 09:00 and Sun from 09:30."
         heroImage="/images/dish-feast.jpg"
         photoBand={[
           { src: "/images/dish-samoosa.jpg", alt: "Golden samoosas with sauce and salad on a plate" },

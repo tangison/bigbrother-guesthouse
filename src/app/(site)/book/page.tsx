@@ -2,6 +2,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { BookingCard } from "@/components/site/booking-card";
 import { GUESTHOUSE } from "@/lib/site-data";
 import { LISTINGS } from "@/lib/nearby";
+import { AIRBNB } from "../../../../data/site-config";
 import { GUESTHOUSE_ROUTES } from "@/lib/routes";
 
 export const metadata = pageMetadata({
@@ -61,6 +62,22 @@ export default function BookPage() {
             them, and our own site always carries today&apos;s rate first.
           </p>
           <ul className="mt-4 flex flex-wrap gap-3">
+            {/* Owner audit 16 Oct 2026: connect the Airbnb listing. The URL
+             * was not included in the audit message, so the button renders
+             * the moment the owner sends it (data/site-config.ts AIRBNB). */}
+            {AIRBNB.supplied && AIRBNB.url && (
+              <li>
+                <a
+                  href={AIRBNB.url}
+                  rel="noopener"
+                  target="_blank"
+                  className="inline-block rounded-full border border-ink/25 bg-paper px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-sand/60"
+                >
+                  Airbnb
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </li>
+            )}
             {LISTINGS.map((l) => (
               <li key={l.name}>
                 <a

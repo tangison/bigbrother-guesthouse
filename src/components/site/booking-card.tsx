@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { VISIBLE_TIERS, ROOM_TIERS, VIP, CONFERENCE, DAY_VISIT_RATE, formatNad, nightsBetween } from "@/lib/rates";
+import { VISIBLE_TIERS, ROOM_TIERS, VIP, CONFERENCE, DAY_VISIT_RANGE, formatNad, nightsBetween } from "@/lib/rates";
 import { GUESTHOUSE, HOLDINGS, wa, GUESTHOUSE_WA_GREETING } from "@/lib/site-data";
 import { PaymentCard } from "./payment-card";
 
@@ -360,7 +360,7 @@ export function BookingCard() {
                   : `${formatNad(tier.rate)} x ${nights} x ${rooms}`
                 : property === "conference"
                   ? `${formatNad(CONFERENCE.rate)} per day or event`
-                  : `${formatNad(DAY_VISIT_RATE)} per person`}
+                  : `${DAY_VISIT_RANGE}`}
             </dd>
           </div>
           {discount > 0 && (

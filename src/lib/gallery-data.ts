@@ -199,4 +199,9 @@ export const GALLERY: GalleryPhoto[] = [
   { slug: "conference-whiteboard", group: "events", alt: "Conference room with red and gold tablecloths, white chairs and a whiteboard", w: 1200, h: 1600 },
   { slug: "bar-thatched-day", group: "drinks", alt: "Thatched-roof bar with yellow counter, bar stools and a pool table", w: 1600, h: 1200 },
   { slug: "bar-thatched-evening", group: "drinks", alt: "Evening view of the thatched bar with yellow counter and bar stools", w: 1600, h: 1200 },
+  // Owner audit (16 Oct 2026): this Plot 7 patio photograph sat as the last
+  // item of the restaurant gallery's "Plates & drinks" (a category error).
+  // It is the guesthouse's own painted-stone patio after dark, so it moved
+  // here, to the night group of the guesthouse gallery.
+  { slug: "evening-patio-dining", group: "night", alt: "Patio tables on the painted stone floor after dark", w: 1000, h: 750 },
 ];

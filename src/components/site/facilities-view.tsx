@@ -5,8 +5,8 @@ import Link from "next/link";
 import { Check } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { StackCard } from "./motion";
-import { BIZ, wa } from "@/lib/site-data";
-import { CONFERENCE, COOLERS, CORKAGE, DAY_VISIT_RATE, ENTERTAINMENT_AREA, formatNad } from "@/lib/rates";
+import { BIZ, wa, GUESTHOUSE_HOURS } from "@/lib/site-data";
+import { CONFERENCE, COOLERS, CORKAGE, DAY_VISIT_TIERS, ENTERTAINMENT_AREA, formatNad } from "@/lib/rates";
 
 /* Facilities · Tabs for planning, stack cards for amenities. The three ways to
  * use the property sit in one tabbed widget with the owner's own photographs;
@@ -65,11 +65,24 @@ export function FacilitiesView() {
                   Day visitors are welcome at the pools, the garden and the lapa. Bring the family or a car full of
                   friends and let the afternoon run long. Order from the kitchen while you are here.
                 </p>
-                <div className="mt-6 flex flex-wrap items-baseline justify-between gap-4 border-y border-line py-4 text-[15px]">
-                  <span className="text-mut">Day visit entry fee, per person</span>
-                  <span className="font-display text-3xl font-semibold tabular-nums text-ember-deep">
-                    {formatNad(DAY_VISIT_RATE)}
-                  </span>
+                <div className="mt-6 max-w-md">
+                  <div className="flex items-baseline justify-between gap-4 border-b border-line pb-2 text-[15px]">
+                    <span className="text-mut">Day visit entry, by age</span>
+                    <span className="text-sm text-mut">Per person, per day</span>
+                  </div>
+                  <ul className="divide-y divide-line border-b border-line text-[15px]">
+                    {DAY_VISIT_TIERS.map((t) => (
+                      <li key={t.id} className="flex items-baseline justify-between gap-4 py-3">
+                        <span>
+                          {t.group}
+                          <span className="block text-xs text-mut">{t.ages}</span>
+                        </span>
+                        <span className="font-display text-xl font-semibold tabular-nums text-ember-deep">
+                          {formatNad(t.rate)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <h3 className="mt-8 font-display text-lg font-semibold">Cooler boxes</h3>
                 <ul className="mt-3 divide-y divide-line border-y border-line text-[15px]">
@@ -92,10 +105,10 @@ export function FacilitiesView() {
               <figure>
                 <div className="photo-frame aspect-[4/3]">
                   <Image
-                    src="/images/picnic-table-tree.jpg"
-                    alt="Picnic table under a big shade tree on the lawn"
-                    width={1400}
-                    height={1050}
+                    src="/images/pool-day-visitors.jpg"
+                    alt="Day visitors enjoying the pool together at Plot 7"
+                    width={1000}
+                    height={750}
                     loading="lazy"
                     quality={50}
                     sizes="(max-width: 1024px) 100vw, 40vw"
@@ -134,10 +147,10 @@ export function FacilitiesView() {
               <figure>
                 <div className="photo-frame aspect-[4/3]">
                   <Image
-                    src="/images/conference-room-set.jpg"
-                    alt="The conference room at Plot 7 set up for delegates: tables with white cloths, chairs and windows onto the garden"
+                    src="/images/conference-long-table.jpg"
+                    alt="Long conference table with tablecloth and chairs lit by afternoon sun"
                     width={1200}
-                    height={900}
+                    height={1600}
                     loading="lazy"
                     quality={50}
                     sizes="(max-width: 1024px) 100vw, 40vw"
@@ -328,22 +341,14 @@ export function FacilitiesView() {
               </div>
             </div>
             <div className="grid gap-4">
-              <div className="photo-frame aspect-[16/9]">
+              {/* Owner audit 16 Oct 2026: ONE single conference image in this
+               * container. Multi-image layouts here were explicitly rejected
+               * (they look weird and break on mobile), so the old pair is
+               * replaced by the one strongest new photograph. */}
+              <div className="photo-frame aspect-[4/3]">
                 <Image
                   src="/images/conference-tables-chairs.jpg"
                   alt="Conference room with draped tables, white chairs and a whiteboard"
-                  width={1600}
-                  height={1200}
-                  loading="lazy"
-                  quality={50}
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="photo-frame aspect-[16/9]">
-                <Image
-                  src="/images/conference-refreshments.jpg"
-                  alt="Conference room with windows, refreshment table and long tables"
                   width={1600}
                   height={1200}
                   loading="lazy"
@@ -368,7 +373,7 @@ export function FacilitiesView() {
               img="/images/dish-braise.jpg"
               alt="Slow braised meat with peppers and pap from our kitchen"
               title="Kitchen & bar service"
-              text="Guests eat from our own kitchen on the plot, and the day-visit crowd orders from the same kitchen. The full restaurant menu, grills to pizza, runs in town centre at Big Brothers Restaurant."
+              text={`Guests eat from our own kitchen on the plot: ${GUESTHOUSE_HOURS.kitchen.toLowerCase()}. The full restaurant menu, grills to pizza, runs in town centre at Big Brothers Restaurant.`}
               link={{ href: "/menu", label: "See the guesthouse menu" }}
             />
           </StackCard>

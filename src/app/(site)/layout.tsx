@@ -1,6 +1,7 @@
 import { SiteNav } from "@/components/site/nav";
 import { SiteFooter } from "@/components/site/footer";
 import { StickyActionBar } from "@/components/site/sticky-action-bar";
+import { BackToTop } from "@/components/site/back-to-top";
 import { GUESTHOUSE, HOLDINGS } from "@/lib/site-data";
 import { LISTINGS } from "@/lib/nearby";
 
@@ -58,6 +59,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       </main>
       <SiteFooter brand="guesthouse" />
       <StickyActionBar brand="guesthouse" />
+      <BackToTop />
     </>
   );
 }

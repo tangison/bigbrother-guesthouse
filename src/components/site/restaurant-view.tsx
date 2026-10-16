@@ -139,19 +139,20 @@ export function RestaurantView() {
       <section className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28" aria-label="Hours and contact">
         <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr]">
           <div>
-            <h2 className="font-display text-3xl font-semibold tracking-[-0.01em]">Kitchen hours</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-[-0.01em]">Hours of operation</h2>
             <dl className="mt-6 max-w-xl text-[15px]">
-              <div className="flex items-baseline justify-between gap-4 border-b border-line py-3.5">
-                <dt className="text-mut">Monday to Saturday</dt>
-                <dd className="font-display text-lg font-semibold">Open from 09:30 / 10:00</dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-4 border-b border-line py-3.5">
-                <dt className="text-mut">Opening time</dt>
-                <dd className="font-display text-lg font-semibold">09:30 or 10:00, depending on the day</dd>
-              </div>
+              {RESTAURANT.hours.map((h) => (
+                <div key={h.days} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-line py-3.5">
+                  <dt className="text-mut">{h.days}</dt>
+                  <dd className="text-right">
+                    <span className="block font-display text-lg font-semibold">{h.venue}</span>
+                    <span className="block text-sm text-mut">{h.kitchen}</span>
+                  </dd>
+                </div>
+              ))}
             </dl>
             <p className="mt-4 max-w-md text-sm text-mut">
-              Kitchen hours can change on public holidays. A quick WhatsApp confirms it.
+              Hours can change on public holidays. A quick WhatsApp confirms it.
             </p>
 
             <h2 className="mt-12 font-display text-3xl font-semibold tracking-[-0.01em]">Talk to the kitchen</h2>
@@ -257,11 +258,11 @@ export function RestaurantView() {
       {/* Fold 6: one closing action, typographic */}
       <section className="mx-auto max-w-4xl px-4 py-20 text-center md:px-6 md:py-28" aria-label="Menu call to action">
         <p className="mx-auto max-w-[30ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
-          Kitchen open Monday to Saturday, from 09:30.
+          The kitchen is open every day of the week.
         </p>
         <p className="mx-auto mt-4 max-w-lg text-mut">
-          The full menu carries every price we charge, from a N$30 russian to the N$400 seafood
-          platter. No surprises when the bill arrives.
+          Mon to Fri 08:00 to 22:00, Sat 09:00 to 22:00, Sun 09:30 to 21:30. The full menu carries every
+          price we charge, from a N$30 russian to the N$400 seafood platter. No surprises when the bill arrives.
         </p>
         <Link
           href="/restaurant/menu"

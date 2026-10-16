@@ -1,8 +1,9 @@
 // Real business data for Big Brother Holdings (two brands, two locations).
 // Sources: owner master file Big_Brother_Guesthouse_Master_Prompt.md (Oct 2026),
 // live site audit Oct 2026, NTB approval letter + certificate (2017) in master file.
-// Restaurant hours (round 6): Monday to Saturday, opening 09:30/10:00 by day.
-// Closing times are not confirmed and are NOT invented here.
+// Restaurant hours (owner audit, 16 Oct 2026): full seven-day schedule with
+// venue hours and kitchen closing times, both confirmed. Guesthouse hours
+// (same audit): reception 24/7, service window 08:00-22:00, kitchen to 20:30.
 // Emails and banking live in data/site-config.ts (single source).
 import { EMAILS, SITE } from "../../data/site-config";
 
@@ -93,12 +94,29 @@ export const RESTAURANT = {
     region: "Erongo Region",
     country: "Namibia",
   },
-  // Kitchen hours, owner instruction (round 6): Monday to Saturday, opening
-  // from 09:30 or 10:00 depending on the day. Closing times are not confirmed,
-  // so none are displayed.
-  hoursKnown: "Monday to Saturday, opening from 09:30 or 10:00 depending on the day",
-  hoursShort: "Mon to Sat, from 09:30",
+  // Hours (owner audit, 16 Oct 2026, confirmed schedule): the venue and
+  // kitchen hours below are quoted exactly as dictated. On Saturdays the
+  // kitchen closes 30 minutes before the venue (21:30), on Sundays 30
+  // minutes before (21:00). These strings are the single source: the
+  // restaurant page table, the footer, the FAQs, the menu page and the
+  // reserve card all read from here.
+  hours: [
+    { days: "Monday to Friday", venue: "08:00 to 22:00", kitchen: "Kitchen closes 22:00" },
+    { days: "Saturday", venue: "09:00 to 22:00", kitchen: "Kitchen closes 21:30" },
+    { days: "Sunday", venue: "09:30 to 21:30", kitchen: "Kitchen closes 21:00" },
+  ],
+  hoursKnown: "Mon to Fri 08:00-22:00, Sat 09:00-22:00, Sun 09:30-21:30",
+  hoursShort: "Open every day: Mon to Fri from 08:00, Sat from 09:00, Sun from 09:30",
   facebook: GUESTHOUSE.facebook,
+};
+
+// Guesthouse hours (owner audit, 16 Oct 2026): the property itself never
+// closes, the daily service window runs 08:00 to 22:00, and the guesthouse
+// kitchen takes orders strictly up to 20:30 every day.
+export const GUESTHOUSE_HOURS = {
+  reception: "Open 24/7, every day of the week",
+  serviceWindow: "Daily service window 08:00 to 22:00",
+  kitchen: "Kitchen 08:00 to 20:30 daily. Last food orders 20:30",
 };
 
 // Kept as BIZ for existing imports during the split; per-brand data above wins.

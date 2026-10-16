@@ -83,6 +83,16 @@ body {
   font-family: var(--font-body);
 }
 
+/* Sticky action bar clearance (owner audit 16 Oct 2026): on mobile the
+ * fixed WhatsApp/Call/Book bar overlays the page flow, so the body carries
+ * a matching bottom padding. Safe-area aware, so the footer is never
+ * half-covered on phones with a home indicator. */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(4.25rem + env(safe-area-inset-bottom));
+  }
+}
+
 /* ---- Contact strip: the slim always-on header strip (32-36px). ----
  * Opaque, both brand numbers as tel: links, safe-area aware. */
 .contact-strip {

@@ -122,6 +122,18 @@ export function SiteNav({ brand }: { brand: Brand }) {
                   Restaurant
                 </Link>
               )}
+              {/* Owner audit 16 Oct 2026: the restaurant's desktop nav had no
+                 way back to the guesthouse site. A bordered button, matching
+                 the mobile menu's brand switcher, mirrors the ember Restaurant
+                 link the guesthouse nav carries. */}
+              {brand === "restaurant" && (
+                <Link
+                  href="/"
+                  className="whitespace-nowrap rounded-full border border-lime-deep/50 px-4 py-1.5 text-sm font-semibold text-lime-deep transition-colors hover:bg-lime hover:text-ink"
+                >
+                  Guesthouse
+                </Link>
+              )}
             </nav>
 
             <div className="hidden items-center gap-3 lg:flex">
