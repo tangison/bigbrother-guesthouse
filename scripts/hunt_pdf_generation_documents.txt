@@ -1,0 +1,70 @@
+
+[38;5;250m███████╗██╗  ██╗██╗██╗     ██╗     ███████╗[0m
+[38;5;248m██╔════╝██║ ██╔╝██║██║     ██║     ██╔════╝[0m
+[38;5;245m███████╗█████╔╝ ██║██║     ██║     ███████╗[0m
+[38;5;243m╚════██║██╔═██╗ ██║██║     ██║     ╚════██║[0m
+[38;5;240m███████║██║  ██╗██║███████╗███████╗███████║[0m
+[38;5;238m╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝[0m
+
+[38;5;102mInstall with[0m npx skills add <owner/repo@skill>
+
+[38;5;145mjwynia/agent-skills@pdf-generator[0m [36m910 installs[0m
+[38;5;102m└ https://skills.sh/jwynia/agent-skills/pdf-generator[0m
+
+[38;5;145mcatalystbyzoho/agent-skills@catalyst-smartbrowz[0m [36m802 installs[0m
+[38;5;102m└ https://skills.sh/catalystbyzoho/agent-skills/catalyst-smartbrowz[0m
+
+[38;5;145mmolefrog/skills@react-pdf[0m [36m712 installs[0m
+[38;5;102m└ https://skills.sh/molefrog/skills/react-pdf[0m
+
+[38;5;145mcomposio-community/awesome-codex-skills@paperjsx[0m [36m498 installs[0m
+[38;5;102m└ https://skills.sh/composio-community/awesome-codex-skills/paperjsx[0m
+
+[38;5;145mglebis/claude-skills@pdf-generation[0m [36m478 installs[0m
+[38;5;102m└ https://skills.sh/glebis/claude-skills/pdf-generation[0m
+
+[38;5;145mplinde/claude-plugins@pandoc[0m [36m474 installs[0m
+[38;5;102m└ https://skills.sh/plinde/claude-plugins/pandoc[0m
+
+[38;5;145mcuriositech/some_claude_skills@document-generation-pdf[0m [36m269 installs[0m
+[38;5;102m└ https://skills.sh/curiositech/some_claude_skills/document-generation-pdf[0m
+
+[38;5;145mdatabricks/databricks-agent-skills@databricks-unstructured-pdf-generation[0m [36m240 installs[0m
+[38;5;102m└ https://skills.sh/databricks/databricks-agent-skills/databricks-unstructured-pdf-generation[0m
+
+[38;5;145mpdfnoodle/pdf-best-practices@pdf-best-practices[0m [36m148 installs[0m
+[38;5;102m└ https://skills.sh/pdfnoodle/pdf-best-practices/pdf-best-practices[0m
+
+[38;5;145mvalantic-cec-deutschland-gmbh/claude-code-marketplace@valantic-pdf[0m [36m130 installs[0m
+[38;5;102m└ https://skills.sh/valantic-cec-deutschland-gmbh/claude-code-marketplace/valantic-pdf[0m
+
+[38;5;145mdanielmiessler/lifeos@Utilities[0m [36m116 installs[0m
+[38;5;102m└ https://skills.sh/danielmiessler/lifeos/utilities[0m
+
+[38;5;145mforcedotcom/sf-skills@education-cloud-academic-calendar-generate[0m [36m89 installs[0m
+[38;5;102m└ https://skills.sh/forcedotcom/sf-skills/education-cloud-academic-calendar-generate[0m
+
+[38;5;145mlawve-ai/awesome-legal-skills@pdf-processing-openai[0m [36m75 installs[0m
+[38;5;102m└ https://skills.sh/lawve-ai/awesome-legal-skills/pdf-processing-openai[0m
+
+[38;5;145msamhvw8/dot-claude@ai-multimodal[0m [36m59 installs[0m
+[38;5;102m└ https://skills.sh/samhvw8/dot-claude/ai-multimodal[0m
+
+[38;5;145mdenser-org/claude-skills@denser-retriever[0m [36m56 installs[0m
+[38;5;102m└ https://skills.sh/denser-org/claude-skills/denser-retriever[0m
+
+[38;5;145msmithery.ai@pandoc[0m [36m52 installs[0m
+[38;5;102m└ https://skills.sh/smithery.ai/pandoc[0m
+
+[38;5;145mtivojn/docx-design-agent@docx-design-agent[0m [36m46 installs[0m
+[38;5;102m└ https://skills.sh/tivojn/docx-design-agent/docx-design-agent[0m
+
+[38;5;145msilvainfm/claude-skills@reportlab[0m [36m30 installs[0m
+[38;5;102m└ https://skills.sh/silvainfm/claude-skills/reportlab[0m
+
+[38;5;145mvlm-run/skills@vlmrun-cli-skill[0m [36m30 installs[0m
+[38;5;102m└ https://skills.sh/vlm-run/skills/vlmrun-cli-skill[0m
+
+[38;5;145mopenclaw/skills@pdf[0m [36m17 installs[0m
+[38;5;102m└ https://skills.sh/openclaw/skills/pdf[0m
+

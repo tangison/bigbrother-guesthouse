@@ -1,0 +1,70 @@
+
+[38;5;250m███████╗██╗  ██╗██╗██╗     ██╗     ███████╗[0m
+[38;5;248m██╔════╝██║ ██╔╝██║██║     ██║     ██╔════╝[0m
+[38;5;245m███████╗█████╔╝ ██║██║     ██║     ███████╗[0m
+[38;5;243m╚════██║██╔═██╗ ██║██║     ██║     ╚════██║[0m
+[38;5;240m███████║██║  ██╗██║███████╗███████╗███████║[0m
+[38;5;238m╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝[0m
+
+[38;5;102mInstall with[0m npx skills add <owner/repo@skill>
+
+[38;5;145mvercel-labs/agent-skills@vercel-react-best-practices[0m [36m805.2K installs[0m
+[38;5;102m└ https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices[0m
+
+[38;5;145maffaan-m/ecc@frontend-patterns[0m [36m14.6K installs[0m
+[38;5;102m└ https://skills.sh/affaan-m/ecc/frontend-patterns[0m
+
+[38;5;145maffaan-m/ecc@react-performance[0m [36m5.8K installs[0m
+[38;5;102m└ https://skills.sh/affaan-m/ecc/react-performance[0m
+
+[38;5;145mgiuseppe-trisciuoglio/developer-kit@nextjs-performance[0m [36m4.8K installs[0m
+[38;5;102m└ https://skills.sh/giuseppe-trisciuoglio/developer-kit/nextjs-performance[0m
+
+[38;5;145mmedusajs/medusa-agent-skills@storefront-best-practices[0m [36m4.4K installs[0m
+[38;5;102m└ https://skills.sh/medusajs/medusa-agent-skills/storefront-best-practices[0m
+
+[38;5;145mdelphi-ai/animate-skill@animate[0m [36m3.5K installs[0m
+[38;5;102m└ https://skills.sh/delphi-ai/animate-skill/animate[0m
+
+[38;5;145mpproenca/dot-skills@nuqs[0m [36m2.3K installs[0m
+[38;5;102m└ https://skills.sh/pproenca/dot-skills/nuqs[0m
+
+[38;5;145msickn33/agentic-awesome-skills@cc-skill-frontend-patterns[0m [36m1.4K installs[0m
+[38;5;102m└ https://skills.sh/sickn33/agentic-awesome-skills/cc-skill-frontend-patterns[0m
+
+[38;5;145mmindrally/skills@redux-toolkit[0m [36m1.3K installs[0m
+[38;5;102m└ https://skills.sh/mindrally/skills/redux-toolkit[0m
+
+[38;5;145mmindrally/skills@modern-web-development[0m [36m1.2K installs[0m
+[38;5;102m└ https://skills.sh/mindrally/skills/modern-web-development[0m
+
+[38;5;145mpproenca/dot-skills@nextjs[0m [36m1.2K installs[0m
+[38;5;102m└ https://skills.sh/pproenca/dot-skills/nextjs[0m
+
+[38;5;145mam-will/codex-skills@vercel-react-best-practices[0m [36m1.2K installs[0m
+[38;5;102m└ https://skills.sh/am-will/codex-skills/vercel-react-best-practices[0m
+
+[38;5;145msickn33/agentic-awesome-skills@react-best-practices[0m [36m895 installs[0m
+[38;5;102m└ https://skills.sh/sickn33/agentic-awesome-skills/react-best-practices[0m
+
+[38;5;145mmindrally/skills@nextjs-react-redux-typescript-cursor-rules[0m [36m830 installs[0m
+[38;5;102m└ https://skills.sh/mindrally/skills/nextjs-react-redux-typescript-cursor-rules[0m
+
+[38;5;145mmindrally/skills@monorepo[0m [36m682 installs[0m
+[38;5;102m└ https://skills.sh/mindrally/skills/monorepo[0m
+
+[38;5;145mskills-il/localization@hebrew-rtl-best-practices[0m [36m668 installs[0m
+[38;5;102m└ https://skills.sh/skills-il/localization/hebrew-rtl-best-practices[0m
+
+[38;5;145mpproenca/dot-skills@react[0m [36m487 installs[0m
+[38;5;102m└ https://skills.sh/pproenca/dot-skills/react[0m
+
+[38;5;145mvercel-labs/agent-eval@vercel-react-best-practices[0m [36m400 installs[0m
+[38;5;102m└ https://skills.sh/vercel-labs/agent-eval/vercel-react-best-practices[0m
+
+[38;5;145mpproenca/dot-skills@react-optimise[0m [36m395 installs[0m
+[38;5;102m└ https://skills.sh/pproenca/dot-skills/react-optimise[0m
+
+[38;5;145mpymodel/react-frontend-skills@playwright[0m [36m395 installs[0m
+[38;5;102m└ https://skills.sh/pymodel/react-frontend-skills/playwright[0m
+

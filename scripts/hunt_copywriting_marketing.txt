@@ -1,0 +1,70 @@
+
+[38;5;250m███████╗██╗  ██╗██╗██╗     ██╗     ███████╗[0m
+[38;5;248m██╔════╝██║ ██╔╝██║██║     ██║     ██╔════╝[0m
+[38;5;245m███████╗█████╔╝ ██║██║     ██║     ███████╗[0m
+[38;5;243m╚════██║██╔═██╗ ██║██║     ██║     ╚════██║[0m
+[38;5;240m███████║██║  ██╗██║███████╗███████╗███████║[0m
+[38;5;238m╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝[0m
+
+[38;5;102mInstall with[0m npx skills add <owner/repo@skill>
+
+[38;5;145mcoreyhaines31/marketingskills@copywriting[0m [36m225.2K installs[0m
+[38;5;102m└ https://skills.sh/coreyhaines31/marketingskills/copywriting[0m
+
+[38;5;145mcoreyhaines31/marketingskills@marketing-psychology[0m [36m158.3K installs[0m
+[38;5;102m└ https://skills.sh/coreyhaines31/marketingskills/marketing-psychology[0m
+
+[38;5;145mcoreyhaines31/marketingskills@content-strategy[0m [36m157.3K installs[0m
+[38;5;102m└ https://skills.sh/coreyhaines31/marketingskills/content-strategy[0m
+
+[38;5;145mcoreyhaines31/marketingskills@copy-editing[0m [36m142.6K installs[0m
+[38;5;102m└ https://skills.sh/coreyhaines31/marketingskills/copy-editing[0m
+
+[38;5;145mcoreyhaines31/marketingskills@ad-creative[0m [36m128.1K installs[0m
+[38;5;102m└ https://skills.sh/coreyhaines31/marketingskills/ad-creative[0m
+
+[38;5;145mcoreyhaines31/marketingskills@sales-enablement[0m [36m114.1K installs[0m
+[38;5;102m└ https://skills.sh/coreyhaines31/marketingskills/sales-enablement[0m
+
+[38;5;145mcoreyhaines31/marketingskills@customer-research[0m [36m109.5K installs[0m
+[38;5;102m└ https://skills.sh/coreyhaines31/marketingskills/customer-research[0m
+
+[38;5;145mcoreyhaines31/marketingskills@lead-magnets[0m [36m108.1K installs[0m
+[38;5;102m└ https://skills.sh/coreyhaines31/marketingskills/lead-magnets[0m
+
+[38;5;145mcoreyhaines31/marketingskills@sms[0m [36m60K installs[0m
+[38;5;102m└ https://skills.sh/coreyhaines31/marketingskills/sms[0m
+
+[38;5;145mcoreyhaines31/marketingskills@offers[0m [36m52K installs[0m
+[38;5;102m└ https://skills.sh/coreyhaines31/marketingskills/offers[0m
+
+[38;5;145maxelfreeman/marketing-mindset@marketing-mindset[0m [36m50.1K installs[0m
+[38;5;102m└ https://skills.sh/axelfreeman/marketing-mindset/marketing-mindset[0m
+
+[38;5;145mcoreyhaines31/marketingskills@marketing-council[0m [36m41.3K installs[0m
+[38;5;102m└ https://skills.sh/coreyhaines31/marketingskills/marketing-council[0m
+
+[38;5;145mkostja94/marketing-skills@copywriting[0m [36m3.8K installs[0m
+[38;5;102m└ https://skills.sh/kostja94/marketing-skills/copywriting[0m
+
+[38;5;145msamber/cc-skills@copywriting-cta[0m [36m3.5K installs[0m
+[38;5;102m└ https://skills.sh/samber/cc-skills/copywriting-cta[0m
+
+[38;5;145msamber/cc-skills@site-launch-checklist[0m [36m3.3K installs[0m
+[38;5;102m└ https://skills.sh/samber/cc-skills/site-launch-checklist[0m
+
+[38;5;145mkostja94/marketing-skills@article-content[0m [36m2.3K installs[0m
+[38;5;102m└ https://skills.sh/kostja94/marketing-skills/article-content[0m
+
+[38;5;145msickn33/agentic-awesome-skills@copywriting[0m [36m1.6K installs[0m
+[38;5;102m└ https://skills.sh/sickn33/agentic-awesome-skills/copywriting[0m
+
+[38;5;145mognjengt/founder-skills@brand-copywriter[0m [36m1.3K installs[0m
+[38;5;102m└ https://skills.sh/ognjengt/founder-skills/brand-copywriter[0m
+
+[38;5;145mskills.volces.com@copywriting[0m [36m904 installs[0m
+[38;5;102m└ https://skills.sh/skills.volces.com/copywriting[0m
+
+[38;5;145mdavila7/claude-code-templates@copywriting[0m [36m770 installs[0m
+[38;5;102m└ https://skills.sh/davila7/claude-code-templates/copywriting[0m
+
