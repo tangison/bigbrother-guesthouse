@@ -402,3 +402,23 @@ Stage Summary:
 - Local main (f0311b8) ahead of live site (deployed @ 9ff023f, predates Prompt v3). One action flips it live: owner pastes fresh GitHub PAT, then git push https://<PAT>@github.com/tangison/bigbrother-guesthouse.git main (Vercel auto-deploys).
 - Still carried from earlier rounds (owner actions): replace the printed restaurant QR card with the new one in download/BB-Restaurant-Menu-QR-card.pdf, create restaurant@ + bookings@ mailboxes, confirm FNB branch code (281073 vs 282672), send restaurant EFT details + camping rates, fix or retire bigbrother-usakos.com (broken SPA, GBP points there).
 - Digital Foundation Pack queued immediately after the push goes live.
+
+---
+Task ID: 13
+Agent: Super Z (main agent)
+Task: Owner confirmations applied, PUSH to production, live verification (owner supplied fresh PAT + Vercel token in chat; used one-shot, never stored).
+
+Work Log:
+- Re-decoded the restaurant print QR at 600 DPI exhaustively: still encodes https://bigbrotherguesthouse.com/menu (same as guesthouse card - confirmed print error). OWNER DECISION: cards stay as printed, no reprint; redirects + the two-kitchens banner on /menu carry the correction. Replacement card files remain in /download as optional extra.
+- site-config.ts: BANKING.branchCodeConfirmed -> true (owner confirmed 281073 in chat; Karibib). Branch code row now renders on /rooms payment card and the client-side booking panel. Never in footer/meta/schema (QC-guarded).
+- facilities-view.tsx camping section: rates as given by owner - N$200 adults, N$150 kids, per person (no "per night" invented). "Ask for rates" copy replaced with availability CTA.
+- Emails TODOs cleared: owner confirmed bookings@ + restaurant@ mailboxes created.
+- Fixed a stale-server QC trap: old next-server process (renamed process title) survived pkill and served pre-rebuild HTML on :3300 while the new server failed to bind silently. Killed by pid; QC re-run: 80/80 PASS.
+- PUSHED: git push one-shot URL -> tangison/bigbrother-guesthouse aa30f91..320ef6d main:main. Vercel auto-deploy dpl_6DUF556aHt62CZJH4RqxBjQFc49B (production) BUILDING -> READY in ~60s.
+- LIVE VERIFICATION (19/19 PASS against https://www.bigbrotherguesthouse.com): apex /menu 308->www lands guesthouse menu (Hansa/Stoney/Sauces, no Tall Horse); /restaurant-menu lands restaurant menu (Tall Horse/Four Cousins/Sauces, no Hansa/Rainbow); /home 308->/; trailing slash 308; 404 safety; 281073 on /rooms only; camping rates live; both emails live; /stay-nearby 9 neighbours; home 134 items; sitemap 21 URLs + image entries; /menu og:image png 200.
+
+Stage Summary:
+- PRODUCTION IS LIVE on commit 320ef6d with the full Prompt v3 build: two separate menus from the client's print files (guesthouse 28 sections/161 items, restaurant 27/134), QR-safe routes with 308s, canonical host, camping/conference/bar sections with owner photos, both emails, restaurant payment card (honest fallback until EFT details arrive), /stay-nearby, full SEO/OG/schema.
+- Remote remains unconfigured locally (one-shot push URL protocol); no tokens on disk.
+- Remaining owner-side: send restaurant EFT details (card flips automatically when supplied); optionally print the replacement restaurant QR card for future stock; fix or retire bigbrother-usakos.com (broken SPA that GBP points at).
+- NEXT: Digital Foundation Pack (client handover + company profile) - gate cleared (site passed QC and is live).
