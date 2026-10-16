@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { QuietFade } from "./motion";
 
@@ -10,7 +11,7 @@ import { QuietFade } from "./motion";
 // sit at different locations.
 type Photo = { src: string; alt: string; w: number; h: number };
 
-const PLACES: Photo[] = [
+export const PLACES: Photo[] = [
   { src: "restaurant-exterior-entrance", alt: "The restaurant entrance with green and yellow posts", w: 810, h: 1080 },
   { src: "restaurant-exterior-entrance-flag", alt: "The restaurant entrance with the brand banner and flag", w: 810, h: 1080 },
   { src: "restaurant-exterior-banner-dusk", alt: "The Big Brothers banner wall at dusk", w: 810, h: 1080 },
@@ -24,7 +25,7 @@ const PLACES: Photo[] = [
   { src: "restaurant-bar-sign", alt: "The Big Brothers Restaurant sign above the bar counter", w: 1080, h: 810 },
 ];
 
-const PLATES: Photo[] = [
+export const PLATES: Photo[] = [
   { src: "dish-samoosa", alt: "Golden samoosas with sauce and salad on a plate", w: 900, h: 675 },
   { src: "dish-matangara", alt: "Matangara tripe in tomato gravy served with pap", w: 900, h: 675 },
   { src: "dish-feast", alt: "Family feast platter with pap, chicken and salads", w: 900, h: 675 },
@@ -66,9 +67,108 @@ const PLATES: Photo[] = [
   { src: "evening-patio-dining", alt: "Patio tables set out for dinner in the evening", w: 900, h: 675 },
 ];
 
-const ALL: Photo[] = [...PLACES, ...PLATES];
+export const ALL: Photo[] = [...PLACES, ...PLATES];
 
-export function RestaurantGallery() {
+/* Shared masonry grid + lightbox. The gallery page and the inline gallery
+ * fold on /restaurant both render from the same photo lists, so a photo can
+ * never go missing from one of them. */
+export function RestaurantPhotoGrid({
+  photos,
+  offset,
+  onOpen,
+}: {
+  photos: Photo[];
+  offset: number;
+  onOpen: (index: number) => void;
+}) {
+  return (
+    <ul className="columns-2 gap-4 md:columns-3 [&>*]:mb-4">
+      {photos.map((p, i) => (
+        <li key={p.src} className="break-inside-avoid">
+          <QuietFade delay={(i % 3) * 0.05}>
+            <button
+              onClick={() => onOpen(offset + i)}
+              className="photo-frame group block w-full border border-line"
+              aria-label={`View photo: ${p.alt}`}
+            >
+              <Image
+                src={`/images/${p.src}.jpg`}
+                alt={p.alt}
+                width={900}
+                height={675}
+                loading="lazy"
+                quality={48}
+                sizes="(max-width: 768px) 50vw, 33vw"
+                className="h-auto w-full object-cover"
+              />
+            </button>
+          </QuietFade>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export function RestaurantPhotoLightbox({
+  index,
+  onClose,
+  onNav,
+}: {
+  index: number;
+  onClose: () => void;
+  onNav: (next: number) => void;
+}) {
+  return (
+    <div
+      className="fixed inset-0 z-[400] flex items-center justify-center bg-ink/95 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label={ALL[index].alt}
+      onClick={onClose}
+    >
+      <button
+        className="absolute right-4 top-4 rounded-full border border-paper/30 px-4 py-2 text-paper transition-colors hover:bg-paper/10"
+        onClick={onClose}
+        aria-label="Close photo"
+      >
+        Close
+      </button>
+      <button
+        className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-paper/30 px-4 py-3 text-paper transition-colors hover:bg-paper/10"
+        onClick={(e) => {
+          e.stopPropagation();
+          onNav((index - 1 + ALL.length) % ALL.length);
+        }}
+        aria-label="Previous photo"
+      >
+        ←
+      </button>
+      <figure className="pop-in max-h-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
+        <Image
+          src={`/images/${ALL[index].src}.jpg`}
+          alt={ALL[index].alt}
+          width={900}
+          height={675}
+          className="max-h-[80vh] w-auto object-contain"
+          priority
+        />
+      </figure>
+      <button
+        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-paper/30 px-4 py-3 text-paper transition-colors hover:bg-paper/10"
+        onClick={(e) => {
+          e.stopPropagation();
+          onNav((index + 1) % ALL.length);
+        }}
+        aria-label="Next photo"
+      >
+        →
+      </button>
+    </div>
+  );
+}
+
+/* Keyboard + scroll-lock plumbing shared by both gallery embeds. */
+export function useRestaurantLightbox() {
   const [open, setOpen] = useState<number | null>(null);
 
   useEffect(() => {
@@ -88,31 +188,14 @@ export function RestaurantGallery() {
     };
   }, [open]);
 
+  return { open, setOpen };
+}
+
+export function RestaurantGallery() {
+  const { open, setOpen } = useRestaurantLightbox();
+
   const grid = (photos: Photo[], offset: number) => (
-    <ul className="columns-2 gap-4 md:columns-3 [&>*]:mb-4">
-      {photos.map((p, i) => (
-        <li key={p.src} className="break-inside-avoid">
-          <QuietFade delay={(i % 3) * 0.05}>
-            <button
-              onClick={() => setOpen(offset + i)}
-              className="photo-frame group block w-full border border-line"
-              aria-label={`View photo: ${p.alt}`}
-            >
-              <Image
-                src={`/images/${p.src}.jpg`}
-                alt={p.alt}
-                width={900}
-                height={675}
-                loading="lazy"
-                quality={48}
-                sizes="(max-width: 768px) 50vw, 33vw"
-                className="h-auto w-full object-cover"
-              />
-            </button>
-          </QuietFade>
-        </li>
-      ))}
-    </ul>
+    <RestaurantPhotoGrid photos={photos} offset={offset} onOpen={(i) => setOpen(i)} />
   );
 
   return (
@@ -141,51 +224,45 @@ export function RestaurantGallery() {
       </section>
 
       {open !== null && (
-        <div
-          className="fixed inset-0 z-[400] flex items-center justify-center bg-ink/95 p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label={ALL[open].alt}
-          onClick={() => setOpen(null)}
-        >
-          <button
-            className="absolute right-4 top-4 rounded-full border border-paper/30 px-4 py-2 text-paper transition-colors hover:bg-paper/10"
-            onClick={() => setOpen(null)}
-            aria-label="Close photo"
+        <RestaurantPhotoLightbox index={open} onClose={() => setOpen(null)} onNav={(i) => setOpen(i)} />
+      )}
+    </>
+  );
+}
+
+/* Inline gallery fold for the restaurant page itself: every photo the
+ * restaurant owns, on the page, with the same lightbox as the gallery page. */
+export function RestaurantGalleryInline() {
+  const { open, setOpen } = useRestaurantLightbox();
+
+  return (
+    <>
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h2 className="font-display text-3xl font-semibold tracking-[-0.01em] md:text-4xl">
+              The gallery: our place and our plates.
+            </h2>
+            <p className="mt-3 max-w-xl text-mut">
+              All {ALL.length} photos, straight from Big Brothers Restaurant: the dining room and bar,
+              the corner we sit on in town, and the plates and drinks we serve. Tap any photo to see it larger.
+            </p>
+          </div>
+          <Link
+            href="/restaurant/gallery"
+            className="rounded-full bg-ink px-6 py-3 text-sm font-semibold text-paper transition-colors hover:bg-lime hover:text-ink"
           >
-            Close
-          </button>
-          <button
-            className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-paper/30 px-4 py-3 text-paper transition-colors hover:bg-paper/10"
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpen((o) => (o === null ? o : (o - 1 + ALL.length) % ALL.length));
-            }}
-            aria-label="Previous photo"
-          >
-            ←
-          </button>
-          <figure className="pop-in max-h-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
-            <Image
-              src={`/images/${ALL[open].src}.jpg`}
-              alt={ALL[open].alt}
-              width={900}
-              height={675}
-              className="max-h-[80vh] w-auto object-contain"
-              priority
-            />
-          </figure>
-          <button
-            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-paper/30 px-4 py-3 text-paper transition-colors hover:bg-paper/10"
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpen((o) => (o === null ? o : (o + 1) % ALL.length));
-            }}
-            aria-label="Next photo"
-          >
-            →
-          </button>
+            Open the full gallery
+          </Link>
         </div>
+        <div className="mt-8">
+          <RestaurantPhotoGrid photos={PLACES} offset={0} onOpen={(i) => setOpen(i)} />
+          <h3 className="mb-4 mt-10 font-display text-2xl font-semibold tracking-[-0.01em]">Plates &amp; drinks</h3>
+          <RestaurantPhotoGrid photos={PLATES} offset={PLACES.length} onOpen={(i) => setOpen(i)} />
+        </div>
+      </div>
+      {open !== null && (
+        <RestaurantPhotoLightbox index={open} onClose={() => setOpen(null)} onNav={(i) => setOpen(i)} />
       )}
     </>
   );

@@ -112,6 +112,17 @@ export const ROUTES: RouteInfo[] = [
       "The Big Brothers Restaurant menu with every price: breakfast, kapana and pap, grills, pizzas, seafood and the full bar. From N$23 to the N$400 platter.",
   },
   {
+    // The restaurant's own photo gallery: the place in town plus its
+    // plates and drinks. Also embedded inline on /restaurant itself.
+    key: "restaurant-gallery",
+    path: "/restaurant/gallery",
+    label: "Gallery",
+    brand: "restaurant",
+    title: "Photo Gallery | Big Brothers Restaurant, Usakos",
+    description:
+      "Real photos of Big Brothers Restaurant in Usakos town centre: samoosas, matangara, grills, pizza, seafood and cocktails.",
+  },
+  {
     key: "reserve",
     path: "/restaurant/reserve",
     label: "Reserve a Table",

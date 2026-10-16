@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { DishCarousel } from "./dish-carousel";
 import { ReserveCard } from "./reserve-card";
+import { RestaurantGalleryInline } from "./restaurant-gallery";
 import { RESTAURANT } from "@/lib/site-data";
 
 /* Restaurant · Photographic folds. The hero is a background slideshow of the
@@ -227,25 +228,33 @@ export function RestaurantView() {
         </div>
       </section>
 
-      {/* Fold 4: Book a Table, right on the page (owner round 6). WhatsApp
+      {/* Fold 4: the gallery, right on the page (owner request): every
+       * restaurant photo, inline, with the full gallery one tap away. */}
+      <section className="py-16 md:py-24" aria-label="Restaurant photo gallery">
+        <RestaurantGalleryInline />
+      </section>
+
+      {/* Fold 5: Book a Table, right on the page (owner round 6). WhatsApp
        * and email routing both live in the reserve card. */}
-      <section id="book-a-table" className="mx-auto max-w-6xl scroll-mt-28 px-4 py-16 md:px-6 md:py-24" aria-label="Book a table">
-        <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-lime-deep">Book a table</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.01em] md:text-4xl">
-            Tell us when, and the table waits for you.
-          </h2>
-          <p className="mt-4 max-w-[56ch] leading-relaxed text-mut">
-            Fill in your details and send it straight to the kitchen on WhatsApp, or by email if you prefer.
-            Big groups, birthdays and braai nights: mention it in the notes and we will set the tables.
-          </p>
-        </div>
-        <div className="mt-10">
-          <ReserveCard />
+      <section id="book-a-table" className="scroll-mt-28 bg-cream" aria-label="Book a table">
+        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-lime-deep">Book a table</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.01em] md:text-4xl">
+              Tell us when, and the table waits for you.
+            </h2>
+            <p className="mt-4 max-w-[56ch] leading-relaxed text-mut">
+              Fill in your details and send it straight to the kitchen on WhatsApp, or by email if you prefer.
+              Big groups, birthdays and braai nights: mention it in the notes and we will set the tables.
+            </p>
+          </div>
+          <div className="mt-10">
+            <ReserveCard />
+          </div>
         </div>
       </section>
 
-      {/* Fold 5: one closing action, typographic */}
+      {/* Fold 6: one closing action, typographic */}
       <section className="mx-auto max-w-4xl px-4 py-20 text-center md:px-6 md:py-28" aria-label="Menu call to action">
         <p className="mx-auto max-w-[30ch] font-display text-3xl font-semibold leading-tight tracking-[-0.01em] md:text-4xl">
           Kitchen open Monday to Saturday, from 09:30.
